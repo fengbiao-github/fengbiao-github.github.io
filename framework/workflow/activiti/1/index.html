@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Activiti基础 - 蜡笔没了小新の博客</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="蜡笔没了小新の博客"><meta name="msapplication-TileImage" content="https://cdn.jsdelivr.net/gh/removeif/removeif-demo@latest/img/favicon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="蜡笔没了小新の博客"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="1. 工作流1.1. 简介 工作流就是业务过程的部分或整体在计算机应用环境下的自动化，主要解决的是使在多个参与者之间按照某种预定义的规则传递文档、信息或任务的过程自动进行，从而实现某个预期的业务目标，或者促使此目标的实现。工作流的简单概念就是用于流程审批的。如：请假审批流程、报销审批流程、出差审批流程、合同审批流程等。 工作流引擎，主要是为了帮忙我们实现流程自动化控制，例如Activiti引擎就可"><meta property="og:type" content="blog"><meta property="og:title" content="蜡笔没了小新の博客"><meta property="og:url" content="https://fengbiao-github.github.io/"><meta property="og:site_name" content="蜡笔没了小新"><meta property="og:description" content="1. 工作流1.1. 简介 工作流就是业务过程的部分或整体在计算机应用环境下的自动化，主要解决的是使在多个参与者之间按照某种预定义的规则传递文档、信息或任务的过程自动进行，从而实现某个预期的业务目标，或者促使此目标的实现。工作流的简单概念就是用于流程审批的。如：请假审批流程、报销审批流程、出差审批流程、合同审批流程等。 工作流引擎，主要是为了帮忙我们实现流程自动化控制，例如Activiti引擎就可"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://fengbiao-github.github.io/img/avatar.jpg"><meta property="article:published_time" content="2024-01-24T14:16:00.000Z"><meta property="article:modified_time" content="2024-02-19T05:29:24.135Z"><meta property="article:author" content="蜡笔没了小新"><meta property="article:tag" content="Activiti"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://fengbiao-github.github.io/img/avatar.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://fengbiao-github.github.io/framework/workflow/activiti/1/"},"headline":"蜡笔没了小新の博客","image":["https://fengbiao-github.github.io/img/og_image.png"],"datePublished":"2024-01-24T14:16:00.000Z","dateModified":"2024-02-19T05:29:24.135Z","author":{"@type":"Person","name":"蜡笔没了小新"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject"}},"description":"1. 工作流1.1. 简介 工作流就是业务过程的部分或整体在计算机应用环境下的自动化，主要解决的是使在多个参与者之间按照某种预定义的规则传递文档、信息或任务的过程自动进行，从而实现某个预期的业务目标，或者促使此目标的实现。工作流的简单概念就是用于流程审批的。如：请假审批流程、报销审批流程、出差审批流程、合同审批流程等。 工作流引擎，主要是为了帮忙我们实现流程自动化控制，例如Activiti引擎就可"}</script><link rel="canonical" href="https://fengbiao-github.github.io/framework/workflow/activiti/1/"><link rel="icon" href="https://cdn.jsdelivr.net/gh/removeif/removeif-demo@latest/img/favicon.png"><meta name="referrer" content="no-referrer-when-downgrade"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/6.0.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css?family=Ubuntu:400,600|Source+Code+Pro|Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&amp;amp;subset=latin,latin-ext|Inconsolata|Itim|Lobster.css"><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="/js/globalUtils.js"></script><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.10.0/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdnjs.loli.net/ajax/libs/pace/1.2.4/pace.min.js"></script><link rel="stylesheet" href="/live2d/waifu.css"><script type="text/javascript" async src="/live2d/autoload.js"></script><meta name="generator" content="Hexo 5.4.2"></head><body class="is-3-column has-navbar-fixed-top"><nav class="navbar navbar-main is-fixed-top"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">蜡笔没了小新の博客</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/mindmap">图谱</a><a class="navbar-item" href="/plans">计划</a><a class="navbar-item" href="/aboutme">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/fengbiao-github/fengbiao-github.github.io"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a><a class="navbar-item" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a></div></div></div></nav><script type="text/javascript" src="/js/theme-setting.js"></script><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><!--!--><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2024-01-24  <a class="commentCountImg" href="/framework/workflow/activiti/1/#comment-container"><span class="display-none-class">e519237c087bab3314e3bae76f526cf6</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="e519237c087bab3314e3bae76f526cf6">99+</span>  </a><span class="level-item"><i class="far fa-clock"> </i>14 分钟  <i class="fas fa-pencil-alt"> </i>2.1 k</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">Activiti基础</h1><div class="content"><h1 id="1-工作流"><a href="#1-工作流" class="headerlink" title="1. 工作流"></a>1. 工作流</h1><h2 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1. 简介"></a>1.1. 简介</h2><ul>
+<li>工作流就是<strong>业务过程的部分或整体在计算机应用环境下的自动化</strong>，主要解决的是使在多个参与者之间按照某种预定义的规则传递文档、信息或任务的过程自动进行，从而实现某个预期的业务目标，或者促使此目标的实现。<br><code>工作流的简单概念就是用于流程审批的。如：请假审批流程、报销审批流程、出差审批流程、合同审批流程等。</code></li>
+<li>工作流引擎，主要是为了帮忙我们实现<strong>流程自动化控制</strong>，例如Activiti引擎就可以实现自动化控制。</li>
+<li>工作流管理系统是一个软件系统，它完成工作流的定义和管理，并按照在系统中预先定义好的工作流规则进行工作流实例的执行。例如OA系统，ERP系统。</li>
+</ul>
+<h2 id="1-2-应用场景"><a href="#1-2-应用场景" class="headerlink" title="1.2. 应用场景"></a>1.2. 应用场景</h2><ul>
+<li>业务类：合同审批流程、订单处理流程、出入库审批流程等。</li>
+<li>行政类：请假流程、出差流程、用车流程、办公用品申请流程等。</li>
+<li>财务类：报销流程、支付流程等。</li>
+<li>客户服务类：售后跟踪、客户投诉等。</li>
+</ul>
+<h1 id="2-Activiti"><a href="#2-Activiti" class="headerlink" title="2. Activiti"></a>2. Activiti</h1><h2 id="2-1-简介"><a href="#2-1-简介" class="headerlink" title="2.1. 简介"></a>2.1. 简介</h2><p>Activiti是一个开源的<strong>工作流引擎</strong>，它实现了<strong>BPMN2.0规范</strong>，可以发布设计好的流程定义，并通过api进行流程调度。</p>
+<blockquote>
+<p>官网：<a target="_blank" rel="noopener" href="https://www.activiti.org/">https://www.activiti.org/</a></p>
+</blockquote>
+<h2 id="2-2-BPMN2-0规范"><a href="#2-2-BPMN2-0规范" class="headerlink" title="2.2. BPMN2.0规范"></a>2.2. BPMN2.0规范</h2><h3 id="2-2-1-简介"><a href="#2-2-1-简介" class="headerlink" title="2.2.1. 简介"></a>2.2.1. 简介</h3><p>业务流程模型注解（Business Process Modeling Notation）是业务流程模型的一种标准图形注解。这个标准是由对象管理组维护。</p>
+<span id="more"></span>
+<h3 id="2-2-2-基本流程符号"><a href="#2-2-2-基本流程符号" class="headerlink" title="2.2.2. 基本流程符号"></a>2.2.2. 基本流程符号</h3><ul>
+<li>事件：<strong>开始事件</strong>，<strong>结束事件</strong>，中间事件。</li>
+<li>活动：</li>
+<li>网关：<strong>排他网关</strong>，<strong>并行网关</strong>，<strong>包含网关</strong>，事件网关。</li>
+<li>定时器事件：</li>
+</ul>
+<h2 id="2-3-开发流程"><a href="#2-3-开发流程" class="headerlink" title="2.3. 开发流程"></a>2.3. 开发流程</h2><ol>
+<li><strong>画流程定义模型</strong>：遵守BPMN的流程规范，使用BPMN的流程定义工具，通过<strong>流程符号</strong>把整个业务流程定义出来，可以将流程定义文件字节流保存到<strong>Model</strong>模型数据表中。</li>
+<li><strong>部署流程定义</strong>：加载画好的流程定义文件，将它转换成<strong>ProcessDefinition</strong>流程定义数据，保存到流程定义数据表中。</li>
+<li><strong>启动流程</strong>：生成<strong>ProcessInstance</strong>流程实例数据，生成第1节点<strong>Task</strong>任务数据。</li>
+<li><strong>处理人审批流程节点任务</strong>：完成任务审批，生成审批结果，生成下一节点任务数据。</li>
+</ol>
+<h1 id="3-Activiti环境搭建"><a href="#3-Activiti环境搭建" class="headerlink" title="3. Activiti环境搭建"></a>3. Activiti环境搭建</h1><ol>
+<li>创建Maven项目，添加依赖。<figure class="highlight xml"><figcaption><span>pom.xml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fengb<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>activiti01<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.activiti/activiti-engine --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.activiti<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>activiti-engine<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>7.0.0.Beta1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.mybatis/mybatis --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.15<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>8.0.33<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>在resources目录下创建activiti.cfg.xml核心配置文件。<figure class="highlight xml"><figcaption><span>activiti.cfg.xml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 默认方式下，bean的id必须是processEngineConfiguration。 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;processEngineConfiguration&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;jdbcDriver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">            characterEncoding=utf8：解决中文乱码。</span></span><br><span class="line"><span class="comment">            nullCatalogMeansCurrent=true：解决无法创建表。</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;jdbcUrl&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mysql:///activiti1?nullCatalogMeansCurrent=true<span class="symbol">&amp;amp;</span>characterEncoding=utf8&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;jdbcUsername&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;jdbcPassword&quot;</span> <span class="attr">value</span>=<span class="string">&quot;123456&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">            true：适用开发环境，默认值。activiti会对数据库中所有表进行更新操作。如果表不存在，则自动创建。</span></span><br><span class="line"><span class="comment">            false：适用生产环境。activiti在启动时，对比数据库表中保存的版本，如果没有表或者版本不匹配，则抛出异常。</span></span><br><span class="line"><span class="comment">            create_drop：在activiti启动时创建表，在关闭时删除表（必须手动关闭引擎，才能删除表）。</span></span><br><span class="line"><span class="comment">            drop-create：在activiti启动时删除原来的旧表，然后在创建新表（不需要手动关闭引擎）。</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;databaseSchemaUpdate&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>编写测试类。<figure class="highlight java"><figcaption><span>Main.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="comment">// 方式1.使用ProcessEngines工具类。</span></span><br><span class="line">    <span class="comment">// ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 方式2.创建ProcessEngineConfiguration对象。</span></span><br><span class="line">    <span class="comment">// ProcessEngineConfiguration processEngineConfiguration = ProcessEngineConfiguration.createProcessEngineConfigurationFromResourceDefault();</span></span><br><span class="line">    <span class="comment">// ProcessEngineConfiguration processEngineConfiguration = ProcessEngineConfiguration.createProcessEngineConfigurationFromResource(&quot;activiti.cfg.xml&quot;);</span></span><br><span class="line">    <span class="type">ProcessEngineConfiguration</span> <span class="variable">processEngineConfiguration</span> <span class="operator">=</span> ProcessEngineConfiguration.createProcessEngineConfigurationFromResource(<span class="string">&quot;activiti.cfg.xml&quot;</span>, <span class="string">&quot;processEngineConfiguration&quot;</span>);</span><br><span class="line">    <span class="type">ProcessEngine</span> <span class="variable">processEngine</span> <span class="operator">=</span> processEngineConfiguration.buildProcessEngine();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="4-Activiti架构"><a href="#4-Activiti架构" class="headerlink" title="4. Activiti架构"></a>4. Activiti架构</h1><h2 id="4-1-数据表"><a href="#4-1-数据表" class="headerlink" title="4.1. 数据表"></a>4.1. 数据表</h2><table style="align: left; border-collapse: collapse; border: 1px solid black;">
+    <thead>
+        <tr>
+            <th style="width: 20%;">表分类</th>
+            <th style="width: 20%;">表名</th>
+            <th style="width: 60%;">解释</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- 通用数据 -->
+        <tr>
+            <td style="font-weight:700">通用数据</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_GE_BYTEARRAY</td>
+            <td>二进制数据表。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_GE_PROPERTY</td>
+            <td>属性数据表。存储整个流程引擎级别的数据，初始化表结构时会插入版本号信息等。</td>
+        </tr>
+        <!-- 流程历史数据 -->
+        <tr>
+            <td style="font-weight:700">流程历史数据</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_HI_ACTINST</td>
+            <td>历史节点表。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_HI_ATTACHMENT</td>
+            <td>历史附件表。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_HI_COMMENT</td>
+            <td>历史意见表。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_HI_DETAIL</td>
+            <td>历史详情表，提供历史变量的查询。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_HI_IDENTITYLINK</td>
+            <td>历史流程人员表，主要存储任务节点与参与者的信息。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_HI_PROCINST</td>
+            <td>历史流程实例表。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_HI_TASKINST</td>
+            <td>历史任务实例表。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_HI_VARINST</td>
+            <td>历史变量表。</td>
+        </tr>
+        <!-- 流程定义数据 -->
+        <tr>
+            <td style="font-weight:700">流程定义数据</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_RE_DEPLOYMENT</td>
+            <td>部署信息表。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_RE_MODEL</td>
+            <td>流程模型设计表。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_RE_PROCDEF</td>
+            <td>流程定义数据表。</td>
+        </tr>
+        <!-- 运行实例数据 -->
+        <tr>
+            <td style="font-weight:700">运行实例数据</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_RU_DEADLETTER_JOB</td>
+            <td>作业死亡信息表，如果作业失败超过重试次数，则写入此表。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_RU_EVENT_SUBSCR</td>
+            <td>throwEvent、catchEvent事件监听信息表。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_RU_EXECUTION</td>
+            <td>运行时流程执行实例表。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_RU_IDENTITYLINK</td>
+            <td>运行时流程人员表，主要存储任务节点与参与者的相关信息。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_RU_INTEGRATION</td>
+            <td>运行时积分表。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_RU_JOB</td>
+            <td>定时异步任务数据表。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_RU_SUSPENDED_JOB</td>
+            <td>运行时作业暂停表。如果流程中有个定时任务，如果这个任务停止工作了，这个任务写入这个表。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_RU_TASK</td>
+            <td>运行时任务节点表。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_RU_TIMER_JOB</td>
+            <td>运行时定时器作业表。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_RU_VARIABLE</td>
+            <td>运行时流程变量数据表。</td>
+        </tr>
+        <!-- 其他数据 -->
+        <tr>
+            <td style="font-weight:700">其他数据</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_EVT_LOG</td>
+            <td>流程引擎的通用事件日志记录表。</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>ACT_PROCDEF_INFO</td>
+            <td>流程定义的动态变更信息。</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="4-2-Service接口"><a href="#4-2-Service接口" class="headerlink" title="4.2. Service接口"></a>4.2. Service接口</h2><table style="align: left; border-collapse: collapse; border: 1px solid black;">
+    <thead>
+        <tr>
+            <th style="width: 30%">Service名称</th>
+            <th style="width: 70%">作用</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>RepositoryService</td>
+            <td>资源管理类。用于管理流程仓库，比如流程定义的控制管理（部署、删除、挂起、激活等）。</td>
+        </tr>
+        <tr>
+            <td>RuntimeService</td>
+            <td>流程运行管理类。用于处理所有正在运行状态的流程实例和任务等。</td>
+        </tr>
+        <tr>
+            <td>DynamicBpmnService</td>
+            <td>用于在程序运行过程中去修改流程定义，比如修改流程定义中的分配角色、优先级、流程流转的条件等。</td>
+        </tr>
+        <tr>
+            <td>TaskService</td>
+            <td>任务Service，用于管理和查询任务，比如拾取、办理等。</td>
+        </tr>
+        <tr>
+            <td>HistoryService</td>
+            <td>历史管理类。用于查询所有历史数据，比如流程实例信息、参与者信息、完成时间等。</td>
+        </tr>
+        <tr>
+            <td>ManagementService</td>
+            <td>引擎管理类。用于对Activiti流程引擎的管理和维护。</td>
+        </tr>
+    </tbody>
+</table>
+
+<h1 id="5-Activiti实操"><a href="#5-Activiti实操" class="headerlink" title="5. Activiti实操"></a>5. Activiti实操</h1><h2 id="5-1-部署流程定义"><a href="#5-1-部署流程定义" class="headerlink" title="5.1. 部署流程定义"></a>5.1. 部署流程定义</h2><figure class="highlight java"><figcaption><span>Main.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="comment">// 获取流程引擎实例</span></span><br><span class="line">    <span class="type">ProcessEngine</span> <span class="variable">processEngine</span> <span class="operator">=</span> ProcessEngines.getDefaultProcessEngine();</span><br><span class="line">    <span class="comment">// 获取RepositoryService</span></span><br><span class="line">    <span class="type">RepositoryService</span> <span class="variable">repositoryService</span> <span class="operator">=</span> processEngine.getRepositoryService();</span><br><span class="line">    <span class="comment">// 方式1. BPMN文件部署</span></span><br><span class="line">    <span class="type">Deployment</span> <span class="variable">deployment</span> <span class="operator">=</span> repositoryService.createDeployment().name(<span class="string">&quot;请假流程&quot;</span>)</span><br><span class="line">        .addClasspathResource(<span class="string">&quot;leave.bpmn&quot;</span>).addClasspathResource(<span class="string">&quot;leave.png&quot;</span>).deploy();</span><br><span class="line">    <span class="comment">// 方式2. ZIP压缩包部署</span></span><br><span class="line">    <span class="comment">// ZipInputStream zis = new ZipInputStream(this.getClass().getClassLoader().getResourceAsStream(&quot;leave.zip&quot;));</span></span><br><span class="line">    <span class="comment">// Deployment deployment = repositoryService.createDeployment().name(&quot;请假流程ZIP版&quot;).addZipInputStream(zis).deploy();</span></span><br><span class="line">    System.out.println(<span class="string">&quot;部署ID: &quot;</span> + deployment.getId());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5-2-查询流程定义"><a href="#5-2-查询流程定义" class="headerlink" title="5.2. 查询流程定义"></a>5.2. 查询流程定义</h2><figure class="highlight java"><figcaption><span>Main.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="type">ProcessEngine</span> <span class="variable">processEngine</span> <span class="operator">=</span> ProcessEngines.getDefaultProcessEngine();</span><br><span class="line">    <span class="type">RepositoryService</span> <span class="variable">repositoryService</span> <span class="operator">=</span> processEngine.getRepositoryService();</span><br><span class="line">    <span class="comment">// 根据流程定义key查询流程定义</span></span><br><span class="line">    List&lt;ProcessDefinition&gt; list = repositoryService.createProcessDefinitionQuery()</span><br><span class="line">        .processDefinitionKey(<span class="string">&quot;leaveProcess&quot;</span>).orderByProcessDefinitionVersion().desc().list();</span><br><span class="line">    <span class="keyword">for</span> (ProcessDefinition processDefinition : list) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;流程定义ID: &quot;</span> + processDefinition.getId());</span><br><span class="line">        System.out.println(<span class="string">&quot;流程定义Key: &quot;</span> + processDefinition.getKey());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5-3-启动流程实例"><a href="#5-3-启动流程实例" class="headerlink" title="5.3. 启动流程实例"></a>5.3. 启动流程实例</h2><figure class="highlight java"><figcaption><span>Main.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="type">ProcessEngine</span> <span class="variable">processEngine</span> <span class="operator">=</span> ProcessEngines.getDefaultProcessEngine();</span><br><span class="line">    <span class="type">RuntimeService</span> <span class="variable">runtimeService</span> <span class="operator">=</span> processEngine.getRuntimeService();</span><br><span class="line">    <span class="comment">// 根据流程定义key启动流程实例</span></span><br><span class="line">    <span class="type">ProcessInstance</span> <span class="variable">processInstance</span> <span class="operator">=</span> runtimeService.startProcessInstanceByKey(<span class="string">&quot;leaveProcess&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;流程实例ID: &quot;</span> + processInstance.getId());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5-4-查询代办任务"><a href="#5-4-查询代办任务" class="headerlink" title="5.4. 查询代办任务"></a>5.4. 查询代办任务</h2><figure class="highlight java"><figcaption><span>Main.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="type">ProcessEngine</span> <span class="variable">processEngine</span> <span class="operator">=</span> ProcessEngines.getDefaultProcessEngine();</span><br><span class="line">    <span class="type">TaskService</span> <span class="variable">taskService</span> <span class="operator">=</span> processEngine.getTaskService();</span><br><span class="line">    <span class="comment">// 查询任务</span></span><br><span class="line">    <span class="type">Task</span> <span class="variable">task</span> <span class="operator">=</span> taskService.createTaskQuery().processDefinitionKey(<span class="string">&quot;leaveProcess&quot;</span>).taskAssignee(<span class="string">&quot;fengb&quot;</span>).singleResult();</span><br><span class="line">    System.out.println(<span class="string">&quot;任务名称: &quot;</span> + task.getName());</span><br><span class="line">    System.out.println(<span class="string">&quot;任务办理人: &quot;</span> + task.getAssignee());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5-5-完成代办任务"><a href="#5-5-完成代办任务" class="headerlink" title="5.5. 完成代办任务"></a>5.5. 完成代办任务</h2><figure class="highlight java"><figcaption><span>Main.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="type">ProcessEngine</span> <span class="variable">processEngine</span> <span class="operator">=</span> ProcessEngines.getDefaultProcessEngine();</span><br><span class="line">    <span class="type">TaskService</span> <span class="variable">taskService</span> <span class="operator">=</span> processEngine.getTaskService();</span><br><span class="line">    <span class="type">Task</span> <span class="variable">task</span> <span class="operator">=</span> taskService.createTaskQuery().processDefinitionKey(<span class="string">&quot;leaveProcess&quot;</span>).taskAssignee(<span class="string">&quot;meng&quot;</span>).singleResult();</span><br><span class="line">    <span class="comment">// 完成任务</span></span><br><span class="line">    taskService.complete(task.getId());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5-6-查询历史信息"><a href="#5-6-查询历史信息" class="headerlink" title="5.6. 查询历史信息"></a>5.6. 查询历史信息</h2><figure class="highlight java"><figcaption><span>Main.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="type">ProcessEngine</span> <span class="variable">processEngine</span> <span class="operator">=</span> ProcessEngines.getDefaultProcessEngine();</span><br><span class="line">    <span class="type">HistoryService</span> <span class="variable">historyService</span> <span class="operator">=</span> processEngine.getHistoryService();</span><br><span class="line">    <span class="comment">// 查询流程实例历史节点</span></span><br><span class="line">    List&lt;HistoricActivityInstance&gt; list = historyService.createHistoricActivityInstanceQuery().processInstanceId(<span class="string">&quot;5001&quot;</span>)</span><br><span class="line">        .orderByHistoricActivityInstanceStartTime().asc().list();</span><br><span class="line">    <span class="keyword">for</span> (HistoricActivityInstance historicActivityInstance : list) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;节点ID: &quot;</span> + historicActivityInstance.getActivityId());</span><br><span class="line">        System.out.println(<span class="string">&quot;开始时间: &quot;</span> + historicActivityInstance.getStartTime());</span><br><span class="line">        System.out.println(<span class="string">&quot;结束时间: &quot;</span> + historicActivityInstance.getEndTime());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<style>
+font {
+    font-weight: 900;
+    color: red;
+}
+</style></div><div class="article-licensing box"><div class="licensing-title"><p>Activiti基础</p><p><a href="https://fengbiao-github.github.io/framework/workflow/activiti/1/">https://fengbiao-github.github.io/framework/workflow/activiti/1/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><a href="https://fengbiao-github.github.io"><p>蜡笔没了小新</p></a></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2024-01-24</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2024-02-19</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="recommend-area"><div class="recommend-post"><span class="is-size-6 has-text-grey has-mr-7"># 相关文章</span><br><span>  1.<a class="is-size-6" href="/framework/workflow/activiti/2/" target="_blank">Activiti进阶</a><br></span><span>  2.<a class="is-size-6" href="/framework/workflow/activiti/3/" target="_blank">Activiti整合</a><br></span></div><div class="recommend-post"><span class="is-size-6 has-text-grey has-mr-7"># 推荐文章</span><br><span>  1.<a class="is-size-6" href="/devops/docker/2/" target="_blank">Docker进阶</a><br></span><span>  2.<a class="is-size-6" href="/devops/docker/1/" target="_blank">Docker基础</a><br></span><span>  3.<a class="is-size-6" href="/framework/workflow/activiti/1/" target="_blank">Activiti基础</a><br></span><span>  4.<a class="is-size-6" href="/theory/design_pattern/1/" target="_blank">设计模式</a><br></span><span>  5.<a class="is-size-6" href="/framework/workflow/activiti/2/" target="_blank">Activiti进阶</a><br></span><span>  6.<a class="is-size-6" href="/framework/workflow/activiti/3/" target="_blank">Activiti整合</a><br></span></div></div><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/css/share.min.css"><div class="social-share"></div><script src="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay.png" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechat.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/framework/workflow/activiti/3/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Activiti整合</span></a></div></nav><!--!--><div class="card"><div class="card-content"><div class="title is-5">评论</div><div id="comment-container"></div><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/gitalk/1.6.0/gitalk.css"><script> $.getScript('/js/gitalk.min.js', function () { 
+            var gitalk = new Gitalk({
+            language:'zh-CN',
+            id: 'e519237c087bab3314e3bae76f526cf6',
+            repo: 'blog_comment',
+            owner: 'fengbiao-github',
+            clientID: 'bf914d86ff6fd3dee968',
+            clientSecret: '8b778c0dc52c7ea5aa94ee2eeae154e49704924f',
+            admin: "fengbiao-github",
+            createIssueManually: true,
+            distractionFreeMode: true,
+            perPage: 10,
+            pagerDirection: 'last',
+            
+            
+            enableHotKey: true,
+            isLocked: false
+        })
+        gitalk.render('comment-container')});</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="is-flex is-mobile" href="#1-工作流"><span>1. 工作流</span></a><ul class="menu-list"><li><a class="is-flex is-mobile" href="#1-1-简介"><span>1.1. 简介</span></a></li><li><a class="is-flex is-mobile" href="#1-2-应用场景"><span>1.2. 应用场景</span></a></li></ul></li><li><a class="is-flex is-mobile" href="#2-Activiti"><span>2. Activiti</span></a><ul class="menu-list"><li><a class="is-flex is-mobile" href="#2-1-简介"><span>2.1. 简介</span></a></li><li><a class="is-flex is-mobile" href="#2-2-BPMN2-0规范"><span>2.2. BPMN2.0规范</span></a><ul class="menu-list"><li><a class="is-flex is-mobile" href="#2-2-1-简介"><span>2.2.1. 简介</span></a></li><li><a class="is-flex is-mobile" href="#2-2-2-基本流程符号"><span>2.2.2. 基本流程符号</span></a></li></ul></li><li><a class="is-flex is-mobile" href="#2-3-开发流程"><span>2.3. 开发流程</span></a></li></ul></li><li><a class="is-flex is-mobile" href="#3-Activiti环境搭建"><span>3. Activiti环境搭建</span></a></li><li><a class="is-flex is-mobile" href="#4-Activiti架构"><span>4. Activiti架构</span></a><ul class="menu-list"><li><a class="is-flex is-mobile" href="#4-1-数据表"><span>4.1. 数据表</span></a></li><li><a class="is-flex is-mobile" href="#4-2-Service接口"><span>4.2. Service接口</span></a></li></ul></li><li><a class="is-flex is-mobile" href="#5-Activiti实操"><span>5. Activiti实操</span></a><ul class="menu-list"><li><a class="is-flex is-mobile" href="#5-1-部署流程定义"><span>5.1. 部署流程定义</span></a></li><li><a class="is-flex is-mobile" href="#5-2-查询流程定义"><span>5.2. 查询流程定义</span></a></li><li><a class="is-flex is-mobile" href="#5-3-启动流程实例"><span>5.3. 启动流程实例</span></a></li><li><a class="is-flex is-mobile" href="#5-4-查询代办任务"><span>5.4. 查询代办任务</span></a></li><li><a class="is-flex is-mobile" href="#5-5-完成代办任务"><span>5.5. 完成代办任务</span></a></li><li><a class="is-flex is-mobile" href="#5-6-查询历史信息"><span>5.6. 查询历史信息</span></a></li></ul></li></ul></div></div><style>.menu-list > li > a.is-active + .menu-list { display: block; }.menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.jpg" alt="蜡笔没了小新"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">蜡笔没了小新</p><p class="is-size-6 is-block">拿青春作赌注，怎么舍得让自己输</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>中国・上海</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">5</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/fengbiao-github" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/fengbiao-github"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Weibo" href="https://weibo.com/u/5865779489"><i class="fab fa-weibo"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Email" href="mailto:2014695858@qq.com"><i class="fa fa-envelope"></i></a></div><div><hr><p id="hitokoto">:D 一言句子获取中...</p><script type="text/javascript" defer>function getYiyan(){
+                                $.getJSON("https://v1.hitokoto.cn/", function (data) {
+                                if(data){
+                                    $('#hitokoto').html("");
+                                    $('#hitokoto').append("<strong style='color: #3273dc;'>"+data.hitokoto+"</strong>"+
+                                    "<p>"+"来源《"+data.from+"》</p><p>提供者-"+data.creator+"</p>");
+                                }});}
+                                $(function (){getYiyan();$('#hitokoto').click(function(){getYiyan();})});</script></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://mvnrepository.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Maven仓库</span></span><span class="level-right"><span class="level-item tag">mvnrepository.com</span></span></a></li><li><a class="level is-mobile" href="https://spring.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Spring</span></span><span class="level-right"><span class="level-item tag">spring.io</span></span></a></li><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://developer.signalwire.com/freeswitch/FreeSWITCH-Explained/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Freeswitch</span></span><span class="level-right"><span class="level-item tag">developer.signalwire.com</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><h3 class="menu-label">最新评论</h3><span class="body_hot_comment">加载中，最新评论有1分钟缓存...</span></div></div><div class="card widget"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-02-20T05:05:00.000Z">2024-02-20</time></p><p class="title"><a href="/devops/docker/2/">Docker进阶</a></p><p class="categories"><a href="/categories/%E8%BF%90%E7%BB%B4%E7%AF%87/">运维篇</a> / <a href="/categories/%E8%BF%90%E7%BB%B4%E7%AF%87/%E4%BA%91%E5%8E%9F%E7%94%9F/">云原生</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-02-20T05:05:00.000Z">2024-02-20</time></p><p class="title"><a href="/devops/docker/1/">Docker基础</a></p><p class="categories"><a href="/categories/%E8%BF%90%E7%BB%B4%E7%AF%87/">运维篇</a> / <a href="/categories/%E8%BF%90%E7%BB%B4%E7%AF%87/%E4%BA%91%E5%8E%9F%E7%94%9F/">云原生</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-01-30T00:43:00.000Z">2024-01-30</time></p><p class="title"><a href="/theory/design_pattern/1/">设计模式</a></p><p class="categories"><a href="/categories/%E7%90%86%E8%AE%BA%E7%AF%87/">理论篇</a> / <a href="/categories/%E7%90%86%E8%AE%BA%E7%AF%87/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-01-25T15:23:00.000Z">2024-01-25</time></p><p class="title"><a href="/framework/workflow/activiti/2/">Activiti进阶</a></p><p class="categories"><a href="/categories/%E6%A1%86%E6%9E%B6%E7%AF%87/">框架篇</a> / <a href="/categories/%E6%A1%86%E6%9E%B6%E7%AF%87/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E/">工作流引擎</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-01-25T14:16:00.000Z">2024-01-25</time></p><p class="title"><a href="/framework/workflow/activiti/3/">Activiti整合</a></p><p class="categories"><a href="/categories/%E6%A1%86%E6%9E%B6%E7%AF%87/">框架篇</a> / <a href="/categories/%E6%A1%86%E6%9E%B6%E7%AF%87/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E/">工作流引擎</a></p></div></article></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/categories/%E6%A1%86%E6%9E%B6%E7%AF%87/"><span class="level-start"><span class="level-item">框架篇</span></span><span class="level-end"><span class="level-item tag">3</span></span></a><ul class="mr-0"><li><a class="level is-mobile is-marginless" href="/categories/%E6%A1%86%E6%9E%B6%E7%AF%87/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E/"><span class="level-start"><span class="level-item">工作流引擎</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></li><li><a class="level is-mobile is-marginless" href="/categories/%E7%90%86%E8%AE%BA%E7%AF%87/"><span class="level-start"><span class="level-item">理论篇</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul class="mr-0"><li><a class="level is-mobile is-marginless" href="/categories/%E7%90%86%E8%AE%BA%E7%AF%87/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="level-start"><span class="level-item">设计模式</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile is-marginless" href="/categories/%E8%BF%90%E7%BB%B4%E7%AF%87/"><span class="level-start"><span class="level-item">运维篇</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul class="mr-0"><li><a class="level is-mobile is-marginless" href="/categories/%E8%BF%90%E7%BB%B4%E7%AF%87/%E4%BA%91%E5%8E%9F%E7%94%9F/"><span class="level-start"><span class="level-item">云原生</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/archives/2024/02/"><span class="level-start"><span class="level-item">二月 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2024/01/"><span class="level-start"><span class="level-item">一月 2024</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Activiti/"><span class="tag">Activiti</span><span class="tag is-grey-lightest">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/"><span class="tag">云原生</span><span class="tag is-grey-lightest">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/IDEA/"><span class="tag">IDEA</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SpringBoot/"><span class="tag">SpringBoot</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag is-grey-lightest">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><!--!--><div class="column-right-shadow is-hidden-widescreen"></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">蜡笔没了小新の博客</a><p class="size-small"><span><span id="statistic-times">loading...</span><script>function createTime(time) {
+            var n = new Date(time);
+            now.setTime(now.getTime() + 250),
+                days = (now - n) / 1e3 / 60 / 60 / 24,
+                dnum = Math.floor(days),
+                hours = (now - n) / 1e3 / 60 / 60 - 24 * dnum,
+                hnum = Math.floor(hours),
+            1 == String(hnum).length && (hnum = "0" + hnum),
+                minutes = (now - n) / 1e3 / 60 - 1440 * dnum - 60 * hnum,
+                mnum = Math.floor(minutes),
+            1 == String(mnum).length && (mnum = "0" + mnum),
+                seconds = (now - n) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,
+                snum = Math.round(seconds),
+            1 == String(snum).length && (snum = "0" + snum),
+                document.getElementById("statistic-times").innerHTML = "❤️本站自 <strong>"+time.split(" ")[0].replace(/\//g,".")+"</strong> 已运行 <strong>" + dnum + "</strong> 天 <strong>" + hnum + "</strong> 小时 <strong>" + mnum + "</strong> 分 <strong>" + snum + "</strong> 秒！❤️";
+        }var now = new Date();setInterval("createTime('2023/07/25 13:00:00')", 250,"");</script><br></span><div class="size-small"><span>❤️感谢 <strong><span id="busuanzi_value_site_uv">99+</span></strong> 小伙伴的 <strong><span id="busuanzi_value_site_pv">99+</span></strong> 次光临！❤️</span></div></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/fengbiao-github/fengbiao-github.github.io"><i class="fab fa-github"></i></a></p></div><div class="sideMusic"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="/js/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script><meting-js style="width: auto;height: 2000px;" server="netease" type="playlist" id="3778678" theme="#2980b9" loop="all" autoplay="false" order="list" storageName="aplayer-setting" lrctype="0" list-max-height="400px" fixed="true"></meting-js></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.10.0/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><script>$.getScript('/js/comment-issue-data.js',function(){loadIssueData('bf914d86ff6fd3dee968','8b778c0dc52c7ea5aa94ee2eeae154e49704924f','fengbiao-github','blog_comment',false);})</script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script><script type="text/javascript">var pjax = new Pjax({
+            elements: "a",//代表点击链接就更新
+            selectors: [  //代表要更新的节点
+                ".section",
+                "title"
+            ],
+            cache: true,
+            cacheBust:false
+        })
+
+        function loadBusuanzi(){
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js", function () {});
+        }
+
+        function loadMathJax() { //加载mathjax
+            $.getScript("//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML", function () {
+                MathJax.Hub.Config({ tex2jax: { inlineMath: [['$', '$'], ['\(', '\)']] } });
+                var math = document.getElementsByClassName("entry-content")[0];
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub, math]);
+            });
+        };
+
+        // 开始 PJAX 执行的函数
+        document.addEventListener('pjax:send', function () {
+        });
+        
+        // PJAX 完成之后执行的函数，可以和上面的重载放在一起
+        document.addEventListener('pjax:complete', function () {
+            $(".section").css({opacity:1});
+            if(true){
+                $.getScript('/js/comment-issue-data.js',function(){loadIssueData('bf914d86ff6fd3dee968','8b778c0dc52c7ea5aa94ee2eeae154e49704924f','fengbiao-github','blog_comment',false);});
+            }
+            if(false){
+                loadMathJax();
+            }
+            loadMainJs(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings);
+            loadBackTop();
+            loadBusuanzi();
+            if(typeof loadBanner == 'function'){
+                loadBanner();
+            }
+        });</script></body></html>
