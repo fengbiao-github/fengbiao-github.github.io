@@ -1,0 +1,2418 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【Docker】基础篇 | 蜡笔没了小新の笔记</title>
+  <meta name="keywords" content=" Docker ">
+  <meta name="description" content="【Docker】基础篇 | 蜡笔没了小新の笔记">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="1. XMLHttpRequest&#x2F;&#x2F; 实例化xhr对象 var xhr &#x3D; new XMLHttpRequest() &#x2F;&#x2F; 建立连接 xhr.open(&#x27;GET&#x27;, &#x27;xxx&#x27;, false) &#x2F;&#x2F; 发送请求 xhr.send()  2. jQueryTODO 待补充 3. vue-resource 安装vue-resource。 npm install">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Vue】HTTP插件">
+<meta property="og:url" content="http://example.com/vue/http/index.html">
+<meta property="og:site_name" content="蜡笔没了小新の笔记">
+<meta property="og:description" content="1. XMLHttpRequest&#x2F;&#x2F; 实例化xhr对象 var xhr &#x3D; new XMLHttpRequest() &#x2F;&#x2F; 建立连接 xhr.open(&#x27;GET&#x27;, &#x27;xxx&#x27;, false) &#x2F;&#x2F; 发送请求 xhr.send()  2. jQueryTODO 待补充 3. vue-resource 安装vue-resource。 npm install">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-15T15:21:00.000Z">
+<meta property="article:modified_time" content="2024-08-16T02:06:56.909Z">
+<meta property="article:author" content="蜡笔没了小新">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>蜡笔没了小新</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/fengbiao-github"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:2014695858@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2014695858&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="理论">
+            <i class="fold iconfont icon-right"></i>
+            理论
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;数据结构与算法">
+            
+            数据结构与算法
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;设计模式">
+            
+            设计模式
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;计算机网络">
+            
+            计算机网络
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Java">
+            <i class="fold iconfont icon-right"></i>
+            Java
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;JVM">
+            
+            JVM
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;JUC">
+            
+            JUC
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;新特性">
+            
+            新特性
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;NIO">
+            
+            NIO
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            <i class="fold iconfont icon-right"></i>
+            数据库
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;关系型数据库">
+            
+            关系型数据库
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;非关系型数据库">
+            
+            非关系型数据库
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;分库分表">
+            
+            分库分表
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="框架">
+            <i class="fold iconfont icon-right"></i>
+            框架
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;Spring">
+            
+            Spring
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;视图层">
+            
+            视图层
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;ORM">
+            
+            ORM
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;认证授权">
+            
+            认证授权
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;任务调度">
+            
+            任务调度
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;工作流引擎">
+            
+            工作流引擎
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;网络编程">
+            
+            网络编程
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;文件处理">
+            
+            文件处理
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="微服务">
+            
+            微服务
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="中间件">
+            <i class="fold iconfont icon-right"></i>
+            中间件
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;WEB">
+            
+            WEB
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;缓存">
+            
+            缓存
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;消息队列">
+            
+            消息队列
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;搜索引擎">
+            
+            搜索引擎
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;日志">
+            
+            日志
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="大数据">
+            
+            大数据
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="工具">
+            <i class="fold iconfont icon-right"></i>
+            工具
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;IDE">
+            
+            IDE
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;版本控制">
+            
+            版本控制
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;项目构建">
+            
+            项目构建
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;持续集成">
+            
+            持续集成
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;测试">
+            
+            测试
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="运维">
+            <i class="fold iconfont icon-right"></i>
+            运维
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;Linux">
+            
+            Linux
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;高可用">
+            
+            高可用
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;云原生">
+            
+            云原生
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;脚本">
+            
+            脚本
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="前端">
+            <i class="fold iconfont icon-right"></i>
+            前端
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="前端&lt;---&gt;框架">
+            
+            框架
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="面试">
+            
+            面试
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  site_url"
+               
+               href="/about">关于</a>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="32">
+<input type="hidden" id="yelog_site_word_count" value="67k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>待完善</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分布式事务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务调度</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>负载均衡</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构与算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Activiti</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IDEA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Maven</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MybatisPlus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Nginx</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NodeJS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RabbitMQ</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringBoot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringCloudAlibaba</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringCloudNetflix</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Vue</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>websocket</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>xxl-job</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/http/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】HTTP插件">【Vue】HTTP插件</span>
+            <span class="post-date" title="2024-08-15 23:21:00">2024/08/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/html/storage/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="【H5】webStorage">【H5】webStorage</span>
+            <span class="post-date" title="2024-08-13 22:55:00">2024/08/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/component/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】组件化编程">【Vue】组件化编程</span>
+            <span class="post-date" title="2024-08-08 23:21:00">2024/08/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 高可用 "
+           href="/nginx/"
+           data-tag="负载均衡,Nginx"
+           data-author="" >
+            <span class="post-title" title="Nginx负载均衡器">Nginx负载均衡器</span>
+            <span class="post-date" title="2024-07-29 23:08:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 大数据 "
+           href="/zookeeper/"
+           data-tag="服务调度"
+           data-author="" >
+            <span class="post-title" title="Zookeeper笔记">Zookeeper笔记</span>
+            <span class="post-date" title="2024-07-29 23:04:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 "
+           href="/springcloud/springcloud-alibaba/"
+           data-tag="SpringCloudAlibaba,分布式事务"
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba框架">SpringCloudAlibaba框架</span>
+            <span class="post-date" title="2024-07-29 23:01:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 "
+           href="/springcloud/springcloud-netflix/"
+           data-tag="SpringCloudNetflix"
+           data-author="" >
+            <span class="post-title" title="SpringCloudNetflix框架">SpringCloudNetflix框架</span>
+            <span class="post-date" title="2024-07-29 22:58:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/nodejs/npm/"
+           data-tag="NodeJS"
+           data-author="" >
+            <span class="post-title" title="【Node.js】NPM设置淘宝镜像">【Node.js】NPM设置淘宝镜像</span>
+            <span class="post-date" title="2024-07-17 00:56:00">2024/07/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/Vuex/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】vuex状态管理插件">【Vue】vuex状态管理插件</span>
+            <span class="post-date" title="2024-07-15 23:40:00">2024/07/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 ORM "
+           href="/mybatis/encry/"
+           data-tag="MybatisPlus"
+           data-author="" >
+            <span class="post-title" title="数据库信息加解密">数据库信息加解密</span>
+            <span class="post-date" title="2024-07-12 10:47:00">2024/07/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue-router/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】vue-router路由插件">【Vue】vue-router路由插件</span>
+            <span class="post-date" title="2024-07-09 22:21:00">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue-ui/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】UI组件库">【Vue】UI组件库</span>
+            <span class="post-date" title="2024-07-09 21:31:00">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 运维 工具 框架 计算机网络 高可用 版本控制 大数据 Java 中间件 ORM 持续集成 数据库 IDE 测试 JUC JVM NIO 关系型数据库 非关系型数据库 分库分表 缓存 搜索引擎 日志 WEB Linux 脚本 Spring 视图层 认证授权 文件处理 网络编程 "
+           href="/demo/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="示例文档">示例文档</span>
+            <span class="post-date" title="2024-06-06 23:51:00">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 任务调度 "
+           href="/xxl-job/"
+           data-tag="xxl-job"
+           data-author="" >
+            <span class="post-title" title="xxl-job分布式任务调度框架">xxl-job分布式任务调度框架</span>
+            <span class="post-date" title="2024-06-06 23:51:00">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 数据结构与算法 "
+           href="/data-structure-and-algorithm/algorithm/"
+           data-tag="数据结构与算法"
+           data-author="" >
+            <span class="post-title" title="【数据结构与算法】算法篇">【数据结构与算法】算法篇</span>
+            <span class="post-date" title="2024-06-05 23:04:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 "
+           href="/mq/mq/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2024-06-05 22:58:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 面试 "
+           href="/interview/rabbitmq/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ面试题">RabbitMQ面试题</span>
+            <span class="post-date" title="2024-06-05 22:27:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 云原生 "
+           href="/docker/2/"
+           data-tag="Docker,待完善"
+           data-author="" >
+            <span class="post-title" title="【Docker】进阶篇">【Docker】进阶篇</span>
+            <span class="post-date" title="2024-06-05 21:20:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 "
+           href="/mq/rabbitmq/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ消息队列">RabbitMQ消息队列</span>
+            <span class="post-date" title="2024-06-05 09:59:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue2/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】Vue2语法">【Vue】Vue2语法</span>
+            <span class="post-date" title="2024-06-04 21:30:00">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 项目构建 "
+           href="/maven/"
+           data-tag="Maven"
+           data-author="" >
+            <span class="post-title" title="Maven构建工具">Maven构建工具</span>
+            <span class="post-date" title="2024-05-29 22:47:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java 新特性 "
+           href="/java/java8/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="【Java】Java8新特性">【Java】Java8新特性</span>
+            <span class="post-date" title="2024-05-29 21:52:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 云原生 "
+           href="/docker/1/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="【Docker】基础篇">【Docker】基础篇</span>
+            <span class="post-date" title="2024-05-29 12:37:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/4/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】行为型设计模式">【设计模式】行为型设计模式</span>
+            <span class="post-date" title="2024-05-28 22:27:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/3/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】结构型设计模式">【设计模式】结构型设计模式</span>
+            <span class="post-date" title="2024-05-28 22:01:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/3/"
+           data-tag="Activiti,SpringBoot,IDEA"
+           data-author="" >
+            <span class="post-title" title="【Activiti】整合篇">【Activiti】整合篇</span>
+            <span class="post-date" title="2024-05-28 21:49:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/2/"
+           data-tag="Activiti"
+           data-author="" >
+            <span class="post-title" title="【Activiti】进阶篇">【Activiti】进阶篇</span>
+            <span class="post-date" title="2024-05-28 21:35:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/1/"
+           data-tag="Activiti"
+           data-author="" >
+            <span class="post-title" title="【Activiti】基础篇">【Activiti】基础篇</span>
+            <span class="post-date" title="2024-05-28 21:23:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/html/websocket/"
+           data-tag="websocket"
+           data-author="" >
+            <span class="post-title" title="【H5】websocket协议">【H5】websocket协议</span>
+            <span class="post-date" title="2024-05-28 16:40:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/2/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】创建型设计模式">【设计模式】创建型设计模式</span>
+            <span class="post-date" title="2024-05-28 15:53:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/1/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】七大设计原则">【设计模式】七大设计原则</span>
+            <span class="post-date" title="2024-05-27 14:51:00">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java 数据库 "
+           href="/java/jdbc/"
+           data-tag="Java,数据库"
+           data-author="" >
+            <span class="post-title" title="【Java】JDBC数据库连接">【Java】JDBC数据库连接</span>
+            <span class="post-date" title="2024-05-25 22:24:00">2024/05/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-docker/1" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【Docker】基础篇</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="运维">运维</a> > 
+            
+            <a  data-rel="运维&lt;---&gt;云原生">云原生</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">Docker</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-08-16 10:06:56'>2024-05-29 12:37</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:6.3k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">1. 基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-Docker"><span class="toc-text">1.1. Docker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-%E7%AE%80%E4%BB%8B"><span class="toc-text">1.1.1. 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-%E4%BD%9C%E7%94%A8"><span class="toc-text">1.1.2. 作用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%AE%B9%E5%99%A8%E5%8C%96-VS-%E4%BC%A0%E7%BB%9F%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="toc-text">1.2. 容器化 VS 传统虚拟化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85-Docker"><span class="toc-text">2. 安装 Docker</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-centos7-%E5%AE%89%E8%A3%85"><span class="toc-text">2.1. centos7 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-centos6-%E5%AE%89%E8%A3%85"><span class="toc-text">2.2. centos6 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3"><span class="toc-text">2.3. 配置文件详解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">3. 常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E5%B8%AE%E5%8A%A9%E5%91%BD%E4%BB%A4"><span class="toc-text">3.1. 帮助命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-%E6%9F%A5%E8%AF%A2%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">3.1.1. 查询版本信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-%E6%9F%A5%E7%9C%8B%E6%A6%82%E8%A6%81%E4%BF%A1%E6%81%AF"><span class="toc-text">3.1.2. 查看概要信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3-%E6%9F%A5%E7%9C%8B%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3"><span class="toc-text">3.1.3. 查看帮助文档</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E9%95%9C%E5%83%8F%E5%91%BD%E4%BB%A4"><span class="toc-text">3.2. 镜像命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-%E5%88%97%E5%87%BA%E6%9C%AC%E5%9C%B0%E9%95%9C%E5%83%8F"><span class="toc-text">3.2.1. 列出本地镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-%E6%8C%89%E6%9D%A1%E4%BB%B6%E6%9F%A5%E6%89%BE%E9%95%9C%E5%83%8F"><span class="toc-text">3.2.2. 按条件查找镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-3-%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F"><span class="toc-text">3.2.3. 拉取镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-4-%E5%88%A0%E9%99%A4%E9%95%9C%E5%83%8F"><span class="toc-text">3.2.4. 删除镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-5-%E6%9F%A5%E8%AF%A2%E9%95%9C%E5%83%8F%E3%80%81%E5%AE%B9%E5%99%A8%E3%80%81%E6%95%B0%E6%8D%AE%E5%8D%B7%E6%89%80%E5%8D%A0%E7%A9%BA%E9%97%B4"><span class="toc-text">3.2.5. 查询镜像、容器、数据卷所占空间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E5%AE%B9%E5%99%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">3.3. 容器命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-%E6%96%B0%E5%BB%BA%E5%B9%B6%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="toc-text">3.3.1. 新建并启动容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-%E6%9F%A5%E7%9C%8B%E5%AE%B9%E5%99%A8"><span class="toc-text">3.3.2. 查看容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-3-%E9%80%80%E5%87%BA%E5%AE%B9%E5%99%A8"><span class="toc-text">3.3.3. 退出容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-4-%E5%90%AF%E5%8A%A8%E3%80%81%E9%87%8D%E5%90%AF%E3%80%81%E5%81%9C%E6%AD%A2%E5%AE%B9%E5%99%A8"><span class="toc-text">3.3.4. 启动、重启、停止容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-5-%E5%88%A0%E9%99%A4%E5%AE%B9%E5%99%A8"><span class="toc-text">3.3.5. 删除容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-6-%E6%8B%B7%E8%B4%9D%E6%96%87%E4%BB%B6"><span class="toc-text">3.3.6. 拷贝文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-7-%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8"><span class="toc-text">3.3.7. 进入容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-8-%E6%9F%A5%E7%9C%8B%E5%AE%B9%E5%99%A8%E6%97%A5%E5%BF%97"><span class="toc-text">3.3.8. 查看容器日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-9-%E6%9F%A5%E7%9C%8B%E5%AE%B9%E5%99%A8%E5%86%85%E8%BF%9B%E7%A8%8B"><span class="toc-text">3.3.9. 查看容器内进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-10-%E6%9F%A5%E7%9C%8B%E5%AE%B9%E5%99%A8%E4%BF%A1%E6%81%AF"><span class="toc-text">3.3.10. 查看容器信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-11-%E5%AF%BC%E5%87%BA%E3%80%81%E5%AF%BC%E5%85%A5%E5%AE%B9%E5%99%A8"><span class="toc-text">3.3.11. 导出、导入容器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E9%95%9C%E5%83%8F"><span class="toc-text">4. 镜像</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E7%AE%80%E4%BB%8B"><span class="toc-text">4.1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E7%89%B9%E7%82%B9"><span class="toc-text">4.2. 特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E6%8F%90%E4%BA%A4%E9%95%9C%E5%83%8F"><span class="toc-text">4.3. 提交镜像</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%8F%91%E5%B8%83%E9%95%9C%E5%83%8F"><span class="toc-text">5. 发布镜像</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E5%8F%91%E5%B8%83%E9%95%9C%E5%83%8F%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91"><span class="toc-text">5.1. 发布镜像到阿里云</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-1-%E5%8F%91%E5%B8%83%E9%95%9C%E5%83%8F%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91"><span class="toc-text">5.1.1. 发布镜像到阿里云</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-2-%E6%A1%88%E4%BE%8B"><span class="toc-text">5.1.2. 案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E5%8F%91%E5%B8%83%E9%95%9C%E5%83%8F%E5%88%B0%E7%A7%81%E6%9C%89%E4%BA%91"><span class="toc-text">5.2. 发布镜像到私有云</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-1-%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%8D%E9%95%9C%E5%83%8F"><span class="toc-text">5.2.1. 搭建私服镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-2-%E5%8F%91%E5%B8%83%E9%95%9C%E5%83%8F%E5%88%B0%E7%A7%81%E6%9C%89%E4%BA%91"><span class="toc-text">5.2.2. 发布镜像到私有云</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="toc-text">6. 容器数据卷</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E4%BD%9C%E7%94%A8"><span class="toc-text">6.1. 作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="toc-text">6.2. 添加数据卷</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-1-%E5%91%BD%E4%BB%A4%E6%B7%BB%E5%8A%A0"><span class="toc-text">6.2.1. 命令添加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-2-Dockerfile-%E6%B7%BB%E5%8A%A0"><span class="toc-text">6.2.2. Dockerfile 添加</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-%E6%95%B0%E6%8D%AE%E5%8D%B7%E5%AE%B9%E5%99%A8"><span class="toc-text">6.3. 数据卷容器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E5%B8%B8%E8%A7%84%E5%AE%89%E8%A3%85"><span class="toc-text">7. 常规安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-Tomcat-%E5%AE%89%E8%A3%85"><span class="toc-text">7.1. Tomcat 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-Mysql-%E5%AE%89%E8%A3%85"><span class="toc-text">7.2. Mysql 安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-1-Mysql5-7-%E5%AE%89%E8%A3%85"><span class="toc-text">7.2.1. Mysql5.7 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-2-Mysql8-%E5%AE%89%E8%A3%85"><span class="toc-text">7.2.2. Mysql8 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-3-Mysql-%E4%B8%BB%E4%BB%8E%E5%AE%89%E8%A3%85"><span class="toc-text">7.2.3. Mysql 主从安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-Redis-%E5%AE%89%E8%A3%85"><span class="toc-text">7.3. Redis 安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-1-%E5%8D%95%E6%9C%BA%E7%89%88%E5%AE%89%E8%A3%85"><span class="toc-text">7.3.1. 单机版安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-2-%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85"><span class="toc-text">7.3.2. 集群安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-3-%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%97%E6%B3%95"><span class="toc-text">7.3.3. 分布式存储算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4-Nginx-%E5%AE%89%E8%A3%85"><span class="toc-text">7.4. Nginx 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5-svnserver-%E5%AE%89%E8%A3%85"><span class="toc-text">7.5. svnserver 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-6-nexus-%E5%AE%89%E8%A3%85"><span class="toc-text">7.6. nexus 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-7-RabbitMQ-%E5%AE%89%E8%A3%85"><span class="toc-text">7.7. RabbitMQ 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-8-Zookeeper-%E5%AE%89%E8%A3%85"><span class="toc-text">7.8. Zookeeper 安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-8-1-%E5%8D%95%E6%9C%BA%E7%89%88%E5%AE%89%E8%A3%85"><span class="toc-text">7.8.1. 单机版安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-8-2-%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85"><span class="toc-text">7.8.2. 集群安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-9-gitlab-%E5%AE%89%E8%A3%85"><span class="toc-text">7.9. gitlab 安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-DockerFile-%E8%A7%A3%E6%9E%90"><span class="toc-text">8. DockerFile 解析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-%E7%AE%80%E4%BB%8B"><span class="toc-text">8.1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-Dockerfile-%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-text">8.2. Dockerfile 执行流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3-%E6%9E%84%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="toc-text">8.3. 构建过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4-Dockerfile-%E4%BF%9D%E7%95%99%E5%AD%97"><span class="toc-text">8.4. Dockerfile 保留字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-5-%E8%99%9A%E6%82%AC%E9%95%9C%E5%83%8F"><span class="toc-text">8.5. 虚悬镜像</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-Docker-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AE%9E%E6%88%98"><span class="toc-text">9. Docker 微服务实战</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h1><h2 id="1-1-Docker"><a href="#1-1-Docker" class="headerlink" title="1.1. Docker"></a>1.1. Docker</h2><h3 id="1-1-1-简介"><a href="#1-1-1-简介" class="headerlink" title="1.1.1. 简介"></a>1.1.1. 简介</h3><ul>
+<li>理念：<font>一次构建，处处运行</font>。</li>
+<li>三要素：<strong>镜像</strong>，<strong>容器</strong>，<strong>仓库</strong>。<br><code>镜像：只读模板，用于创建Docker容器。</code><br><code>容器：镜像的一个运行实例，一个精简的Linux环境。</code><br><code>仓库：集中存放镜像文件，分为公开仓库和私有仓库。</code></li>
+<li><strong>CS 架构</strong>。<br><code>docker守护进程运行在主机上，通过socket连接从客户端访问，守护进程从客户端接收命令并管理运行在主机上的容器。</code></li>
+</ul>
+<h3 id="1-1-2-作用"><a href="#1-1-2-作用" class="headerlink" title="1.1.2. 作用"></a>1.1.2. 作用</h3><ul>
+<li>更快速的应用交付和部署。</li>
+<li>更便捷的升级和扩缩容。</li>
+<li>更简单的系统运维。</li>
+<li>更高效的计算资源利用。</li>
+</ul>
+<h2 id="1-2-容器化-VS-传统虚拟化"><a href="#1-2-容器化-VS-传统虚拟化" class="headerlink" title="1.2. 容器化 VS 传统虚拟化"></a>1.2. 容器化 VS 传统虚拟化</h2><table style="align: left; border-collapse: collapse; border: 1px solid black;">
+    <thead>
+        <tr>
+            <td width="20%"></th>
+            <td width="40%" style="font-weight:600">Docker</th>
+            <td width="40%" style="font-weight:600">虚拟机</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="font-weight:600">操作系统</th>
+            <td style="font-weight:600">与宿主机共享OS操作系统</td>
+            <td>宿主机上运行虚拟机的OS</td>
+        </tr>
+        <tr>
+            <td style="font-weight:600">存储大小</th>
+            <td>镜像小，便于存储和传输</td>
+            <td>镜像庞大</td>
+        </tr>
+        <tr>
+            <td style="font-weight:600">运行性能</th>
+            <td style="font-weight:600">几乎没有性能损失</td>
+            <td>操作系统消耗额外的CPU和内存</td>
+        </tr>
+        <tr>
+            <td style="font-weight:600">移植性</th>
+            <td>轻便灵活适应于linux</td>
+            <td>笨重，与虚拟化技术耦合性高</td>
+        </tr>
+        <tr>
+            <td style="font-weight:600">硬件亲和性</th>
+            <td>面向软件开发者</td>
+            <td>面向硬件维护者</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul>
+<li>传统的虚拟机技术是虚拟整套的硬件，在其上运行完整的操作系统，在系统上运行需要的应用进程。</li>
+<li>容器则是<strong>直接运行在宿主的内核上</strong>，容器没有自己的内核，也没有进行硬件虚拟，<strong>容器之间相互隔离</strong>，每个容器有自己的文件系统，进程之间不会相互影响，能区分计算资源。</li>
+</ul>
+<p><code>docker比虚拟机快的原因：</code><br><code>1.docker有着比虚拟机更少的抽象层。</code><br><code>2.docker利用的是宿主机的内核，而不需要加载操作系统OS内核。</code></p>
+<h1 id="2-安装-Docker"><a href="#2-安装-Docker" class="headerlink" title="2. 安装 Docker"></a>2. 安装 Docker</h1><h2 id="2-1-centos7-安装"><a href="#2-1-centos7-安装" class="headerlink" title="2.1. centos7 安装"></a>2.1. centos7 安装</h2><ol>
+<li>查看内核版本，centos7.0+安装要求内核 3.10+。</li>
+</ol>
+<pre><code class="highlight shell">uname -r # 查看centos内核
+cat /etc/redhat-release # centos7查看centos版本命令</code></pre>
+
+<ol start="2">
+<li>安装 docker。</li>
+</ol>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">安装gcc</span>
+yum -y install gcc
+yum -y install gcc-c++
+<span class="meta prompt_"># </span><span class="language-bash">移除旧版本</span>
+yum remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine
+<span class="meta prompt_"># </span><span class="language-bash">安装需要的软件包</span>
+yum install -y yum-utils
+<span class="meta prompt_"># </span><span class="language-bash">设置镜像</span>
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+<span class="meta prompt_"># </span><span class="language-bash">安装docker-ce</span>
+yum install -y docker-ce docker-ce-cli containerd.io</code></pre>
+
+<ol start="3">
+<li>启动 docker。</li>
+</ol>
+<pre><code class="highlight shell">systemctl start docker
+systemctl enable docker # 设置开机自启动</code></pre>
+
+<ol start="4">
+<li>镜像加速配置。</li>
+</ol>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">编辑或新增文件/etc/docker/daemon.json，文件内容为</span>
+&#123;
+  &quot;registry-mirrors&quot;: [&quot;https://o2n5x71x.mirror.aliyuncs.com&quot;]
+&#125;
+<span class="meta prompt_"># </span><span class="language-bash">重新加载配置文件</span>
+systemctl daemon-reload
+<span class="meta prompt_"># </span><span class="language-bash">重启docker</span>
+systemctl restart docker</code></pre>
+
+<ol start="5">
+<li>测试，运行 helloworld。</li>
+</ol>
+<pre><code class="highlight shell">docker version # 查看版本号
+docker run hello-world # 运行helloworld，先从本地查找镜像，如果不存在则从hub上下载镜像，运行</code></pre>
+
+<ol start="6">
+<li>卸载 docker。</li>
+</ol>
+<pre><code class="highlight shell">systemctl stop docker
+yum -y remove docker-ce
+rm -rf /var/lib/docker</code></pre>
+
+<h2 id="2-2-centos6-安装"><a href="#2-2-centos6-安装" class="headerlink" title="2.2. centos6 安装"></a>2.2. centos6 安装</h2><ol>
+<li>查看内核版本，centos6.5+安装要求内核 2.6.32-431+。</li>
+</ol>
+<pre><code class="highlight shell">uname -r # 查看centos内核
+lsb_release -a # centos6查看centos版本命令</code></pre>
+
+<ol start="2">
+<li>安装 docker。</li>
+</ol>
+<pre><code class="highlight shell">docker install -y epel-release
+docker install -y docker-io
+service docker start # 启动docker。</code></pre>
+
+<ol start="3">
+<li>镜像加速配置，配置文件为&#x2F;etc&#x2F;sysconfig&#x2F;docker。</li>
+<li>测试。</li>
+</ol>
+<pre><code class="highlight shell">docker version # 查看docker版本号</code></pre>
+
+<h2 id="2-3-配置文件详解"><a href="#2-3-配置文件详解" class="headerlink" title="2.3. 配置文件详解"></a>2.3. 配置文件详解</h2><p>TODO</p>
+<h1 id="3-常用命令"><a href="#3-常用命令" class="headerlink" title="3. 常用命令"></a>3. 常用命令</h1><h2 id="3-1-帮助命令"><a href="#3-1-帮助命令" class="headerlink" title="3.1. 帮助命令"></a>3.1. 帮助命令</h2><h3 id="3-1-1-查询版本信息"><a href="#3-1-1-查询版本信息" class="headerlink" title="3.1.1. 查询版本信息"></a>3.1.1. 查询版本信息</h3><ul>
+<li><strong>语法：</strong><br><strong>docker version</strong> # 查看详细信息<br><strong>docker -v</strong> # 查看简略信息<br><strong>docker –version</strong> # 查看简略信息</li>
+</ul>
+<h3 id="3-1-2-查看概要信息"><a href="#3-1-2-查看概要信息" class="headerlink" title="3.1.2. 查看概要信息"></a>3.1.2. 查看概要信息</h3><ul>
+<li><strong>语法：docker info</strong></li>
+</ul>
+<h3 id="3-1-3-查看帮助文档"><a href="#3-1-3-查看帮助文档" class="headerlink" title="3.1.3. 查看帮助文档"></a>3.1.3. 查看帮助文档</h3><ul>
+<li><strong>语法：</strong><br><strong>docker –help</strong> # 查看 docker 总帮助文档<br><strong>docker 具体命令 –help</strong> # 查看 docker 命令帮助文档</li>
+<li><strong>示例：</strong></li>
+</ul>
+<pre><code class="highlight shell">docker run --help # 查看docker run帮助文档</code></pre>
+
+<h2 id="3-2-镜像命令"><a href="#3-2-镜像命令" class="headerlink" title="3.2. 镜像命令"></a>3.2. 镜像命令</h2><h3 id="3-2-1-列出本地镜像"><a href="#3-2-1-列出本地镜像" class="headerlink" title="3.2.1. 列出本地镜像"></a>3.2.1. 列出本地镜像</h3><ul>
+<li><strong>语法：</strong><font>docker images [options]</font></li>
+<li><strong>选项：</strong><ul>
+<li><strong>-a：列出所有的镜像，包括中间镜像层。</strong></li>
+<li>-q：只显示镜像 ID。</li>
+<li>-digests：显示镜像的摘要信息。</li>
+<li>–no-trunc：显示完整的镜像摘要信息。</li>
+</ul>
+</li>
+<li><strong>示例：</strong></li>
+</ul>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">查询所有镜像</span>
+docker images -a
+<span class="meta prompt_"># </span><span class="language-bash">执行结果</span>
+REPOSITORY         TAG       IMAGE ID       CREATED        SIZE
+&lt;none&gt;             &lt;none&gt;    eeeec7fa4096   7 weeks ago    219MB
+&lt;none&gt;             &lt;none&gt;    55b00e8f7153   7 weeks ago    197MB
+fs                 1.10.1    6ec911357d5c   2 months ago   4.09GB
+&lt;none&gt;             &lt;none&gt;    1351fb15bf13   2 months ago   129MB
+gitlab/gitlab-ce   latest    2356d4f2a386   3 months ago   2.86GB
+mysql              5.7       547b3c3c15a9   4 months ago   501MB
+centos             7         eeb6ee3f44bd   2 years ago    204MB
+debian             jessie    3aaeab7a4777   2 years ago    129MB
+ubuntu             14.04     13b66b487594   2 years ago    197MB
+<span class="meta prompt_"># </span><span class="language-bash">虚悬镜像：仓库名、标签都是&lt;none&gt;的镜像，构建失败产生的镜像。</span></code></pre>
+
+<h3 id="3-2-2-按条件查找镜像"><a href="#3-2-2-按条件查找镜像" class="headerlink" title="3.2.2. 按条件查找镜像"></a>3.2.2. 按条件查找镜像</h3><ul>
+<li><strong>语法：</strong><font>docker search [options] 镜像名</font></li>
+<li><strong>选项：</strong><ul>
+<li>–no-trunc：显示完整的镜像摘要信息。</li>
+<li>-s：列出收藏数不小于指定值的镜像，已弃用。</li>
+<li>–automated：只列出自动构建类型的镜像，已弃用。</li>
+<li>–limit 数字：只列出前 n 个镜像，默认 25。</li>
+<li><strong>–filter key&#x3D;value：过滤镜像。</strong></li>
+<li>–filter&#x3D;key&#x3D;value：过滤镜像。</li>
+</ul>
+</li>
+<li><strong>示例：</strong></li>
+</ul>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">查询点赞数大于5的镜像</span>
+docker search --filter=stars=5 hello-world
+docker search --filter stars=5 hello-world
+<span class="meta prompt_"># </span><span class="language-bash">查询官方的镜像</span>
+docker search --filter is-official=true hello-world
+<span class="meta prompt_"># </span><span class="language-bash">查询自动构建的镜像</span>
+docker search --filter is-automated=true hello-world
+<span class="meta prompt_"># </span><span class="language-bash">查询点赞数大于5且为自动构建的镜像</span>
+docker search --filter=stars=5 -filter is-automated=true hello-world</code></pre>
+
+<h3 id="3-2-3-拉取镜像"><a href="#3-2-3-拉取镜像" class="headerlink" title="3.2.3. 拉取镜像"></a>3.2.3. 拉取镜像</h3><ul>
+<li><strong>语法：</strong><font>docker pull 镜像名[:tag]</font></li>
+<li><strong>示例：</strong></li>
+</ul>
+<pre><div class="caption"><span>shell</span></div><code class="highlight shell">docker pull hello-world # 默认拉取最新版本</code></pre>
+
+<h3 id="3-2-4-删除镜像"><a href="#3-2-4-删除镜像" class="headerlink" title="3.2.4. 删除镜像"></a>3.2.4. 删除镜像</h3><ul>
+<li><strong>语法：</strong><font>docker rmi [options] 镜像名[:TAG]或者镜像 ID</font></li>
+<li><strong>选项：</strong><ul>
+<li>-f：强制删除。镜像被容器使用时，不允许删除，可以使用-f 强制删除。</li>
+</ul>
+</li>
+<li><strong>示例：</strong></li>
+</ul>
+<pre><code class="highlight shell">docker rmi -f 镜像名[:TAG]或者镜像ID # 强制删除单个镜像
+docker rmi -f 镜像1ID 镜像2ID # 强制删除多个镜像
+docker rmi -f $(docker images -qa) # 强制删除全部镜像</code></pre>
+
+<h3 id="3-2-5-查询镜像、容器、数据卷所占空间"><a href="#3-2-5-查询镜像、容器、数据卷所占空间" class="headerlink" title="3.2.5. 查询镜像、容器、数据卷所占空间"></a>3.2.5. 查询镜像、容器、数据卷所占空间</h3><ul>
+<li><strong>语法：</strong><font>docker system df</font></li>
+<li><strong>示例：</strong></li>
+</ul>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">执行结果</span>
+TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE
+Images          8         6         8.008GB   325.6MB (4%)
+Containers      9         3         636.4MB   3.068MB (0%)
+Local Volumes   1         0         219.5MB   219.5MB (100%)
+Build Cache     0         0         0B        0B
+<span class="meta prompt_"># </span><span class="language-bash">RECLAIMABLE：可回收的空间。</span></code></pre>
+
+<h2 id="3-3-容器命令"><a href="#3-3-容器命令" class="headerlink" title="3.3. 容器命令"></a>3.3. 容器命令</h2><h3 id="3-3-1-新建并启动容器"><a href="#3-3-1-新建并启动容器" class="headerlink" title="3.3.1. 新建并启动容器"></a>3.3.1. 新建并启动容器</h3><ul>
+<li><strong>语法：</strong><font>docker run [options] 镜像名 [command] [args]</font></li>
+<li><strong>选项：</strong><ul>
+<li><strong>–name&#x3D;”名称”：指定容器名。</strong></li>
+<li><strong>-d：启动守护式容器，并返回容器 ID。</strong></li>
+<li><strong>-i：以交互模式运行容器，配合-t 一起使用。</strong></li>
+<li><strong>-t：为容器重新分配一个伪输入终端，配合-i 一起使用。</strong></li>
+<li>-P：随机端口映射。</li>
+<li><strong>-p：指定端口映射。</strong></li>
+<li><strong>-v：添加数据卷。</strong></li>
+<li>–privileged&#x3D;true：扩大容器的权限，使得容器中的 root 拥有真正的 root 权限，否则容器内 root 只是外部的一个普通用户权限。</li>
+<li>–restart：指定重启策略。no 默认策略，在容器退出时不重启容器；always 在容器退出时总是重启容器；on-failure 在容器非正常退出时重启容器，on-faulure:3 标识最多重启三次；unless-stopped 在容器退出时重启容器，但是不考虑在 docker 守护进程启动时就已经停止的容器。</li>
+<li>–network：指定网桥模式，bridge、host、container:容器 ID 或者容器名、none、自定义网络。详见 Docker 网络。</li>
+</ul>
+</li>
+<li><strong>示例：</strong></li>
+</ul>
+<pre><code class="highlight shell">docker run --name=&quot;mycentos&quot; -it centos /bin/bash # 启动交互式容器进程
+docker run -d 镜像名 # 启动守护式容器进程。Docker后台运行就必须有一个前台进程，如果不是一个一直挂起的命令（如top、tail等），docker会自动退出</code></pre>
+
+<h3 id="3-3-2-查看容器"><a href="#3-3-2-查看容器" class="headerlink" title="3.3.2. 查看容器"></a>3.3.2. 查看容器</h3><ul>
+<li><strong>语法：</strong><font>docker ps [options]</font></li>
+<li><strong>选项：</strong><ul>
+<li><strong>-a：显示所有正在运行和历史运行的容器。</strong></li>
+<li>-l：显示最近创建的容器。</li>
+<li>-n：显示最近创建的 n 个容器。</li>
+<li>-q：静默模式，只显示容器 ID。</li>
+<li>–no-trunc：不截断输出。</li>
+</ul>
+</li>
+<li><strong>示例：</strong></li>
+</ul>
+<pre><code class="highlight shell">docker ps # 查看所有正在运行的容器
+docker ps -a # 查看所有正在运行和历史运行的容器
+docker ps -n 2 # 查看最近创建的2个容器
+docker ps -l # 查看最近创建的容器</code></pre>
+
+<h3 id="3-3-3-退出容器"><a href="#3-3-3-退出容器" class="headerlink" title="3.3.3. 退出容器"></a>3.3.3. 退出容器</h3><ul>
+<li><strong>语法：</strong><br><strong>exit</strong> # 停止容器，退出容器<br><strong>ctrl+P+Q</strong> # 不停止容器，退出容器</li>
+</ul>
+<h3 id="3-3-4-启动、重启、停止容器"><a href="#3-3-4-启动、重启、停止容器" class="headerlink" title="3.3.4. 启动、重启、停止容器"></a>3.3.4. 启动、重启、停止容器</h3><ul>
+<li><strong>语法：</strong><br><strong>docker start 容器名或者容器 ID</strong> # 启动已经停止运行的容器<br><strong>docker restart 容器名或者容器 ID</strong> # 重启正在运行的容器<br><strong>docker stop 容器名或者容器 ID</strong> # 停止正在运行的容器<br><strong>docker kill 容器名或者容器 ID</strong> # 强制停止正在运行的容器</li>
+</ul>
+<h3 id="3-3-5-删除容器"><a href="#3-3-5-删除容器" class="headerlink" title="3.3.5. 删除容器"></a>3.3.5. 删除容器</h3><ul>
+<li><strong>语法：</strong><font>docker rm [options] 容器名或者容器 ID</font></li>
+<li><strong>选项：</strong><ul>
+<li>-f：强制删除。容器运行中不允许删除，可以使用-f 强制删除。</li>
+</ul>
+</li>
+<li><strong>示例：</strong></li>
+</ul>
+<pre><code class="highlight shell">docker rm 容器ID # 删除停止运行的容器
+docker rm -f 容器ID # 强制删除容器。
+docker rm -f $(docker ps -aq) # 强制删除全部容器
+docker ps -aq | xargs docker rm -f # 强制删除全部容器</code></pre>
+
+<h3 id="3-3-6-拷贝文件"><a href="#3-3-6-拷贝文件" class="headerlink" title="3.3.6. 拷贝文件"></a>3.3.6. 拷贝文件</h3><ul>
+<li><strong>语法：</strong><font>docker cp 源路径 目标路径</font></li>
+<li><strong>示例：</strong></li>
+</ul>
+<pre><code class="highlight shell">docker cp 容器ID:容器内路径 目的主机路径 # 拷贝容器内文件到宿主机中
+docker cp 目的主机路径 容器ID:容器内路径 # 拷贝宿主机内文件到容器中</code></pre>
+
+<h3 id="3-3-7-进入容器"><a href="#3-3-7-进入容器" class="headerlink" title="3.3.7. 进入容器"></a>3.3.7. 进入容器</h3><ul>
+<li><strong>语法：</strong><br><font>docker exec -it 容器 ID bashshell</font> # 在容器中打开新的终端，并且可以启动新的进程，exit 不会导致容器停止。常见 bashshell 有&#x2F;bin&#x2F;bash、&#x2F;bin&#x2F;sh。<br><font>docker attach 容器 ID</font> # 直接进入启动容器命令的终端，不会启动新的进程，exit 会导致容器停止。</li>
+</ul>
+<h3 id="3-3-8-查看容器日志"><a href="#3-3-8-查看容器日志" class="headerlink" title="3.3.8. 查看容器日志"></a>3.3.8. 查看容器日志</h3><ul>
+<li><strong>语法：</strong><font>docker logs [options] 容器名或者容器 ID</font></li>
+<li><strong>选项：</strong><ul>
+<li>-t：显示时间戳。</li>
+<li>-f：跟随最新日志打印。</li>
+<li>–tail n：显示最后 n 条。</li>
+</ul>
+</li>
+<li><strong>示例：</strong></li>
+</ul>
+<pre><code class="highlight shell">docker logs -t -f --tail 100 容器名或者容器ID # 查看容器日志，-t加入时间戳，-f跟随最新日志打印，--tail显示最后几条</code></pre>
+
+<h3 id="3-3-9-查看容器内进程"><a href="#3-3-9-查看容器内进程" class="headerlink" title="3.3.9. 查看容器内进程"></a>3.3.9. 查看容器内进程</h3><ul>
+<li><strong>语法：</strong><font>docker top 容器名或者容器 ID</font></li>
+</ul>
+<h3 id="3-3-10-查看容器信息"><a href="#3-3-10-查看容器信息" class="headerlink" title="3.3.10. 查看容器信息"></a>3.3.10. 查看容器信息</h3><ul>
+<li><strong>语法：</strong><font>docker inspect 容器名或者容器 ID</font> # 常用于查看映射路径。</li>
+</ul>
+<h3 id="3-3-11-导出、导入容器"><a href="#3-3-11-导出、导入容器" class="headerlink" title="3.3.11. 导出、导入容器"></a>3.3.11. 导出、导入容器</h3><ul>
+<li><p><strong>语法：</strong><br><font>docker export 容器名或者容器 ID &gt; 导出文件路径</font><br><font>docker import [options] file|URL|- 镜像名[:版本号]</font></p>
+</li>
+<li><p><strong>示例：</strong></p>
+</li>
+</ul>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">导入后镜像启动可能报错，需要指定启动参数与命令，可以通过`docker ps -a`查看原启动参数与命令。</span>
+cat 导入文件路径 | docker import - 镜像名:版本号</code></pre>
+
+<ul>
+<li><strong>案例：</strong></li>
+</ul>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">启动容器</span>
+docker run --name=mycentos7 -it centos:7 /bin/bash
+<span class="meta prompt_"># </span><span class="language-bash">修改容器</span>
+<span class="meta prompt_"># </span><span class="language-bash">导出容器</span>
+docker export mycentos7 &gt; mycentos7.tar
+<span class="meta prompt_"># </span><span class="language-bash">从归档文件中创建镜像</span>
+docker import mycentos7.tar fengbiao/mycentos:7
+cat mycentos7.tar | docker import - fengbiao/mycentos:7
+<span class="meta prompt_"># </span><span class="language-bash">启动容器</span>
+docker run --name=mycentos7 -it fengbiao/centos:7 /bin/bash</code></pre>
+
+<h1 id="4-镜像"><a href="#4-镜像" class="headerlink" title="4. 镜像"></a>4. 镜像</h1><h2 id="4-1-简介"><a href="#4-1-简介" class="headerlink" title="4.1. 简介"></a>4.1. 简介</h2><ul>
+<li><strong>轻量级可执行的独立软件包，用于打包软件运行环境和基于运行环境开发的软件。</strong></li>
+<li>union 文件系统是 docker 镜像的基础。docker 采用这种分层结构，可以共享资源，例如多个镜像从相同的 base 镜像构建而来，则在宿主机中只需要保存一份 base 镜像即可。docker 镜像最底层是 bootfs。<br><code>Union联合文件系统是分层、轻量级、高性能的文件系统，支持对文件系统的修改作为一次提交来一层层的叠加，同时可以将不同的目录挂载到同一个虚拟文件系统下。特性是一次同时加载多个文件系统，但外面只能看到一个文件系统。</code></li>
+</ul>
+<h2 id="4-2-特点"><a href="#4-2-特点" class="headerlink" title="4.2. 特点"></a>4.2. 特点</h2><ul>
+<li><strong>docker 镜像都是只读的。</strong></li>
+<li>容器启动时，一个新的可写层被加载到镜像的顶部。这一层叫成容器层，容器层下都是镜像层。</li>
+</ul>
+<h2 id="4-3-提交镜像"><a href="#4-3-提交镜像" class="headerlink" title="4.3. 提交镜像"></a>4.3. 提交镜像</h2><ul>
+<li><strong>语法：</strong><font>docker commit -m&#x3D;”描述信息” -a&#x3D;”作者” 容器名或者容器 ID 要创建的目标镜像名:[标签名]</font></li>
+<li><strong>案例：</strong></li>
+</ul>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">拉取并运行镜像</span>
+docker pull centos:7
+docker run --name=mycentos -it centos:7 /bin/bash
+<span class="meta prompt_"># </span><span class="language-bash">修改</span>
+<span class="meta prompt_"># </span><span class="language-bash">提交新的镜像</span>
+docker commit mycentos fengbiao/mycentos:7
+<span class="meta prompt_"># </span><span class="language-bash">运行新的镜像</span>
+docker run -it fengbiao/mycentos:7 /bin/bash</code></pre>
+
+<h1 id="5-发布镜像"><a href="#5-发布镜像" class="headerlink" title="5. 发布镜像"></a>5. 发布镜像</h1><h2 id="5-1-发布镜像到阿里云"><a href="#5-1-发布镜像到阿里云" class="headerlink" title="5.1. 发布镜像到阿里云"></a>5.1. 发布镜像到阿里云</h2><h3 id="5-1-1-发布镜像到阿里云"><a href="#5-1-1-发布镜像到阿里云" class="headerlink" title="5.1.1. 发布镜像到阿里云"></a>5.1.1. 发布镜像到阿里云</h3><ol>
+<li>生成镜像。</li>
+</ol>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">方式1. docker commit</span>
+<span class="meta prompt_"># </span><span class="language-bash">方式2. Dockerfile</span>
+<span class="meta prompt_"># </span><span class="language-bash">方式3. docker import</span></code></pre>
+
+<ol start="2">
+<li>阿里云创建命名空间、仓库。</li>
+<li>将镜像推送到阿里云。</li>
+</ol>
+<pre><code class="highlight shell">docker login --username=蜡笔没了小新2222 registry.cn-shanghai.aliyuncs.com
+docker tag [ImageId] registry.cn-shanghai.aliyuncs.com/fengbiao/centos:[镜像版本号]
+docker push registry.cn-shanghai.aliyuncs.com/fengbiao/centos:[镜像版本号]</code></pre>
+
+<ol start="4">
+<li>测试。</li>
+</ol>
+<pre><code class="highlight shell">docker pull registry.cn-shanghai.aliyuncs.com/fengbiao/centos:[镜像版本号]</code></pre>
+
+<h3 id="5-1-2-案例"><a href="#5-1-2-案例" class="headerlink" title="5.1.2. 案例"></a>5.1.2. 案例</h3><ol>
+<li>生成镜像。</li>
+</ol>
+<pre><code class="highlight shell">docker pull centos:7
+docker run --name=mycentos -it centos:7 /bin/bash # 修改容器
+docker commit mycentos fengbiao/centos:1</code></pre>
+
+<ol start="2">
+<li>阿里云创建命令空间、仓库。</li>
+<li>将镜像推送到阿里云。</li>
+</ol>
+<pre><code class="highlight shell">docker login --username=蜡笔没了小新2222 registry.cn-hangzhou.aliyuncs.com
+docker tag fengbiao/centos:1 registry.cn-hangzhou.aliyuncs.com/fengbiao/centos:1
+docker push registry.cn-hangzhou.aliyuncs.com/fengbiao/centos:1</code></pre>
+
+<ol start="4">
+<li>测试运行。</li>
+</ol>
+<pre><code class="highlight shell">docker pull registry.cn-hangzhou.aliyuncs.com/fengbiao/centos:1
+docker run -it registry.cn-hangzhou.aliyuncs.com/fengbiao/centos:1 /bin/bash</code></pre>
+
+<h2 id="5-2-发布镜像到私有云"><a href="#5-2-发布镜像到私有云" class="headerlink" title="5.2. 发布镜像到私有云"></a>5.2. 发布镜像到私有云</h2><h3 id="5-2-1-搭建私服镜像"><a href="#5-2-1-搭建私服镜像" class="headerlink" title="5.2.1. 搭建私服镜像"></a>5.2.1. 搭建私服镜像</h3><ol>
+<li>拉取私服镜像。</li>
+</ol>
+<pre><code class="highlight shell">docker pull registry</code></pre>
+
+<ol start="2">
+<li>运行私服镜像。</li>
+</ol>
+<pre><code class="highlight shell">docker run --name my-registry -d -p 5000:5000 -v /root/my-registry:/tmp/registry --privileged=true registry</code></pre>
+
+<ol start="3">
+<li>测试，查询私服镜像。</li>
+</ol>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">方式1. 浏览器请求http://ip:5000/v2/_catalog。</span>
+<span class="meta prompt_"># </span><span class="language-bash">方式2. curl请求。<span class="string">&#x27;curl -XGET http://ip:5000/v2/_catalog&#x27;</span>。</span></code></pre>
+
+<ol start="4">
+<li>修改 docker 配置文件并重启。<br><code>docker默认不允许http方式推送镜像。</code></li>
+</ol>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">修改docker配置文件/etc/docker/daemon.json，添加如下内容</span>
+&#123;
+  &quot;registry-mirrors&quot;: [&quot;https://o2n5x71x.mirror.aliyuncs.com&quot;],
+  &quot;insecure-registries&quot;: [&quot;192.168.220.157:5000&quot;]
+&#125;
+<span class="meta prompt_"># </span><span class="language-bash">重启docker</span>
+systemctl restart docker
+<span class="meta prompt_"># </span><span class="language-bash">启动私服容器</span>
+docker start my-registry</code></pre>
+
+<h3 id="5-2-2-发布镜像到私有云"><a href="#5-2-2-发布镜像到私有云" class="headerlink" title="5.2.2. 发布镜像到私有云"></a>5.2.2. 发布镜像到私有云</h3><ol>
+<li>搭建私服。</li>
+<li>生成镜像。</li>
+<li>推送镜像到私服。</li>
+</ol>
+<pre><code class="highlight shell">docker tag [ImageId] 192.168.220.157:5000/my-centos:[镜像版本号]
+docker push 192.168.220.157:5000/my-centos:[镜像版本号]</code></pre>
+
+<ol start="4">
+<li>测试。</li>
+</ol>
+<pre><code class="highlight shell">docker pull 192.168.220.157:5000/my-centos:[镜像版本号]</code></pre>
+
+<h1 id="6-容器数据卷"><a href="#6-容器数据卷" class="headerlink" title="6. 容器数据卷"></a>6. 容器数据卷</h1><h2 id="6-1-作用"><a href="#6-1-作用" class="headerlink" title="6.1. 作用"></a>6.1. 作用</h2><ul>
+<li>容器的持久化。</li>
+<li>容器间继承，共享数据。</li>
+</ul>
+<h2 id="6-2-添加数据卷"><a href="#6-2-添加数据卷" class="headerlink" title="6.2. 添加数据卷"></a>6.2. 添加数据卷</h2><h3 id="6-2-1-命令添加"><a href="#6-2-1-命令添加" class="headerlink" title="6.2.1. 命令添加"></a>6.2.1. 命令添加</h3><pre><code class="highlight shell">docker run -it -v 宿主机绝对路径目录:容器内目录[:ro|rw] [--privileged=true] 镜像名 # 添加数据卷（只读|读写权限，默认读写权限），如果报错需要添加括号中的参数。只读权限，容器内只能读取不能写
+docker inspect 容器ID # 查看数据卷是否添加成功，可以在binds下查看，如果有权限会显示
+<span class="meta prompt_"># </span><span class="language-bash">容器停止退出后，主机修改数据仍然同步</span></code></pre>
+
+<h3 id="6-2-2-Dockerfile-添加"><a href="#6-2-2-Dockerfile-添加" class="headerlink" title="6.2.2. Dockerfile 添加"></a>6.2.2. Dockerfile 添加</h3><ol>
+<li>编写 Dockerfile 文件。</li>
+</ol>
+<pre><div class="caption"><span>Dockerfile</span></div><code class="highlight shell">FROM centos
+VOLUME [&quot;/dataVolumeContainer1&quot;,&quot;/dataVolumeContainer2&quot;]
+CMD echo &quot;finished,--------success1&quot;
+CMD /bin/bash</code></pre>
+
+<ol start="2">
+<li>构建镜像。</li>
+</ol>
+<pre><code class="highlight shell">docker build -f dockerfile目录 -t 镜像名 . # 生成镜像</code></pre>
+
+<ol start="3">
+<li>运行容器。<br><code>容器运行后，便会有默认的数据卷挂载。</code></li>
+</ol>
+<h2 id="6-3-数据卷容器"><a href="#6-3-数据卷容器" class="headerlink" title="6.3. 数据卷容器"></a>6.3. 数据卷容器</h2><ul>
+<li>容器挂载数据卷，其他容器通过挂载这个父容器实现数据共享，挂载数据卷的容器被称为数据卷容器。<br><code>容器之间配置信息的传递，数据卷的生命周期一直持续到没有容器使用它为止。父容器停止，子容器仍然可以同步主机的数据修改，因为子容器继承的是父容器的挂载规则。</code></li>
+<li><strong>语法：</strong><font>docker run -it –name 名称 –volumes-from 父容器 镜像</font></li>
+</ul>
+<h1 id="7-常规安装"><a href="#7-常规安装" class="headerlink" title="7. 常规安装"></a>7. 常规安装</h1><h2 id="7-1-Tomcat-安装"><a href="#7-1-Tomcat-安装" class="headerlink" title="7.1. Tomcat 安装"></a>7.1. Tomcat 安装</h2><ol>
+<li>查询镜像。</li>
+</ol>
+<pre><code class="highlight shell">docker search tomcat</code></pre>
+
+<ol start="2">
+<li>拉取镜像。</li>
+</ol>
+<pre><code class="highlight shell">docker pull tomcat</code></pre>
+
+<ol start="3">
+<li>运行容器实例。</li>
+</ol>
+<pre><code class="highlight shell">docker run -d -p 80:8080 --name my-tomcat tomcat</code></pre>
+
+<ol start="4">
+<li>测试请求。<br><code>如果404，可能是webapps目录下为空。</code></li>
+</ol>
+<h2 id="7-2-Mysql-安装"><a href="#7-2-Mysql-安装" class="headerlink" title="7.2. Mysql 安装"></a>7.2. Mysql 安装</h2><h3 id="7-2-1-Mysql5-7-安装"><a href="#7-2-1-Mysql5-7-安装" class="headerlink" title="7.2.1. Mysql5.7 安装"></a>7.2.1. Mysql5.7 安装</h3><ol>
+<li>查询镜像。</li>
+</ol>
+<pre><code class="highlight shell">docker search mysql</code></pre>
+
+<ol start="2">
+<li>拉取镜像。</li>
+</ol>
+<pre><code class="highlight shell">docker pull mysql:5.7</code></pre>
+
+<ol start="3">
+<li>运行容器实例。</li>
+</ol>
+<pre><code class="highlight shell">docker run --restart always -p 33060:3306 --name mysql -v /data/mysql/log:/var/log/mysql -v /data/mysql/data:/var/lib/mysql -v /data/mysql/conf:/etc/mysql -e MYSQL_ROOT_PASSWORD=fb231101 -d --privileged=true mysql:5.7 # mysql配置文件my.cnf</code></pre>
+
+<h3 id="7-2-2-Mysql8-安装"><a href="#7-2-2-Mysql8-安装" class="headerlink" title="7.2.2. Mysql8 安装"></a>7.2.2. Mysql8 安装</h3><p>TODO</p>
+<h3 id="7-2-3-Mysql-主从安装"><a href="#7-2-3-Mysql-主从安装" class="headerlink" title="7.2.3. Mysql 主从安装"></a>7.2.3. Mysql 主从安装</h3><ol>
+<li>查询镜像。</li>
+</ol>
+<pre><code class="highlight shell">docker search mysql</code></pre>
+
+<ol start="2">
+<li>拉取镜像。</li>
+</ol>
+<pre><code class="highlight shell">docker pull mysql:5.7</code></pre>
+
+<ol start="3">
+<li>运行主服务器容器实例。</li>
+</ol>
+<pre><code class="highlight shell">docker run --restart always -p 3307:3306 --name mysql-master -v /data/mysql-master/log:/var/log/mysql -v /data/mysql-master/data:/var/lib/mysql -v /data/mysql-master/conf:/etc/mysql -e MYSQL_ROOT_PASSWORD=123456 -d --privileged=true mysql:5.7</code></pre>
+
+<ol start="4">
+<li>修改主服务器配置文件。</li>
+</ol>
+<pre><div class="caption"><span>/data/mysql-master/conf/my.cnf</span></div><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">在/data/mysql-master/conf/my.cnf添加如下内容</span>
+[mysqld]
+server_id=1
+binlog-ignore-db=mysql
+log-bin=mysql-bin
+binlog_cache_size=1M
+binlog_format=mixed
+expire_logs_days=7
+slave_skip_errors=1062</code></pre>
+
+<ol start="5">
+<li>重启主服务器容器。</li>
+</ol>
+<pre><code class="highlight shell">docker restart mysql-master</code></pre>
+
+<ol start="6">
+<li>添加用户。</li>
+</ol>
+<pre><code class="highlight shell">docker exec -it mysql-master /bin/bash
+mysql -uroot -p
+CREATE USER &#x27;slave&#x27;@&#x27;%&#x27; IDENTIFIED BY &#x27;123456&#x27;;
+GRANT REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO &#x27;slave&#x27;@&#x27;%&#x27;;</code></pre>
+
+<ol start="7">
+<li>运行从服务器容器实例。</li>
+</ol>
+<pre><code class="highlight shell">docker run --restart always -p 3308:3306 --name mysql-slave -v /data/mysql-slave/log:/var/log/mysql -v /data/mysql-slave/data:/var/lib/mysql -v /data/mysql-slave/conf:/etc/mysql -e MYSQL_ROOT_PASSWORD=123456 -d --privileged=true mysql:5.7</code></pre>
+
+<ol start="8">
+<li>修改从服务器配置文件。</li>
+</ol>
+<pre><div class="caption"><span>/data/mysql-slave/conf/my.cnf</span></div><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">在/data/mysql-slave/conf/my.cnf添加如下内容</span>
+[mysqld]
+server_id=2
+binlog-ignore-db=mysql
+log-bin=mysql-bin
+binlog_cache_size=1M
+binlog_format=mixed
+expire_logs_days=7
+slave_skip_errors=1062
+relay_log=relay-log
+log_slave_updates=1
+read_only=1</code></pre>
+
+<ol start="9">
+<li>重启从服务器容器。</li>
+</ol>
+<pre><code class="highlight shell">docker restart mysql-slave</code></pre>
+
+<ol start="10">
+<li>在主服务器查看主从同步状态。</li>
+</ol>
+<pre><code class="highlight shell">docker exec -it mysql-master /bin/bash
+mysql -uroot -p
+show master status;</code></pre>
+
+<ol start="11">
+<li>在从服务器配置主从复制。</li>
+</ol>
+<pre><code class="highlight shell">docker exec -it mysql-slave /bin/bash;
+mysql -uroot -p
+CHANGE MASTER TO MASTER_HOST=&#x27;192.168.146.148&#x27;, MASTER_PORT=3307, MASTER_USER=&#x27;slave&#x27;, MASTER_PASSWORD=&#x27;123456&#x27;, MASTER_LOG_FILE=&#x27;mysql-bin.000001&#x27;, MASTER_LOG_POS=617, MASTER_CONNECT_RETRY=30;
+show slave status\G</code></pre>
+
+<ol start="12">
+<li>在从服务器开启主从同步。</li>
+</ol>
+<pre><code class="highlight shell">start slave;
+show slave status\G</code></pre>
+
+<ol start="13">
+<li>测试。</li>
+</ol>
+<h2 id="7-3-Redis-安装"><a href="#7-3-Redis-安装" class="headerlink" title="7.3. Redis 安装"></a>7.3. Redis 安装</h2><h3 id="7-3-1-单机版安装"><a href="#7-3-1-单机版安装" class="headerlink" title="7.3.1. 单机版安装"></a>7.3.1. 单机版安装</h3><ol>
+<li>查询并拉取镜像。</li>
+</ol>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">查询镜像</span>
+docker search redis
+<span class="meta prompt_"># </span><span class="language-bash">拉取镜像</span>
+docker pull redis:6.0.8</code></pre>
+
+<ol start="2">
+<li>运行容器实例。</li>
+</ol>
+<pre><code class="highlight shell">docker run --restart always -p 6379:6379 --name redis --privileged=true -v /root/my-redis/redis.conf:/etc/redis/redis.conf -v /root/my-redis/data:/data -d redis:6.0.8 redis-server /etc/redis/redis.conf</code></pre>
+
+<ol start="3">
+<li>修改配置文件。</li>
+<li>测试。</li>
+</ol>
+<h3 id="7-3-2-集群安装"><a href="#7-3-2-集群安装" class="headerlink" title="7.3.2. 集群安装"></a>7.3.2. 集群安装</h3><ol>
+<li>查询并拉取镜像。</li>
+</ol>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">查询镜像</span>
+docker search redis
+<span class="meta prompt_"># </span><span class="language-bash">拉取镜像</span>
+docker pull redis:6.0.8</code></pre>
+
+<ol start="2">
+<li>运行 6 个容器实例。</li>
+</ol>
+<pre><code class="highlight shell">docker run --name redis-node1 --restart always --net host --privileged=true -v /root/my-redis-cluster/node1/data:/data -d redis:6.0.8 --cluster-enabled yes --appendonly yes --port 6381
+docker run --name redis-node2 --restart always --net host --privileged=true -v /root/my-redis-cluster/node2/data:/data -d redis:6.0.8 --cluster-enabled yes --appendonly yes --port 6382
+docker run --name redis-node3 --restart always --net host --privileged=true -v /root/my-redis-cluster/node3/data:/data -d redis:6.0.8 --cluster-enabled yes --appendonly yes --port 6383
+docker run --name redis-node4 --restart always --net host --privileged=true -v /root/my-redis-cluster/node4/data:/data -d redis:6.0.8 --cluster-enabled yes --appendonly yes --port 6384
+docker run --name redis-node5 --restart always --net host --privileged=true -v /root/my-redis-cluster/node5/data:/data -d redis:6.0.8 --cluster-enabled yes --appendonly yes --port 6385
+docker run --name redis-node6 --restart always --net host --privileged=true -v /root/my-redis-cluster/node6/data:/data -d redis:6.0.8 --cluster-enabled yes --appendonly yes --port 6386</code></pre>
+
+<ol start="3">
+<li>构建集群关系。</li>
+</ol>
+<pre><code class="highlight shell">docker exec -it redis-node1 /bin/bash
+redis-cli --cluster create 192.168.146.148:6381 192.168.146.148:6382 192.168.146.148:6383 192.168.146.148:6384 192.168.146.148:6385 192.168.146.148:6386 --cluster-replicas 1</code></pre>
+
+<ol start="4">
+<li>测试。</li>
+</ol>
+<pre><code class="highlight shell">redis-cli -p 6381 -c
+cluster info
+cluster nodes</code></pre>
+
+<ol start="5">
+<li>查看集群信息。</li>
+</ol>
+<pre><code class="highlight shell">redis-cli --cluster check 192.168.146.148:6381</code></pre>
+
+<ol start="6">
+<li>测试主从容错切换。</li>
+<li>测试主从扩容。</li>
+</ol>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">运行两个实例</span>
+docker run --name redis-node7 --restart always --net host --privileged=true -v /root/my-redis-cluster/node7/data:/data -d redis:6.0.8 --cluster-enabled yes --appendonly yes --port 6387
+docker run --name redis-node8 --restart always --net host --privileged=true -v /root/my-redis-cluster/node8/data:/data -d redis:6.0.8 --cluster-enabled yes --appendonly yes --port 6388
+<span class="meta prompt_"># </span><span class="language-bash">将新增节点（空槽号）作为主节点加入原集群</span>
+docker exec -it redis-node1 /bin/bash
+redis-cli --cluster add-node 192.168.146.148:6387 192.168.146.148:6381
+redis-cli --cluster check 192.168.146.148:6381
+<span class="meta prompt_"># </span><span class="language-bash">重新分派槽号</span>
+redis-cli --cluster reshard 192.168.146.148:6381
+redis-cli --cluster check 192.168.146.148:6381
+<span class="meta prompt_"># </span><span class="language-bash">为主节点分配从节点</span>
+redis-cli --cluster add-node 192.168.146.148:6388 192.168.146.148:6387 --cluster-slave --cluster-master-id c2b91471c5ef048a0ef66c64823a16cd4700ff2f # 第一个参数为从节点ip+端口，第二个参数为主节点ip+端口，第三个参数为主节点ID
+<span class="meta prompt_"># </span><span class="language-bash">测试</span>
+redis-cli --cluster check 192.168.146.148:6381</code></pre>
+
+<ol start="8">
+<li>测试主从缩容。</li>
+</ol>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">删除从节点</span>
+redis-cli --cluster del-node 192.168.146.148:6388 1c10fb5e59f9767b37fe33aa794af6e8dad018aa # 第一个参数为从节点ip+端口，第二个参数为从节点ID
+<span class="meta prompt_"># </span><span class="language-bash">重新分派槽号</span>
+redis-cli --cluster reshard 192.168.146.148:6381
+<span class="meta prompt_"># </span><span class="language-bash">删除主节点</span>
+redis-cli --cluster del-node 192.168.146.148:6387 c2b91471c5ef048a0ef66c64823a16cd4700ff2f</code></pre>
+
+<h3 id="7-3-3-分布式存储算法"><a href="#7-3-3-分布式存储算法" class="headerlink" title="7.3.3. 分布式存储算法"></a>7.3.3. 分布式存储算法</h3><ul>
+<li>哈希取余算法：<ul>
+<li>缺点：扩缩容以及某个服务器宕机会导致数据重新洗牌。</li>
+</ul>
+</li>
+<li>一致性哈希算法：<ul>
+<li>步骤：算法构建一致性哈希环；服务器 IP 节点映射；key 落到服务器的落键规则。</li>
+<li>优点：容错性、扩展性。</li>
+<li>缺点：数据倾斜。</li>
+</ul>
+</li>
+<li>哈希槽算法：在数据和节点之间又加了一层哈希槽，用于管理数据和节点之间的关系。槽解决的是粒度问题，便于数据移动。一个集群只能有 16384 个槽。</li>
+</ul>
+<h2 id="7-4-Nginx-安装"><a href="#7-4-Nginx-安装" class="headerlink" title="7.4. Nginx 安装"></a>7.4. Nginx 安装</h2><p>TODO</p>
+<h2 id="7-5-svnserver-安装"><a href="#7-5-svnserver-安装" class="headerlink" title="7.5. svnserver 安装"></a>7.5. svnserver 安装</h2><ol>
+<li>查询并拉取镜像。</li>
+</ol>
+<pre><code class="highlight shell">docker pull garethflowers/svn-server</code></pre>
+
+<ol start="2">
+<li>运行容器实例。</li>
+</ol>
+<pre><code class="highlight shell">docker run --restart always --name my-svn -d -v /root/dockers/my-svn:/var/opt/svn -p 3690:3690 garethflowers/svn-server # 宿主机启动时，重启</code></pre>
+
+<ol start="3">
+<li>配置 svn-server。</li>
+</ol>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">进入容器</span>
+docker exec -it my-svn /bin/sh
+<span class="meta prompt_"># </span><span class="language-bash">创建svn资源仓库</span>
+svnadmin create svn
+<span class="meta prompt_"># </span><span class="language-bash">修改svn配置文件</span>
+<span class="meta prompt_"># </span><span class="language-bash">修改权限文件、账户密码文件</span></code></pre>
+
+<h2 id="7-6-nexus-安装"><a href="#7-6-nexus-安装" class="headerlink" title="7.6. nexus 安装"></a>7.6. nexus 安装</h2><p>TODO</p>
+<h2 id="7-7-RabbitMQ-安装"><a href="#7-7-RabbitMQ-安装" class="headerlink" title="7.7. RabbitMQ 安装"></a>7.7. RabbitMQ 安装</h2><ol>
+<li>查询并拉取镜像。</li>
+<li>运行容器实例。</li>
+</ol>
+<pre><code class="highlight shell">docker run -d --hostname localhost --name rabbitmq -p 15672:15672 -p 5672:5672 macintoshplus/rabbitmq-management</code></pre>
+
+<ol start="3">
+<li>测试。</li>
+</ol>
+<h2 id="7-8-Zookeeper-安装"><a href="#7-8-Zookeeper-安装" class="headerlink" title="7.8. Zookeeper 安装"></a>7.8. Zookeeper 安装</h2><h3 id="7-8-1-单机版安装"><a href="#7-8-1-单机版安装" class="headerlink" title="7.8.1. 单机版安装"></a>7.8.1. 单机版安装</h3><ol>
+<li>查询并拉取镜像。</li>
+</ol>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">查询镜像。</span>
+docker search zookeeper
+<span class="meta prompt_"># </span><span class="language-bash">启动镜像。</span>
+docker pull zookeeper</code></pre>
+
+<ol start="2">
+<li>运行容器实例。</li>
+</ol>
+<pre><div class="caption"><span>shell</span></div><code class="highlight shell">docker run -d -p 2181:2181 -v /mysoft/zookeeper/data/:/data/ --name=zookeeper --privileged zookeeper
+<span class="meta prompt_"># </span><span class="language-bash">2181端口：给客户端提供服务；3888端口：选举leader使用；2888端口：集群内机器通讯使用。</span></code></pre>
+
+<ol start="3">
+<li>测试。</li>
+</ol>
+<pre><code class="highlight shell">docker exec -it zookeeper /bin/bash
+<span class="meta prompt_"># </span><span class="language-bash">进入客户端交互界面</span>
+cd /bin
+./zkCli.sh
+<span class="meta prompt_"># </span><span class="language-bash">查看节点</span>
+ls /</code></pre>
+
+<h3 id="7-8-2-集群安装"><a href="#7-8-2-集群安装" class="headerlink" title="7.8.2. 集群安装"></a>7.8.2. 集群安装</h3><p>TODO</p>
+<h2 id="7-9-gitlab-安装"><a href="#7-9-gitlab-安装" class="headerlink" title="7.9. gitlab 安装"></a>7.9. gitlab 安装</h2><ol>
+<li>查询并拉取镜像。</li>
+</ol>
+<pre><code class="highlight shell">docker pull gitlab/gitlab-ce</code></pre>
+
+<ol start="2">
+<li>运行容器实例。</li>
+</ol>
+<pre><code class="highlight shell">docker run -itd -p 9980:80 -p 9922:22 -v /data/gitlab/etc:/etc/gitlab -v /data/gitlab/log:/var/log/gitlab -v /data/gitlab/opt:/var/opt/gitlab --restart always --privileged=true --name gitlab gitlab/gitlab-ce</code></pre>
+
+<ol start="3">
+<li>测试。</li>
+</ol>
+<h1 id="8-DockerFile-解析"><a href="#8-DockerFile-解析" class="headerlink" title="8. DockerFile 解析"></a>8. DockerFile 解析</h1><h2 id="8-1-简介"><a href="#8-1-简介" class="headerlink" title="8.1. 简介"></a>8.1. 简介</h2><p>Dockerfile 是构建 docker 镜像的构建文件，是由一系列命令和参数构成的脚本。<br><code>每个保留字指令都是大写，且至少一个参数。</code><br><code>从上至下，顺序执行。</code><br><code>#表示注释。</code><br><code>每个指令都会创建一个新的镜像层，并对镜像进行提交。</code></p>
+<h2 id="8-2-Dockerfile-执行流程"><a href="#8-2-Dockerfile-执行流程" class="headerlink" title="8.2. Dockerfile 执行流程"></a>8.2. Dockerfile 执行流程</h2><ol>
+<li>从基础镜像运行一个容器。</li>
+<li>执行一条指令并对容器进行修改。</li>
+<li>提交一个新的镜像层。</li>
+<li>基于刚提交的镜像运行一个新的容器。</li>
+<li>执行下一个指令，直到所有的指令都执行完成。</li>
+</ol>
+<h2 id="8-3-构建过程"><a href="#8-3-构建过程" class="headerlink" title="8.3. 构建过程"></a>8.3. 构建过程</h2><ol>
+<li>编写 Dockerfile 文件。</li>
+</ol>
+<pre><div class="caption"><span>Dockerfile</span></div><code class="highlight shell">FROM centos:7
+MAINTAINER fengbiao&lt;2014695858@qq.com&gt;
+ENV MYPATH /usr/local
+WORKDIR $MYPATH
+RUN yum -y install vim
+RUN yum -y install net-tools</code></pre>
+
+<ol start="2">
+<li>构建镜像。</li>
+</ol>
+<pre><code class="highlight shell">docker build -t fengbiao/centos:7 . # docker build -f Dockerfile所在目录 -t 目标镜像名:版本号 .</code></pre>
+
+<ol start="3">
+<li>运行镜像实例。</li>
+</ol>
+<pre><code class="highlight shell">docker run -it fengbiao/centos:7 /bin/bash</code></pre>
+
+<h2 id="8-4-Dockerfile-保留字"><a href="#8-4-Dockerfile-保留字" class="headerlink" title="8.4. Dockerfile 保留字"></a>8.4. Dockerfile 保留字</h2><ul>
+<li><strong>FROM：</strong>设置基础镜像。</li>
+</ul>
+<pre><code class="highlight shell">FROM java:8</code></pre>
+
+<ul>
+<li><strong>MAINTAINER：</strong>设置镜像维护者的邮箱和姓名。</li>
+</ul>
+<pre><code class="highlight shell">MAINTAINER fengbiao&lt;2014695858@qq.com&gt;</code></pre>
+
+<ul>
+<li><strong>RUN：</strong>构建需要执行的命令，两种格式 shell 格式和 exec 格式。</li>
+</ul>
+<pre><code class="highlight shell">RUN ./test.php dev offline # shell格式
+RUN [&quot;./test.php&quot;, &quot;dev&quot;, &quot;offline&quot;] # exec格式</code></pre>
+
+<ul>
+<li><strong>EXPOSE：</strong>当前容器对外暴露的端口。</li>
+<li><strong>WORKDIR：</strong>容器工作目录。</li>
+<li><strong>USER：</strong>该镜像以什么样的用户去执行，默认 root。</li>
+<li><strong>ENV：</strong>设置环境变量。</li>
+</ul>
+<pre><code class="highlight shell">ENV MY_PATH /usr/mytest</code></pre>
+
+<ul>
+<li><strong>ADD：</strong>将宿主机目录文件拷贝到镜像中，如果压缩包并自动解压。</li>
+<li><strong>COPY：</strong>类似 ADD 拷贝文件到镜像中，不会解压。</li>
+<li><strong>VOLUME：</strong>容器数据卷，因为不确定因素，此时不需要宿主机目录，待运行时，会自动映射宿主机。</li>
+<li><strong>CMD：</strong>指定容器启动时，运行的命令，可以有多个 CMD，但只有最后一个生效，且会被 docker run 后的参数覆盖。</li>
+</ul>
+<pre><code class="highlight shell">CMD 命令 # shell格式
+CMD [&quot;可执行文件&quot;, &quot;参数1&quot;, ...] # exec格式</code></pre>
+
+<ul>
+<li><strong>ENTRYPOINT：</strong>指定容器启动时，运行的命令，会被 docker run 后的参数追加而非覆盖，但是可以采用–entrypoint 覆盖。</li>
+<li><strong>ONBUILD：</strong>被继承时触发的命令。</li>
+</ul>
+<pre><code class="highlight shell">ONBUILD RUN echo &quot;文本&quot; # 镜像被继承时，便会输出文本</code></pre>
+
+<h2 id="8-5-虚悬镜像"><a href="#8-5-虚悬镜像" class="headerlink" title="8.5. 虚悬镜像"></a>8.5. 虚悬镜像</h2><ul>
+<li>仓库名和标签都是&lt;none&gt;的镜像。<br><code>&#39;docker build .&#39;等异常情况下产生。</code></li>
+<li>常用命令：</li>
+</ul>
+<pre><code class="highlight shell">docker image ls -f dangling=true # 查看虚悬镜像
+docker image prune # 删除虚悬镜像</code></pre>
+
+<h1 id="9-Docker-微服务实战"><a href="#9-Docker-微服务实战" class="headerlink" title="9. Docker 微服务实战"></a>9. Docker 微服务实战</h1><ol>
+<li>准备微服务 jar 包并上传服务器。</li>
+<li>编写 Dockerfile 文件。</li>
+</ol>
+<pre><div class="caption"><span>Dockerfile</span></div><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">基础镜像</span>
+FROM java:8
+<span class="meta prompt_"># </span><span class="language-bash">作者邮箱</span>
+MAINTAINER fengbiao&lt;2014695858@qq.com&gt;
+<span class="meta prompt_"># </span><span class="language-bash">数据卷</span>
+VOLUME /tmp
+<span class="meta prompt_"># </span><span class="language-bash">指定工作目录</span>
+WORKDIR /tmp
+<span class="meta prompt_"># </span><span class="language-bash">上传jar包</span>
+ADD study-eureka-0.0.1-RELEASE.jar eureka.jar
+RUN bash -c &#x27;touch eureka.jar&#x27;
+<span class="meta prompt_"># </span><span class="language-bash">暴露端口</span>
+EXPOSE 8761
+<span class="meta prompt_"># </span><span class="language-bash">运行jar包</span>
+ENTRYPOINT java -jar eureka.jar</code></pre>
+
+<ol start="3">
+<li>构建 docker 镜像。</li>
+</ol>
+<pre><code class="highlight shell">docker build -t eureka-server:1.0 .</code></pre>
+
+<ol start="4">
+<li>运行 docker 容器。</li>
+</ol>
+<pre><code class="highlight shell">docker run -d -p 6379:6379 eureka-server:1.0</code></pre>
+
+<ol start="5">
+<li>测试。</li>
+</ol>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 不积跬步无以至千里，不积小流无以成江海！ </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2015-2024 蜡笔没了小新
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.png" class="alipay" title="扫码支持">
+            <img src="/img/wechat.png" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 582px;
+    }
+    .nav.fullscreen {
+        margin-left: -582px;
+    }
+    .nav-left {
+        width: 160px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 532px;
+        }
+        .nav.fullscreen {
+            margin-left: -532px;
+        }
+        .nav-left {
+            width: 140px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 532px;
+            margin-left: -532px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("/images/20230809225525.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>

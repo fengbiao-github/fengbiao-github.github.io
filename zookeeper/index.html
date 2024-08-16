@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Zookeeper笔记 | 蜡笔没了小新の笔记</title>
+  <meta name="keywords" content=" 服务调度 ">
+  <meta name="description" content="Zookeeper笔记 | 蜡笔没了小新の笔记">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="1. XMLHttpRequest&#x2F;&#x2F; 实例化xhr对象 var xhr &#x3D; new XMLHttpRequest() &#x2F;&#x2F; 建立连接 xhr.open(&#x27;GET&#x27;, &#x27;xxx&#x27;, false) &#x2F;&#x2F; 发送请求 xhr.send()  2. jQueryTODO 待补充 3. vue-resource 安装vue-resource。 npm install">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Vue】HTTP插件">
+<meta property="og:url" content="http://example.com/vue/http/index.html">
+<meta property="og:site_name" content="蜡笔没了小新の笔记">
+<meta property="og:description" content="1. XMLHttpRequest&#x2F;&#x2F; 实例化xhr对象 var xhr &#x3D; new XMLHttpRequest() &#x2F;&#x2F; 建立连接 xhr.open(&#x27;GET&#x27;, &#x27;xxx&#x27;, false) &#x2F;&#x2F; 发送请求 xhr.send()  2. jQueryTODO 待补充 3. vue-resource 安装vue-resource。 npm install">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-15T15:21:00.000Z">
+<meta property="article:modified_time" content="2024-08-16T02:06:56.909Z">
+<meta property="article:author" content="蜡笔没了小新">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>蜡笔没了小新</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/fengbiao-github"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:2014695858@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2014695858&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="理论">
+            <i class="fold iconfont icon-right"></i>
+            理论
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;数据结构与算法">
+            
+            数据结构与算法
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;设计模式">
+            
+            设计模式
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;计算机网络">
+            
+            计算机网络
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Java">
+            <i class="fold iconfont icon-right"></i>
+            Java
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;JVM">
+            
+            JVM
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;JUC">
+            
+            JUC
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;新特性">
+            
+            新特性
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;NIO">
+            
+            NIO
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            <i class="fold iconfont icon-right"></i>
+            数据库
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;关系型数据库">
+            
+            关系型数据库
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;非关系型数据库">
+            
+            非关系型数据库
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;分库分表">
+            
+            分库分表
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="框架">
+            <i class="fold iconfont icon-right"></i>
+            框架
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;Spring">
+            
+            Spring
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;视图层">
+            
+            视图层
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;ORM">
+            
+            ORM
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;认证授权">
+            
+            认证授权
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;任务调度">
+            
+            任务调度
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;工作流引擎">
+            
+            工作流引擎
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;网络编程">
+            
+            网络编程
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;文件处理">
+            
+            文件处理
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="微服务">
+            
+            微服务
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="中间件">
+            <i class="fold iconfont icon-right"></i>
+            中间件
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;WEB">
+            
+            WEB
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;缓存">
+            
+            缓存
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;消息队列">
+            
+            消息队列
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;搜索引擎">
+            
+            搜索引擎
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;日志">
+            
+            日志
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="大数据">
+            
+            大数据
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="工具">
+            <i class="fold iconfont icon-right"></i>
+            工具
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;IDE">
+            
+            IDE
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;版本控制">
+            
+            版本控制
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;项目构建">
+            
+            项目构建
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;持续集成">
+            
+            持续集成
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;测试">
+            
+            测试
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="运维">
+            <i class="fold iconfont icon-right"></i>
+            运维
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;Linux">
+            
+            Linux
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;高可用">
+            
+            高可用
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;云原生">
+            
+            云原生
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;脚本">
+            
+            脚本
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="前端">
+            <i class="fold iconfont icon-right"></i>
+            前端
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="前端&lt;---&gt;框架">
+            
+            框架
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="面试">
+            
+            面试
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  site_url"
+               
+               href="/about">关于</a>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="32">
+<input type="hidden" id="yelog_site_word_count" value="67k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>待完善</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分布式事务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务调度</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>负载均衡</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构与算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Activiti</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IDEA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Maven</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MybatisPlus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Nginx</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NodeJS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RabbitMQ</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringBoot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringCloudAlibaba</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringCloudNetflix</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Vue</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>websocket</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>xxl-job</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/http/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】HTTP插件">【Vue】HTTP插件</span>
+            <span class="post-date" title="2024-08-15 23:21:00">2024/08/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/html/storage/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="【H5】webStorage">【H5】webStorage</span>
+            <span class="post-date" title="2024-08-13 22:55:00">2024/08/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/component/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】组件化编程">【Vue】组件化编程</span>
+            <span class="post-date" title="2024-08-08 23:21:00">2024/08/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 高可用 "
+           href="/nginx/"
+           data-tag="负载均衡,Nginx"
+           data-author="" >
+            <span class="post-title" title="Nginx负载均衡器">Nginx负载均衡器</span>
+            <span class="post-date" title="2024-07-29 23:08:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 大数据 "
+           href="/zookeeper/"
+           data-tag="服务调度"
+           data-author="" >
+            <span class="post-title" title="Zookeeper笔记">Zookeeper笔记</span>
+            <span class="post-date" title="2024-07-29 23:04:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 "
+           href="/springcloud/springcloud-alibaba/"
+           data-tag="SpringCloudAlibaba,分布式事务"
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba框架">SpringCloudAlibaba框架</span>
+            <span class="post-date" title="2024-07-29 23:01:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 "
+           href="/springcloud/springcloud-netflix/"
+           data-tag="SpringCloudNetflix"
+           data-author="" >
+            <span class="post-title" title="SpringCloudNetflix框架">SpringCloudNetflix框架</span>
+            <span class="post-date" title="2024-07-29 22:58:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/nodejs/npm/"
+           data-tag="NodeJS"
+           data-author="" >
+            <span class="post-title" title="【Node.js】NPM设置淘宝镜像">【Node.js】NPM设置淘宝镜像</span>
+            <span class="post-date" title="2024-07-17 00:56:00">2024/07/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/Vuex/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】vuex状态管理插件">【Vue】vuex状态管理插件</span>
+            <span class="post-date" title="2024-07-15 23:40:00">2024/07/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 ORM "
+           href="/mybatis/encry/"
+           data-tag="MybatisPlus"
+           data-author="" >
+            <span class="post-title" title="数据库信息加解密">数据库信息加解密</span>
+            <span class="post-date" title="2024-07-12 10:47:00">2024/07/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue-router/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】vue-router路由插件">【Vue】vue-router路由插件</span>
+            <span class="post-date" title="2024-07-09 22:21:00">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue-ui/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】UI组件库">【Vue】UI组件库</span>
+            <span class="post-date" title="2024-07-09 21:31:00">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 运维 工具 框架 计算机网络 高可用 版本控制 大数据 Java 中间件 ORM 持续集成 数据库 IDE 测试 JUC JVM NIO 关系型数据库 非关系型数据库 分库分表 缓存 搜索引擎 日志 WEB Linux 脚本 Spring 视图层 认证授权 文件处理 网络编程 "
+           href="/demo/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="示例文档">示例文档</span>
+            <span class="post-date" title="2024-06-06 23:51:00">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 任务调度 "
+           href="/xxl-job/"
+           data-tag="xxl-job"
+           data-author="" >
+            <span class="post-title" title="xxl-job分布式任务调度框架">xxl-job分布式任务调度框架</span>
+            <span class="post-date" title="2024-06-06 23:51:00">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 数据结构与算法 "
+           href="/data-structure-and-algorithm/algorithm/"
+           data-tag="数据结构与算法"
+           data-author="" >
+            <span class="post-title" title="【数据结构与算法】算法篇">【数据结构与算法】算法篇</span>
+            <span class="post-date" title="2024-06-05 23:04:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 "
+           href="/mq/mq/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2024-06-05 22:58:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 面试 "
+           href="/interview/rabbitmq/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ面试题">RabbitMQ面试题</span>
+            <span class="post-date" title="2024-06-05 22:27:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 云原生 "
+           href="/docker/2/"
+           data-tag="Docker,待完善"
+           data-author="" >
+            <span class="post-title" title="【Docker】进阶篇">【Docker】进阶篇</span>
+            <span class="post-date" title="2024-06-05 21:20:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 "
+           href="/mq/rabbitmq/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ消息队列">RabbitMQ消息队列</span>
+            <span class="post-date" title="2024-06-05 09:59:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue2/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】Vue2语法">【Vue】Vue2语法</span>
+            <span class="post-date" title="2024-06-04 21:30:00">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 项目构建 "
+           href="/maven/"
+           data-tag="Maven"
+           data-author="" >
+            <span class="post-title" title="Maven构建工具">Maven构建工具</span>
+            <span class="post-date" title="2024-05-29 22:47:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java 新特性 "
+           href="/java/java8/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="【Java】Java8新特性">【Java】Java8新特性</span>
+            <span class="post-date" title="2024-05-29 21:52:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 云原生 "
+           href="/docker/1/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="【Docker】基础篇">【Docker】基础篇</span>
+            <span class="post-date" title="2024-05-29 12:37:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/4/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】行为型设计模式">【设计模式】行为型设计模式</span>
+            <span class="post-date" title="2024-05-28 22:27:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/3/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】结构型设计模式">【设计模式】结构型设计模式</span>
+            <span class="post-date" title="2024-05-28 22:01:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/3/"
+           data-tag="Activiti,SpringBoot,IDEA"
+           data-author="" >
+            <span class="post-title" title="【Activiti】整合篇">【Activiti】整合篇</span>
+            <span class="post-date" title="2024-05-28 21:49:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/2/"
+           data-tag="Activiti"
+           data-author="" >
+            <span class="post-title" title="【Activiti】进阶篇">【Activiti】进阶篇</span>
+            <span class="post-date" title="2024-05-28 21:35:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/1/"
+           data-tag="Activiti"
+           data-author="" >
+            <span class="post-title" title="【Activiti】基础篇">【Activiti】基础篇</span>
+            <span class="post-date" title="2024-05-28 21:23:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/html/websocket/"
+           data-tag="websocket"
+           data-author="" >
+            <span class="post-title" title="【H5】websocket协议">【H5】websocket协议</span>
+            <span class="post-date" title="2024-05-28 16:40:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/2/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】创建型设计模式">【设计模式】创建型设计模式</span>
+            <span class="post-date" title="2024-05-28 15:53:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/1/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】七大设计原则">【设计模式】七大设计原则</span>
+            <span class="post-date" title="2024-05-27 14:51:00">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java 数据库 "
+           href="/java/jdbc/"
+           data-tag="Java,数据库"
+           data-author="" >
+            <span class="post-title" title="【Java】JDBC数据库连接">【Java】JDBC数据库连接</span>
+            <span class="post-date" title="2024-05-25 22:24:00">2024/05/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-zookeeper" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Zookeeper笔记</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="微服务">微服务</a> > 
+            
+            <a  data-rel="微服务&lt;---&gt;大数据">大数据</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">服务调度</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-07-31 09:13:05'>2024-07-29 23:04</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:2.6k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">1. 基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E7%AE%80%E4%BB%8B"><span class="toc-text">1.1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-text">1.2. 工作机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E7%89%B9%E7%82%B9"><span class="toc-text">1.3. 特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">1.4. 数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">1.5. 应用场景</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="toc-text">2. 安装与配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%8D%95%E6%9C%BA%E7%89%88-ZK"><span class="toc-text">2.1. 单机版 ZK</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3"><span class="toc-text">2.2. 配置文件详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E9%9B%86%E7%BE%A4%E7%89%88-ZK"><span class="toc-text">2.3. 集群版 ZK</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%91%BD%E4%BB%A4"><span class="toc-text">2.4. 客户端命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-text">3. 核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E9%80%89%E4%B8%BE%E6%9C%BA%E5%88%B6"><span class="toc-text">3.1. 选举机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E8%8A%82%E7%82%B9%E7%B1%BB%E5%9E%8B"><span class="toc-text">3.2. 节点类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E7%9B%91%E5%90%AC"><span class="toc-text">3.3. 监听</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-%E7%9B%91%E5%90%AC%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3"><span class="toc-text">3.3.1. 监听原理详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-%E7%9B%91%E5%90%AC%E7%B1%BB%E5%9E%8B"><span class="toc-text">3.3.2. 监听类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E5%86%99%E6%95%B0%E6%8D%AE%E5%8E%9F%E7%90%86"><span class="toc-text">3.4. 写数据原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-1-%E5%86%99%E5%85%A5%E8%AF%B7%E6%B1%82%E7%9B%B4%E6%8E%A5%E5%8F%91%E9%80%81%E7%BB%99-Leader-%E8%8A%82%E7%82%B9"><span class="toc-text">3.4.1. 写入请求直接发送给 Leader 节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-2-%E5%86%99%E5%85%A5%E8%AF%B7%E6%B1%82%E5%8F%91%E9%80%81%E7%BB%99-follower-%E8%8A%82%E7%82%B9"><span class="toc-text">3.4.2. 写入请求发送给 follower 节点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E9%9B%86%E6%88%90-ZK-%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-text">4. 集成 ZK 客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-Java-%E6%95%B4%E5%90%88-ZK-%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-text">4.1. Java 整合 ZK 客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-Java-%E6%95%B4%E5%90%88-curator-%E6%A1%86%E6%9E%B6"><span class="toc-text">4.2. Java 整合 curator 框架</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-ZK-%E6%A1%88%E4%BE%8B"><span class="toc-text">5. ZK 案例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8A%A8%E6%80%81%E4%B8%8A%E4%B8%8B%E7%BA%BF%E7%9B%91%E5%90%AC%E6%A1%88%E4%BE%8B"><span class="toc-text">5.1. 服务器动态上下线监听案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E6%A1%88%E4%BE%8B"><span class="toc-text">5.2. 分布式锁案例</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h1><h2 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1. 简介"></a>1.1. 简介</h2><p>Zookeeper 是一个开源的<strong>分布式的，为分布式框架提供协调服务</strong>的 Apache 项目。</p>
+<h2 id="1-2-工作机制"><a href="#1-2-工作机制" class="headerlink" title="1.2. 工作机制"></a>1.2. 工作机制</h2><p>Zookeeper 从设计模式角度来理解：是一个基于<strong>观察者模式</strong>设计的分布式服务管理框架，它负责存储和管理大家都关心的数据，然后接受观察者的注册，一旦这些数据的状态发生变化，Zookeeper 就将负责通知已经在 Zookeeper 上注册的那些观察者做出相应的反应。</p>
+<h2 id="1-3-特点"><a href="#1-3-特点" class="headerlink" title="1.3. 特点"></a>1.3. 特点</h2><ul>
+<li><strong>一个领导者(Leader)，多个跟随者(Follower)组成的集群。</strong></li>
+<li><strong>集群中只要有半数以上节点存活，Zookeeper 集群就能正常服务</strong>。<br><code>3个节点，当2个节点宕机，集群便不可提供服务；4个节点，当2个节点宕机，集群同样不可提供服务。因此ZK适合安装奇数台服务器。</code></li>
+<li><strong>全局数据一致。</strong>每个 Server 保存一份相同的数据副本，Client 无论连接到哪个 Server，数据都是一致的。</li>
+<li><strong>更新请求顺序执行。</strong>来自同一个 Client 的更新请求按其发送顺序依次执行。</li>
+<li><strong>数据更新原子性。</strong>一次数据更新要么成功，要么失败。每次写操作都有事务 id(zxid)。</li>
+<li><strong>实时性。</strong>在一定时间范围内，Client 能读到最新数据。</li>
+</ul>
+<h2 id="1-4-数据结构"><a href="#1-4-数据结构" class="headerlink" title="1.4. 数据结构"></a>1.4. 数据结构</h2><p>ZooKeeper 数据模型的结构与 Unix 文件系统很类似，整体上可以看作是一棵树，每个节点称做一个 ZNode。每一个 ZNode 默认能够存储 1MB 的数据，每个 ZNode 都可以通过其路径唯一标识。</p>
+<h2 id="1-5-应用场景"><a href="#1-5-应用场景" class="headerlink" title="1.5. 应用场景"></a>1.5. 应用场景</h2><ul>
+<li><strong>统一命名服务</strong><br><code>在分布式环境下，经常需要对应用/服务进行统一命名，便于识别。</code></li>
+<li><strong>统一配置管理</strong><br><code>可将配置信息写入 ZooKeeper 上的一个 Znode；各个客户端服务器监听这个 Znode；一旦 Znode 中的数据被修改，ZooKeeper 将通知各个客户端服务器。</code></li>
+<li><strong>统一集群管理</strong><br><code>可将节点信息写入 ZooKeeper 上的一个 ZNode；监听这个 ZNode 可获取它的实时状态变化。</code></li>
+<li><strong>服务器动态上下线</strong></li>
+<li><strong>软负载均衡</strong><br><code>在 Zookeeper 中记录每台服务器的访问数，让访问数最少的服务器去处理最新的客户端请求。</code></li>
+</ul>
+<h1 id="2-安装与配置"><a href="#2-安装与配置" class="headerlink" title="2. 安装与配置"></a>2. 安装与配置</h1><h2 id="2-1-单机版-ZK"><a href="#2-1-单机版-ZK" class="headerlink" title="2.1. 单机版 ZK"></a>2.1. 单机版 ZK</h2><pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">安装jdk</span>
+<span class="meta prompt_"># </span><span class="language-bash">下载并解压</span>
+wget https://dlcdn.apache.org/zookeeper/zookeeper-3.9.0/apache-zookeeper-3.9.0-bin.tar.gz
+tar -zxvf apache-zookeeper-3.9.0-bin.tar.gz
+<span class="meta prompt_"># </span><span class="language-bash">拷贝配置文件，并修改数据存储目录</span>
+cd apache-zookeeper-3.9.0-bin/
+cp conf/zoo_sample.cfg conf/zoo.cfg
+<span class="meta prompt_"># </span><span class="language-bash">测试</span>
+./bin/zkServer.sh start # 启动ZK服务端
+./bin/zkServer.sh status # 查看ZK服务端状态
+./bin/zkServer.sh stop # 停止ZK服务端
+./bin/zkCli.sh # 客户端连接。quit退出客户端。</code></pre>
+
+<h2 id="2-2-配置文件详解"><a href="#2-2-配置文件详解" class="headerlink" title="2.2. 配置文件详解"></a>2.2. 配置文件详解</h2><pre><div class="caption"><span>zoo.cfg</span></div><code class="highlight shell">tickTime=2000 # 通信心跳时间。ZK服务端和客户端心跳时间，单位为毫秒
+initLimit=10 # LF初始通信时间。Leader和Follower初始连接时能容忍的最多心跳数（tickTime的数量）
+syncLimit=5 # LF同步通信时限。Leader和Follower之间通信时间如果超过syncLimit * tickTime，Leader认为Follwer死
+dataDir=/usr/local/src/zookeeper-3.7.1/data # 保存Zookeeper中的数据
+clientPort=2181 # 客户端连接端口
+<span class="meta prompt_"># </span><span class="language-bash">maxClientCnxns=60 <span class="comment"># 最大客户端连接数</span></span></code></pre>
+
+<h2 id="2-3-集群版-ZK"><a href="#2-3-集群版-ZK" class="headerlink" title="2.3. 集群版 ZK"></a>2.3. 集群版 ZK</h2><ol>
+<li><p>在 3 台服务器分别安装单机版 ZK。</p>
+</li>
+<li><p>数据存储目录分别创建 myid 文件，在文件中添加 server 对应的编号。<br><code>touch data/myid</code></p>
+</li>
+<li><p>在 ZK 配置文件中添加如下配置。</p>
+<pre><div class="caption"><span>zoo.cfg</span></div><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">server.A=B:C:D <span class="comment"># A为myid中配置的数字，B为服务器地址，C为Follower和Leader交换信息的端口2888，D为执行选举时服务器相互通信的端口3888</span></span>
+server.1=192.168.48.135:2888:3888
+server.2=192.168.48.136:2888:3888
+server.3=192.168.48.137:2888:3888</code></pre>
+</li>
+<li><p>分别启动 ZK。</p>
+<pre><code class="highlight shell">./bin/zkServer.sh start</code></pre>
+</li>
+<li><p>查看 ZK 状态。</p>
+</li>
+</ol>
+<p>如果启动时报错<code>Error contacting service. It is probably not running</code>，需要关闭防火墙。</p>
+<pre><code class="highlight shell">./bin/zkServer.sh status</code></pre>
+
+<h2 id="2-4-客户端命令"><a href="#2-4-客户端命令" class="headerlink" title="2.4. 客户端命令"></a>2.4. 客户端命令</h2><ul>
+<li><p>help：帮助命令。</p>
+</li>
+<li><p>ls path： 查看子节点。</p>
+<pre><code class="highlight shell">ls / # 查看/的子节点
+ls -s / # 查看/的子节点，附加详细信息
+ls -w / # 查看/的子节点，监听子节点变化</code></pre>
+</li>
+<li><p>create：创建节点。</p>
+<pre><code class="highlight shell">create /jiqun # 创建节点
+create -e /jiqun # 创建临时节点，重启或者超时消失
+create -s /jiqun # 创建含有序列的节点
+create -es /jiqun # 创建含有序列的临时节点</code></pre>
+</li>
+<li><p>get path：获取节点的值。</p>
+</li>
+<li><p>set path data：设置节点的具体值。</p>
+</li>
+<li><p>stat path：查看节点状态。</p>
+<pre><code class="highlight shell">cZxid = 0x0 # 创建节点的事务 ID（zxid）。每次修改都会产生唯一的事务 ID。事务 ID 是 ZK 中所有修改总的次序。
+ctime = Thu Jan 01 08:00:00 CST 1970 # 创建的时间
+mZxid = 0x0 # 最后更新的事务 ID
+mtime = Thu Jan 01 08:00:00 CST 1970 # 最后更新的时间
+pZxid = 0x100000006 # 最后更新子节点的事务 ID
+cversion = 2 # 子节点变化号，子节点修改次数
+dataVersion = 0 # 数据变化号
+aclVersion = 0 # 访问控制列表变化号
+ephemeralOwner = 0x0 # 如果是临时节点，这个是 znode 拥有者的 sessionId。如果不是临时节点，则是 0
+dataLength = 0 # 数据长度
+numChildren = 4 # 子节点数量</code></pre>
+</li>
+<li><p>delete path：删除节点。</p>
+</li>
+<li><p>deleteall path：递归删除节点。</p>
+</li>
+<li><p>quit：退出客户端。</p>
+</li>
+</ul>
+<h1 id="3-核心概念"><a href="#3-核心概念" class="headerlink" title="3. 核心概念"></a>3. 核心概念</h1><h2 id="3-1-选举机制"><a href="#3-1-选举机制" class="headerlink" title="3.1. 选举机制"></a>3.1. 选举机制</h2><ul>
+<li><p><strong>第一次启动</strong></p>
+<ol>
+<li><p>服务器 1 启动，发起一次选举。服务器 1 投自己一票。此时服务器 1 票数一票，不够半数以上（3 票），选举无法完成，服务器 1 状态保持为 LOOKING。</p>
+</li>
+<li><p>服务器 2 启动，再发起一次选举。服务器 1 和 2 分别投自己一票并交换选票信息：<strong>此时服务器 1 发现服务器 2 的 myid 比自己目前投票推举的（服务器 1）大，更改选票为推举服务器 2</strong>。此时服务器 1 票数 0 票，服务器 2 票数 2 票，没有半数以上结果，选举无法完成，服务器 1，2 状态保持 LOOKING。</p>
+</li>
+<li><p>服务器 3 启动，发起一次选举。此时服务器 1 和 2 都会更改选票为服务器 3。此次投票结果：服务器 1 为 0 票，服务器 2 为 0 票，服务器 3 为 3 票。此时服务器 3 的票数已经超过半数，服务器 3 当选 Leader。服务器 1，2 更改状态为 FOLLOWING，服务器 3 更改状态为 LEADING。</p>
+</li>
+<li><p>服务器 4 启动，发起一次选举。此时服务器 1，2，3 已经不是 LOOKING 状态，不会更改选票信息。交换选票信息结果：服务器 3 为 3 票，服务器 4 为 1 票。此时服务器 4 服从多数，更改选票信息为服务器 3，并更改状态为 FOLLOWING。</p>
+</li>
+<li><p>服务器 5 启动，同 4 一样当小弟。</p>
+<pre><code class="highlight shell">SID：服务器 ID。用来唯一标识一台 ZooKeeper 集群中的机器，每台机器不能重复，和 myid 一致。
+ZXID：事务 ID。ZXID 是一个事务 ID，用来标识一次服务器状态的变更。在某一时刻，集群中的每台机器的 ZXID 值不一定完全一致，这和 ZooKeeper 服务器对于客户端更新请求的处理逻辑有关。
+Epoch：每个 Leader 任期的代号。没有 Leader 时同一轮投票过程中的逻辑时钟值是相同的。每投完一次票这个数据就会增加。</code></pre></li>
+</ol>
+</li>
+<li><p><strong>非第一次启动</strong></p>
+<ol>
+<li><p>当 ZooKeeper 集群中的一台服务器出现以下两种情况之一时，就会开始进入 Leader 选举</p>
+<ul>
+<li>服务器初始化启动</li>
+<li>服务器运行期间无法和 Leader 保持连接</li>
+</ul>
+</li>
+<li><p>而当一台机器进入 Leader 选举流程时，当前集群也可能会处于以下两种状态</p>
+<ul>
+<li>集群中本来就已经存在一个 Leader<br><code>对于第一种已经存在 Leader 的情况，机器试图去选举 Leader 时，会被告知当前服务器的 Leader 信息，对于该机器来说，仅仅需要和 Leader 机器建立连接，并进行状态同步即可。</code></li>
+<li>集群中确实不存在 Leader<br><code>选举 Leader 规则：EPOCH 大的直接胜出；EPOCH 相同，事务 id 大的胜出；事务 id 相同，服务器 id 大的胜出。</code></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="3-2-节点类型"><a href="#3-2-节点类型" class="headerlink" title="3.2. 节点类型"></a>3.2. 节点类型</h2><ul>
+<li>持久化目录节点。<br><code>客户端和服务器端断开连接后，创建的节点不删除。</code></li>
+<li>持久化顺序编号目录节点。<br><code>创建 znode 时设置顺序标识，znode 名称后会附加一个值，顺序号是一个单调递增的计数器，由父节点维护。在分布式系统中，顺序号可以被用于为所有的事件进行全局排序，这样客户端可以通过顺序号推断事件的顺序。</code></li>
+<li>临时目录节点。<br><code>客户端和服务器端断开连接后，创建的节点自己删除。</code></li>
+<li>临时顺序编号目录节点。</li>
+</ul>
+<h2 id="3-3-监听"><a href="#3-3-监听" class="headerlink" title="3.3. 监听"></a>3.3. 监听</h2><h3 id="3-3-1-监听原理详解"><a href="#3-3-1-监听原理详解" class="headerlink" title="3.3.1. 监听原理详解"></a>3.3.1. 监听原理详解</h3><ol>
+<li>首先要有一个 main()线程。</li>
+<li>在 main 线程中创建 Zookeeper 客户端，这时就会创建两个线程，一个负责网络连接通信（connet），一个负责监听（listener）。</li>
+<li>通过 connect 线程将注册的监听事件发送给 Zookeeper。</li>
+<li>在 Zookeeper 的注册监听器列表中将注册的监听事件添加到列表中。</li>
+<li>Zookeeper 监听到有数据或路径变化，就会将这个消息发送给 listener 线程。</li>
+<li>listener 线程内部调用了 process()方法。</li>
+</ol>
+<h3 id="3-3-2-监听类型"><a href="#3-3-2-监听类型" class="headerlink" title="3.3.2. 监听类型"></a>3.3.2. 监听类型</h3><ul>
+<li><p>监听节点数据的变化</p>
+<pre><code class="highlight shell">get -w path</code></pre>
+</li>
+<li><p>监听子节点增减情况</p>
+<pre><code class="highlight shell">ls -w path</code></pre></li>
+</ul>
+<h2 id="3-4-写数据原理"><a href="#3-4-写数据原理" class="headerlink" title="3.4. 写数据原理"></a>3.4. 写数据原理</h2><h3 id="3-4-1-写入请求直接发送给-Leader-节点"><a href="#3-4-1-写入请求直接发送给-Leader-节点" class="headerlink" title="3.4.1. 写入请求直接发送给 Leader 节点"></a>3.4.1. 写入请求直接发送给 Leader 节点</h3><p><code>TODO</code></p>
+<h3 id="3-4-2-写入请求发送给-follower-节点"><a href="#3-4-2-写入请求发送给-follower-节点" class="headerlink" title="3.4.2. 写入请求发送给 follower 节点"></a>3.4.2. 写入请求发送给 follower 节点</h3><p><code>TODO</code></p>
+<h1 id="4-集成-ZK-客户端"><a href="#4-集成-ZK-客户端" class="headerlink" title="4. 集成 ZK 客户端"></a>4. 集成 ZK 客户端</h1><h2 id="4-1-Java-整合-ZK-客户端"><a href="#4-1-Java-整合-ZK-客户端" class="headerlink" title="4.1. Java 整合 ZK 客户端"></a>4.1. Java 整合 ZK 客户端</h2><ol>
+<li>添加依赖</li>
+</ol>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper --&gt;</span>
+<span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.zookeeper<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>zookeeper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></code></pre>
+
+<ol start="2">
+<li>编写测试类</li>
+</ol>
+<p><code>TODO</code></p>
+<h2 id="4-2-Java-整合-curator-框架"><a href="#4-2-Java-整合-curator-框架" class="headerlink" title="4.2. Java 整合 curator 框架"></a>4.2. Java 整合 curator 框架</h2><p><code>TODO</code></p>
+<h1 id="5-ZK-案例"><a href="#5-ZK-案例" class="headerlink" title="5. ZK 案例"></a>5. ZK 案例</h1><h2 id="5-1-服务器动态上下线监听案例"><a href="#5-1-服务器动态上下线监听案例" class="headerlink" title="5.1. 服务器动态上下线监听案例"></a>5.1. 服务器动态上下线监听案例</h2><p><code>TODO</code></p>
+<h2 id="5-2-分布式锁案例"><a href="#5-2-分布式锁案例" class="headerlink" title="5.2. 分布式锁案例"></a>5.2. 分布式锁案例</h2><p><code>TODO</code></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 不积跬步无以至千里，不积小流无以成江海！ </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2015-2024 蜡笔没了小新
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.png" class="alipay" title="扫码支持">
+            <img src="/img/wechat.png" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 582px;
+    }
+    .nav.fullscreen {
+        margin-left: -582px;
+    }
+    .nav-left {
+        width: 160px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 532px;
+        }
+        .nav.fullscreen {
+            margin-left: -532px;
+        }
+        .nav-left {
+            width: 140px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 532px;
+            margin-left: -532px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("/images/20230809225525.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>

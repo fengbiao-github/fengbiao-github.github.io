@@ -1,0 +1,2035 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【设计模式】结构型设计模式 | 蜡笔没了小新の笔记</title>
+  <meta name="keywords" content=" 设计模式 ">
+  <meta name="description" content="【设计模式】结构型设计模式 | 蜡笔没了小新の笔记">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="1. XMLHttpRequest&#x2F;&#x2F; 实例化xhr对象 var xhr &#x3D; new XMLHttpRequest() &#x2F;&#x2F; 建立连接 xhr.open(&#x27;GET&#x27;, &#x27;xxx&#x27;, false) &#x2F;&#x2F; 发送请求 xhr.send()  2. jQueryTODO 待补充 3. vue-resource 安装vue-resource。 npm install">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Vue】HTTP插件">
+<meta property="og:url" content="http://example.com/vue/http/index.html">
+<meta property="og:site_name" content="蜡笔没了小新の笔记">
+<meta property="og:description" content="1. XMLHttpRequest&#x2F;&#x2F; 实例化xhr对象 var xhr &#x3D; new XMLHttpRequest() &#x2F;&#x2F; 建立连接 xhr.open(&#x27;GET&#x27;, &#x27;xxx&#x27;, false) &#x2F;&#x2F; 发送请求 xhr.send()  2. jQueryTODO 待补充 3. vue-resource 安装vue-resource。 npm install">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-15T15:21:00.000Z">
+<meta property="article:modified_time" content="2024-08-16T02:06:56.909Z">
+<meta property="article:author" content="蜡笔没了小新">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>蜡笔没了小新</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/fengbiao-github"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:2014695858@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2014695858&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="理论">
+            <i class="fold iconfont icon-right"></i>
+            理论
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;数据结构与算法">
+            
+            数据结构与算法
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;设计模式">
+            
+            设计模式
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;计算机网络">
+            
+            计算机网络
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Java">
+            <i class="fold iconfont icon-right"></i>
+            Java
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;JVM">
+            
+            JVM
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;JUC">
+            
+            JUC
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;新特性">
+            
+            新特性
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;NIO">
+            
+            NIO
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            <i class="fold iconfont icon-right"></i>
+            数据库
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;关系型数据库">
+            
+            关系型数据库
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;非关系型数据库">
+            
+            非关系型数据库
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;分库分表">
+            
+            分库分表
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="框架">
+            <i class="fold iconfont icon-right"></i>
+            框架
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;Spring">
+            
+            Spring
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;视图层">
+            
+            视图层
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;ORM">
+            
+            ORM
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;认证授权">
+            
+            认证授权
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;任务调度">
+            
+            任务调度
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;工作流引擎">
+            
+            工作流引擎
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;网络编程">
+            
+            网络编程
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;文件处理">
+            
+            文件处理
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="微服务">
+            
+            微服务
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="中间件">
+            <i class="fold iconfont icon-right"></i>
+            中间件
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;WEB">
+            
+            WEB
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;缓存">
+            
+            缓存
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;消息队列">
+            
+            消息队列
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;搜索引擎">
+            
+            搜索引擎
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;日志">
+            
+            日志
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="大数据">
+            
+            大数据
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="工具">
+            <i class="fold iconfont icon-right"></i>
+            工具
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;IDE">
+            
+            IDE
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;版本控制">
+            
+            版本控制
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;项目构建">
+            
+            项目构建
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;持续集成">
+            
+            持续集成
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;测试">
+            
+            测试
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="运维">
+            <i class="fold iconfont icon-right"></i>
+            运维
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;Linux">
+            
+            Linux
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;高可用">
+            
+            高可用
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;云原生">
+            
+            云原生
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;脚本">
+            
+            脚本
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="前端">
+            <i class="fold iconfont icon-right"></i>
+            前端
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="前端&lt;---&gt;框架">
+            
+            框架
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="面试">
+            
+            面试
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  site_url"
+               
+               href="/about">关于</a>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="32">
+<input type="hidden" id="yelog_site_word_count" value="67k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>待完善</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分布式事务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务调度</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>负载均衡</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构与算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Activiti</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IDEA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Maven</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MybatisPlus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Nginx</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NodeJS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RabbitMQ</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringBoot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringCloudAlibaba</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringCloudNetflix</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Vue</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>websocket</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>xxl-job</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/http/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】HTTP插件">【Vue】HTTP插件</span>
+            <span class="post-date" title="2024-08-15 23:21:00">2024/08/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/html/storage/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="【H5】webStorage">【H5】webStorage</span>
+            <span class="post-date" title="2024-08-13 22:55:00">2024/08/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/component/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】组件化编程">【Vue】组件化编程</span>
+            <span class="post-date" title="2024-08-08 23:21:00">2024/08/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 高可用 "
+           href="/nginx/"
+           data-tag="负载均衡,Nginx"
+           data-author="" >
+            <span class="post-title" title="Nginx负载均衡器">Nginx负载均衡器</span>
+            <span class="post-date" title="2024-07-29 23:08:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 大数据 "
+           href="/zookeeper/"
+           data-tag="服务调度"
+           data-author="" >
+            <span class="post-title" title="Zookeeper笔记">Zookeeper笔记</span>
+            <span class="post-date" title="2024-07-29 23:04:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 "
+           href="/springcloud/springcloud-alibaba/"
+           data-tag="SpringCloudAlibaba,分布式事务"
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba框架">SpringCloudAlibaba框架</span>
+            <span class="post-date" title="2024-07-29 23:01:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 "
+           href="/springcloud/springcloud-netflix/"
+           data-tag="SpringCloudNetflix"
+           data-author="" >
+            <span class="post-title" title="SpringCloudNetflix框架">SpringCloudNetflix框架</span>
+            <span class="post-date" title="2024-07-29 22:58:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/nodejs/npm/"
+           data-tag="NodeJS"
+           data-author="" >
+            <span class="post-title" title="【Node.js】NPM设置淘宝镜像">【Node.js】NPM设置淘宝镜像</span>
+            <span class="post-date" title="2024-07-17 00:56:00">2024/07/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/Vuex/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】vuex状态管理插件">【Vue】vuex状态管理插件</span>
+            <span class="post-date" title="2024-07-15 23:40:00">2024/07/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 ORM "
+           href="/mybatis/encry/"
+           data-tag="MybatisPlus"
+           data-author="" >
+            <span class="post-title" title="数据库信息加解密">数据库信息加解密</span>
+            <span class="post-date" title="2024-07-12 10:47:00">2024/07/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue-router/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】vue-router路由插件">【Vue】vue-router路由插件</span>
+            <span class="post-date" title="2024-07-09 22:21:00">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue-ui/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】UI组件库">【Vue】UI组件库</span>
+            <span class="post-date" title="2024-07-09 21:31:00">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 运维 工具 框架 计算机网络 高可用 版本控制 大数据 Java 中间件 ORM 持续集成 数据库 IDE 测试 JUC JVM NIO 关系型数据库 非关系型数据库 分库分表 缓存 搜索引擎 日志 WEB Linux 脚本 Spring 视图层 认证授权 文件处理 网络编程 "
+           href="/demo/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="示例文档">示例文档</span>
+            <span class="post-date" title="2024-06-06 23:51:00">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 任务调度 "
+           href="/xxl-job/"
+           data-tag="xxl-job"
+           data-author="" >
+            <span class="post-title" title="xxl-job分布式任务调度框架">xxl-job分布式任务调度框架</span>
+            <span class="post-date" title="2024-06-06 23:51:00">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 数据结构与算法 "
+           href="/data-structure-and-algorithm/algorithm/"
+           data-tag="数据结构与算法"
+           data-author="" >
+            <span class="post-title" title="【数据结构与算法】算法篇">【数据结构与算法】算法篇</span>
+            <span class="post-date" title="2024-06-05 23:04:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 "
+           href="/mq/mq/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2024-06-05 22:58:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 面试 "
+           href="/interview/rabbitmq/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ面试题">RabbitMQ面试题</span>
+            <span class="post-date" title="2024-06-05 22:27:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 云原生 "
+           href="/docker/2/"
+           data-tag="Docker,待完善"
+           data-author="" >
+            <span class="post-title" title="【Docker】进阶篇">【Docker】进阶篇</span>
+            <span class="post-date" title="2024-06-05 21:20:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 "
+           href="/mq/rabbitmq/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ消息队列">RabbitMQ消息队列</span>
+            <span class="post-date" title="2024-06-05 09:59:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue2/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】Vue2语法">【Vue】Vue2语法</span>
+            <span class="post-date" title="2024-06-04 21:30:00">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 项目构建 "
+           href="/maven/"
+           data-tag="Maven"
+           data-author="" >
+            <span class="post-title" title="Maven构建工具">Maven构建工具</span>
+            <span class="post-date" title="2024-05-29 22:47:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java 新特性 "
+           href="/java/java8/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="【Java】Java8新特性">【Java】Java8新特性</span>
+            <span class="post-date" title="2024-05-29 21:52:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 云原生 "
+           href="/docker/1/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="【Docker】基础篇">【Docker】基础篇</span>
+            <span class="post-date" title="2024-05-29 12:37:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/4/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】行为型设计模式">【设计模式】行为型设计模式</span>
+            <span class="post-date" title="2024-05-28 22:27:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/3/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】结构型设计模式">【设计模式】结构型设计模式</span>
+            <span class="post-date" title="2024-05-28 22:01:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/3/"
+           data-tag="Activiti,SpringBoot,IDEA"
+           data-author="" >
+            <span class="post-title" title="【Activiti】整合篇">【Activiti】整合篇</span>
+            <span class="post-date" title="2024-05-28 21:49:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/2/"
+           data-tag="Activiti"
+           data-author="" >
+            <span class="post-title" title="【Activiti】进阶篇">【Activiti】进阶篇</span>
+            <span class="post-date" title="2024-05-28 21:35:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/1/"
+           data-tag="Activiti"
+           data-author="" >
+            <span class="post-title" title="【Activiti】基础篇">【Activiti】基础篇</span>
+            <span class="post-date" title="2024-05-28 21:23:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/html/websocket/"
+           data-tag="websocket"
+           data-author="" >
+            <span class="post-title" title="【H5】websocket协议">【H5】websocket协议</span>
+            <span class="post-date" title="2024-05-28 16:40:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/2/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】创建型设计模式">【设计模式】创建型设计模式</span>
+            <span class="post-date" title="2024-05-28 15:53:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/1/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】七大设计原则">【设计模式】七大设计原则</span>
+            <span class="post-date" title="2024-05-27 14:51:00">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java 数据库 "
+           href="/java/jdbc/"
+           data-tag="Java,数据库"
+           data-author="" >
+            <span class="post-title" title="【Java】JDBC数据库连接">【Java】JDBC数据库连接</span>
+            <span class="post-date" title="2024-05-25 22:24:00">2024/05/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-design-pattern/3" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【设计模式】结构型设计模式</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="理论">理论</a> > 
+            
+            <a  data-rel="理论&lt;---&gt;设计模式">设计模式</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">设计模式</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-08-16 10:06:56'>2024-05-28 22:01</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:3.1k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="toc-text">1. 适配器模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E4%BD%9C%E7%94%A8"><span class="toc-text">1.1. 作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">1.2. 应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">1.3. 代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-%E7%B1%BB%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="toc-text">1.3.1. 类适配器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-%E5%AF%B9%E8%B1%A1%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="toc-text">1.3.2. 对象适配器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3-%E6%8E%A5%E5%8F%A3%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="toc-text">1.3.3. 接口适配器模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B-HandlerAdapter%EF%BC%88SpringMVC%EF%BC%89"><span class="toc-text">1.4. 源码解析之 HandlerAdapter（SpringMVC）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F"><span class="toc-text">2. 桥接模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E4%BD%9C%E7%94%A8"><span class="toc-text">2.1. 作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">2.2. 应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">2.3. 代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B-JDBC"><span class="toc-text">2.4. 源码解析之 JDBC</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="toc-text">3. 装饰器模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E4%BD%9C%E7%94%A8"><span class="toc-text">3.1. 作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">3.2. 应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">3.3. 代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B-IO-%E6%B5%81"><span class="toc-text">3.4. 源码解析之 IO 流</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F"><span class="toc-text">4. 组合模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E4%BD%9C%E7%94%A8"><span class="toc-text">4.1. 作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">4.2. 应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">4.3. 代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B-HashMap"><span class="toc-text">4.4. 源码解析之 HashMap</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F"><span class="toc-text">5. 外观模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E4%BD%9C%E7%94%A8"><span class="toc-text">5.1. 作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">5.2. 应用场景</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F"><span class="toc-text">6. 享元模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E4%BD%9C%E7%94%A8"><span class="toc-text">6.1. 作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">6.2. 应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">6.3. 代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E4%B9%8B-Integer"><span class="toc-text">6.4. 源码解析之 Integer</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="toc-text">7. 代理模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-%E4%BD%9C%E7%94%A8"><span class="toc-text">7.1. 作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">7.2. 应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">7.3. 代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-1-%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86"><span class="toc-text">7.3.1. 静态代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-2-JDK-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="toc-text">7.3.2. JDK 动态代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-3-Cglib-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="toc-text">7.3.3. Cglib 动态代理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4-AOP-%E5%A4%B1%E6%95%88%E5%9C%BA%E6%99%AF"><span class="toc-text">7.4. AOP 失效场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5-%E5%85%B6%E4%BB%96%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="toc-text">7.5. 其他代理模式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-%E6%80%BB%E7%BB%93"><span class="toc-text">8. 总结</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-适配器模式"><a href="#1-适配器模式" class="headerlink" title="1. 适配器模式"></a>1. 适配器模式</h1><h2 id="1-1-作用"><a href="#1-1-作用" class="headerlink" title="1.1. 作用"></a>1.1. 作用</h2><p><strong>兼容性，将原本接口不适配的类可以兼容。</strong></p>
+<h2 id="1-2-应用场景"><a href="#1-2-应用场景" class="headerlink" title="1.2. 应用场景"></a>1.2. 应用场景</h2><p><font>常用于旧系统升级，将一个接口适配到另一个接口</font>。</p>
+<h2 id="1-3-代码实现"><a href="#1-3-代码实现" class="headerlink" title="1.3. 代码实现"></a>1.3. 代码实现</h2><h3 id="1-3-1-类适配器模式"><a href="#1-3-1-类适配器模式" class="headerlink" title="1.3.1. 类适配器模式"></a>1.3.1. 类适配器模式</h3><p>由于 Java 中单继承原因，不建议使用。</p>
+<pre><div class="caption"><span>Voltage220V.java</span></div><code class="highlight java"><span class="comment">// 被适配类</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Voltage220V</span> &#123;
+    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">output220V</span><span class="params">()</span> &#123;
+        System.out.println(<span class="string">&quot;输出220V电压&quot;</span>);
+        <span class="keyword">return</span> <span class="number">220</span>;
+    &#125;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>Phone.java</span></div><code class="highlight java"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Phone</span> &#123;
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">charge</span><span class="params">(Voltage5V voltage5v)</span> &#123;
+        <span class="type">int</span> <span class="variable">output5v</span> <span class="operator">=</span> voltage5v.output5V();
+        System.out.println(<span class="string">&quot;手机充电中...电压为&quot;</span> + output5v + <span class="string">&quot;V&quot;</span>);
+    &#125;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>Voltage5V.java</span></div><code class="highlight java"><span class="comment">// 被适配的接口</span>
+<span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Voltage5V</span> &#123;
+    <span class="type">int</span> <span class="title function_">output5V</span><span class="params">()</span>;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>Voltage5VClassAdapter.java</span></div><code class="highlight java"><span class="comment">// 类适配器</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Voltage5VClassAdapter</span> <span class="keyword">extends</span> <span class="title class_">Voltage220V</span> <span class="keyword">implements</span> <span class="title class_">Voltage5V</span> &#123;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">output5V</span><span class="params">()</span> &#123;
+        <span class="type">int</span> <span class="variable">output220v</span> <span class="operator">=</span> output220V();
+        System.out.println(<span class="string">&quot;将&quot;</span> + output220v + <span class="string">&quot;V电压转换为5V电压&quot;</span>);
+        <span class="keyword">return</span> <span class="number">5</span>;
+    &#125;
+&#125;</code></pre>
+
+<h3 id="1-3-2-对象适配器模式"><a href="#1-3-2-对象适配器模式" class="headerlink" title="1.3.2. 对象适配器模式"></a>1.3.2. 对象适配器模式</h3><p>组合，满足合成复用原则。</p>
+<pre><div class="caption"><span>Voltage5VObjectAdapter.java</span></div><code class="highlight java"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Voltage5VObjectAdapter</span> <span class="keyword">implements</span> <span class="title class_">Voltage5V</span> &#123;
+    <span class="keyword">private</span> <span class="type">Voltage220V</span> <span class="variable">voltage220v</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Voltage220V</span>(); <span class="comment">// 组合。满足合成复用原则</span>
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">output5V</span><span class="params">()</span> &#123;
+        <span class="type">int</span> <span class="variable">output220v</span> <span class="operator">=</span> voltage220v.output220V();
+        System.out.println(<span class="string">&quot;将&quot;</span> + output220v + <span class="string">&quot;V电压转换为5V电压&quot;</span>);
+        <span class="keyword">return</span> <span class="number">5</span>;
+    &#125;
+&#125;</code></pre>
+
+<h3 id="1-3-3-接口适配器模式"><a href="#1-3-3-接口适配器模式" class="headerlink" title="1.3.3. 接口适配器模式"></a>1.3.3. 接口适配器模式</h3><p><strong>缺省适配器模式</strong>，当不需要全部实现接口中方法时，可以设计一个抽象类实现接口，对接口中每个方法提供一个默认实现，则抽象类的子类可以选择性的覆写父类中方法。</p>
+<pre><div class="caption"><span>TargetInterface.java</span></div><code class="highlight java"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">TargetInterface</span> &#123;
+    <span class="keyword">void</span> <span class="title function_">m1</span><span class="params">()</span>;
+    <span class="keyword">void</span> <span class="title function_">m2</span><span class="params">()</span>;
+    <span class="keyword">void</span> <span class="title function_">m3</span><span class="params">()</span>;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>TargetInterfaceAdapter.java</span></div><code class="highlight java"><span class="comment">// 接口适配器。抽象类。</span>
+<span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">TargetInterfaceAdapter</span> <span class="keyword">implements</span> <span class="title class_">TargetInterface</span> &#123;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">m1</span><span class="params">()</span> &#123;
+    &#125;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">m2</span><span class="params">()</span> &#123;
+    &#125;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">m3</span><span class="params">()</span> &#123;
+    &#125;
+&#125;</code></pre>
+
+<h2 id="1-4-源码解析之-HandlerAdapter（SpringMVC）"><a href="#1-4-源码解析之-HandlerAdapter（SpringMVC）" class="headerlink" title="1.4. 源码解析之 HandlerAdapter（SpringMVC）"></a>1.4. 源码解析之 HandlerAdapter（SpringMVC）</h2><ul>
+<li>SpringMVC 中 HandlerAdapter</li>
+</ul>
+<pre><div class="caption"><span>DispatcherServlet.java</span></div><code class="highlight java"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DispatcherServlet</span> <span class="keyword">extends</span> <span class="title class_">FrameworkServlet</span> &#123;
+    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doDispatch</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> Exception &#123;
+        mappedHandler = getHandler(processedRequest);
+        <span class="type">HandlerAdapter</span> <span class="variable">ha</span> <span class="operator">=</span> getHandlerAdapter(mappedHandler.getHandler());
+        mv = ha.handle(processedRequest, response, mappedHandler.getHandler());
+    &#125;
+    <span class="keyword">protected</span> HandlerAdapter <span class="title function_">getHandlerAdapter</span><span class="params">(Object handler)</span> <span class="keyword">throws</span> ServletException &#123;
+        <span class="keyword">if</span> (<span class="built_in">this</span>.handlerAdapters != <span class="literal">null</span>) &#123;
+            <span class="keyword">for</span> (HandlerAdapter adapter : <span class="built_in">this</span>.handlerAdapters) &#123;
+                <span class="keyword">if</span> (adapter.supports(handler)) &#123;
+                    <span class="keyword">return</span> adapter;
+                &#125;
+            &#125;
+        &#125;
+        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ServletException</span>(<span class="string">&quot;No adapter for handler [&quot;</span> + handler +
+            <span class="string">&quot;]: The DispatcherServlet configuration needs to include a HandlerAdapter that supports this handler&quot;</span>);
+    &#125;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>HttpRequestHandlerAdapter.java</span></div><code class="highlight java"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HttpRequestHandlerAdapter</span> <span class="keyword">implements</span> <span class="title class_">HandlerAdapter</span> &#123;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">supports</span><span class="params">(Object handler)</span> &#123;
+        <span class="keyword">return</span> (handler <span class="keyword">instanceof</span> HttpRequestHandler);
+    &#125;
+    <span class="meta">@Override</span>
+    <span class="meta">@Nullable</span>
+    <span class="keyword">public</span> ModelAndView <span class="title function_">handle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span>
+        <span class="keyword">throws</span> Exception &#123;
+        ((HttpRequestHandler) handler).handleRequest(request, response);
+        <span class="keyword">return</span> <span class="literal">null</span>;
+    &#125;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>SimpleServletHandlerAdapter.java</span></div><code class="highlight java"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SimpleServletHandlerAdapter</span> <span class="keyword">implements</span> <span class="title class_">HandlerAdapter</span> &#123;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">supports</span><span class="params">(Object handler)</span> &#123;
+        <span class="keyword">return</span> (handler <span class="keyword">instanceof</span> Servlet);
+    &#125;
+    <span class="meta">@Override</span>
+    <span class="meta">@Nullable</span>
+    <span class="keyword">public</span> ModelAndView <span class="title function_">handle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception &#123;
+        ((Servlet) handler).service(request, response);
+        <span class="keyword">return</span> <span class="literal">null</span>;
+    &#125;
+&#125;</code></pre>
+
+<h1 id="2-桥接模式"><a href="#2-桥接模式" class="headerlink" title="2. 桥接模式"></a>2. 桥接模式</h1><h2 id="2-1-作用"><a href="#2-1-作用" class="headerlink" title="2.1. 作用"></a>2.1. 作用</h2><p>处理多种继承结构，<strong>处理多维度变化场景</strong>，将各个纬度设计成独立的继承结构，使各个纬度可以独立的扩展在抽象层建立关联。</p>
+<h2 id="2-2-应用场景"><a href="#2-2-应用场景" class="headerlink" title="2.2. 应用场景"></a>2.2. 应用场景</h2><ul>
+<li>JDBC 驱动程序。</li>
+<li>AWT 中 Peer 架构。</li>
+<li>转账系统（网上，柜台，ATM 取款机；普通用户，vip 用户…）。</li>
+<li>消息系统（即时消息，延时消息；手机消息，邮件消息，QQ 消息…）。</li>
+</ul>
+<h2 id="2-3-代码实现"><a href="#2-3-代码实现" class="headerlink" title="2.3. 代码实现"></a>2.3. 代码实现</h2><pre><div class="caption"><span>Brand.java</span></div><code class="highlight java"><span class="comment">// 行为实现类接口</span>
+<span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Brand</span> &#123;
+    <span class="keyword">void</span> <span class="title function_">open</span><span class="params">()</span>;
+    <span class="keyword">void</span> <span class="title function_">close</span><span class="params">()</span>;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>Vivo.java</span></div><code class="highlight java"><span class="comment">// 行为类具体实现</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Vivo</span> <span class="keyword">implements</span> <span class="title class_">Brand</span> &#123; <span class="comment">// 行为类具体实现</span>
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">open</span><span class="params">()</span> &#123;
+        System.out.println(<span class="string">&quot;welcome, vivo&quot;</span>);
+    &#125;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">close</span><span class="params">()</span> &#123;
+        System.out.println(<span class="string">&quot;bye, vivo&quot;</span>);
+    &#125;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>Phone.java</span></div><code class="highlight java"><span class="comment">// 桥接类</span>
+<span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Phone</span> &#123;
+    <span class="keyword">protected</span> Brand brand;
+    <span class="keyword">public</span> <span class="title function_">Phone</span><span class="params">(Brand brand)</span> &#123;
+        <span class="built_in">super</span>();
+        <span class="built_in">this</span>.brand = brand;
+    &#125;
+    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">open</span><span class="params">()</span>;
+    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">close</span><span class="params">()</span>;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>SmartPhone.java</span></div><code class="highlight java"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SmartPhone</span> <span class="keyword">extends</span> <span class="title class_">Phone</span> &#123;
+    <span class="keyword">public</span> <span class="title function_">SmartPhone</span><span class="params">(Brand brand)</span> &#123;
+        <span class="built_in">super</span>(brand);
+    &#125;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">open</span><span class="params">()</span> &#123;
+        System.out.println(<span class="string">&quot;智能手机开机&quot;</span>);
+        brand.open();
+    &#125;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">close</span><span class="params">()</span> &#123;
+        System.out.println(<span class="string">&quot;智能手机关机&quot;</span>);
+        brand.close();
+    &#125;
+&#125;</code></pre>
+
+<h2 id="2-4-源码解析之-JDBC"><a href="#2-4-源码解析之-JDBC" class="headerlink" title="2.4. 源码解析之 JDBC"></a>2.4. 源码解析之 JDBC</h2><p><code>java.sql.Connection：行为实现类接口。</code><br><code>com.mysql.cj.jdbc.JdbcConnection：行为实现类接口。</code><br><code>com.mysql.cj.jdbc.ConnectionImpl：行为实现类。</code><br><code>java.sql.DriverManager：桥接类。</code></p>
+<h1 id="3-装饰器模式"><a href="#3-装饰器模式" class="headerlink" title="3. 装饰器模式"></a>3. 装饰器模式</h1><h2 id="3-1-作用"><a href="#3-1-作用" class="headerlink" title="3.1. 作用"></a>3.1. 作用</h2><p><font>动态的为一个对象增加新的功能</font>。代替继承，无需继承便可扩展对象的新功能。</p>
+<h2 id="3-2-应用场景"><a href="#3-2-应用场景" class="headerlink" title="3.2. 应用场景"></a>3.2. 应用场景</h2><ul>
+<li>IO 流。</li>
+<li>Servlet api 中 Request 对象的装饰器增强类 HttpServletRequestWrapper。</li>
+<li>Struts2 中 Request、Response、Session 对象的处理。</li>
+</ul>
+<h2 id="3-3-代码实现"><a href="#3-3-代码实现" class="headerlink" title="3.3. 代码实现"></a>3.3. 代码实现</h2><pre><div class="caption"><span>Drink.java</span></div><code class="highlight java"><span class="comment">// 抽象类，被装饰类</span>
+<span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Drink</span> &#123;
+    <span class="keyword">protected</span> String name;
+    <span class="keyword">protected</span> <span class="type">double</span> price;
+    <span class="keyword">public</span> <span class="title function_">Drink</span><span class="params">()</span> &#123;
+    &#125;
+    <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">cost</span><span class="params">()</span> &#123;
+        <span class="keyword">return</span> price;
+    &#125;
+    <span class="keyword">public</span> String <span class="title function_">show</span><span class="params">()</span> &#123;
+        <span class="keyword">return</span> name;
+    &#125;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>Coffee.java</span></div><code class="highlight java"><span class="comment">// 具体实现</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Coffee</span> <span class="keyword">extends</span> <span class="title class_">Drink</span> &#123;
+    <span class="keyword">public</span> <span class="title function_">Coffee</span><span class="params">()</span> &#123;
+        <span class="built_in">super</span>.name = <span class="string">&quot;咖啡&quot;</span>;
+        <span class="built_in">super</span>.price = <span class="number">20</span>;
+    &#125;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>DrinkDecorator.java</span></div><code class="highlight java"><span class="comment">// 装饰者</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DrinkDecorator</span> <span class="keyword">extends</span> <span class="title class_">Drink</span> &#123;
+    <span class="keyword">private</span> Drink drink;
+    <span class="keyword">public</span> <span class="title function_">DrinkDecorator</span><span class="params">(String name, <span class="type">double</span> price, Drink drink)</span> &#123;
+        <span class="built_in">super</span>.name = name;
+        <span class="built_in">super</span>.price = price;
+        <span class="built_in">this</span>.drink = drink;
+    &#125;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> String <span class="title function_">show</span><span class="params">()</span> &#123;
+        <span class="keyword">return</span> drink.show() + <span class="string">&quot; + &quot;</span> + <span class="built_in">super</span>.name;
+    &#125;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">cost</span><span class="params">()</span> &#123;
+        <span class="keyword">return</span> drink.cost() + <span class="built_in">super</span>.cost();
+    &#125;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>Milk.java</span></div><code class="highlight java"><span class="comment">// 具体装饰者</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Milk</span> <span class="keyword">extends</span> <span class="title class_">DrinkDecorator</span> &#123;
+    <span class="keyword">public</span> <span class="title function_">Milk</span><span class="params">(Drink drink)</span> &#123;
+        <span class="built_in">super</span>(<span class="string">&quot;牛奶&quot;</span>, <span class="number">5</span>, drink);
+    &#125;
+&#125;</code></pre>
+
+<h2 id="3-4-源码解析之-IO-流"><a href="#3-4-源码解析之-IO-流" class="headerlink" title="3.4. 源码解析之 IO 流"></a>3.4. 源码解析之 IO 流</h2><p><code>InputStream：抽象类，被装饰类。</code><br><code>FileInputStream等：具体实现。</code><br><code>FilterInputStream：装饰者。</code><br><code>BufferedInputStream：具体装饰者。</code></p>
+<h1 id="4-组合模式"><a href="#4-组合模式" class="headerlink" title="4. 组合模式"></a>4. 组合模式</h1><h2 id="4-1-作用"><a href="#4-1-作用" class="headerlink" title="4.1. 作用"></a>4.1. 作用</h2><p><strong>将部分与整体的关系用树状结构来表示，使客户端可以用统一的方法来处理部分对象和整体对象</strong>。</p>
+<h2 id="4-2-应用场景"><a href="#4-2-应用场景" class="headerlink" title="4.2. 应用场景"></a>4.2. 应用场景</h2><ul>
+<li>xml 文件解析。</li>
+<li>操作系统资源管理器。</li>
+<li>OA 系统的组织结构处理。</li>
+<li>Junit 单元测试框架。</li>
+</ul>
+<h2 id="4-3-代码实现"><a href="#4-3-代码实现" class="headerlink" title="4.3. 代码实现"></a>4.3. 代码实现</h2><pre><div class="caption"><span>OrganizationComponent.java</span></div><code class="highlight java"><span class="comment">// 抽象构件角色</span>
+<span class="meta">@Getter</span>
+<span class="meta">@Setter</span>
+<span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">OrganizationComponent</span> &#123; <span class="comment">// 抽象构件角色</span>
+    <span class="keyword">protected</span> String name;
+    <span class="keyword">protected</span> String desc;
+    <span class="keyword">public</span> <span class="title function_">OrganizationComponent</span><span class="params">(String name, String desc)</span> &#123;
+        <span class="built_in">super</span>();
+        <span class="built_in">this</span>.name = name;
+        <span class="built_in">this</span>.desc = desc;
+    &#125;
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">add</span><span class="params">(OrganizationComponent organizationComponent)</span> &#123;
+        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();
+    &#125;
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">remove</span><span class="params">(OrganizationComponent organizationComponent)</span> &#123;
+        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();
+    &#125;
+    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span>;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>ClassRoom.java</span></div><code class="highlight java"><span class="comment">// 叶子构件角色</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ClassRoom</span> <span class="keyword">extends</span> <span class="title class_">OrganizationComponent</span> &#123; <span class="comment">// 叶子构件角色</span>
+    <span class="keyword">public</span> <span class="title function_">ClassRoom</span><span class="params">(String name, String desc)</span> &#123;
+        <span class="built_in">super</span>(name, desc);
+    &#125;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span> &#123;
+        System.out.println(name + <span class="string">&quot;: &quot;</span> + desc);
+    &#125;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>School.java</span></div><code class="highlight java"><span class="comment">// 容器构件角色</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">School</span> <span class="keyword">extends</span> <span class="title class_">OrganizationComponent</span> &#123; <span class="comment">// 容器构件角色</span>
+    <span class="keyword">private</span> List&lt;OrganizationComponent&gt; classRooms = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;OrganizationComponent&gt;();
+    <span class="keyword">public</span> <span class="title function_">School</span><span class="params">(String name, String desc)</span> &#123;
+        <span class="built_in">super</span>(name, desc);
+    &#125;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">add</span><span class="params">(OrganizationComponent organizationComponent)</span> &#123;
+        classRooms.add(organizationComponent);
+    &#125;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">remove</span><span class="params">(OrganizationComponent organizationComponent)</span> &#123;
+        classRooms.remove(organizationComponent);
+    &#125;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span> &#123;
+        System.out.println(name + <span class="string">&quot;: &quot;</span> + desc);
+        <span class="keyword">for</span> (OrganizationComponent organizationComponent : classRooms) &#123;
+            organizationComponent.print();
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="type">ClassRoom</span> <span class="variable">classRoom320</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassRoom</span>(<span class="string">&quot;320&quot;</span>, <span class="string">&quot;理重1班&quot;</span>);
+    <span class="type">ClassRoom</span> <span class="variable">classRoom321</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassRoom</span>(<span class="string">&quot;321&quot;</span>, <span class="string">&quot;理重2班&quot;</span>);
+    <span class="type">ClassRoom</span> <span class="variable">classRoom322</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassRoom</span>(<span class="string">&quot;322&quot;</span>, <span class="string">&quot;珍珠班&quot;</span>);
+    <span class="type">ClassRoom</span> <span class="variable">classRoom323</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassRoom</span>(<span class="string">&quot;323&quot;</span>, <span class="string">&quot;文重1班&quot;</span>);
+    <span class="type">School</span> <span class="variable">school</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">School</span>(<span class="string">&quot;祁县中学&quot;</span>, <span class="string">&quot;祁县一中&quot;</span>);
+    school.add(classRoom320);
+    school.add(classRoom321);
+    school.add(classRoom322);
+    school.add(classRoom323);
+    school.print(); <span class="comment">// 容器打印</span>
+    System.out.println(<span class="string">&quot;-----------------------&quot;</span>);
+    classRoom321.print(); <span class="comment">// 叶子打印</span>
+&#125;</code></pre>
+
+<h2 id="4-4-源码解析之-HashMap"><a href="#4-4-源码解析之-HashMap" class="headerlink" title="4.4. 源码解析之 HashMap"></a>4.4. 源码解析之 HashMap</h2><p><code>Map：抽象构建角色。</code><br><code>HashMap：容器构建角色。</code><br><code>HashMap.Node：叶子构建角色。</code></p>
+<h1 id="5-外观模式"><a href="#5-外观模式" class="headerlink" title="5. 外观模式"></a>5. 外观模式</h1><h2 id="5-1-作用"><a href="#5-1-作用" class="headerlink" title="5.1. 作用"></a>5.1. 作用</h2><p>为子系统提供统一的入口，<strong>封装</strong>子系统的复杂性，便于客户端调用。</p>
+<h2 id="5-2-应用场景"><a href="#5-2-应用场景" class="headerlink" title="5.2. 应用场景"></a>5.2. 应用场景</h2><p>工具类 Utils 类。</p>
+<h1 id="6-享元模式"><a href="#6-享元模式" class="headerlink" title="6. 享元模式"></a>6. 享元模式</h1><h2 id="6-1-作用"><a href="#6-1-作用" class="headerlink" title="6.1. 作用"></a>6.1. 作用</h2><ul>
+<li>以共享的方式高效的支持大量细粒度对象的重用，解决内存浪费的问题。</li>
+<li>将对象的信息分为内部状态（共享的信息，享元对象内部不会随环境的变化而变化）、外部状态（不可共享，随环境的变化而变化）。<br><code>优点：减少内存中对象的数量；节约资源，提高系统性能；外部状态相互独立，不影响内部状态。</code><br><code>缺点：提高系统复杂度，需要分离内部状态和外部状态；空间换时间。</code></li>
+</ul>
+<h2 id="6-2-应用场景"><a href="#6-2-应用场景" class="headerlink" title="6.2. 应用场景"></a>6.2. 应用场景</h2><ul>
+<li>线程池，数据库连接池。</li>
+<li>String 常量池。</li>
+<li>Integer。</li>
+</ul>
+<h2 id="6-3-代码实现"><a href="#6-3-代码实现" class="headerlink" title="6.3. 代码实现"></a>6.3. 代码实现</h2><pre><div class="caption"><span>Position.java</span></div><code class="highlight java"><span class="comment">// 外部状态类</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Position</span> &#123;
+    <span class="keyword">private</span> <span class="type">int</span> row;
+    <span class="keyword">private</span> <span class="type">int</span> column;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>Chess.java</span></div><code class="highlight java"><span class="comment">// 享元对象类</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Chess</span> &#123;
+    <span class="comment">// 内部属性</span>
+    <span class="keyword">private</span> String color;
+    <span class="comment">// 外部属性</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">(Position position)</span> &#123;
+        System.out.println(color + <span class="string">&quot;棋落在棋盘第&quot;</span> + position.getRow() + <span class="string">&quot;行第&quot;</span> + position.getColumn() + <span class="string">&quot;列&quot;</span>);
+    &#125;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>ChessFactory.java</span></div><code class="highlight java"><span class="comment">// 享元对象工厂类</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ChessFactory</span> &#123; <span class="comment">// 享元对象工厂类</span>
+    <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String, Chess&gt; chessMap = <span class="keyword">new</span> <span class="title class_">ConcurrentHashMap</span>&lt;String, Chess&gt;();
+    <span class="keyword">public</span> <span class="keyword">static</span> Chess <span class="title function_">getChess</span><span class="params">(String color)</span> &#123;
+        <span class="keyword">if</span> (chessMap.get(color) == <span class="literal">null</span>) &#123;
+            <span class="type">Chess</span> <span class="variable">chess</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Chess</span>();
+            chess.setColor(color);
+            chessMap.put(color, chess);
+        &#125;
+        <span class="keyword">return</span> chessMap.get(color);
+    &#125;
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">size</span><span class="params">()</span> &#123;
+        <span class="keyword">return</span> chessMap.size();
+    &#125;
+&#125;</code></pre>
+
+<pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="type">Chess</span> <span class="variable">chess1</span> <span class="operator">=</span> ChessFactory.getChess(<span class="string">&quot;白&quot;</span>);
+    chess1.display(<span class="keyword">new</span> <span class="title class_">Position</span>(<span class="number">2</span>, <span class="number">2</span>));
+    <span class="type">Chess</span> <span class="variable">chess2</span> <span class="operator">=</span> ChessFactory.getChess(<span class="string">&quot;黑&quot;</span>);
+    chess2.display(<span class="keyword">new</span> <span class="title class_">Position</span>(<span class="number">2</span>, <span class="number">2</span>));
+    <span class="type">Chess</span> <span class="variable">chess3</span> <span class="operator">=</span> ChessFactory.getChess(<span class="string">&quot;黑&quot;</span>);
+    chess3.display(<span class="keyword">new</span> <span class="title class_">Position</span>(<span class="number">3</span>, <span class="number">3</span>));
+    System.out.println(chess2 == chess3);
+    System.out.println(ChessFactory.size());
+&#125;</code></pre>
+
+<h2 id="6-4-源码解析之-Integer"><a href="#6-4-源码解析之-Integer" class="headerlink" title="6.4. 源码解析之 Integer"></a>6.4. 源码解析之 Integer</h2><pre><div class="caption"><span>Integer.java</span></div><code class="highlight java"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">Integer</span> <span class="keyword">extends</span> <span class="title class_">Number</span> <span class="keyword">implements</span> <span class="title class_">Comparable</span>&lt;Integer&gt; &#123;
+    <span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title function_">valueOf</span><span class="params">(<span class="type">int</span> i)</span> &#123;
+        <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)
+            <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];
+        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(i);
+    &#125;
+&#125;</code></pre>
+
+<h1 id="7-代理模式"><a href="#7-代理模式" class="headerlink" title="7. 代理模式"></a>7. 代理模式</h1><h2 id="7-1-作用"><a href="#7-1-作用" class="headerlink" title="7.1. 作用"></a>7.1. 作用</h2><ul>
+<li>通过代理，控制对对象的访问，可以在目标对象实现的基础上扩展目标对象的功能。被代理对象可以是远程对象、创建开销大的对象或需要安全控制的对象。<ul>
+<li>安全代理：屏蔽对真实对象的直接访问。</li>
+<li>远程代理：通过代理处理远程方法调用。</li>
+<li>延迟加载：先加载轻量级的代理对象，真正需要时加载真实对象。</li>
+</ul>
+</li>
+<li><font>代理模式是 AOP 的核心实现机制</font>（Spring 中包括 JDK 动态代理、Cglib 动态代理）。<br><code>Cglib动态代理不同于JDK动态代理和静态代理，Cglib动态代理可以在内存中动态的创建对象，不需要实现接口。</code></li>
+</ul>
+<h2 id="7-2-应用场景"><a href="#7-2-应用场景" class="headerlink" title="7.2. 应用场景"></a>7.2. 应用场景</h2><ul>
+<li>Strcts2 中拦截器实现。</li>
+<li>数据库连接池关闭处理。</li>
+<li>Hibernate 中延迟加载的实现。</li>
+<li>Mybatis 中拦截器插件实现。</li>
+<li>AspectJ 实现。</li>
+<li>Spring AOP 实现：日志拦截、声明式事务处理。</li>
+<li>web service。</li>
+<li>RPC 远程方法调用。</li>
+</ul>
+<h2 id="7-3-代码实现"><a href="#7-3-代码实现" class="headerlink" title="7.3. 代码实现"></a>7.3. 代码实现</h2><h3 id="7-3-1-静态代理"><a href="#7-3-1-静态代理" class="headerlink" title="7.3.1. 静态代理"></a>7.3.1. 静态代理</h3><pre><div class="caption"><span>ITeacherDao.java</span></div><code class="highlight java"><span class="comment">// 抽象角色</span>
+<span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ITeacherDao</span> &#123;
+    String <span class="title function_">teach</span><span class="params">(String name, String text)</span>;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>TeacherDaoImpl.java</span></div><code class="highlight java"><span class="comment">// 目标对象，被代理对象</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TeacherDaoImpl</span> <span class="keyword">implements</span> <span class="title class_">ITeacherDao</span> &#123;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> String <span class="title function_">teach</span><span class="params">(String name, String text)</span> &#123;
+        System.out.println(name + <span class="string">&quot;:&quot;</span> + text);
+        <span class="keyword">return</span> name + <span class="string">&quot;:&quot;</span> + text;
+    &#125;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>TeacherDaoProxy.java</span></div><code class="highlight java"><span class="comment">// 代理对象，静态代理</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TeacherDaoProxy</span> <span class="keyword">implements</span> <span class="title class_">ITeacherDao</span> &#123;
+    <span class="keyword">private</span> ITeacherDao teacherDao;
+    <span class="keyword">public</span> <span class="title function_">TeacherDaoProxy</span><span class="params">(ITeacherDao teacherDao)</span> &#123;
+        <span class="built_in">super</span>();
+        <span class="built_in">this</span>.teacherDao = teacherDao;
+    &#125;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> String <span class="title function_">teach</span><span class="params">(String name, String text)</span> &#123;
+        System.out.println(<span class="string">&quot;静态代理开始&quot;</span>);
+        <span class="type">String</span> <span class="variable">returnVal</span> <span class="operator">=</span> teacherDao.teach(name, text);
+        System.out.println(<span class="string">&quot;静态代理结束&quot;</span>);
+        <span class="keyword">return</span> returnVal;
+    &#125;
+&#125;</code></pre>
+
+<pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="type">ITeacherDao</span> <span class="variable">teacherDao</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TeacherDaoImpl</span>();
+    <span class="type">TeacherDaoProxy</span> <span class="variable">teacherDaoProxy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TeacherDaoProxy</span>(teacherDao);
+    teacherDaoProxy.teach(<span class="string">&quot;张&quot;</span>, <span class="string">&quot;学习静态代理&quot;</span>);
+&#125;</code></pre>
+
+<h3 id="7-3-2-JDK-动态代理"><a href="#7-3-2-JDK-动态代理" class="headerlink" title="7.3.2. JDK 动态代理"></a>7.3.2. JDK 动态代理</h3><p><strong>必须实现接口</strong>。</p>
+<pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="type">ITeacherDao</span> <span class="variable">teacherDaoImpl</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TeacherDaoImpl</span>();
+    <span class="type">ITeacherDao</span> <span class="variable">proxy</span> <span class="operator">=</span> (ITeacherDao) Proxy.newProxyInstance(TeacherDaoImpl.class.getClassLoader(),
+        TeacherDaoImpl.class.getInterfaces(), <span class="keyword">new</span> <span class="title class_">InvocationHandler</span>() &#123;
+            <span class="meta">@Override</span>
+            <span class="keyword">public</span> Object <span class="title function_">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable &#123;
+                System.out.println(<span class="string">&quot;JDK动态代理开始&quot;</span>);
+                <span class="type">Object</span> <span class="variable">invoke</span> <span class="operator">=</span> method.invoke(teacherDaoImpl, args);
+                System.out.println(<span class="string">&quot;JDK动态代理结束&quot;</span>);
+                <span class="keyword">return</span> invoke;
+            &#125;
+        &#125;); <span class="comment">// 代理对象继承Proxy类，因此必须实现接口</span>
+    proxy.teach(<span class="string">&quot;张&quot;</span>, <span class="string">&quot;学习JDK动态代理&quot;</span>);
+&#125;</code></pre>
+
+<h3 id="7-3-3-Cglib-动态代理"><a href="#7-3-3-Cglib-动态代理" class="headerlink" title="7.3.3. Cglib 动态代理"></a>7.3.3. Cglib 动态代理</h3><p>子类代理，<strong>可以不实现接口</strong>。</p>
+<pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="type">MethodInterceptor</span> <span class="variable">methodInterceptor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MethodInterceptor</span>() &#123;
+        <span class="meta">@Override</span>
+        <span class="keyword">public</span> Object <span class="title function_">intercept</span><span class="params">(Object obj, Method method, Object[] args, MethodProxy methodProxy)</span> <span class="keyword">throws</span> Throwable &#123;
+            System.out.println(<span class="string">&quot;cglib动态代理开始&quot;</span>);
+            System.out.println(methodProxy);
+            <span class="comment">// System.out.println(obj); // 不可行</span>
+            <span class="type">Object</span> <span class="variable">invoke</span> <span class="operator">=</span> methodProxy.invokeSuper(obj, args); <span class="comment">// 真实对象调用</span>
+            <span class="comment">// Object invoke = methodProxy.invoke(obj, args); // 不可行</span>
+            <span class="comment">// Object invoke = method.invoke(obj, args); // 不可行</span>
+            System.out.println(<span class="string">&quot;cglib动态代理结束&quot;</span>);
+            <span class="keyword">return</span> invoke;
+        &#125;
+    &#125;; <span class="comment">// 需要引入cglib依赖</span>
+    <span class="type">Enhancer</span> <span class="variable">enhancer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Enhancer</span>();
+    enhancer.setSuperclass(TeacherDaoImpl.class); <span class="comment">// 设置父类，继承的方式实现</span>
+    enhancer.setCallback(methodInterceptor); <span class="comment">// 设置回调函数</span>
+    <span class="type">TeacherDaoImpl</span> <span class="variable">proxy</span> <span class="operator">=</span> (TeacherDaoImpl) enhancer.create(); <span class="comment">// 创建代理对象</span>
+    proxy.teach(<span class="string">&quot;张&quot;</span>, <span class="string">&quot;学习JDK动态代理&quot;</span>);
+&#125;</code></pre>
+
+<h2 id="7-4-AOP-失效场景"><a href="#7-4-AOP-失效场景" class="headerlink" title="7.4. AOP 失效场景"></a>7.4. AOP 失效场景</h2><ul>
+<li><font>采用 this.方法()调用 AOP 即事务会失效</font>。<br><code>Spring容器，组件A类中调用A中私有方法，A中的成员变量为null？A类调用A中私有方法，由于无法覆写，调用的还是父类中方法，因此成员变量为null。</code></li>
+<li><font>方法被 static、final、private 修饰，AOP 即事务会失效</font>。<br><code>如果代理对象的方法被final、static、private修饰，则将不能被覆写，无法拦截，因此不会执行额外的业务方法。</code></li>
+</ul>
+<h2 id="7-5-其他代理模式"><a href="#7-5-其他代理模式" class="headerlink" title="7.5. 其他代理模式"></a>7.5. 其他代理模式</h2><ul>
+<li><strong>防火墙代理：</strong>内网通过代理穿透防火墙，实现对公网的访问。</li>
+<li><strong>缓存代理：</strong>请求图片文件等资源时，先到缓存代理取，取不到资源再到公网去取，并缓存数据。</li>
+<li><strong>远程代理：</strong>远程对象的本地代理，将远程对象当作本地对象调用，远程代理通过网络和真正的远程对象沟通信息。</li>
+<li><strong>同步代理：</strong>在多线程编程中，完成多线程间同步工作。</li>
+</ul>
+<h1 id="8-总结"><a href="#8-总结" class="headerlink" title="8. 总结"></a>8. 总结</h1><p>结构型设计模式：<font>关注类和对象的组织</font>。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 不积跬步无以至千里，不积小流无以成江海！ </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2015-2024 蜡笔没了小新
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.png" class="alipay" title="扫码支持">
+            <img src="/img/wechat.png" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 582px;
+    }
+    .nav.fullscreen {
+        margin-left: -582px;
+    }
+    .nav-left {
+        width: 160px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 532px;
+        }
+        .nav.fullscreen {
+            margin-left: -532px;
+        }
+        .nav-left {
+            width: 140px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 532px;
+            margin-left: -532px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("/images/20230809225525.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>

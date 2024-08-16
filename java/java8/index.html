@@ -1,0 +1,2013 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【Java】Java8新特性 | 蜡笔没了小新の笔记</title>
+  <meta name="keywords" content=" Java ">
+  <meta name="description" content="【Java】Java8新特性 | 蜡笔没了小新の笔记">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="1. XMLHttpRequest&#x2F;&#x2F; 实例化xhr对象 var xhr &#x3D; new XMLHttpRequest() &#x2F;&#x2F; 建立连接 xhr.open(&#x27;GET&#x27;, &#x27;xxx&#x27;, false) &#x2F;&#x2F; 发送请求 xhr.send()  2. jQueryTODO 待补充 3. vue-resource 安装vue-resource。 npm install">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Vue】HTTP插件">
+<meta property="og:url" content="http://example.com/vue/http/index.html">
+<meta property="og:site_name" content="蜡笔没了小新の笔记">
+<meta property="og:description" content="1. XMLHttpRequest&#x2F;&#x2F; 实例化xhr对象 var xhr &#x3D; new XMLHttpRequest() &#x2F;&#x2F; 建立连接 xhr.open(&#x27;GET&#x27;, &#x27;xxx&#x27;, false) &#x2F;&#x2F; 发送请求 xhr.send()  2. jQueryTODO 待补充 3. vue-resource 安装vue-resource。 npm install">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-15T15:21:00.000Z">
+<meta property="article:modified_time" content="2024-08-16T02:06:56.909Z">
+<meta property="article:author" content="蜡笔没了小新">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>蜡笔没了小新</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/fengbiao-github"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:2014695858@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2014695858&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="理论">
+            <i class="fold iconfont icon-right"></i>
+            理论
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;数据结构与算法">
+            
+            数据结构与算法
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;设计模式">
+            
+            设计模式
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;计算机网络">
+            
+            计算机网络
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Java">
+            <i class="fold iconfont icon-right"></i>
+            Java
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;JVM">
+            
+            JVM
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;JUC">
+            
+            JUC
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;新特性">
+            
+            新特性
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;NIO">
+            
+            NIO
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            <i class="fold iconfont icon-right"></i>
+            数据库
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;关系型数据库">
+            
+            关系型数据库
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;非关系型数据库">
+            
+            非关系型数据库
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;分库分表">
+            
+            分库分表
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="框架">
+            <i class="fold iconfont icon-right"></i>
+            框架
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;Spring">
+            
+            Spring
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;视图层">
+            
+            视图层
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;ORM">
+            
+            ORM
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;认证授权">
+            
+            认证授权
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;任务调度">
+            
+            任务调度
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;工作流引擎">
+            
+            工作流引擎
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;网络编程">
+            
+            网络编程
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;文件处理">
+            
+            文件处理
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="微服务">
+            
+            微服务
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="中间件">
+            <i class="fold iconfont icon-right"></i>
+            中间件
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;WEB">
+            
+            WEB
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;缓存">
+            
+            缓存
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;消息队列">
+            
+            消息队列
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;搜索引擎">
+            
+            搜索引擎
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;日志">
+            
+            日志
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="大数据">
+            
+            大数据
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="工具">
+            <i class="fold iconfont icon-right"></i>
+            工具
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;IDE">
+            
+            IDE
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;版本控制">
+            
+            版本控制
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;项目构建">
+            
+            项目构建
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;持续集成">
+            
+            持续集成
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;测试">
+            
+            测试
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="运维">
+            <i class="fold iconfont icon-right"></i>
+            运维
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;Linux">
+            
+            Linux
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;高可用">
+            
+            高可用
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;云原生">
+            
+            云原生
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;脚本">
+            
+            脚本
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="前端">
+            <i class="fold iconfont icon-right"></i>
+            前端
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="前端&lt;---&gt;框架">
+            
+            框架
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="面试">
+            
+            面试
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  site_url"
+               
+               href="/about">关于</a>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="32">
+<input type="hidden" id="yelog_site_word_count" value="67k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>待完善</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分布式事务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务调度</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>负载均衡</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构与算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Activiti</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IDEA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Maven</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MybatisPlus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Nginx</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NodeJS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RabbitMQ</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringBoot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringCloudAlibaba</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringCloudNetflix</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Vue</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>websocket</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>xxl-job</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/http/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】HTTP插件">【Vue】HTTP插件</span>
+            <span class="post-date" title="2024-08-15 23:21:00">2024/08/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/html/storage/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="【H5】webStorage">【H5】webStorage</span>
+            <span class="post-date" title="2024-08-13 22:55:00">2024/08/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/component/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】组件化编程">【Vue】组件化编程</span>
+            <span class="post-date" title="2024-08-08 23:21:00">2024/08/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 高可用 "
+           href="/nginx/"
+           data-tag="负载均衡,Nginx"
+           data-author="" >
+            <span class="post-title" title="Nginx负载均衡器">Nginx负载均衡器</span>
+            <span class="post-date" title="2024-07-29 23:08:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 大数据 "
+           href="/zookeeper/"
+           data-tag="服务调度"
+           data-author="" >
+            <span class="post-title" title="Zookeeper笔记">Zookeeper笔记</span>
+            <span class="post-date" title="2024-07-29 23:04:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 "
+           href="/springcloud/springcloud-alibaba/"
+           data-tag="SpringCloudAlibaba,分布式事务"
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba框架">SpringCloudAlibaba框架</span>
+            <span class="post-date" title="2024-07-29 23:01:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 "
+           href="/springcloud/springcloud-netflix/"
+           data-tag="SpringCloudNetflix"
+           data-author="" >
+            <span class="post-title" title="SpringCloudNetflix框架">SpringCloudNetflix框架</span>
+            <span class="post-date" title="2024-07-29 22:58:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/nodejs/npm/"
+           data-tag="NodeJS"
+           data-author="" >
+            <span class="post-title" title="【Node.js】NPM设置淘宝镜像">【Node.js】NPM设置淘宝镜像</span>
+            <span class="post-date" title="2024-07-17 00:56:00">2024/07/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/Vuex/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】vuex状态管理插件">【Vue】vuex状态管理插件</span>
+            <span class="post-date" title="2024-07-15 23:40:00">2024/07/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 ORM "
+           href="/mybatis/encry/"
+           data-tag="MybatisPlus"
+           data-author="" >
+            <span class="post-title" title="数据库信息加解密">数据库信息加解密</span>
+            <span class="post-date" title="2024-07-12 10:47:00">2024/07/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue-router/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】vue-router路由插件">【Vue】vue-router路由插件</span>
+            <span class="post-date" title="2024-07-09 22:21:00">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue-ui/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】UI组件库">【Vue】UI组件库</span>
+            <span class="post-date" title="2024-07-09 21:31:00">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 运维 工具 框架 计算机网络 高可用 版本控制 大数据 Java 中间件 ORM 持续集成 数据库 IDE 测试 JUC JVM NIO 关系型数据库 非关系型数据库 分库分表 缓存 搜索引擎 日志 WEB Linux 脚本 Spring 视图层 认证授权 文件处理 网络编程 "
+           href="/demo/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="示例文档">示例文档</span>
+            <span class="post-date" title="2024-06-06 23:51:00">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 任务调度 "
+           href="/xxl-job/"
+           data-tag="xxl-job"
+           data-author="" >
+            <span class="post-title" title="xxl-job分布式任务调度框架">xxl-job分布式任务调度框架</span>
+            <span class="post-date" title="2024-06-06 23:51:00">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 数据结构与算法 "
+           href="/data-structure-and-algorithm/algorithm/"
+           data-tag="数据结构与算法"
+           data-author="" >
+            <span class="post-title" title="【数据结构与算法】算法篇">【数据结构与算法】算法篇</span>
+            <span class="post-date" title="2024-06-05 23:04:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 "
+           href="/mq/mq/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2024-06-05 22:58:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 面试 "
+           href="/interview/rabbitmq/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ面试题">RabbitMQ面试题</span>
+            <span class="post-date" title="2024-06-05 22:27:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 云原生 "
+           href="/docker/2/"
+           data-tag="Docker,待完善"
+           data-author="" >
+            <span class="post-title" title="【Docker】进阶篇">【Docker】进阶篇</span>
+            <span class="post-date" title="2024-06-05 21:20:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 "
+           href="/mq/rabbitmq/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ消息队列">RabbitMQ消息队列</span>
+            <span class="post-date" title="2024-06-05 09:59:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue2/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】Vue2语法">【Vue】Vue2语法</span>
+            <span class="post-date" title="2024-06-04 21:30:00">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 项目构建 "
+           href="/maven/"
+           data-tag="Maven"
+           data-author="" >
+            <span class="post-title" title="Maven构建工具">Maven构建工具</span>
+            <span class="post-date" title="2024-05-29 22:47:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java 新特性 "
+           href="/java/java8/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="【Java】Java8新特性">【Java】Java8新特性</span>
+            <span class="post-date" title="2024-05-29 21:52:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 云原生 "
+           href="/docker/1/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="【Docker】基础篇">【Docker】基础篇</span>
+            <span class="post-date" title="2024-05-29 12:37:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/4/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】行为型设计模式">【设计模式】行为型设计模式</span>
+            <span class="post-date" title="2024-05-28 22:27:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/3/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】结构型设计模式">【设计模式】结构型设计模式</span>
+            <span class="post-date" title="2024-05-28 22:01:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/3/"
+           data-tag="Activiti,SpringBoot,IDEA"
+           data-author="" >
+            <span class="post-title" title="【Activiti】整合篇">【Activiti】整合篇</span>
+            <span class="post-date" title="2024-05-28 21:49:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/2/"
+           data-tag="Activiti"
+           data-author="" >
+            <span class="post-title" title="【Activiti】进阶篇">【Activiti】进阶篇</span>
+            <span class="post-date" title="2024-05-28 21:35:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/1/"
+           data-tag="Activiti"
+           data-author="" >
+            <span class="post-title" title="【Activiti】基础篇">【Activiti】基础篇</span>
+            <span class="post-date" title="2024-05-28 21:23:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/html/websocket/"
+           data-tag="websocket"
+           data-author="" >
+            <span class="post-title" title="【H5】websocket协议">【H5】websocket协议</span>
+            <span class="post-date" title="2024-05-28 16:40:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/2/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】创建型设计模式">【设计模式】创建型设计模式</span>
+            <span class="post-date" title="2024-05-28 15:53:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/1/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】七大设计原则">【设计模式】七大设计原则</span>
+            <span class="post-date" title="2024-05-27 14:51:00">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java 数据库 "
+           href="/java/jdbc/"
+           data-tag="Java,数据库"
+           data-author="" >
+            <span class="post-title" title="【Java】JDBC数据库连接">【Java】JDBC数据库连接</span>
+            <span class="post-date" title="2024-05-25 22:24:00">2024/05/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-java/java8" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【Java】Java8新特性</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Java">Java</a> > 
+            
+            <a  data-rel="Java&lt;---&gt;新特性">新特性</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">Java</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-08-16 10:06:56'>2024-05-29 21:52</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:3.8k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="toc-text">1. 简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Lambda-%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text">2. Lambda 表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E8%AF%AD%E6%B3%95"><span class="toc-text">2.1. 语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E7%A4%BA%E4%BE%8B"><span class="toc-text">2.2. 示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3"><span class="toc-text">3. 函数式接口</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E7%AE%80%E4%BB%8B"><span class="toc-text">3.1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-JDK-%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3"><span class="toc-text">3.2. JDK 内置函数式接口</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8%E4%B8%8E%E6%9E%84%E9%80%A0%E5%99%A8%E5%BC%95%E7%94%A8"><span class="toc-text">4. 方法引用与构造器引用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8"><span class="toc-text">4.1. 方法引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E6%9E%84%E9%80%A0%E5%99%A8%E5%BC%95%E7%94%A8"><span class="toc-text">4.2. 构造器引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E6%95%B0%E7%BB%84%E5%BC%95%E7%94%A8"><span class="toc-text">4.3. 数组引用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-Stream-%E6%B5%81"><span class="toc-text">5. Stream 流</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E7%AE%80%E4%BB%8B"><span class="toc-text">5.1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E5%88%9B%E5%BB%BA%E6%B5%81"><span class="toc-text">5.2. 创建流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E4%B8%AD%E9%97%B4%E6%93%8D%E4%BD%9C"><span class="toc-text">5.3. 中间操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E7%BB%88%E6%AD%A2%E6%93%8D%E4%BD%9C"><span class="toc-text">5.4. 终止操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-1-%E6%9F%A5%E6%89%BE%E4%B8%8E%E5%8C%B9%E9%85%8D"><span class="toc-text">5.4.1. 查找与匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-2-%E8%A7%84%E7%BA%A6-reduce"><span class="toc-text">5.4.2. 规约 reduce</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-3-%E6%94%B6%E9%9B%86"><span class="toc-text">5.4.3. 收集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-%E5%B9%B6%E8%A1%8C%E6%B5%81"><span class="toc-text">5.5. 并行流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-1-%E5%AE%9A%E4%B9%89"><span class="toc-text">5.5.1. 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-2-Fork-Join-%E6%A1%86%E6%9E%B6"><span class="toc-text">5.5.2. Fork&#x2F;Join 框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-3-%E7%A4%BA%E4%BE%8B"><span class="toc-text">5.5.3. 示例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E6%8E%A5%E5%8F%A3%E6%96%B0%E7%89%B9%E6%80%A7"><span class="toc-text">6. 接口新特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E9%BB%98%E8%AE%A4%E6%96%B9%E6%B3%95"><span class="toc-text">6.1. 默认方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="toc-text">6.2. 静态方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E6%96%B0%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F"><span class="toc-text">7. 新时间日期</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-%E8%83%8C%E6%99%AF"><span class="toc-text">7.1. 背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-SimpleDateFormat"><span class="toc-text">7.2. SimpleDateFormat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-%E6%96%B0%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E7%89%B9%E6%80%A7"><span class="toc-text">7.3. 新时间日期特性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-%E6%B3%A8%E8%A7%A3%E6%96%B0%E7%89%B9%E6%80%A7"><span class="toc-text">8. 注解新特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-%E9%87%8D%E5%A4%8D%E6%B3%A8%E8%A7%A3"><span class="toc-text">8.1. 重复注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-%E7%B1%BB%E5%9E%8B%E6%B3%A8%E8%A7%A3"><span class="toc-text">8.2. 类型注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3-%E7%A4%BA%E4%BE%8B"><span class="toc-text">8.3. 示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-Optional-%E5%AE%B9%E5%99%A8"><span class="toc-text">9. Optional 容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-1-%E7%AE%80%E4%BB%8B"><span class="toc-text">9.1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-2-%E5%B8%B8%E7%94%A8-API"><span class="toc-text">9.2. 常用 API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-3-%E7%A4%BA%E4%BE%8B"><span class="toc-text">9.3. 示例</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><ul>
+<li>速度更快。<br><code>HashMap底层从Hash表变成Hash表加红黑树。</code><br><code>ConcurrentHashMap底层采用CAS比较并交换。</code><br><code>垃圾回收，永久区从堆中分离，为元空间（物理内存）。</code></li>
+<li>代码更少。<br><code>Lambda表达式。</code></li>
+<li>强大的 StreamAPI。</li>
+<li>便于并行。</li>
+<li>最大化减少空指针异常。</li>
+</ul>
+<h1 id="2-Lambda-表达式"><a href="#2-Lambda-表达式" class="headerlink" title="2. Lambda 表达式"></a>2. Lambda 表达式</h1><h2 id="2-1-语法"><a href="#2-1-语法" class="headerlink" title="2.1. 语法"></a>2.1. 语法</h2><p>需要函数式接口（接口中只有一个抽象方法，即函数式接口）支持。</p>
+<ul>
+<li>无参数，无返回值。() -&gt; {…}。</li>
+<li>有参数，无返回值。(x, y) -&gt; {…}。</li>
+<li>如果只有一个参数，小括号可以省略。x -&gt; {…}。</li>
+<li>如果函数体只有一条语句，大括号和 return 都可以省略。x -&gt; x。</li>
+<li>参数类型可以省略，可以通过上下文自己识别。</li>
+</ul>
+<h2 id="2-2-示例"><a href="#2-2-示例" class="headerlink" title="2.2. 示例"></a>2.2. 示例</h2><pre><code class="highlight java"><span class="comment">// Runnable</span>
+<span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; System.out.println(<span class="string">&quot;Lambda&quot;</span>)).start();
+<span class="comment">// Comparator</span>
+Comparator&lt;Integer&gt; comparable = (i, j) -&gt; i - j;
+List&lt;Integer&gt; list = Arrays.asList(<span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">6</span>);
+Collections.sort(list, comparable);
+<span class="comment">// foreach</span>
+list.forEach(i -&gt; System.out.println(i));</code></pre>
+
+<h1 id="3-函数式接口"><a href="#3-函数式接口" class="headerlink" title="3. 函数式接口"></a>3. 函数式接口</h1><h2 id="3-1-简介"><a href="#3-1-简介" class="headerlink" title="3.1. 简介"></a>3.1. 简介</h2><p><strong>接口中只有一个抽象方法，即函数式接口。可以采用注解@FunctionalInterface 修饰，用于检查。</strong></p>
+<h2 id="3-2-JDK-内置函数式接口"><a href="#3-2-JDK-内置函数式接口" class="headerlink" title="3.2. JDK 内置函数式接口"></a>3.2. JDK 内置函数式接口</h2><ul>
+<li><strong>Consumer&lt;T&gt;: void accept(T t)，消费型接口</strong>。</li>
+<li><strong>Supplier&lt;T&gt;: T get()，供给型接口。</strong></li>
+<li><strong>Function&lt;T, R&gt;: R apply(T t)，函数型接口。</strong></li>
+<li><strong>Predicte&lt;T&gt;: Boolean test(T t)，断言型接口。</strong></li>
+<li>BiFunction&lt;T, U, R&gt;：R apply(T t, U u)。</li>
+<li>UnaryOperator&lt;T&gt;：T apply(T t)。</li>
+<li>BinaryOperator&lt;T&gt;：T apply(T t1, T t2)。</li>
+<li>BiConsumer&lt;T, U&gt;：void accept(T t, U u)。</li>
+<li>ToDoubleFunction&lt;T&gt;：double applyAsDouble(T t)，同理有 ToIntFunction、ToLongFunction。</li>
+<li>IntFunction&lt;R&gt;：R apply(int value)，同理有 DoubleFunction、LongFunction。</li>
+</ul>
+<h1 id="4-方法引用与构造器引用"><a href="#4-方法引用与构造器引用" class="headerlink" title="4. 方法引用与构造器引用"></a>4. 方法引用与构造器引用</h1><h2 id="4-1-方法引用"><a href="#4-1-方法引用" class="headerlink" title="4.1. 方法引用"></a>4.1. 方法引用</h2><ul>
+<li><strong>类::静态方法。</strong>调用方法的参数列表与返回值类型与函数式接口的函数列表与返回值类型保持一致，可以省略。</li>
+</ul>
+<pre><code class="highlight java"><span class="comment">// Comparator&lt;Integer&gt; comparator = (x, y) -&gt; Integer.compare(x, y);</span>
+Comparator&lt;Integer&gt; comparator = Integer::compare;</code></pre>
+
+<ul>
+<li><strong>对象::实例方法。</strong>调用方法发参数列表与返回值类型与函数式接口的函数列表与返回值类型保持一致，可以省略。</li>
+</ul>
+<pre><code class="highlight java"><span class="comment">// Consumer c = s -&gt; System.out.printf(s);</span>
+<span class="comment">// PrintStream out = System.out;</span>
+<span class="comment">// Consumer c = s -&gt; Consumer c = out::println;</span>
+<span class="type">Consumer</span> <span class="variable">c</span> <span class="operator">=</span> System.out::printf;
+
+<span class="type">Student</span> <span class="variable">stu</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();
+<span class="comment">// Supplier&lt;String&gt; s = () -&gt; stu.getName();</span>
+Supplier&lt;String&gt; s = stu::getName;</code></pre>
+
+<ul>
+<li><strong>类::实例方法。</strong>第一个参数是实例方法的调用者，第二个参数是实例方法发参数时，可以省略。</li>
+</ul>
+<pre><code class="highlight java"><span class="comment">// BiPredicate&lt;Integer, Integer&gt; biPredicate = (x, y) -&gt; x.equals(y);</span>
+BiPredicate&lt;Integer, Integer&gt; biPredicate = Integer::equals;
+<span class="comment">// Function&lt;Student, String&gt; function = x -&gt; x.getName();</span>
+Function&lt;Student, String&gt; function = Student::getName;
+<span class="comment">// MybatisPlus中&quot;类::实例对象&quot;获取列名，如何实现的？不是方法引用。</span></code></pre>
+
+<h2 id="4-2-构造器引用"><a href="#4-2-构造器引用" class="headerlink" title="4.2. 构造器引用"></a>4.2. 构造器引用</h2><p><strong>类::new。</strong></p>
+<pre><code class="highlight java"><span class="comment">// Supplier&lt;Student&gt; supplier1 = () -&gt; new Student();</span>
+Supplier&lt;Student&gt; supplier1 = Student::<span class="keyword">new</span>;
+<span class="comment">// Function&lt;String, Student&gt; function1 = name -&gt; new Student(name);</span>
+Function&lt;String, Student&gt; function1 = Student::<span class="keyword">new</span>;</code></pre>
+
+<h2 id="4-3-数组引用"><a href="#4-3-数组引用" class="headerlink" title="4.3. 数组引用"></a>4.3. 数组引用</h2><p><strong>Type[]::new。</strong></p>
+<pre><code class="highlight java"><span class="comment">// Function&lt;Integer, String[]&gt; function = x -&gt; new String[x];</span>
+Function&lt;Integer, String[]&gt; function = String[]::<span class="keyword">new</span>;</code></pre>
+
+<h1 id="5-Stream-流"><a href="#5-Stream-流" class="headerlink" title="5. Stream 流"></a>5. Stream 流</h1><h2 id="5-1-简介"><a href="#5-1-简介" class="headerlink" title="5.1. 简介"></a>5.1. 简介</h2><p>流：数据渠道，用于操作数据源（集合、数组等）所生成的元素序列。<br>流不会存储元素；流不会改变源对象；<strong>流操作是延迟执行的，需要结果时，才执行</strong>。<br>流操作步骤：<font>创建流；中间操作；终止操作</font>。</p>
+<h2 id="5-2-创建流"><a href="#5-2-创建流" class="headerlink" title="5.2. 创建流"></a>5.2. 创建流</h2><ul>
+<li><strong>Collection 系列集合提供的 stream()和 parallelStream()方法。</strong></li>
+</ul>
+<pre><code class="highlight java">list.stream(); <span class="comment">// 串行流</span>
+list.parallelStream(); <span class="comment">// 并行流</span></code></pre>
+
+<ul>
+<li>Arrays 中静态方法 stream()获取数组流。</li>
+</ul>
+<pre><code class="highlight java">Arrays.stream(<span class="keyword">new</span> <span class="title class_">String</span>[] &#123; <span class="string">&quot;aaa&quot;</span>, <span class="string">&quot;bbb&quot;</span>, <span class="string">&quot;ccc&quot;</span> &#125;);</code></pre>
+
+<ul>
+<li>Stream 类静态方法 of()。</li>
+</ul>
+<pre><code class="highlight java">Stream.of(<span class="string">&quot;aaa&quot;</span>, <span class="string">&quot;sss&quot;</span>, <span class="string">&quot;ddd&quot;</span>);</code></pre>
+
+<ul>
+<li>创建无限流。</li>
+</ul>
+<pre><code class="highlight java">Stream.iterate(<span class="number">1</span>, x -&gt; x + <span class="number">2</span>); <span class="comment">// 无限流，第一个参数种子，第二个参数为函数式接口</span>
+Stream.generate(() -&gt; &#123;
+    <span class="keyword">return</span> <span class="number">1</span>;
+&#125;); <span class="comment">// 无限流</span></code></pre>
+
+<h2 id="5-3-中间操作"><a href="#5-3-中间操作" class="headerlink" title="5.3. 中间操作"></a>5.3. 中间操作</h2><ul>
+<li>filter：过滤。</li>
+</ul>
+<pre><code class="highlight java">mans.stream().filter(m -&gt; m.getLover() != <span class="literal">null</span>).forEach(System.out::println); <span class="comment">// 如果没有终止操作，中间操作不会执行，惰性求值（延迟加载）。终止操作一次性执行所有操作</span></code></pre>
+
+<ul>
+<li>limit：截断。</li>
+</ul>
+<pre><code class="highlight java">mans.stream().limit(<span class="number">2</span>).forEach(System.out::println); <span class="comment">// 截取，存在短路，只要找到满足条件的数据便不会继续迭代，提高效率</span></code></pre>
+
+<ul>
+<li>skip：跳过。</li>
+</ul>
+<pre><code class="highlight java">mans.stream().skip(<span class="number">2</span>).limit(<span class="number">2</span>).forEach(System.out::println); <span class="comment">// 跳过，注意：不同于mysql等数据库，顺序会影响结果</span></code></pre>
+
+<ul>
+<li>distinct：去重。</li>
+</ul>
+<pre><code class="highlight java">mans.stream().distinct().forEach(System.out::println); <span class="comment">// 去重，需要重写hashcode与equals方法</span></code></pre>
+
+<ul>
+<li>map：将元素转换成其他形式或者提取信息，函数会应用于每一个元素，然后映射成一个新的元素。</li>
+</ul>
+<pre><code class="highlight java">strs.stream().map(x -&gt; x.toUpperCase()).forEach(System.out::println);
+Stream&lt;Stream&lt;Character&gt;&gt; stream = strs.stream().map(<span class="keyword">new</span> <span class="title class_">TestHandleStream</span>()::getCharStream); <span class="comment">// getCharStream方法为将字符串转换为字符流</span></code></pre>
+
+<ul>
+<li>faltMap：将流中每一个值都转换成另一个流，然后把所有流拼接成另一个流。</li>
+</ul>
+<pre><code class="highlight java">stream.forEach(s -&gt; s.forEach(System.out::print));
+strs.stream().flatMap(<span class="keyword">new</span> <span class="title class_">TestHandleStream</span>()::getCharStream).forEach(System.out::print);</code></pre>
+
+<ul>
+<li>sorted：排序。</li>
+</ul>
+<pre><code class="highlight java">strs.stream().sorted().forEach(System.out::println); <span class="comment">// 自然排序</span>
+strs.stream().sorted((s1, s2) -&gt; -s1.compareTo(s2)).forEach(System.out::println); <span class="comment">// 定制排序</span></code></pre>
+
+<h2 id="5-4-终止操作"><a href="#5-4-终止操作" class="headerlink" title="5.4. 终止操作"></a>5.4. 终止操作</h2><h3 id="5-4-1-查找与匹配"><a href="#5-4-1-查找与匹配" class="headerlink" title="5.4.1. 查找与匹配"></a>5.4.1. 查找与匹配</h3><ul>
+<li>allMatch：是否匹配所有元素。</li>
+<li>anyMatch：是否至少匹配一个元素。</li>
+<li>noneMatch：是否没有匹配所有元素。</li>
+<li>findFirst：返回第一个元素。返回为 Optional 容器对象。</li>
+<li>findAny：返回任意一个，如果串行流，依旧是第一个，一直不变？</li>
+</ul>
+<pre><code class="highlight java">strs.stream().parallel().findAny()</code></pre>
+
+<ul>
+<li>count：总数。</li>
+<li>max：返回流中最大的值。</li>
+<li>min：返回流中最小的值。</li>
+</ul>
+<h3 id="5-4-2-规约-reduce"><a href="#5-4-2-规约-reduce" class="headerlink" title="5.4.2. 规约 reduce"></a>5.4.2. 规约 reduce</h3><pre><code class="highlight java">mans.stream().map(Man::getName).reduce(String::concat) <span class="comment">// 返回容器对象，可能为空</span>
+mans.stream().map(Man::getName).reduce(<span class="string">&quot;&quot;</span>, String::concat) <span class="comment">// 返回对象</span></code></pre>
+
+<h3 id="5-4-3-收集"><a href="#5-4-3-收集" class="headerlink" title="5.4.3. 收集"></a>5.4.3. 收集</h3><ul>
+<li>转换为集合。</li>
+</ul>
+<pre><code class="highlight java">mans.stream().map(Man::getName).collect(Collectors.toList()); <span class="comment">// 转换为list</span>
+mans.stream().map(Man::getName).collect(Collectors.toSet()); <span class="comment">// 转换set</span>
+mans.stream().map(Man::getName).collect(Collectors.toCollection(HashSet::<span class="keyword">new</span>)); <span class="comment">// 转换指定集合</span></code></pre>
+
+<ul>
+<li>计算。</li>
+</ul>
+<pre><code class="highlight java">ints.stream().collect(Collectors.counting()); <span class="comment">// 个数</span>
+ints.stream().collect(Collectors.averagingInt(i -&gt; i)); <span class="comment">// 平均数</span>
+ints.stream().collect(Collectors.summingInt(i -&gt; i)); <span class="comment">// 总和</span>
+ints.stream().collect(Collectors.maxBy(Integer::compareTo)); <span class="comment">// 最大值</span>
+ints.stream().collect(Collectors.minBy(Integer::compareTo)); <span class="comment">// 最小值</span>
+ints.stream().collect(Collectors.summarizingInt(i -&gt; i)); <span class="comment">// 从返回值获取最大值、最小值、总数、平均值、总和</span></code></pre>
+
+<ul>
+<li>分组。</li>
+</ul>
+<pre><code class="highlight java">Map&lt;String, List&lt;Man&gt;&gt; map1 = mans.stream().collect(Collectors.groupingBy(Man::getName)); <span class="comment">// 单个分组</span>
+mans.stream().collect(Collectors.groupingBy(Man::getName, Collectors.groupingBy(m -&gt; &#123;
+    <span class="keyword">if</span> (m.getLover() != <span class="literal">null</span>) &#123;
+        <span class="keyword">return</span> <span class="string">&quot;NOT NULL&quot;</span>;
+    &#125; <span class="keyword">else</span> &#123;
+        <span class="keyword">return</span> <span class="string">&quot;NULL&quot;</span>;
+    &#125;
+&#125;))); <span class="comment">// 多个分组</span>
+mans.stream().collect(Collectors.partitioningBy(m -&gt; m.getLover() == <span class="literal">null</span>)); <span class="comment">// 根据判断条件是否分组</span></code></pre>
+
+<ul>
+<li>拼接。</li>
+</ul>
+<pre><code class="highlight java">ints.stream().map(i -&gt; i + <span class="string">&quot;&quot;</span>).collect(Collectors.joining(<span class="string">&quot;,&quot;</span>)) <span class="comment">// 拼接字符串</span></code></pre>
+
+<h2 id="5-5-并行流"><a href="#5-5-并行流" class="headerlink" title="5.5. 并行流"></a>5.5. 并行流</h2><h3 id="5-5-1-定义"><a href="#5-5-1-定义" class="headerlink" title="5.5.1. 定义"></a>5.5.1. 定义</h3><p>将一个内容分成多个数据块，并用不同的线程分别处理每个数据块的流。</p>
+<h3 id="5-5-2-Fork-Join-框架"><a href="#5-5-2-Fork-Join-框架" class="headerlink" title="5.5.2. Fork&#x2F;Join 框架"></a>5.5.2. Fork&#x2F;Join 框架</h3><p>在必要的情况将一个大任务，进行拆分成若干个小任务（不可拆分），再将一个小任务运算的结果进行 join 汇总。<br><code>Fork/Join框架与传统线程池的区别：Fork/Join框架采用工作窃取模式。当执行新任务时，会将其拆分成更小的任务执行，并将小任务加到线程队列中，然后再从一个随机线程队列中偷一个将其放在自己的队列。</code></p>
+<pre><div class="caption"><span>MyForkJoinTask.java</span></div><code class="highlight java"><span class="comment">// 有返回值继承RecursiveTask类，无返回值继承RecursiveAction类</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyForkJoinTask</span> <span class="keyword">extends</span> <span class="title class_">RecursiveTask</span>&lt;Long&gt; &#123;
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> <span class="number">1L</span>;
+    <span class="keyword">private</span> <span class="type">long</span> start;
+    <span class="keyword">private</span> <span class="type">long</span> end;
+    <span class="comment">/** 临界值 */</span>
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">THRESHOLD</span> <span class="operator">=</span> <span class="number">10000</span>;
+    <span class="keyword">public</span> <span class="title function_">MyForkJoinTask</span><span class="params">(<span class="type">long</span> start, <span class="type">long</span> end)</span> &#123;
+        <span class="built_in">super</span>();
+        <span class="built_in">this</span>.start = start;
+        <span class="built_in">this</span>.end = end;
+    &#125;
+    <span class="meta">@Override</span>
+    <span class="keyword">protected</span> Long <span class="title function_">compute</span><span class="params">()</span> &#123;
+        <span class="type">long</span> <span class="variable">length</span> <span class="operator">=</span> end - start;
+        <span class="keyword">if</span> (Long.compare(length, THRESHOLD) &lt;= <span class="number">0</span>) &#123;
+            <span class="type">long</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;
+            <span class="keyword">for</span> (<span class="type">long</span> <span class="variable">i</span> <span class="operator">=</span> start; i &lt;= end; i++) &#123;
+                sum += i;
+            &#125;
+            <span class="keyword">return</span> sum;
+        &#125; <span class="keyword">else</span> &#123;
+            <span class="type">long</span> <span class="variable">mid</span> <span class="operator">=</span> (end + start) / <span class="number">2</span>;
+            <span class="type">MyForkJoinTask</span> <span class="variable">left</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyForkJoinTask</span>(start, mid);
+            <span class="type">MyForkJoinTask</span> <span class="variable">right</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyForkJoinTask</span>(mid + <span class="number">1</span>, end);
+            left.fork(); <span class="comment">// 拆分子任务，并压入线程队列</span>
+            right.fork(); <span class="comment">// 拆分子任务，并压入线程队列</span>
+            <span class="keyword">return</span> left.join() + right.join();
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<pre><code class="highlight java"><span class="type">Instant</span> <span class="variable">start</span> <span class="operator">=</span> Instant.now();
+<span class="type">ForkJoinPool</span> <span class="variable">forkJoinPool</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ForkJoinPool</span>();
+<span class="type">MyForkJoinTask</span> <span class="variable">forkJoinTask</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyForkJoinTask</span>(<span class="number">0</span>, <span class="number">10000000000l</span>);
+<span class="type">Long</span> <span class="variable">invoke</span> <span class="operator">=</span> forkJoinPool.invoke(forkJoinTask);
+<span class="type">Instant</span> <span class="variable">end</span> <span class="operator">=</span> Instant.now();
+System.out.println(<span class="string">&quot;ForkJoin耗时：&quot;</span> + Duration.between(start, end).toMillis() + <span class="string">&quot;，结果：&quot;</span> + invoke);</code></pre>
+
+<h3 id="5-5-3-示例"><a href="#5-5-3-示例" class="headerlink" title="5.5.3. 示例"></a>5.5.3. 示例</h3><pre><code class="highlight java"><span class="type">long</span> <span class="variable">sum</span> <span class="operator">=</span> LongStream.rangeClosed(<span class="number">0</span>, <span class="number">10000000000l</span>).parallel().reduce(<span class="number">0</span>, Long::sum); <span class="comment">// 并行流</span>
+<span class="type">long</span> <span class="variable">sum</span> <span class="operator">=</span> LongStream.rangeClosed(<span class="number">0</span>, <span class="number">10000000000l</span>).reduce(<span class="number">0</span>, Long::sum); <span class="comment">// 默认串行流，也可sequential()指定</span></code></pre>
+
+<h1 id="6-接口新特性"><a href="#6-接口新特性" class="headerlink" title="6. 接口新特性"></a>6. 接口新特性</h1><h2 id="6-1-默认方法"><a href="#6-1-默认方法" class="headerlink" title="6.1. 默认方法"></a>6.1. 默认方法</h2><ul>
+<li>接口默认方法，采用类优先的原则。</li>
+<li>如果继承的两个接口存在同名同参数列表的默认方法，则必须覆盖该方法来解决冲突。</li>
+</ul>
+<pre><div class="caption"><span>Inter.java</span></div><code class="highlight java"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Inter</span> &#123;
+    <span class="keyword">default</span> <span class="keyword">void</span> <span class="title function_">m1</span><span class="params">()</span> &#123;
+        System.out.println(<span class="built_in">this</span>.getClass().getName() + <span class="string">&quot;:m1&quot;</span>);
+    &#125;
+&#125;</code></pre>
+
+<h2 id="6-2-静态方法"><a href="#6-2-静态方法" class="headerlink" title="6.2. 静态方法"></a>6.2. 静态方法</h2><pre><div class="caption"><span>Inter.java</span></div><code class="highlight java"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Inter</span> &#123;
+    <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sm1</span><span class="params">()</span> &#123;
+        System.out.println(Inter.class.getName() + <span class="string">&quot;:sm1&quot;</span>);
+    &#125;
+&#125;</code></pre>
+
+<h1 id="7-新时间日期"><a href="#7-新时间日期" class="headerlink" title="7. 新时间日期"></a>7. 新时间日期</h1><h2 id="7-1-背景"><a href="#7-1-背景" class="headerlink" title="7.1. 背景"></a>7.1. 背景</h2><p>Date 构造时间日期对象，需要计算（年从 1990 年开始计算，星期从日开始）。<br>时区 TimeZone 非线程安全。<br>时间格式化 SimpleDateFormat 非线程安全。</p>
+<h2 id="7-2-SimpleDateFormat"><a href="#7-2-SimpleDateFormat" class="headerlink" title="7.2. SimpleDateFormat"></a>7.2. SimpleDateFormat</h2><p>测试 SimpleDateFormat 非线程安全：</p>
+<pre><code class="highlight java"><span class="type">SimpleDateFormat</span> <span class="variable">dateFormat</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy-MM-dd HH:mm&quot;</span>);
+Callable&lt;Date&gt; task = <span class="keyword">new</span> <span class="title class_">Callable</span>&lt;Date&gt;() &#123;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> Date <span class="title function_">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+        <span class="keyword">return</span> dateFormat.parse(<span class="string">&quot;2016-12-28 12:00&quot;</span>);
+    &#125;
+&#125;;
+<span class="type">ExecutorService</span> <span class="variable">pool</span> <span class="operator">=</span> Executors.newFixedThreadPool(<span class="number">10</span>); <span class="comment">// 线程池</span>
+List&lt;Future&lt;Date&gt;&gt; futures = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();
+<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;
+    futures.add(pool.submit(task));
+&#125;
+<span class="keyword">for</span> (Future&lt;Date&gt; future : futures) &#123;
+    System.out.println(future.get()); <span class="comment">// 会报错</span>
+&#125;
+pool.shutdown(); <span class="comment">// 关闭线程池</span></code></pre>
+
+<p>解决方案 1：使用 ThreadLocal 存储 SimpleDateFormat。</p>
+<pre><code class="highlight java"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ThreadLocal&lt;SimpleDateFormat&gt; df = <span class="keyword">new</span> <span class="title class_">ThreadLocal</span>&lt;SimpleDateFormat&gt;() &#123;
+    <span class="meta">@Override</span>
+    <span class="keyword">protected</span> SimpleDateFormat <span class="title function_">initialValue</span><span class="params">()</span> &#123;
+        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy-MM-dd HH:mm&quot;</span>);
+    &#125;
+&#125;;
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException, ExecutionException &#123;
+    Callable&lt;Date&gt; task = <span class="keyword">new</span> <span class="title class_">Callable</span>&lt;Date&gt;() &#123;
+        <span class="meta">@Override</span>
+        <span class="keyword">public</span> Date <span class="title function_">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+            <span class="keyword">return</span> df.get().parse(<span class="string">&quot;2016-12-28 12:00&quot;</span>);
+        &#125;
+    &#125;;
+    <span class="type">ExecutorService</span> <span class="variable">pool</span> <span class="operator">=</span> Executors.newFixedThreadPool(<span class="number">10</span>);
+    List&lt;Future&lt;Date&gt;&gt; futures = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();
+    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;
+        futures.add(pool.submit(task));
+    &#125;
+    <span class="keyword">for</span> (Future&lt;Date&gt; future : futures) &#123;
+        System.out.println(future.get());
+    &#125;
+    pool.shutdown();
+&#125;</code></pre>
+
+<p>解决方案 2：使用新的日期时间 API。</p>
+<pre><code class="highlight java"><span class="type">DateTimeFormatter</span> <span class="variable">dateTimeFormatter</span> <span class="operator">=</span> DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);
+<span class="type">ExecutorService</span> <span class="variable">pool</span> <span class="operator">=</span> Executors.newFixedThreadPool(<span class="number">10</span>);
+Callable&lt;LocalDateTime&gt; task = <span class="keyword">new</span> <span class="title class_">Callable</span>&lt;LocalDateTime&gt;() &#123;
+    <span class="comment">// ...</span>
+&#125;;
+List&lt;Future&lt;LocalDateTime&gt;&gt; futures = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Future&lt;LocalDateTime&gt;&gt;();
+<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;
+    futures.add(pool.submit(task));
+&#125;
+<span class="keyword">for</span> (Future&lt;LocalDateTime&gt; future : futures) &#123;
+    System.out.println(future.get());
+&#125;
+pool.shutdown();</code></pre>
+
+<h2 id="7-3-新时间日期特性"><a href="#7-3-新时间日期特性" class="headerlink" title="7.3. 新时间日期特性"></a>7.3. 新时间日期特性</h2><ul>
+<li>格式化日期时间。</li>
+</ul>
+<pre><code class="highlight java"><span class="type">DateTimeFormatter</span> <span class="variable">dateTimeFormatter</span> <span class="operator">=</span> DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);
+LocalDateTime.now().format(dateTimeFormatter)； <span class="comment">// 格式化当前日期</span>
+dateTimeFormatter.format(LocalDateTime.now())； <span class="comment">// 格式化当前日期</span>
+LocalDateTime.parse(<span class="string">&quot;1997-12-01 00:00:00&quot;</span>, dateTimeFormatter)； <span class="comment">// 将字符串转换为日期时间</span></code></pre>
+
+<ul>
+<li>LocalDateTime、LocalDate、LocalTime。</li>
+</ul>
+<pre><code class="highlight java">LocalDateTime.now(); <span class="comment">// 获取当前日期时间</span>
+LocalDateTime.of(<span class="number">1997</span>, <span class="number">12</span>, <span class="number">1</span>, <span class="number">12</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>); <span class="comment">// 获取指定日期时间</span>
+dateTime.plusYears(<span class="number">2</span>)； <span class="comment">// 加两年</span>
+dateTime.minusDays(<span class="number">2</span>)； <span class="comment">// 减两天</span>
+System.out.println(dateTime.getYear() + <span class="string">&quot;-&quot;</span> + dateTime.getMonthValue() + <span class="string">&quot;-&quot;</span> + dateTime.getDayOfMonth()); <span class="comment">// 获取年、月、日</span></code></pre>
+
+<ul>
+<li>Instant 时间戳，以 Unix 元年（1970-1-1）到某时刻的毫秒值。</li>
+</ul>
+<pre><code class="highlight java"><span class="type">Instant</span> <span class="variable">instant</span> <span class="operator">=</span> Instant.now(); <span class="comment">// 默认获取UTC时区的</span>
+instant.atOffset(ZoneOffset.ofHours(<span class="number">8</span>))； <span class="comment">// 偏移量</span>
+instant.toEpochMilli()； <span class="comment">// 转换时间戳</span></code></pre>
+
+<ul>
+<li>Duration 时间间隔、Period 日期间隔。</li>
+</ul>
+<pre><code class="highlight java">Duration.between(i1, i2).toMillis()； <span class="comment">// 获取两个时间间隔，i1，i2可以为Instant，也可为LocalTime等</span>
+<span class="type">Period</span> <span class="variable">period</span> <span class="operator">=</span> Period.between(ld1, ld2); <span class="comment">// 获得两个日期间隔</span>
+System.out.println(period.getYears() + <span class="string">&quot;, &quot;</span> + period.getMonths() + <span class="string">&quot;, &quot;</span> + period.getDays()); <span class="comment">// 取间隔年、月、日</span></code></pre>
+
+<ul>
+<li>TemporalAdjuster 时间校正器。</li>
+</ul>
+<pre><code class="highlight java"><span class="type">LocalDateTime</span> <span class="variable">dateTime</span> <span class="operator">=</span> LocalDateTime.now();
+dateTime.withDayOfMonth(<span class="number">1</span>)； <span class="comment">// 获得这个月第一天</span>
+dateTime.with(TemporalAdjusters.next(DayOfWeek.SUNDAY))； <span class="comment">// 获得下一个星期日</span>
+dateTime.with(dt -&gt; &#123;
+    <span class="type">LocalDateTime</span> <span class="variable">ldt</span> <span class="operator">=</span> (LocalDateTime) dt;
+    <span class="type">DayOfWeek</span> <span class="variable">dayOfWeek</span> <span class="operator">=</span> ldt.getDayOfWeek();
+    <span class="keyword">switch</span> (dayOfWeek) &#123;
+        <span class="keyword">case</span> FRIDAY:
+            <span class="keyword">return</span> ldt.plusDays(<span class="number">2</span>);
+        <span class="keyword">case</span> SATURDAY:
+            <span class="keyword">return</span> ldt.plusDays(<span class="number">1</span>);
+        <span class="keyword">default</span>:
+            <span class="keyword">return</span> ldt.plusDays(<span class="number">1</span>);
+    &#125;
+&#125;); <span class="comment">// 获得下一个工作日，自定义TemporalAdjuster函数接口实现</span></code></pre>
+
+<ul>
+<li>时区。</li>
+</ul>
+<pre><code class="highlight java">ZoneId.getAvailableZoneIds() <span class="comment">// 可用的时区</span>
+<span class="type">LocalDateTime</span> <span class="variable">ldt</span> <span class="operator">=</span> LocalDateTime.now(ZoneId.systemDefault()) <span class="comment">// 创建时间指定时区</span>
+<span class="type">ZonedDateTime</span> <span class="variable">zdt</span> <span class="operator">=</span> ldt.atZone(ZoneId.systemDefault()); <span class="comment">// 创建带时区的时间</span></code></pre>
+
+<h1 id="8-注解新特性"><a href="#8-注解新特性" class="headerlink" title="8. 注解新特性"></a>8. 注解新特性</h1><h2 id="8-1-重复注解"><a href="#8-1-重复注解" class="headerlink" title="8.1. 重复注解"></a>8.1. 重复注解</h2><p>jdk8 之前不允许重复注解，<strong>jdk8 以后支持重复注解</strong>。</p>
+<h2 id="8-2-类型注解"><a href="#8-2-类型注解" class="headerlink" title="8.2. 类型注解"></a>8.2. 类型注解</h2><p>在相应注解上添加作用类型 ElementType.TYPE_PARAMETER，目前只能配合框架一起使用，例如@NotNull 等注解用来检查变量非空。</p>
+<h2 id="8-3-示例"><a href="#8-3-示例" class="headerlink" title="8.3. 示例"></a>8.3. 示例</h2><pre><code class="highlight java"><span class="meta">@Repeatable(value = MyAnnos.class)</span>
+<span class="meta">@Retention(RetentionPolicy.RUNTIME)</span>
+<span class="meta">@Target(&#123; ElementType.METHOD, ElementType.PARAMETER, ElementType.TYPE, ElementType.TYPE_PARAMETER &#125;)</span>
+<span class="meta">@interface</span> MyAnno &#123;
+    String <span class="title function_">value</span><span class="params">()</span>;
+&#125;
+<span class="meta">@Retention(RetentionPolicy.RUNTIME)</span>
+<span class="meta">@Target(&#123; ElementType.METHOD, ElementType.PARAMETER, ElementType.TYPE &#125;)</span>
+<span class="meta">@interface</span> MyAnnos &#123;
+    MyAnno[] value();
+&#125;
+<span class="meta">@MyAnno(&quot;111&quot;)</span>
+<span class="meta">@MyAnno(&quot;111&quot;)</span>
+<span class="meta">@MyAnno(&quot;111&quot;)</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestAnno</span> &#123;
+    <span class="meta">@MyAnno(value = &quot;11&quot;)</span>
+    <span class="keyword">public</span> &lt;<span class="meta">@MyAnno(&quot;param2&quot;)</span> T <span class="keyword">extends</span> <span class="title class_">Object</span>&gt; <span class="keyword">void</span> <span class="title function_">m1</span><span class="params">(<span class="meta">@MyAnno(&quot;p1&quot;)</span> <span class="meta">@MyAnno(&quot;param1&quot;)</span> Date date, <span class="meta">@MyAnno(&quot;p2&quot;)</span> T o)</span> &#123;
+
+    &#125;
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException, SecurityException &#123;
+        MyAnno[] myAnnos = TestAnno.class.getAnnotationsByType(MyAnno.class);
+        <span class="keyword">for</span> (MyAnno myAnno : myAnnos) &#123;
+            System.out.println(myAnno.value());
+        &#125;
+        System.out.println(<span class="string">&quot;----------------------------&quot;</span>);
+        <span class="type">Method</span> <span class="variable">m1</span> <span class="operator">=</span> TestAnno.class.getMethod(<span class="string">&quot;m1&quot;</span>, Date.class, Object.class);
+        Parameter[] parameters = m1.getParameters();
+        <span class="keyword">for</span> (Parameter parameter : parameters) &#123;
+            MyAnno[] myAnnos2 = parameter.getAnnotationsByType(MyAnno.class);
+            <span class="keyword">for</span> (MyAnno myAnno : myAnnos2) &#123;
+                System.out.println(myAnno.value());
+            &#125;
+            System.out.println(<span class="string">&quot;----------------------------&quot;</span>);
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<h1 id="9-Optional-容器"><a href="#9-Optional-容器" class="headerlink" title="9. Optional 容器"></a>9. Optional 容器</h1><h2 id="9-1-简介"><a href="#9-1-简介" class="headerlink" title="9.1. 简介"></a>9.1. 简介</h2><p>Optional&lt;T&gt;类(java.util.Optional)是一个容器类，代表一个值存在或不存在，原来用 null 表示一个值不存在，现在 Optional 可以更好的表达这个概念。并且可以避免空指针异常。</p>
+<h2 id="9-2-常用-API"><a href="#9-2-常用-API" class="headerlink" title="9.2. 常用 API"></a>9.2. 常用 API</h2><ul>
+<li>Optional.of(T t)：创建一个实例。</li>
+<li>Optional.empty()：创建一个空实例。</li>
+<li>Optional.ofNullable(T t)：如果 t 不为 null，创建一个实例，否则创建一个空实例。</li>
+<li>isPresent()：判断实例是否有值。</li>
+<li>get()：获取实例值。</li>
+<li>orElse(T t)：如果调用对象包含值，则返回值，否则返回 t。</li>
+<li>orElseGet(Supplier s)：如果调用对象包含值，则返回值，否则返回 s 获取的值。</li>
+<li>map(Function f)：如果有值对其处理，并返回处理后的 Optional，否则返回一个空实例。</li>
+<li>flatMap(Function f)：与 map 类似，但是要求返回值必须为 Optional 类型。</li>
+</ul>
+<h2 id="9-3-示例"><a href="#9-3-示例" class="headerlink" title="9.3. 示例"></a>9.3. 示例</h2><pre><code class="highlight java"><span class="comment">// 创建一个Optional实例。不能为NULL, 否则抛出空指针异常</span>
+<span class="comment">//  Optional&lt;Object&gt; optional1 = Optional.of(null); // java.lang.NullPointerException</span>
+Optional&lt;Object&gt; optional2 = Optional.of(<span class="keyword">new</span> <span class="title class_">Date</span>());
+<span class="comment">// 创建一个空的Optional实例</span>
+Optional&lt;Object&gt; optional3 = Optional.empty();
+<span class="comment">// 创建一个Optional实例。如果为NULL, 创建一个空的Optional实例</span>
+Optional&lt;Object&gt; optional4 = Optional.ofNullable(<span class="literal">null</span>);
+Optional&lt;Object&gt; optional5 = Optional.ofNullable(<span class="keyword">new</span> <span class="title class_">Date</span>());
+<span class="comment">// 判断是否包含值</span>
+System.out.println(optional4.isPresent()); <span class="comment">// false</span>
+System.out.println(optional5.isPresent()); <span class="comment">// true</span>
+<span class="comment">// 如果调用对象包含值，返回该值，否则抛出java.util.NoSuchElementException异常</span>
+<span class="comment">//  System.out.println(optional4.get()); // java.util.NoSuchElementException</span>
+System.out.println(optional5.get()); <span class="comment">// Tue Jun 13 21:48:37 GMT+08:00 2023</span>
+<span class="comment">// 如果调用对象包含值，返回该值，否则返回t</span>
+System.out.println(optional4.orElse(<span class="number">1</span>)); <span class="comment">// 1</span>
+System.out.println(optional5.orElse(<span class="number">1</span>)); <span class="comment">// Tue Jun 13 21:48:37 GMT+08:00 2023</span>
+<span class="comment">// 如果调用对象包含值，返回该值，否则返回Supplier获取的值</span>
+System.out.println(optional4.orElseGet(() -&gt; <span class="keyword">new</span> <span class="title class_">Random</span>().nextDouble())); <span class="comment">// 0.4410709002750829</span>
+System.out.println(optional5.orElseGet(() -&gt; <span class="keyword">new</span> <span class="title class_">Random</span>().nextDouble())); <span class="comment">// Tue Jun 13 21:48:37 GMT+08:00 2023</span>
+<span class="comment">// 如果有值对其处理，并返回处理后的Optional，否则返回Optional.empty()</span>
+Optional&lt;String&gt; optional6 = optional4.map(o -&gt; o.toString());
+System.out.println(optional6); <span class="comment">// Optional.empty</span>
+Optional&lt;String&gt; optional7 = optional5.map(o -&gt; o.toString());
+System.out.println(optional7); <span class="comment">// Optional[Tue Jun 13 21:48:37 GMT+08:00 2023]</span>
+<span class="comment">// 与map类似，要求返回值必须是Optional</span>
+Optional&lt;String&gt; optional8 = optional4.flatMap(o -&gt; Optional.of(<span class="string">&quot;flatMap: &quot;</span> + o.toString()));
+System.out.println(optional8); <span class="comment">// Optional.empty</span>
+Optional&lt;String&gt; optional9 = optional5.flatMap(o -&gt; Optional.of(<span class="string">&quot;flatMap: &quot;</span> + o.toString()));
+System.out.println(optional9); <span class="comment">// Optional[flatMap: Tue Jun 13 21:56:40 GMT+08:00 2023]</span></code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 不积跬步无以至千里，不积小流无以成江海！ </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2015-2024 蜡笔没了小新
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.png" class="alipay" title="扫码支持">
+            <img src="/img/wechat.png" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 582px;
+    }
+    .nav.fullscreen {
+        margin-left: -582px;
+    }
+    .nav-left {
+        width: 160px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 532px;
+        }
+        .nav.fullscreen {
+            margin-left: -532px;
+        }
+        .nav-left {
+            width: 140px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 532px;
+            margin-left: -532px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("/images/20230809225525.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>

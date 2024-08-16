@@ -1,0 +1,2036 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【Activiti】整合篇 | 蜡笔没了小新の笔记</title>
+  <meta name="keywords" content=" Activiti , SpringBoot , IDEA ">
+  <meta name="description" content="【Activiti】整合篇 | 蜡笔没了小新の笔记">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="1. XMLHttpRequest&#x2F;&#x2F; 实例化xhr对象 var xhr &#x3D; new XMLHttpRequest() &#x2F;&#x2F; 建立连接 xhr.open(&#x27;GET&#x27;, &#x27;xxx&#x27;, false) &#x2F;&#x2F; 发送请求 xhr.send()  2. jQueryTODO 待补充 3. vue-resource 安装vue-resource。 npm install">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Vue】HTTP插件">
+<meta property="og:url" content="http://example.com/vue/http/index.html">
+<meta property="og:site_name" content="蜡笔没了小新の笔记">
+<meta property="og:description" content="1. XMLHttpRequest&#x2F;&#x2F; 实例化xhr对象 var xhr &#x3D; new XMLHttpRequest() &#x2F;&#x2F; 建立连接 xhr.open(&#x27;GET&#x27;, &#x27;xxx&#x27;, false) &#x2F;&#x2F; 发送请求 xhr.send()  2. jQueryTODO 待补充 3. vue-resource 安装vue-resource。 npm install">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-15T15:21:00.000Z">
+<meta property="article:modified_time" content="2024-08-16T02:06:56.909Z">
+<meta property="article:author" content="蜡笔没了小新">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>蜡笔没了小新</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/fengbiao-github"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:2014695858@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2014695858&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="理论">
+            <i class="fold iconfont icon-right"></i>
+            理论
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;数据结构与算法">
+            
+            数据结构与算法
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;设计模式">
+            
+            设计模式
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;计算机网络">
+            
+            计算机网络
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Java">
+            <i class="fold iconfont icon-right"></i>
+            Java
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;JVM">
+            
+            JVM
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;JUC">
+            
+            JUC
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;新特性">
+            
+            新特性
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;NIO">
+            
+            NIO
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            <i class="fold iconfont icon-right"></i>
+            数据库
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;关系型数据库">
+            
+            关系型数据库
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;非关系型数据库">
+            
+            非关系型数据库
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;分库分表">
+            
+            分库分表
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="框架">
+            <i class="fold iconfont icon-right"></i>
+            框架
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;Spring">
+            
+            Spring
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;视图层">
+            
+            视图层
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;ORM">
+            
+            ORM
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;认证授权">
+            
+            认证授权
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;任务调度">
+            
+            任务调度
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;工作流引擎">
+            
+            工作流引擎
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;网络编程">
+            
+            网络编程
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;文件处理">
+            
+            文件处理
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="微服务">
+            
+            微服务
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="中间件">
+            <i class="fold iconfont icon-right"></i>
+            中间件
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;WEB">
+            
+            WEB
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;缓存">
+            
+            缓存
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;消息队列">
+            
+            消息队列
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;搜索引擎">
+            
+            搜索引擎
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;日志">
+            
+            日志
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="大数据">
+            
+            大数据
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="工具">
+            <i class="fold iconfont icon-right"></i>
+            工具
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;IDE">
+            
+            IDE
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;版本控制">
+            
+            版本控制
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;项目构建">
+            
+            项目构建
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;持续集成">
+            
+            持续集成
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;测试">
+            
+            测试
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="运维">
+            <i class="fold iconfont icon-right"></i>
+            运维
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;Linux">
+            
+            Linux
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;高可用">
+            
+            高可用
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;云原生">
+            
+            云原生
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;脚本">
+            
+            脚本
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="前端">
+            <i class="fold iconfont icon-right"></i>
+            前端
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="前端&lt;---&gt;框架">
+            
+            框架
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="面试">
+            
+            面试
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  site_url"
+               
+               href="/about">关于</a>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="32">
+<input type="hidden" id="yelog_site_word_count" value="67k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>待完善</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分布式事务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务调度</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>负载均衡</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构与算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Activiti</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IDEA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Maven</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MybatisPlus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Nginx</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NodeJS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RabbitMQ</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringBoot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringCloudAlibaba</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringCloudNetflix</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Vue</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>websocket</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>xxl-job</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/http/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】HTTP插件">【Vue】HTTP插件</span>
+            <span class="post-date" title="2024-08-15 23:21:00">2024/08/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/html/storage/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="【H5】webStorage">【H5】webStorage</span>
+            <span class="post-date" title="2024-08-13 22:55:00">2024/08/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/component/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】组件化编程">【Vue】组件化编程</span>
+            <span class="post-date" title="2024-08-08 23:21:00">2024/08/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 高可用 "
+           href="/nginx/"
+           data-tag="负载均衡,Nginx"
+           data-author="" >
+            <span class="post-title" title="Nginx负载均衡器">Nginx负载均衡器</span>
+            <span class="post-date" title="2024-07-29 23:08:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 大数据 "
+           href="/zookeeper/"
+           data-tag="服务调度"
+           data-author="" >
+            <span class="post-title" title="Zookeeper笔记">Zookeeper笔记</span>
+            <span class="post-date" title="2024-07-29 23:04:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 "
+           href="/springcloud/springcloud-alibaba/"
+           data-tag="SpringCloudAlibaba,分布式事务"
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba框架">SpringCloudAlibaba框架</span>
+            <span class="post-date" title="2024-07-29 23:01:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 "
+           href="/springcloud/springcloud-netflix/"
+           data-tag="SpringCloudNetflix"
+           data-author="" >
+            <span class="post-title" title="SpringCloudNetflix框架">SpringCloudNetflix框架</span>
+            <span class="post-date" title="2024-07-29 22:58:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/nodejs/npm/"
+           data-tag="NodeJS"
+           data-author="" >
+            <span class="post-title" title="【Node.js】NPM设置淘宝镜像">【Node.js】NPM设置淘宝镜像</span>
+            <span class="post-date" title="2024-07-17 00:56:00">2024/07/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/Vuex/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】vuex状态管理插件">【Vue】vuex状态管理插件</span>
+            <span class="post-date" title="2024-07-15 23:40:00">2024/07/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 ORM "
+           href="/mybatis/encry/"
+           data-tag="MybatisPlus"
+           data-author="" >
+            <span class="post-title" title="数据库信息加解密">数据库信息加解密</span>
+            <span class="post-date" title="2024-07-12 10:47:00">2024/07/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue-router/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】vue-router路由插件">【Vue】vue-router路由插件</span>
+            <span class="post-date" title="2024-07-09 22:21:00">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue-ui/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】UI组件库">【Vue】UI组件库</span>
+            <span class="post-date" title="2024-07-09 21:31:00">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 运维 工具 框架 计算机网络 高可用 版本控制 大数据 Java 中间件 ORM 持续集成 数据库 IDE 测试 JUC JVM NIO 关系型数据库 非关系型数据库 分库分表 缓存 搜索引擎 日志 WEB Linux 脚本 Spring 视图层 认证授权 文件处理 网络编程 "
+           href="/demo/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="示例文档">示例文档</span>
+            <span class="post-date" title="2024-06-06 23:51:00">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 任务调度 "
+           href="/xxl-job/"
+           data-tag="xxl-job"
+           data-author="" >
+            <span class="post-title" title="xxl-job分布式任务调度框架">xxl-job分布式任务调度框架</span>
+            <span class="post-date" title="2024-06-06 23:51:00">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 数据结构与算法 "
+           href="/data-structure-and-algorithm/algorithm/"
+           data-tag="数据结构与算法"
+           data-author="" >
+            <span class="post-title" title="【数据结构与算法】算法篇">【数据结构与算法】算法篇</span>
+            <span class="post-date" title="2024-06-05 23:04:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 "
+           href="/mq/mq/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2024-06-05 22:58:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 面试 "
+           href="/interview/rabbitmq/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ面试题">RabbitMQ面试题</span>
+            <span class="post-date" title="2024-06-05 22:27:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 云原生 "
+           href="/docker/2/"
+           data-tag="Docker,待完善"
+           data-author="" >
+            <span class="post-title" title="【Docker】进阶篇">【Docker】进阶篇</span>
+            <span class="post-date" title="2024-06-05 21:20:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 "
+           href="/mq/rabbitmq/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ消息队列">RabbitMQ消息队列</span>
+            <span class="post-date" title="2024-06-05 09:59:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue2/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】Vue2语法">【Vue】Vue2语法</span>
+            <span class="post-date" title="2024-06-04 21:30:00">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 项目构建 "
+           href="/maven/"
+           data-tag="Maven"
+           data-author="" >
+            <span class="post-title" title="Maven构建工具">Maven构建工具</span>
+            <span class="post-date" title="2024-05-29 22:47:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java 新特性 "
+           href="/java/java8/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="【Java】Java8新特性">【Java】Java8新特性</span>
+            <span class="post-date" title="2024-05-29 21:52:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 云原生 "
+           href="/docker/1/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="【Docker】基础篇">【Docker】基础篇</span>
+            <span class="post-date" title="2024-05-29 12:37:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/4/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】行为型设计模式">【设计模式】行为型设计模式</span>
+            <span class="post-date" title="2024-05-28 22:27:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/3/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】结构型设计模式">【设计模式】结构型设计模式</span>
+            <span class="post-date" title="2024-05-28 22:01:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/3/"
+           data-tag="Activiti,SpringBoot,IDEA"
+           data-author="" >
+            <span class="post-title" title="【Activiti】整合篇">【Activiti】整合篇</span>
+            <span class="post-date" title="2024-05-28 21:49:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/2/"
+           data-tag="Activiti"
+           data-author="" >
+            <span class="post-title" title="【Activiti】进阶篇">【Activiti】进阶篇</span>
+            <span class="post-date" title="2024-05-28 21:35:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/1/"
+           data-tag="Activiti"
+           data-author="" >
+            <span class="post-title" title="【Activiti】基础篇">【Activiti】基础篇</span>
+            <span class="post-date" title="2024-05-28 21:23:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/html/websocket/"
+           data-tag="websocket"
+           data-author="" >
+            <span class="post-title" title="【H5】websocket协议">【H5】websocket协议</span>
+            <span class="post-date" title="2024-05-28 16:40:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/2/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】创建型设计模式">【设计模式】创建型设计模式</span>
+            <span class="post-date" title="2024-05-28 15:53:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/1/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】七大设计原则">【设计模式】七大设计原则</span>
+            <span class="post-date" title="2024-05-27 14:51:00">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java 数据库 "
+           href="/java/jdbc/"
+           data-tag="Java,数据库"
+           data-author="" >
+            <span class="post-title" title="【Java】JDBC数据库连接">【Java】JDBC数据库连接</span>
+            <span class="post-date" title="2024-05-25 22:24:00">2024/05/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-activiti/3" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【Activiti】整合篇</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="框架">框架</a> > 
+            
+            <a  data-rel="框架&lt;---&gt;工作流引擎">工作流引擎</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">Activiti</a>
+            
+            <a class="color1">SpringBoot</a>
+            
+            <a class="color5">IDEA</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-08-16 10:06:56'>2024-05-28 21:49</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:2.6k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-SpringBoot-%E6%95%B4%E5%90%88-Activiti"><span class="toc-text">1. SpringBoot 整合 Activiti</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1"><span class="toc-text">2. 流程设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%AE%89%E8%A3%85-BPMN2-0-%E6%8F%92%E4%BB%B6"><span class="toc-text">2.1. 安装 BPMN2.0 插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%95%B4%E5%90%88-Activiti-Modeler"><span class="toc-text">2.2. 整合 Activiti Modeler</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B"><span class="toc-text">3. 流程定义模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E6%9F%A5%E8%AF%A2%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B"><span class="toc-text">3.1. 查询流程定义模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E5%88%A0%E9%99%A4%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B"><span class="toc-text">3.2. 删除流程定义模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E5%AF%BC%E5%87%BA%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E8%B5%84%E6%BA%90"><span class="toc-text">3.3. 导出流程定义模型资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E9%80%9A%E8%BF%87%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2"><span class="toc-text">3.4. 通过流程定义模型部署</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Activiti7-%E6%96%B0%E7%89%B9%E6%80%A7"><span class="toc-text">4. Activiti7 新特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E6%95%B4%E5%90%88-SpringSecurity"><span class="toc-text">4.1. 整合 SpringSecurity</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-ProcessRuntime"><span class="toc-text">4.2. ProcessRuntime</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-%E6%9F%A5%E8%AF%A2%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89"><span class="toc-text">4.2.1. 查询流程定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E5%AE%9E%E4%BE%8B"><span class="toc-text">4.2.2. 启动流程实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-%E6%9F%A5%E8%AF%A2%E6%B5%81%E7%A8%8B%E5%AE%9E%E4%BE%8B"><span class="toc-text">4.2.3. 查询流程实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-4-%E6%8C%82%E8%B5%B7-%E6%BF%80%E6%B4%BB%E6%B5%81%E7%A8%8B%E5%AE%9E%E4%BE%8B"><span class="toc-text">4.2.4. 挂起&#x2F;激活流程实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-5-%E5%88%A0%E9%99%A4%E6%B5%81%E7%A8%8B%E5%AE%9E%E4%BE%8B"><span class="toc-text">4.2.5. 删除流程实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-6-%E6%9F%A5%E8%AF%A2%E6%B5%81%E7%A8%8B%E5%AE%9E%E4%BE%8B%E7%9A%84%E6%B5%81%E7%A8%8B%E5%8F%98%E9%87%8F"><span class="toc-text">4.2.6. 查询流程实例的流程变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-TaskRuntime"><span class="toc-text">4.3. TaskRuntime</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-1-%E6%9F%A5%E8%AF%A2%E4%BB%A3%E5%8A%9E%E4%BB%BB%E5%8A%A1"><span class="toc-text">4.3.1. 查询代办任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-2-%E5%AE%8C%E6%88%90%E4%BB%A3%E5%8A%9E%E4%BB%BB%E5%8A%A1"><span class="toc-text">4.3.2. 完成代办任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-3-%E6%8B%BE%E5%8F%96%E7%BB%84%E4%BB%BB%E5%8A%A1"><span class="toc-text">4.3.3. 拾取组任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-4-%E5%BD%92%E8%BF%98%E7%BB%84%E4%BB%BB%E5%8A%A1"><span class="toc-text">4.3.4. 归还组任务</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-SpringBoot-整合-Activiti"><a href="#1-SpringBoot-整合-Activiti" class="headerlink" title="1. SpringBoot 整合 Activiti"></a>1. SpringBoot 整合 Activiti</h1><ol>
+<li>创建 SpringBoot 项目，添加依赖。</li>
+</ol>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span>
+<span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span>
+<span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fengb<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>activiti-springboot<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">parent</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.12.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.activiti/activiti-spring-boot-starter --&gt;</span>
+        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.activiti<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>activiti-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">version</span>&gt;</span>7.0.0.Beta1<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter --&gt;</span>
+        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java --&gt;</span>
+        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">project</span>&gt;</span></code></pre>
+
+<ol start="2">
+<li>添加配置信息。</li>
+</ol>
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="attr">spring:</span>
+  <span class="attr">datasource:</span>
+    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.jdbc.Driver</span>
+    <span class="attr">url:</span> <span class="string">jdbc:mysql:///activiti-boot?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8&amp;nullCatalogMeansCurrent=true</span>
+    <span class="attr">username:</span> <span class="string">root</span>
+    <span class="attr">password:</span> <span class="number">123456</span>
+  <span class="attr">activiti:</span>
+    <span class="attr">database-schema-update:</span> <span class="literal">true</span>
+    <span class="attr">db-history-used:</span> <span class="literal">true</span> <span class="comment"># 开始历史表。</span>
+    <span class="attr">history-level:</span> <span class="string">full</span> <span class="comment"># 记录历史等级，有none、activiti、audit、full。</span>
+    <span class="attr">check-process-definitions:</span> <span class="literal">false</span> <span class="comment"># 是否自动检查processes目录中的流程文件。</span></code></pre>
+
+<ol start="3">
+<li>整合 SpringSecurity。</li>
+</ol>
+<pre><div class="caption"><span>SpringSecurityConfig.java</span></div><code class="highlight java"><span class="meta">@Configuration</span>
+<span class="meta">@EnableWebSecurity</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringSecurityConfig</span> <span class="keyword">extends</span> <span class="title class_">WebSecurityConfigurerAdapter</span> &#123;
+    <span class="meta">@Bean</span>
+    <span class="keyword">public</span> PasswordEncoder <span class="title function_">passwordEncoder</span><span class="params">()</span> &#123;
+        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">BCryptPasswordEncoder</span>();
+    &#125;
+    <span class="meta">@Bean</span>
+    <span class="keyword">public</span> UserDetailsService <span class="title function_">userDetailsService</span><span class="params">()</span> &#123;
+        <span class="type">UserDetailsManager</span> <span class="variable">userDetailsManager</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">InMemoryUserDetailsManager</span>();
+        initUsers(userDetailsManager);
+        <span class="keyword">return</span> userDetailsManager;
+    &#125;
+    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">initUsers</span><span class="params">(UserDetailsManager userDetailsManager)</span> &#123;
+        <span class="comment">// 角色标识为ROLE_开头，组标识以GROUP_开头（组名activitiTeam）。如使用ProcessRuntime或TaskRuntime必须有ACTIVITI_USER角色，否则报错。</span>
+        String[][] users = &#123;
+            &#123; <span class="string">&quot;admin&quot;</span>, <span class="string">&quot;123456&quot;</span>, <span class="string">&quot;ROLE_ACTIVITI_USER&quot;</span>, <span class="string">&quot;GROUP_DEV&quot;</span> &#125;,
+            &#123; <span class="string">&quot;xiaolan&quot;</span>, <span class="string">&quot;123456&quot;</span>, <span class="string">&quot;ROLE_ACTIVITI_USER&quot;</span>, <span class="string">&quot;GROUP_DEV&quot;</span> &#125;,
+            &#123; <span class="string">&quot;xiaolong&quot;</span>, <span class="string">&quot;123456&quot;</span>, <span class="string">&quot;ROLE_ACTIVITI_USER&quot;</span>, <span class="string">&quot;GROUP_TEST&quot;</span> &#125;,
+            &#123; <span class="string">&quot;xiaohu&quot;</span>, <span class="string">&quot;123456&quot;</span>, <span class="string">&quot;ROLE_ACTIVITI_USER&quot;</span>, <span class="string">&quot;GROUP_TEST&quot;</span> &#125;
+        &#125;;
+        <span class="keyword">for</span> (String[] user : users) &#123;
+            List&lt;String&gt; authStrs = Arrays.asList(Arrays.copyOfRange(user, <span class="number">2</span>, user.length));
+            userDetailsManager.createUser(<span class="keyword">new</span> <span class="title class_">User</span>(user[<span class="number">0</span>], passwordEncoder().encode(user[<span class="number">1</span>]), authStrs.stream().map(SimpleGrantedAuthority::<span class="keyword">new</span>).collect(Collectors.toList())));
+        &#125;
+    &#125;
+    <span class="meta">@Override</span>
+    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">configure</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;
+        http.csrf().disable(); <span class="comment">// 不添加在整合Activiti Modeler保存模型时会报错。</span>
+    &#125;
+&#125;</code></pre>
+
+<ol start="4">
+<li>创建启动类。</li>
+</ol>
+<pre><div class="caption"><span>ActivitiApplication.java</span></div><code class="highlight java"><span class="meta">@SpringBootApplication</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ActivitiApplication</span> &#123;
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;
+        SpringApplication.run(ActivitiApplication.class, args);
+    &#125;
+&#125;</code></pre>
+
+<ol start="5">
+<li>编写测试类。</li>
+</ol>
+<pre><div class="caption"><span>ActivitiTest.java</span></div><code class="highlight java"><span class="meta">@RunWith(SpringRunner.class)</span>
+<span class="meta">@SpringBootTest</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ActivitiTest</span> &#123;
+    <span class="meta">@Autowired</span>
+    <span class="keyword">private</span> ProcessEngine processEngine;
+    <span class="meta">@Autowired</span>
+    <span class="keyword">private</span> RepositoryService repositoryService;
+    <span class="meta">@Test</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+        System.out.println(processEngine);
+    &#125;
+&#125;</code></pre>
+
+<h1 id="2-流程设计"><a href="#2-流程设计" class="headerlink" title="2. 流程设计"></a>2. 流程设计</h1><h2 id="2-1-安装-BPMN2-0-插件"><a href="#2-1-安装-BPMN2-0-插件" class="headerlink" title="2.1. 安装 BPMN2.0 插件"></a>2.1. 安装 BPMN2.0 插件</h2><p>TODO</p>
+<h2 id="2-2-整合-Activiti-Modeler"><a href="#2-2-整合-Activiti-Modeler" class="headerlink" title="2.2. 整合 Activiti Modeler"></a>2.2. 整合 Activiti Modeler</h2><ol>
+<li>SpringBoot 整合 Activiti。</li>
+<li>添加依赖。</li>
+</ol>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span>
+<span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span>
+<span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fengb<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>activiti-springboot<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">parent</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.12.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">properties</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">activiti.version</span>&gt;</span>7.0.0.Beta1<span class="tag">&lt;/<span class="name">activiti.version</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.activiti/activiti-spring-boot-starter --&gt;</span>
+        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.activiti<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>activiti-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;activiti.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.activiti/activiti-json-converter --&gt;</span>
+        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.activiti<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>activiti-json-converter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;activiti.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.activiti/activiti-image-generator --&gt;</span>
+        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.activiti<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>activiti-image-generator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;activiti.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.apache.xmlgraphics/batik-all --&gt;</span>
+        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.xmlgraphics<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>batik-all<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter --&gt;</span>
+        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java --&gt;</span>
+        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">project</span>&gt;</span></code></pre>
+
+<ol start="3">
+<li>拷贝 Activiti5.22 前后端源码。<br>TODO</li>
+<li>创建模型控制器。</li>
+</ol>
+<pre><div class="caption"><span>ModelController.java</span></div><code class="highlight java"><span class="meta">@Controller</span>
+<span class="meta">@RequestMapping(&quot;model&quot;)</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ModelController</span> &#123;
+    <span class="meta">@Autowired</span>
+    <span class="keyword">private</span> RepositoryService repositoryService;
+    <span class="meta">@Autowired</span>
+    <span class="keyword">private</span> ObjectMapper objectMapper;
+    <span class="meta">@GetMapping(&quot;/create&quot;)</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">create</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> &#123;
+        <span class="keyword">try</span> &#123;
+            <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> <span class="string">&quot;请假流程模型&quot;</span>;
+            <span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> <span class="string">&quot;leaveProcess&quot;</span>;
+            <span class="type">String</span> <span class="variable">desc</span> <span class="operator">=</span> <span class="string">&quot;请输入描述信息~&quot;</span>;
+            <span class="type">int</span> <span class="variable">version</span> <span class="operator">=</span> <span class="number">1</span>;
+            <span class="comment">// 初始化一个空模型</span>
+            <span class="type">Model</span> <span class="variable">model</span> <span class="operator">=</span> repositoryService.newModel();
+            model.setName(name);
+            model.setKey(key);
+            model.setVersion(version);
+            <span class="comment">// 封裝模型json对象</span>
+            <span class="type">ObjectNode</span> <span class="variable">modelObjectNode</span> <span class="operator">=</span> objectMapper.createObjectNode();
+            modelObjectNode.put(ModelDataJsonConstants.MODEL_NAME, name);
+            modelObjectNode.put(ModelDataJsonConstants.MODEL_REVISION, <span class="number">0</span>);
+            modelObjectNode.put(ModelDataJsonConstants.MODEL_DESCRIPTION, desc);
+            model.setMetaInfo(modelObjectNode.toString());
+            <span class="comment">// 存储模型对象（表 ACT_RE_MODEL ）</span>
+            repositoryService.saveModel(model);
+            <span class="comment">// 封装模型对象基础数据json串</span>
+            <span class="comment">// &#123;&quot;id&quot;:&quot;canvas&quot;,&quot;resourceId&quot;:&quot;canvas&quot;,&quot;stencilset&quot;:&#123;&quot;namespace&quot;:&quot;http://b3mn.org/stencilset/bpmn2.0#&quot;&#125;,&quot;properties&quot;:&#123;&quot;process_id&quot;:&quot;未定义&quot;&#125;&#125;</span>
+            <span class="type">ObjectNode</span> <span class="variable">editorNode</span> <span class="operator">=</span> objectMapper.createObjectNode();
+            <span class="comment">// editorNode.put(&quot;resourceId&quot;, &quot;canvas&quot;);</span>
+            <span class="type">ObjectNode</span> <span class="variable">stencilSetNode</span> <span class="operator">=</span> objectMapper.createObjectNode();
+            stencilSetNode.put(<span class="string">&quot;namespace&quot;</span>, <span class="string">&quot;http://b3mn.org/stencilset/bpmn2.0#&quot;</span>);
+            editorNode.replace(<span class="string">&quot;stencilset&quot;</span>, stencilSetNode);
+            <span class="comment">// 标识key</span>
+            <span class="type">ObjectNode</span> <span class="variable">propertiesNode</span> <span class="operator">=</span> objectMapper.createObjectNode();
+            propertiesNode.put(<span class="string">&quot;process_id&quot;</span>, key);
+            editorNode.replace(<span class="string">&quot;properties&quot;</span>, propertiesNode);
+            <span class="comment">// 存储模型对象基础数据（表 ACT_GE_BYTEARRAY ）</span>
+            repositoryService.addModelEditorSource(model.getId(), editorNode.toString().getBytes(<span class="string">&quot;utf-8&quot;</span>));
+            <span class="comment">// 编辑流程模型时,只需要直接跳转此url并传递上modelId即可</span>
+            response.sendRedirect(request.getContextPath() + <span class="string">&quot;/modeler.html?modelId=&quot;</span> + model.getId());
+        &#125; <span class="keyword">catch</span> (Exception e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<ol start="5">
+<li>测试。</li>
+</ol>
+<h1 id="3-流程定义模型"><a href="#3-流程定义模型" class="headerlink" title="3. 流程定义模型"></a>3. 流程定义模型</h1><h2 id="3-1-查询流程定义模型"><a href="#3-1-查询流程定义模型" class="headerlink" title="3.1. 查询流程定义模型"></a>3.1. 查询流程定义模型</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    List&lt;Model&gt; list = repositoryService.createModelQuery().orderByLastUpdateTime().desc().list();
+&#125;</code></pre>
+
+<h2 id="3-2-删除流程定义模型"><a href="#3-2-删除流程定义模型" class="headerlink" title="3.2. 删除流程定义模型"></a>3.2. 删除流程定义模型</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="type">String</span> <span class="variable">modelId</span> <span class="operator">=</span> <span class="string">&quot;0bfacf4e-b907-11ee-9fdb-226fd9e449bb&quot;</span>;
+    repositoryService.deleteModel(modelId);
+&#125;</code></pre>
+
+<h2 id="3-3-导出流程定义模型资源"><a href="#3-3-导出流程定义模型资源" class="headerlink" title="3.3. 导出流程定义模型资源"></a>3.3. 导出流程定义模型资源</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="type">String</span> <span class="variable">modelId</span> <span class="operator">=</span> <span class="string">&quot;0bfacf4e-b907-11ee-9fdb-226fd9e449bb&quot;</span>;
+    <span class="type">Model</span> <span class="variable">model</span> <span class="operator">=</span> repositoryService.getModel(modelId);
+    <span class="type">byte</span>[] bpmnJsonBytes = repositoryService.getModelEditorSource(modelId);
+    <span class="type">byte</span>[] bpmnXmlBytes = bpmnJsonToXml(bpmnJsonBytes);
+    <span class="type">byte</span>[] pngBytes = repositoryService.getModelEditorSourceExtra(modelId);
+    <span class="comment">// 方式1. 导出ZIP压缩包</span>
+    <span class="type">ZipOutputStream</span> <span class="variable">zos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ZipOutputStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(model.getKey() + <span class="string">&quot;.zip&quot;</span>));
+    zos.putNextEntry(<span class="keyword">new</span> <span class="title class_">ZipEntry</span>(model.getKey() + <span class="string">&quot;.bpmn&quot;</span>));
+    zos.write(bpmnXmlBytes);
+    zos.putNextEntry(<span class="keyword">new</span> <span class="title class_">ZipEntry</span>(model.getKey() + <span class="string">&quot;.png&quot;</span>));
+    zos.write(pngBytes);
+    zos.closeEntry();
+    zos.close();
+    <span class="comment">// 方式2. 导出BPMN文件</span>
+    IOUtils.write(bpmnXmlBytes, <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(model.getKey() + <span class="string">&quot;.bpmn&quot;</span>));
+    IOUtils.write(pngBytes, <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(model.getKey() + <span class="string">&quot;.png&quot;</span>));
+&#125;
+<span class="meta">@Autowired</span>
+<span class="keyword">private</span> ObjectMapper objectMapper;
+<span class="comment">/**</span>
+<span class="comment"> * 将BPMN Json字节流转换为xml字节流</span>
+<span class="comment">*/</span>
+<span class="keyword">private</span> <span class="type">byte</span>[] bpmnJsonToXml(<span class="type">byte</span>[] bs) <span class="keyword">throws</span> IOException &#123;
+    <span class="keyword">if</span> (bs == <span class="literal">null</span>) &#123;
+        <span class="keyword">return</span> <span class="literal">null</span>;
+    &#125;
+    <span class="type">JsonNode</span> <span class="variable">modelNode</span> <span class="operator">=</span> objectMapper.readTree(bs);
+    <span class="type">BpmnModel</span> <span class="variable">bpmnModel</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BpmnJsonConverter</span>().convertToBpmnModel(modelNode);
+    <span class="keyword">if</span> (bpmnModel.getProcesses().size() == <span class="number">0</span>) &#123;
+        <span class="keyword">return</span> <span class="literal">null</span>;
+    &#125;
+    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">BpmnXMLConverter</span>().convertToXML(bpmnModel);
+&#125;</code></pre>
+
+<h2 id="3-4-通过流程定义模型部署"><a href="#3-4-通过流程定义模型部署" class="headerlink" title="3.4. 通过流程定义模型部署"></a>3.4. 通过流程定义模型部署</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="type">String</span> <span class="variable">modelId</span> <span class="operator">=</span> <span class="string">&quot;0bfacf4e-b907-11ee-9fdb-226fd9e449bb&quot;</span>;
+    <span class="type">Model</span> <span class="variable">model</span> <span class="operator">=</span> repositoryService.getModel(modelId);
+    <span class="type">byte</span>[] xmlBytes = bpmnJsonToXml(repositoryService.getModelEditorSource(modelId));
+    <span class="comment">// 通过流程定义模型部署</span>
+    <span class="type">Deployment</span> <span class="variable">deployment</span> <span class="operator">=</span> repositoryService.createDeployment().name(<span class="string">&quot;请假流程Model版&quot;</span>)
+        .addString(model.getKey() + <span class="string">&quot;.bpmn&quot;</span>, <span class="keyword">new</span> <span class="title class_">String</span>(xmlBytes, <span class="string">&quot;UTF-8&quot;</span>))
+        .addBytes(model.getKey() + <span class="string">&quot;.png&quot;</span>, repositoryService.getModelEditorSourceExtra(modelId)).deploy();
+    System.out.println(<span class="string">&quot;部署ID: &quot;</span> + deployment.getId());
+    <span class="comment">// 更新流程定义模型表部署ID字段</span>
+    model.setDeploymentId(deployment.getId());
+    repositoryService.saveModel(model);
+&#125;</code></pre>
+
+<h1 id="4-Activiti7-新特性"><a href="#4-Activiti7-新特性" class="headerlink" title="4. Activiti7 新特性"></a>4. Activiti7 新特性</h1><h2 id="4-1-整合-SpringSecurity"><a href="#4-1-整合-SpringSecurity" class="headerlink" title="4.1. 整合 SpringSecurity"></a>4.1. 整合 SpringSecurity</h2><pre><div class="caption"><span>SpringSecurityConfig.java</span></div><code class="highlight java"><span class="meta">@Configuration</span>
+<span class="meta">@EnableWebSecurity</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringSecurityConfig</span> <span class="keyword">extends</span> <span class="title class_">WebSecurityConfigurerAdapter</span> &#123;
+    <span class="meta">@Bean</span>
+    <span class="keyword">public</span> PasswordEncoder <span class="title function_">passwordEncoder</span><span class="params">()</span> &#123;
+        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">BCryptPasswordEncoder</span>();
+    &#125;
+    <span class="meta">@Bean</span>
+    <span class="keyword">public</span> UserDetailsService <span class="title function_">userDetailsService</span><span class="params">()</span> &#123;
+        <span class="type">UserDetailsManager</span> <span class="variable">userDetailsManager</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">InMemoryUserDetailsManager</span>();
+        initUsers(userDetailsManager);
+        <span class="keyword">return</span> userDetailsManager;
+    &#125;
+    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">initUsers</span><span class="params">(UserDetailsManager userDetailsManager)</span> &#123;
+        <span class="comment">// 角色标识为ROLE_开头，组标识以GROUP_开头（组名activitiTeam）。如使用ProcessRuntime或TaskRuntime必须有ACTIVITI_USER角色，否则报错。</span>
+        String[][] users = &#123;
+            &#123; <span class="string">&quot;admin&quot;</span>, <span class="string">&quot;123456&quot;</span>, <span class="string">&quot;ROLE_ACTIVITI_USER&quot;</span>, <span class="string">&quot;GROUP_DEV&quot;</span> &#125;,
+            &#123; <span class="string">&quot;xiaolan&quot;</span>, <span class="string">&quot;123456&quot;</span>, <span class="string">&quot;ROLE_ACTIVITI_USER&quot;</span>, <span class="string">&quot;GROUP_DEV&quot;</span> &#125;,
+            &#123; <span class="string">&quot;xiaolong&quot;</span>, <span class="string">&quot;123456&quot;</span>, <span class="string">&quot;ROLE_ACTIVITI_USER&quot;</span>, <span class="string">&quot;GROUP_TEST&quot;</span> &#125;,
+            &#123; <span class="string">&quot;xiaohu&quot;</span>, <span class="string">&quot;123456&quot;</span>, <span class="string">&quot;ROLE_ACTIVITI_USER&quot;</span>, <span class="string">&quot;GROUP_TEST&quot;</span> &#125;
+        &#125;;
+        <span class="keyword">for</span> (String[] user : users) &#123;
+            List&lt;String&gt; authStrs = Arrays.asList(Arrays.copyOfRange(user, <span class="number">2</span>, user.length));
+            userDetailsManager.createUser(<span class="keyword">new</span> <span class="title class_">User</span>(user[<span class="number">0</span>], passwordEncoder().encode(user[<span class="number">1</span>]), authStrs.stream().map(SimpleGrantedAuthority::<span class="keyword">new</span>).collect(Collectors.toList())));
+        &#125;
+    &#125;
+    <span class="meta">@Override</span>
+    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">configure</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;
+        http.csrf().disable(); <span class="comment">// 不添加在整合Activiti Modeler保存模型时会报错。</span>
+    &#125;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>SpringSecurityUtils.java</span></div><code class="highlight java"><span class="meta">@Component</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringSecurityUtils</span> &#123;
+    <span class="meta">@Autowired</span>
+    <span class="keyword">private</span> UserDetailsService userDetailsService;
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">login</span><span class="params">(String username)</span> &#123;
+        <span class="type">UserDetails</span> <span class="variable">userDetails</span> <span class="operator">=</span> userDetailsService.loadUserByUsername(username);
+        <span class="keyword">if</span> (userDetails != <span class="literal">null</span>) &#123;
+            SecurityContextHolder.setContext(<span class="keyword">new</span> <span class="title class_">SecurityContextImpl</span>(<span class="keyword">new</span> <span class="title class_">org</span>.springframework.security.core.Authentication() &#123;
+                <span class="comment">/**</span>
+<span class="comment">                 *</span>
+<span class="comment">                 */</span>
+                <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> <span class="number">1L</span>;
+                <span class="meta">@Override</span>
+                <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;
+                    <span class="keyword">return</span> userDetails.getUsername();
+                &#125;
+                <span class="meta">@Override</span>
+                <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAuthenticated</span><span class="params">(<span class="type">boolean</span> isAuthenticated)</span> <span class="keyword">throws</span> IllegalArgumentException &#123;
+                &#125;
+                <span class="meta">@Override</span>
+                <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isAuthenticated</span><span class="params">()</span> &#123;
+                    <span class="keyword">return</span> <span class="literal">true</span>;
+                &#125;
+                <span class="meta">@Override</span>
+                <span class="keyword">public</span> Object <span class="title function_">getPrincipal</span><span class="params">()</span> &#123;
+                    <span class="keyword">return</span> userDetails;
+                &#125;
+                <span class="meta">@Override</span>
+                <span class="keyword">public</span> Object <span class="title function_">getDetails</span><span class="params">()</span> &#123;
+                    <span class="keyword">return</span> userDetails;
+                &#125;
+                <span class="meta">@Override</span>
+                <span class="keyword">public</span> Object <span class="title function_">getCredentials</span><span class="params">()</span> &#123;
+                    <span class="keyword">return</span> userDetails.getUsername();
+                &#125;
+                <span class="meta">@Override</span>
+                <span class="keyword">public</span> Collection&lt;? <span class="keyword">extends</span> <span class="title class_">GrantedAuthority</span>&gt; getAuthorities() &#123;
+                    <span class="keyword">return</span> userDetails.getAuthorities();
+                &#125;
+            &#125;));
+            Authentication.setAuthenticatedUserId(username);
+            System.out.println(username + <span class="string">&quot;模拟登入&quot;</span>);
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<h2 id="4-2-ProcessRuntime"><a href="#4-2-ProcessRuntime" class="headerlink" title="4.2. ProcessRuntime"></a>4.2. ProcessRuntime</h2><h3 id="4-2-1-查询流程定义"><a href="#4-2-1-查询流程定义" class="headerlink" title="4.2.1. 查询流程定义"></a>4.2.1. 查询流程定义</h3><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    springSecurityUtils.login(<span class="string">&quot;fengb&quot;</span>);
+    Page&lt;ProcessDefinition&gt; page = processRuntime.processDefinitions(Pageable.of(<span class="number">0</span>, <span class="number">10</span>));
+    System.out.println(page.getTotalItems());
+    <span class="keyword">for</span> (ProcessDefinition processDefinition : page.getContent()) &#123;
+        System.out.println(<span class="string">&quot;流程定义Key: &quot;</span> + processDefinition.getKey());
+    &#125;
+&#125;</code></pre>
+
+<h3 id="4-2-2-启动流程实例"><a href="#4-2-2-启动流程实例" class="headerlink" title="4.2.2. 启动流程实例"></a>4.2.2. 启动流程实例</h3><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    springSecurityUtils.login(<span class="string">&quot;fengb&quot;</span>);
+    <span class="type">ProcessInstance</span> <span class="variable">processInstance</span> <span class="operator">=</span> processRuntime.start(ProcessPayloadBuilder.start().withProcessDefinitionKey(<span class="string">&quot;leaveProcess&quot;</span>)
+        .withBusinessKey(<span class="string">&quot;businessKey&quot;</span>).withVariable(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;fengb&quot;</span>).build());
+&#125;</code></pre>
+
+<h3 id="4-2-3-查询流程实例"><a href="#4-2-3-查询流程实例" class="headerlink" title="4.2.3. 查询流程实例"></a>4.2.3. 查询流程实例</h3><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    springSecurityUtils.login(<span class="string">&quot;fengb&quot;</span>);
+    Page&lt;ProcessInstance&gt; page = processRuntime.processInstances(Pageable.of(<span class="number">0</span>, <span class="number">10</span>),
+            ProcessPayloadBuilder.processInstances().withProcessDefinitionKey(<span class="string">&quot;leaveProcess&quot;</span>).build());
+    System.out.println(page.getTotalItems());
+    <span class="keyword">for</span> (ProcessInstance processInstance : page.getContent()) &#123;
+        System.out.println(<span class="string">&quot;流程实例ID: &quot;</span> + processInstance.getId());
+        System.out.println(<span class="string">&quot;开始时间: &quot;</span> + processInstance.getStartDate());
+        System.out.println(<span class="string">&quot;状态: &quot;</span> + processInstance.getStatus().name());
+    &#125;
+&#125;</code></pre>
+
+<h3 id="4-2-4-挂起-激活流程实例"><a href="#4-2-4-挂起-激活流程实例" class="headerlink" title="4.2.4. 挂起&#x2F;激活流程实例"></a>4.2.4. 挂起&#x2F;激活流程实例</h3><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    springSecurityUtils.login(<span class="string">&quot;fengb&quot;</span>);
+    <span class="type">String</span> <span class="variable">processInstanceId</span> <span class="operator">=</span> <span class="string">&quot;c2114b2c-bec2-11ee-a914-226fd9e449bb&quot;</span>;
+    <span class="comment">// 挂起流程实例</span>
+    processRuntime.suspend(ProcessPayloadBuilder.suspend().withProcessInstanceId(processInstanceId).build());
+    <span class="comment">// 激活流程实例</span>
+    <span class="comment">// processRuntime.resume(ProcessPayloadBuilder.resume(processInstanceId));</span>
+&#125;</code></pre>
+
+<h3 id="4-2-5-删除流程实例"><a href="#4-2-5-删除流程实例" class="headerlink" title="4.2.5. 删除流程实例"></a>4.2.5. 删除流程实例</h3><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    springSecurityUtils.login(<span class="string">&quot;fengb&quot;</span>);
+    <span class="type">String</span> <span class="variable">processInstanceId</span> <span class="operator">=</span> <span class="string">&quot;c2114b2c-bec2-11ee-a914-226fd9e449bb&quot;</span>;
+    processRuntime.delete(ProcessPayloadBuilder.delete(processInstanceId));
+&#125;</code></pre>
+
+<h3 id="4-2-6-查询流程实例的流程变量"><a href="#4-2-6-查询流程实例的流程变量" class="headerlink" title="4.2.6. 查询流程实例的流程变量"></a>4.2.6. 查询流程实例的流程变量</h3><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    springSecurityUtils.login(<span class="string">&quot;fengb&quot;</span>);
+    <span class="type">String</span> <span class="variable">processInstanceId</span> <span class="operator">=</span> <span class="string">&quot;c2114b2c-bec2-11ee-a914-226fd9e449bb&quot;</span>;
+    List&lt;VariableInstance&gt; list = processRuntime.variables(ProcessPayloadBuilder.variables()
+        .withProcessInstanceId(processInstanceId).build());
+    <span class="keyword">for</span> (VariableInstance variableInstance : list) &#123;
+        System.out.println(variableInstance.getName() + <span class="string">&quot;=&quot;</span> + variableInstance.getValue());
+    &#125;
+&#125;</code></pre>
+
+<h2 id="4-3-TaskRuntime"><a href="#4-3-TaskRuntime" class="headerlink" title="4.3. TaskRuntime"></a>4.3. TaskRuntime</h2><h3 id="4-3-1-查询代办任务"><a href="#4-3-1-查询代办任务" class="headerlink" title="4.3.1. 查询代办任务"></a>4.3.1. 查询代办任务</h3><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    springSecurityUtils.login(<span class="string">&quot;fengb&quot;</span>);
+    <span class="comment">// 组任务也会查询出来</span>
+    Page&lt;Task&gt; page = taskRuntime.tasks(Pageable.of(<span class="number">0</span>, <span class="number">10</span>));
+    System.out.println(page.getTotalItems());
+    <span class="keyword">for</span> (Task task : page.getContent()) &#123;
+        System.out.println(<span class="string">&quot;任务ID: &quot;</span> + task.getId());
+        System.out.println(<span class="string">&quot;任务办理人: &quot;</span> + task.getAssignee());
+    &#125;
+&#125;</code></pre>
+
+<h3 id="4-3-2-完成代办任务"><a href="#4-3-2-完成代办任务" class="headerlink" title="4.3.2. 完成代办任务"></a>4.3.2. 完成代办任务</h3><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    springSecurityUtils.login(<span class="string">&quot;fengb&quot;</span>);
+    <span class="type">String</span> <span class="variable">taskId</span> <span class="operator">=</span> <span class="string">&quot;b041b4d7-b9fb-11ee-8cda-226fd9e449bb&quot;</span>;
+    taskRuntime.complete(TaskPayloadBuilder.complete().withTaskId(taskId).build());
+&#125;</code></pre>
+
+<h3 id="4-3-3-拾取组任务"><a href="#4-3-3-拾取组任务" class="headerlink" title="4.3.3. 拾取组任务"></a>4.3.3. 拾取组任务</h3><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    springSecurityUtils.login(<span class="string">&quot;fengb&quot;</span>);
+    <span class="type">String</span> <span class="variable">taskId</span> <span class="operator">=</span> <span class="string">&quot;b041b4d7-b9fb-11ee-8cda-226fd9e449bb&quot;</span>;
+    taskRuntime.claim(TaskPayloadBuilder.claim().withTaskId(taskId).build());
+&#125;</code></pre>
+
+<h3 id="4-3-4-归还组任务"><a href="#4-3-4-归还组任务" class="headerlink" title="4.3.4. 归还组任务"></a>4.3.4. 归还组任务</h3><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    springSecurityUtils.login(<span class="string">&quot;fengb&quot;</span>);
+    <span class="type">String</span> <span class="variable">taskId</span> <span class="operator">=</span> <span class="string">&quot;b041b4d7-b9fb-11ee-8cda-226fd9e449bb&quot;</span>;
+    taskRuntime.release(TaskPayloadBuilder.release().withTaskId(taskId).build());
+&#125;</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 不积跬步无以至千里，不积小流无以成江海！ </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2015-2024 蜡笔没了小新
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.png" class="alipay" title="扫码支持">
+            <img src="/img/wechat.png" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 582px;
+    }
+    .nav.fullscreen {
+        margin-left: -582px;
+    }
+    .nav-left {
+        width: 160px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 532px;
+        }
+        .nav.fullscreen {
+            margin-left: -532px;
+        }
+        .nav-left {
+            width: 140px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 532px;
+            margin-left: -532px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("/images/20230809225525.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>

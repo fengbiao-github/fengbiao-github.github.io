@@ -1,0 +1,2440 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SpringCloudNetflix框架 | 蜡笔没了小新の笔记</title>
+  <meta name="keywords" content=" SpringCloudNetflix ">
+  <meta name="description" content="SpringCloudNetflix框架 | 蜡笔没了小新の笔记">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="1. XMLHttpRequest&#x2F;&#x2F; 实例化xhr对象 var xhr &#x3D; new XMLHttpRequest() &#x2F;&#x2F; 建立连接 xhr.open(&#x27;GET&#x27;, &#x27;xxx&#x27;, false) &#x2F;&#x2F; 发送请求 xhr.send()  2. jQueryTODO 待补充 3. vue-resource 安装vue-resource。 npm install">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Vue】HTTP插件">
+<meta property="og:url" content="http://example.com/vue/http/index.html">
+<meta property="og:site_name" content="蜡笔没了小新の笔记">
+<meta property="og:description" content="1. XMLHttpRequest&#x2F;&#x2F; 实例化xhr对象 var xhr &#x3D; new XMLHttpRequest() &#x2F;&#x2F; 建立连接 xhr.open(&#x27;GET&#x27;, &#x27;xxx&#x27;, false) &#x2F;&#x2F; 发送请求 xhr.send()  2. jQueryTODO 待补充 3. vue-resource 安装vue-resource。 npm install">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-15T15:21:00.000Z">
+<meta property="article:modified_time" content="2024-08-16T02:06:56.909Z">
+<meta property="article:author" content="蜡笔没了小新">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>蜡笔没了小新</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/fengbiao-github"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:2014695858@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2014695858&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="理论">
+            <i class="fold iconfont icon-right"></i>
+            理论
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;数据结构与算法">
+            
+            数据结构与算法
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;设计模式">
+            
+            设计模式
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;计算机网络">
+            
+            计算机网络
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Java">
+            <i class="fold iconfont icon-right"></i>
+            Java
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;JVM">
+            
+            JVM
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;JUC">
+            
+            JUC
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;新特性">
+            
+            新特性
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;NIO">
+            
+            NIO
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            <i class="fold iconfont icon-right"></i>
+            数据库
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;关系型数据库">
+            
+            关系型数据库
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;非关系型数据库">
+            
+            非关系型数据库
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;分库分表">
+            
+            分库分表
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="框架">
+            <i class="fold iconfont icon-right"></i>
+            框架
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;Spring">
+            
+            Spring
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;视图层">
+            
+            视图层
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;ORM">
+            
+            ORM
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;认证授权">
+            
+            认证授权
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;任务调度">
+            
+            任务调度
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;工作流引擎">
+            
+            工作流引擎
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;网络编程">
+            
+            网络编程
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;文件处理">
+            
+            文件处理
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="微服务">
+            
+            微服务
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="中间件">
+            <i class="fold iconfont icon-right"></i>
+            中间件
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;WEB">
+            
+            WEB
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;缓存">
+            
+            缓存
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;消息队列">
+            
+            消息队列
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;搜索引擎">
+            
+            搜索引擎
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;日志">
+            
+            日志
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="大数据">
+            
+            大数据
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="工具">
+            <i class="fold iconfont icon-right"></i>
+            工具
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;IDE">
+            
+            IDE
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;版本控制">
+            
+            版本控制
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;项目构建">
+            
+            项目构建
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;持续集成">
+            
+            持续集成
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;测试">
+            
+            测试
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="运维">
+            <i class="fold iconfont icon-right"></i>
+            运维
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;Linux">
+            
+            Linux
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;高可用">
+            
+            高可用
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;云原生">
+            
+            云原生
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;脚本">
+            
+            脚本
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="前端">
+            <i class="fold iconfont icon-right"></i>
+            前端
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="前端&lt;---&gt;框架">
+            
+            框架
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="面试">
+            
+            面试
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  site_url"
+               
+               href="/about">关于</a>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="32">
+<input type="hidden" id="yelog_site_word_count" value="67k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>待完善</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分布式事务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务调度</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>负载均衡</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构与算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Activiti</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IDEA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Maven</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MybatisPlus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Nginx</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NodeJS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RabbitMQ</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringBoot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringCloudAlibaba</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringCloudNetflix</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Vue</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>websocket</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>xxl-job</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/http/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】HTTP插件">【Vue】HTTP插件</span>
+            <span class="post-date" title="2024-08-15 23:21:00">2024/08/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/html/storage/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="【H5】webStorage">【H5】webStorage</span>
+            <span class="post-date" title="2024-08-13 22:55:00">2024/08/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/component/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】组件化编程">【Vue】组件化编程</span>
+            <span class="post-date" title="2024-08-08 23:21:00">2024/08/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 高可用 "
+           href="/nginx/"
+           data-tag="负载均衡,Nginx"
+           data-author="" >
+            <span class="post-title" title="Nginx负载均衡器">Nginx负载均衡器</span>
+            <span class="post-date" title="2024-07-29 23:08:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 大数据 "
+           href="/zookeeper/"
+           data-tag="服务调度"
+           data-author="" >
+            <span class="post-title" title="Zookeeper笔记">Zookeeper笔记</span>
+            <span class="post-date" title="2024-07-29 23:04:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 "
+           href="/springcloud/springcloud-alibaba/"
+           data-tag="SpringCloudAlibaba,分布式事务"
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba框架">SpringCloudAlibaba框架</span>
+            <span class="post-date" title="2024-07-29 23:01:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 "
+           href="/springcloud/springcloud-netflix/"
+           data-tag="SpringCloudNetflix"
+           data-author="" >
+            <span class="post-title" title="SpringCloudNetflix框架">SpringCloudNetflix框架</span>
+            <span class="post-date" title="2024-07-29 22:58:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/nodejs/npm/"
+           data-tag="NodeJS"
+           data-author="" >
+            <span class="post-title" title="【Node.js】NPM设置淘宝镜像">【Node.js】NPM设置淘宝镜像</span>
+            <span class="post-date" title="2024-07-17 00:56:00">2024/07/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/Vuex/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】vuex状态管理插件">【Vue】vuex状态管理插件</span>
+            <span class="post-date" title="2024-07-15 23:40:00">2024/07/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 ORM "
+           href="/mybatis/encry/"
+           data-tag="MybatisPlus"
+           data-author="" >
+            <span class="post-title" title="数据库信息加解密">数据库信息加解密</span>
+            <span class="post-date" title="2024-07-12 10:47:00">2024/07/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue-router/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】vue-router路由插件">【Vue】vue-router路由插件</span>
+            <span class="post-date" title="2024-07-09 22:21:00">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue-ui/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】UI组件库">【Vue】UI组件库</span>
+            <span class="post-date" title="2024-07-09 21:31:00">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 运维 工具 框架 计算机网络 高可用 版本控制 大数据 Java 中间件 ORM 持续集成 数据库 IDE 测试 JUC JVM NIO 关系型数据库 非关系型数据库 分库分表 缓存 搜索引擎 日志 WEB Linux 脚本 Spring 视图层 认证授权 文件处理 网络编程 "
+           href="/demo/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="示例文档">示例文档</span>
+            <span class="post-date" title="2024-06-06 23:51:00">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 任务调度 "
+           href="/xxl-job/"
+           data-tag="xxl-job"
+           data-author="" >
+            <span class="post-title" title="xxl-job分布式任务调度框架">xxl-job分布式任务调度框架</span>
+            <span class="post-date" title="2024-06-06 23:51:00">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 数据结构与算法 "
+           href="/data-structure-and-algorithm/algorithm/"
+           data-tag="数据结构与算法"
+           data-author="" >
+            <span class="post-title" title="【数据结构与算法】算法篇">【数据结构与算法】算法篇</span>
+            <span class="post-date" title="2024-06-05 23:04:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 "
+           href="/mq/mq/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2024-06-05 22:58:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 面试 "
+           href="/interview/rabbitmq/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ面试题">RabbitMQ面试题</span>
+            <span class="post-date" title="2024-06-05 22:27:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 云原生 "
+           href="/docker/2/"
+           data-tag="Docker,待完善"
+           data-author="" >
+            <span class="post-title" title="【Docker】进阶篇">【Docker】进阶篇</span>
+            <span class="post-date" title="2024-06-05 21:20:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 "
+           href="/mq/rabbitmq/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ消息队列">RabbitMQ消息队列</span>
+            <span class="post-date" title="2024-06-05 09:59:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue2/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】Vue2语法">【Vue】Vue2语法</span>
+            <span class="post-date" title="2024-06-04 21:30:00">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 项目构建 "
+           href="/maven/"
+           data-tag="Maven"
+           data-author="" >
+            <span class="post-title" title="Maven构建工具">Maven构建工具</span>
+            <span class="post-date" title="2024-05-29 22:47:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java 新特性 "
+           href="/java/java8/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="【Java】Java8新特性">【Java】Java8新特性</span>
+            <span class="post-date" title="2024-05-29 21:52:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 云原生 "
+           href="/docker/1/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="【Docker】基础篇">【Docker】基础篇</span>
+            <span class="post-date" title="2024-05-29 12:37:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/4/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】行为型设计模式">【设计模式】行为型设计模式</span>
+            <span class="post-date" title="2024-05-28 22:27:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/3/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】结构型设计模式">【设计模式】结构型设计模式</span>
+            <span class="post-date" title="2024-05-28 22:01:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/3/"
+           data-tag="Activiti,SpringBoot,IDEA"
+           data-author="" >
+            <span class="post-title" title="【Activiti】整合篇">【Activiti】整合篇</span>
+            <span class="post-date" title="2024-05-28 21:49:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/2/"
+           data-tag="Activiti"
+           data-author="" >
+            <span class="post-title" title="【Activiti】进阶篇">【Activiti】进阶篇</span>
+            <span class="post-date" title="2024-05-28 21:35:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/1/"
+           data-tag="Activiti"
+           data-author="" >
+            <span class="post-title" title="【Activiti】基础篇">【Activiti】基础篇</span>
+            <span class="post-date" title="2024-05-28 21:23:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/html/websocket/"
+           data-tag="websocket"
+           data-author="" >
+            <span class="post-title" title="【H5】websocket协议">【H5】websocket协议</span>
+            <span class="post-date" title="2024-05-28 16:40:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/2/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】创建型设计模式">【设计模式】创建型设计模式</span>
+            <span class="post-date" title="2024-05-28 15:53:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/1/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】七大设计原则">【设计模式】七大设计原则</span>
+            <span class="post-date" title="2024-05-27 14:51:00">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java 数据库 "
+           href="/java/jdbc/"
+           data-tag="Java,数据库"
+           data-author="" >
+            <span class="post-title" title="【Java】JDBC数据库连接">【Java】JDBC数据库连接</span>
+            <span class="post-date" title="2024-05-25 22:24:00">2024/05/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-springcloud/springcloud-netflix" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">SpringCloudNetflix框架</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="微服务">微服务</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">SpringCloudNetflix</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-07-31 09:13:05'>2024-07-29 22:58</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:5.7k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81%E6%A6%82%E8%BF%B0"><span class="toc-text">1、概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%E3%80%81%E7%AE%80%E4%BB%8B"><span class="toc-text">1.1、简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%E3%80%81%E7%89%88%E6%9C%AC%E9%80%89%E6%8B%A9"><span class="toc-text">1.2、版本选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3%E3%80%81%E7%BB%84%E4%BB%B6"><span class="toc-text">1.3、组件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0"><span class="toc-text">2、服务注册与发现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E3%80%81Eureka"><span class="toc-text">2.1、Eureka*</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1%E3%80%81%E5%AE%9A%E4%B9%89"><span class="toc-text">2.1.1、定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2%E3%80%81%E6%90%AD%E5%BB%BA-Eureka-%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-text">2.1.2、搭建 Eureka 服务端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%95%B4%E5%90%88-Eureka"><span class="toc-text">2.1.3、微服务整合 Eureka</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-4%E3%80%81%E5%BF%83%E8%B7%B3%E6%9C%BA%E5%88%B6"><span class="toc-text">2.1.4、心跳机制*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-5%E3%80%81%E8%87%AA%E6%88%91%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6"><span class="toc-text">2.1.5、自我保护机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-6%E3%80%81%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3"><span class="toc-text">2.1.6、配置详解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E3%80%81Zookeeper"><span class="toc-text">2.2、Zookeeper*</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1%E3%80%81%E6%90%AD%E5%BB%BA-ZK-%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-text">2.2.1、搭建 ZK 服务端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%95%B4%E5%90%88-ZK"><span class="toc-text">2.2.2、微服务整合 ZK</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3%E3%80%81Consul"><span class="toc-text">2.3、Consul</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1%E3%80%81%E5%AE%9A%E4%B9%89"><span class="toc-text">2.3.1、定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2%E3%80%81%E4%BD%9C%E7%94%A8"><span class="toc-text">2.3.2、作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3%E3%80%81%E6%90%AD%E5%BB%BA-Consul-%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-text">2.3.3、搭建 Consul 服务端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%95%B4%E5%90%88-Consul"><span class="toc-text">2.3.3、微服务整合 Consul</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4%E3%80%81Nacos"><span class="toc-text">2.4、Nacos*</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5%E3%80%81%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%AF%B9%E6%AF%94"><span class="toc-text">2.5、服务注册中心对比</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-text">3、负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1%E3%80%81%E5%AE%9A%E4%B9%89"><span class="toc-text">3.1、定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2%E3%80%81%E5%88%86%E7%B1%BB"><span class="toc-text">3.2、分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3%E3%80%81Ribbon"><span class="toc-text">3.3、Ribbon*</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%95%B4%E5%90%88-Ribbon"><span class="toc-text">3.3.1、微服务整合 Ribbon</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2%E3%80%81%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-text">3.3.2、工作流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-3%E3%80%81%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-text">3.3.3、实现原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-4%E3%80%81%E6%9B%BF%E6%8D%A2%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%AD%96%E7%95%A5"><span class="toc-text">3.2.4、替换负载均衡策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-5%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="toc-text">3.2.5、负载均衡源码解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-6%E3%80%81%E6%89%8B%E5%86%99%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-text">3.2.6、手写负载均衡</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3%E3%80%81LoadBalancer"><span class="toc-text">3.3、LoadBalancer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4%E3%80%81Nginx"><span class="toc-text">3.4、Nginx*</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8"><span class="toc-text">4、服务调用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1%E3%80%81%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="toc-text">4.1、工具类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-1%E3%80%81RestTemplate"><span class="toc-text">4.1.1、RestTemplate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-2%E3%80%81HttpClient"><span class="toc-text">4.1.2、HttpClient</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-3%E3%80%81OkHttpClient"><span class="toc-text">4.1.3、OkHttpClient</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2%E3%80%81Feign"><span class="toc-text">4.2、Feign</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3%E3%80%81OpenFeign"><span class="toc-text">4.3、OpenFeign*</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-1%E3%80%81%E5%AE%9A%E4%B9%89"><span class="toc-text">4.3.1、定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-2%E3%80%81%E4%BD%9C%E7%94%A8"><span class="toc-text">4.3.2、作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-3%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%95%B4%E5%90%88-OpenFeign"><span class="toc-text">4.3.3、微服务整合 OpenFeign</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-4%E3%80%81%E8%B6%85%E6%97%B6%E9%85%8D%E7%BD%AE"><span class="toc-text">4.3.4、超时配置*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-5%E3%80%81%E6%97%A5%E5%BF%97%E5%A2%9E%E5%BC%BA"><span class="toc-text">4.3.5、日志增强</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4%E3%80%81Dubbo"><span class="toc-text">4.4、Dubbo*</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81%E6%9C%8D%E5%8A%A1%E9%99%8D%E7%BA%A7"><span class="toc-text">5、服务降级</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1%E3%80%81%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E9%97%AE%E9%A2%98"><span class="toc-text">5.1、分布式系统问题*</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-1%E3%80%81%E6%9C%8D%E5%8A%A1%E9%9B%AA%E5%B4%A9"><span class="toc-text">5.1.1、服务雪崩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-2%E3%80%81%E6%9C%8D%E5%8A%A1%E9%99%8D%E7%BA%A7"><span class="toc-text">5.1.2、服务降级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-3%E3%80%81%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD"><span class="toc-text">5.1.3、服务熔断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-4%E3%80%81%E6%9C%8D%E5%8A%A1%E9%99%90%E6%B5%81"><span class="toc-text">5.1.4、服务限流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2%E3%80%81Hystrix"><span class="toc-text">5.2、Hystrix</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-1%E3%80%81%E5%AE%9A%E4%B9%89"><span class="toc-text">5.2.1、定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-2%E3%80%81%E4%BD%9C%E7%94%A8"><span class="toc-text">5.2.2、作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-3%E3%80%81%E6%90%AD%E5%BB%BA-Hystrix-%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-text">5.2.3、搭建 Hystrix 服务端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-4%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%95%B4%E5%90%88-Hystrix"><span class="toc-text">5.2.4、微服务整合 Hystrix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-5%E3%80%81OpenFeign-%E9%85%8D%E7%BD%AE-Hystrix"><span class="toc-text">5.2.5、OpenFeign 配置 Hystrix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-6%E3%80%81%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-text">5.2.6、工作机制</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E3%80%81%E6%9C%8D%E5%8A%A1%E7%BD%91%E5%85%B3"><span class="toc-text">6、服务网关</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1%E3%80%81Zuul"><span class="toc-text">6.1、Zuul</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2%E3%80%81Gateway"><span class="toc-text">6.2、Gateway</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7%E3%80%81%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE"><span class="toc-text">7、服务配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1%E3%80%81bootstrap-VS-application"><span class="toc-text">7.1、bootstrap VS application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2%E3%80%81Config"><span class="toc-text">7.2、Config</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-1%E3%80%81%E5%AE%9A%E4%B9%89"><span class="toc-text">7.2.1、定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-2%E3%80%81%E4%BD%9C%E7%94%A8"><span class="toc-text">7.2.2、作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-3%E3%80%81%E6%90%AD%E5%BB%BA-Config-%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-text">7.2.3、搭建 Config 服务端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-4%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%95%B4%E5%90%88-Config"><span class="toc-text">7.2.4、微服务整合 Config</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8%E3%80%81%E6%9C%8D%E5%8A%A1%E6%80%BB%E7%BA%BF"><span class="toc-text">8、服务总线</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1%E3%80%81Bus"><span class="toc-text">8.1、Bus</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9%E3%80%81%E6%B6%88%E6%81%AF%E9%A9%B1%E5%8A%A8"><span class="toc-text">9、消息驱动</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-1%E3%80%81Stream"><span class="toc-text">9.1、Stream</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10%E3%80%81%E8%AF%B7%E6%B1%82%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AA"><span class="toc-text">10、请求链路追踪</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#10-1%E3%80%81Zipkin"><span class="toc-text">10.1、Zipkin</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h1><h2 id="1-1、简介"><a href="#1-1、简介" class="headerlink" title="1.1、简介"></a>1.1、简介</h2><p>SpringCloud 基于 SpringBoot 提供了一套<font color="red">微服务一站式解决方案</font>。</p>
+<blockquote>
+<p>SpringBoot VS SpringCloud</p>
+<ul>
+<li>SpringBoot 专注于快速开发单个个体的微服务。</li>
+<li>SpringCloud 关注于全局的服务治理框架。</li>
+</ul>
+</blockquote>
+<h2 id="1-2、版本选择"><a href="#1-2、版本选择" class="headerlink" title="1.2、版本选择"></a>1.2、版本选择</h2><p>SpringBoot 和 SpringCloud 存在依赖关系，<a target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud">Spring 官网</a>查看。Spring 官网强烈建议将 SpringBoot 版本 1.5 升级到 2.0+，SpringCloud 版本分为 A 到 H 版本，最后停更版本为 H 版。</p>
+<h2 id="1-3、组件"><a href="#1-3、组件" class="headerlink" title="1.3、组件"></a>1.3、组件</h2><ul>
+<li><strong>服务注册与发现</strong>：<del>Eureka</del>、<strong>Zookeeper</strong>、Consul、<strong>Nacos</strong></li>
+<li><strong>负载均衡</strong>：<strong>Ribbon</strong>、LoadBalancer</li>
+<li><strong>服务调用</strong>：<del>Feign</del>、<strong>OpenFeign</strong>、<strong>Dubbo</strong></li>
+<li><strong>服务降级</strong>：<del>Hystrix</del>、resilience4j、<strong>Sentienl</strong></li>
+<li><strong>服务网关</strong>：<del>Zuul</del>、Zuul2、<strong>Gateway</strong></li>
+<li><strong>服务配置</strong>：<del>Config</del>、<strong>Nacos</strong></li>
+<li><strong>服务总线</strong>：<del>Bus</del>、<strong>Nacos</strong></li>
+<li><strong>消息驱动</strong>：Stream</li>
+<li><strong>链路追踪</strong>：Sleuth<span id="more"></span></li>
+</ul>
+<h1 id="2、服务注册与发现"><a href="#2、服务注册与发现" class="headerlink" title="2、服务注册与发现"></a>2、服务注册与发现</h1><h2 id="2-1、Eureka"><a href="#2-1、Eureka" class="headerlink" title="2.1、Eureka*"></a>2.1、Eureka*</h2><h3 id="2-1-1、定义"><a href="#2-1-1、定义" class="headerlink" title="2.1.1、定义"></a>2.1.1、定义</h3><p>Eureka 为 CS 架构。提供 Eureka Server 与 Eureka Client，服务端即是 Eureka 服务注册中心，客户端完成微服务向 Eureka 服务的注册与发现。客户端同时也具备一个内置的使用轮询负载算法的负载均衡器。</p>
+<h3 id="2-1-2、搭建-Eureka-服务端"><a href="#2-1-2、搭建-Eureka-服务端" class="headerlink" title="2.1.2、搭建 Eureka 服务端"></a>2.1.2、搭建 Eureka 服务端</h3><ul>
+<li><strong>单机版</strong><ol>
+<li>父工程声明依赖，要求与 SpringBoot 版本匹配。</li>
+</ol>
+</li>
+</ul>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2020.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></code></pre>
+
+<ol start="2">
+<li>创建微服务，添加依赖。</li>
+</ol>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></code></pre>
+
+<ol start="3">
+<li>创建配置文件。</li>
+</ol>
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="attr">spring:</span>
+  <span class="attr">application:</span>
+    <span class="attr">name:</span> <span class="string">eureka-server</span> <span class="comment"># 应用名</span>
+<span class="attr">server:</span>
+  <span class="attr">port:</span> <span class="number">8761</span>
+<span class="attr">eureka:</span>
+  <span class="attr">instance:</span>
+    <span class="attr">hostname:</span> <span class="string">localhost</span> <span class="comment"># Eureka服务端的实例名称。集群中不可重复，如果本地搭建集群版，需要修改hosts文件。</span>
+  <span class="attr">client:</span>
+    <span class="attr">register-with-eureka:</span> <span class="literal">false</span> <span class="comment"># 服务注册开关，是否注册服务</span>
+    <span class="attr">fetch-registry:</span> <span class="literal">false</span> <span class="comment"># 服务发现开关，是否发现服务</span>
+    <span class="attr">service-url:</span>
+      <span class="attr">defaultZone:</span> <span class="string">http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/</span> <span class="comment"># Eureka服务端客户端交互地址。单机配自己，集群配对方</span>
+      <span class="comment"># defaultZone: http://eureka8761.com:8761/eureka/,http://eureka8762.com:8762/eureka/ # 集群原理：互相注册，相互守望。</span>
+  <span class="attr">server:</span>
+    <span class="attr">enable-self-preservation:</span> <span class="literal">false</span> <span class="comment"># 关闭自我保护机制。</span></code></pre>
+
+<ol start="4">
+<li>创建启动类，并添加注解。</li>
+</ol>
+<pre><div class="caption"><span>App.java</span></div><code class="highlight java"><span class="meta">@SpringBootApplication</span>
+<span class="meta">@EnableEurekaServer</span> <span class="comment">// 标识服务注册中心</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">App</span> &#123;
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;
+        SpringApplication.run(App.class, args);
+    &#125;
+&#125;</code></pre>
+
+<ol start="5">
+<li>请求 Eureka 管理页面测试。</li>
+</ol>
+<ul>
+<li><strong>集群版</strong>：<strong>互相注册，相互守望</strong><blockquote>
+<p>搭建过程同上，只需要修改服务端客户端交互地址。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="2-1-3、微服务整合-Eureka"><a href="#2-1-3、微服务整合-Eureka" class="headerlink" title="2.1.3、微服务整合 Eureka"></a>2.1.3、微服务整合 Eureka</h3><ol>
+<li>父工程声明依赖，要求与 SpringBoot 版本匹配。<br>同上。</li>
+<li>添加依赖，要求服务端客户端版本保持一致。</li>
+</ol>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></code></pre>
+
+<ol start="3">
+<li>添加配置信息。</li>
+</ol>
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="attr">spring:</span>
+  <span class="attr">application:</span>
+    <span class="attr">name:</span> <span class="string">provider</span> <span class="comment"># 应用名。服务名</span>
+<span class="attr">server:</span>
+  <span class="attr">port:</span> <span class="number">8001</span>
+<span class="attr">eureka:</span>
+  <span class="attr">client:</span>
+    <span class="attr">register-with-eureka:</span> <span class="literal">true</span> <span class="comment"># 服务注册开关，是否注册服务</span>
+    <span class="attr">fetch-registry:</span> <span class="literal">false</span> <span class="comment"># 服务发现开关，是否发现服务</span>
+    <span class="attr">service-url:</span>
+      <span class="attr">defaultZone:</span> <span class="string">http://localhost:8761/eureka/</span> <span class="comment"># Eureka服务端客户端交互地址</span>
+  <span class="attr">instance:</span>
+    <span class="attr">instance-id:</span> <span class="string">$&#123;spring.application.name&#125;:$&#123;server.port&#125;</span> <span class="comment"># 实例名</span>
+    <span class="attr">prefer-ip-address:</span> <span class="literal">true</span> <span class="comment"># 显示IP</span></code></pre>
+
+<ol start="4">
+<li>请求 Eureka 管理页面测试。</li>
+<li>使用。<ul>
+<li>整合 Ribbon 或者 OpenFeign 进行服务调用。</li>
+<li>注入 DiscoveryClient 组件获取注册信息。</li>
+</ul>
+</li>
+</ol>
+<pre><div class="caption"><span>TestController.java</span></div><code class="highlight java"><span class="meta">@Autowired</span>
+<span class="keyword">private</span> DiscoveryClient discoveryClient;
+<span class="meta">@GetMapping(&quot;getInstances&quot;)</span>
+<span class="keyword">public</span> Object <span class="title function_">getInstances</span><span class="params">()</span> &#123;
+    <span class="keyword">return</span> discoveryClient.getInstances(<span class="string">&quot;provider&quot;</span>); <span class="comment">// 获取服务实例</span>
+&#125;</code></pre>
+
+<h3 id="2-1-4、心跳机制"><a href="#2-1-4、心跳机制" class="headerlink" title="2.1.4、心跳机制*"></a>2.1.4、心跳机制*</h3><p>在应用启动后，节点们将会向 Eureka 服务端发送心跳，默认周期为 30 秒，如果 Eureka 服务端在多个心跳周期内没有接收到某个节点的心跳，Eureka 服务端将会从服务注册表中把这个服务节点移除（默认 90 秒）。</p>
+<ul>
+<li><strong>服务端修改心跳配置</strong></li>
+</ul>
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="attr">eureka:</span>
+  <span class="attr">server:</span>
+    <span class="attr">eviction-interval-timer-in-ms:</span> <span class="number">2000</span> <span class="comment"># 设置剔除间隔毫秒。2秒内微服务没有心跳就剔除，默认是60s</span></code></pre>
+
+<ul>
+<li><strong>客户端修改心跳配置</strong></li>
+</ul>
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="attr">eureka:</span>
+  <span class="attr">instance:</span>
+    <span class="attr">lease-renewal-interval-in-seconds:</span> <span class="number">30</span> <span class="comment"># 客户端向服务端发送心跳的时间间隔，默认30，单位秒</span>
+    <span class="attr">lease-expiration-duration-in-seconds:</span> <span class="number">90</span> <span class="comment"># 服务端收到最后一次心跳后等待时间的上限，默认90，单位秒，超时剔除</span></code></pre>
+
+<h3 id="2-1-5、自我保护机制"><a href="#2-1-5、自我保护机制" class="headerlink" title="2.1.5、自我保护机制"></a>2.1.5、自我保护机制</h3><p>当 Eureka 服务端在一定时间内（默认 90 秒）没有接收到某个微服务的心跳，Eureka 服务端会从服务列表将此服务实例注销。<strong>当 Eureka 服务端在短时间内丢失过多客户端时（可能发生了网络故障），此时 Eureka 服务端会进入自保护模式，一旦进入该模式，Eureka 服务端就会保护服务注册表中的信息，不再删除服务注册表中的数据（也就是不会注销任何微服务）</strong>。当网络故障恢复后，该 Eureka 服务端会自动退出自我保护模式。自我保护模式是一种应对网络异常的安全保护措施。它的架构哲学是宁可同时保留所有微服务（健康的微服务和不健康的微服务都会保留），也不盲目注销任何健康的微服务。属于 CAP 中的 AP 分支。</p>
+<ul>
+<li><strong>服务端关闭自我保护机制</strong></li>
+</ul>
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="attr">eureka:</span>
+  <span class="attr">server:</span>
+    <span class="attr">enable-self-preservation:</span> <span class="literal">false</span></code></pre>
+
+<h3 id="2-1-6、配置详解"><a href="#2-1-6、配置详解" class="headerlink" title="2.1.6、配置详解"></a>2.1.6、配置详解</h3><ul>
+<li><strong>服务端配置</strong></li>
+</ul>
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="attr">eureka:</span>
+  <span class="attr">instance:</span>
+    <span class="attr">hostname:</span> <span class="string">localhost</span> <span class="comment"># Eureka服务端的实例名称。集群中不可重复，如果本地搭建集群版，需要修改hosts文件。</span>
+  <span class="attr">client:</span>
+    <span class="attr">register-with-eureka:</span> <span class="literal">false</span> <span class="comment"># 服务注册开关，是否注册服务</span>
+    <span class="attr">fetch-registry:</span> <span class="literal">false</span> <span class="comment"># 服务发现开关，是否发现服务</span>
+    <span class="attr">service-url:</span>
+      <span class="attr">defaultZone:</span> <span class="string">http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/</span> <span class="comment"># Eureka服务端客户端交互地址。单机配自己，集群配对方</span>
+      <span class="comment"># defaultZone: http://eureka8761.com:8761/eureka/,http://eureka8762.com:8762/eureka/</span>
+  <span class="attr">server:</span>
+    <span class="attr">enable-self-preservation:</span> <span class="literal">false</span> <span class="comment"># 关闭自我保护机制。</span>
+    <span class="attr">eviction-interval-timer-in-ms:</span> <span class="number">2000</span> <span class="comment"># 设置剔除间隔毫秒。2秒内微服务没有心跳就剔除，默认是60s</span></code></pre>
+
+<ul>
+<li><strong>客户端配置</strong></li>
+</ul>
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="attr">eureka:</span>
+  <span class="attr">client:</span>
+    <span class="attr">register-with-eureka:</span> <span class="literal">true</span> <span class="comment"># 服务注册开关，是否注册服务</span>
+    <span class="attr">fetch-registry:</span> <span class="literal">false</span> <span class="comment"># 服务发现开关，是否发现服务</span>
+    <span class="attr">service-url:</span>
+      <span class="attr">defaultZone:</span> <span class="string">http://localhost:8761/eureka/</span> <span class="comment"># Eureka服务端客户端交互地址。单机配自己，集群配对方</span>
+  <span class="attr">instance:</span>
+    <span class="attr">instance-id:</span> <span class="string">$&#123;spring.application.name&#125;:$&#123;server.port&#125;</span> <span class="comment"># 实例名</span>
+    <span class="attr">prefer-ip-address:</span> <span class="literal">true</span> <span class="comment"># 显示IP</span>
+    <span class="attr">lease-renewal-interval-in-seconds:</span> <span class="number">30</span> <span class="comment"># 客户端向服务端发送心跳的时间间隔，默认30，单位秒</span>
+    <span class="attr">lease-expiration-duration-in-seconds:</span> <span class="number">90</span> <span class="comment"># 服务端收到最后一次心跳后等待时间的上限，默认90，单位秒，超时剔除</span>
+    <span class="attr">ip-address:</span> <span class="number">192.168</span><span class="number">.1</span><span class="number">.7</span> <span class="comment"># ip地址</span></code></pre>
+
+<h2 id="2-2、Zookeeper"><a href="#2-2、Zookeeper" class="headerlink" title="2.2、Zookeeper*"></a>2.2、Zookeeper*</h2><h3 id="2-2-1、搭建-ZK-服务端"><a href="#2-2-1、搭建-ZK-服务端" class="headerlink" title="2.2.1、搭建 ZK 服务端"></a>2.2.1、搭建 ZK 服务端</h3><p>详见<a href="/zookeeper/" title="Zookeeper笔记">Zookeeper服务调度中间件</a>。</p>
+<h3 id="2-2-2、微服务整合-ZK"><a href="#2-2-2、微服务整合-ZK" class="headerlink" title="2.2.2、微服务整合 ZK"></a>2.2.2、微服务整合 ZK</h3><ol>
+<li>父工程声明依赖，要求与 SpringBoot 版本匹配。<br>同上。</li>
+<li>添加依赖。</li>
+</ol>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-zookeeper-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></code></pre>
+
+<ol start="3">
+<li>添加配置信息。</li>
+</ol>
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="attr">server:</span>
+  <span class="attr">port:</span> <span class="number">8001</span>
+<span class="attr">spring:</span>
+  <span class="attr">application:</span>
+    <span class="attr">name:</span> <span class="string">provider</span> <span class="comment"># 应用名。服务名</span>
+  <span class="attr">cloud:</span>
+    <span class="attr">zookeeper:</span>
+      <span class="attr">connect-string:</span> <span class="number">192.168</span><span class="number">.229</span><span class="number">.131</span><span class="string">:2181</span> <span class="comment"># ZK连接字符串</span></code></pre>
+
+<ol start="4">
+<li>测试。<br>通过 ZK 客户端连接 ZK 服务端查看节点信息（Zookeeper 临时节点，当一定时间收不到心跳就直接删掉）。</li>
+<li>使用。<br>同上。</li>
+</ol>
+<h2 id="2-3、Consul"><a href="#2-3、Consul" class="headerlink" title="2.3、Consul"></a>2.3、Consul</h2><h3 id="2-3-1、定义"><a href="#2-3-1、定义" class="headerlink" title="2.3.1、定义"></a>2.3.1、定义</h3><p>分布式服务发现和配置管理系统，Go 语言开发，提供图形化界面。</p>
+<h3 id="2-3-2、作用"><a href="#2-3-2、作用" class="headerlink" title="2.3.2、作用"></a>2.3.2、作用</h3><ul>
+<li>服务发现，提供 HTTP 和 DNS 两种发现方式</li>
+<li>健康检测</li>
+<li>KV 存储</li>
+<li>多数据中心，支持多数据中心</li>
+<li>可视化 Web 界面</li>
+</ul>
+<h3 id="2-3-3、搭建-Consul-服务端"><a href="#2-3-3、搭建-Consul-服务端" class="headerlink" title="2.3.3、搭建 Consul 服务端"></a>2.3.3、搭建 Consul 服务端</h3><ol>
+<li>下载<a target="_blank" rel="noopener" href="https://developer.hashicorp.com/consul">Consul 压缩包</a>，并解压。</li>
+<li>运行。<blockquote>
+<p>.&#x2F;consul agent -dev -ui -node&#x3D;consul-dev -client&#x3D;IP # linux 环境<br>consul agent -dev # windows 环境</p>
+</blockquote>
+</li>
+<li>请求 Consul 管理页面测试。<blockquote>
+<p>请求 http://ip:8500。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="2-3-3、微服务整合-Consul"><a href="#2-3-3、微服务整合-Consul" class="headerlink" title="2.3.3、微服务整合 Consul"></a>2.3.3、微服务整合 Consul</h3><ol>
+<li>父工程声明依赖，要求与 SpringBoot 版本匹配。<br>同上。</li>
+<li>添加依赖。</li>
+</ol>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-consul-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></code></pre>
+
+<ol start="3">
+<li>添加配置信息。</li>
+</ol>
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="attr">server:</span>
+  <span class="attr">port:</span> <span class="number">8001</span>
+<span class="attr">spring:</span>
+  <span class="attr">application:</span>
+    <span class="attr">name:</span> <span class="string">provider</span> <span class="comment"># 应用名。服务名</span>
+  <span class="attr">cloud:</span>
+    <span class="attr">consul:</span>
+      <span class="attr">host:</span> <span class="string">localhost</span>
+      <span class="attr">port:</span> <span class="number">8500</span>
+      <span class="attr">discovery:</span>
+        <span class="attr">service-name:</span> <span class="string">$&#123;spring.application.name&#125;</span></code></pre>
+
+<ol start="4">
+<li>测试。<br>请求 Consul 管理页面，查看服务注册情况。</li>
+<li>使用<br>同上。</li>
+</ol>
+<h2 id="2-4、Nacos"><a href="#2-4、Nacos" class="headerlink" title="2.4、Nacos*"></a>2.4、Nacos*</h2><p>详见<a href="/springcloud/springcloud-alibaba/" title="SpringCloudAlibaba框架">SpringCloudAlibaba框架</a>。</p>
+<h2 id="2-5、服务注册中心对比"><a href="#2-5、服务注册中心对比" class="headerlink" title="2.5、服务注册中心对比"></a>2.5、服务注册中心对比</h2><table>
+<thead>
+<tr>
+<th align="center">组件</th>
+<th align="center">开发语言</th>
+<th align="center">CAP 模型</th>
+<th align="center">控制台管理</th>
+<th align="center">社区活跃度</th>
+<th align="center">服务健康检测</th>
+<th align="center">对外暴露接口</th>
+<th align="center">SpringCloud 集成</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Eureak</td>
+<td align="center">Java</td>
+<td align="center">AP</td>
+<td align="center">支持</td>
+<td align="center">2.x 版本闭源</td>
+<td align="center">可配置支持</td>
+<td align="center">HTTP</td>
+<td align="center">已集成</td>
+</tr>
+<tr>
+<td align="center">Zookeeper</td>
+<td align="center">Java</td>
+<td align="center">CP</td>
+<td align="center">不支持</td>
+<td align="center">中</td>
+<td align="center">支持</td>
+<td align="center">客户端</td>
+<td align="center">已集成</td>
+</tr>
+<tr>
+<td align="center">Consul</td>
+<td align="center">Go</td>
+<td align="center">CP</td>
+<td align="center">支持</td>
+<td align="center">高</td>
+<td align="center">支持</td>
+<td align="center">HTTP&#x2F;DNS</td>
+<td align="center">已集成</td>
+</tr>
+<tr>
+<td align="center">Nacos</td>
+<td align="center">Java</td>
+<td align="center">AP+CP</td>
+<td align="center">支持</td>
+<td align="center">高</td>
+<td align="center">支持</td>
+<td align="center">HTTP</td>
+<td align="center">已集成</td>
+</tr>
+</tbody></table>
+<h1 id="3、负载均衡"><a href="#3、负载均衡" class="headerlink" title="3、负载均衡"></a>3、负载均衡</h1><h2 id="3-1、定义"><a href="#3-1、定义" class="headerlink" title="3.1、定义"></a>3.1、定义</h2><p>将用户请求平摊到多个服务上，从而达到服务的高可用，常见负载均衡有软件 nginx、LVS，硬件 F5。</p>
+<h2 id="3-2、分类"><a href="#3-2、分类" class="headerlink" title="3.2、分类"></a>3.2、分类</h2><ul>
+<li><strong>服务端负载均衡</strong>：集中式负载均衡，只有负载均衡器维护一份服务端列表，例如 nginx 负载均衡。</li>
+<li><strong>客户端负载均衡</strong>：进程内负载均衡，每个客户端服务都有一份自己要访问的服务端清单，例如 ribbon 负载均衡。</li>
+</ul>
+<h2 id="3-3、Ribbon"><a href="#3-3、Ribbon" class="headerlink" title="3.3、Ribbon*"></a>3.3、Ribbon*</h2><h3 id="3-3-1、微服务整合-Ribbon"><a href="#3-3-1、微服务整合-Ribbon" class="headerlink" title="3.3.1、微服务整合 Ribbon"></a>3.3.1、微服务整合 Ribbon</h3><ol>
+<li>父工程声明依赖，要求与 SpringBoot 版本匹配。<br>同上。</li>
+<li>添加依赖。<blockquote>
+<p>Eureka 客户端、OpenFeign、Nacos 客户端等都会引入 Ribbon，无需重复引入。</p>
+</blockquote>
+</li>
+<li>RestTemplate 组件添加@LoadBalanced 注解。</li>
+</ol>
+<pre><div class="caption"><span>RestConfig.java</span></div><code class="highlight java"><span class="meta">@Configuration</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RestConfig</span> &#123;
+    <span class="meta">@Bean</span>
+    <span class="meta">@LoadBalanced</span> <span class="comment">// 负载均衡</span>
+    <span class="keyword">public</span> RestTemplate <span class="title function_">restTemplate</span><span class="params">()</span> &#123;
+        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();
+    &#125;
+&#125;</code></pre>
+
+<ol start="4">
+<li>使用。<br>采用服务名代替 IP+端口。</li>
+</ol>
+<pre><div class="caption"><span>SkuController.java</span></div><code class="highlight java"><span class="meta">@RestController</span>
+<span class="meta">@RequestMapping(&quot;sku&quot;)</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SkuController</span> &#123;
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">URL</span> <span class="operator">=</span> <span class="string">&quot;http://provider/sku&quot;</span>; <span class="comment">// 服务名不能包含下划线</span>
+    <span class="meta">@Autowired</span>
+    <span class="keyword">private</span> RestTemplate restTemplate;
+    <span class="meta">@GetMapping(&quot;getbyid/&#123;id&#125;&quot;)</span>
+    <span class="keyword">public</span> ResultVO <span class="title function_">getById</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Long id)</span> &#123;
+        <span class="keyword">return</span> restTemplate.getForObject(URL + <span class="string">&quot;/getbyid/&quot;</span> + id, ResultVO.class);
+    &#125;
+    <span class="meta">@GetMapping(&quot;insert&quot;)</span>
+    <span class="keyword">public</span> ResultVO <span class="title function_">insert</span><span class="params">(SkuVO skuVO)</span> &#123;
+        <span class="keyword">return</span> restTemplate.postForObject(URL + <span class="string">&quot;/insert&quot;</span>, skuVO, ResultVO.class);
+    &#125;
+&#125;</code></pre>
+
+<h3 id="3-3-2、工作流程"><a href="#3-3-2、工作流程" class="headerlink" title="3.3.2、工作流程"></a>3.3.2、工作流程</h3><ol>
+<li>先选择 EurekaServer，它优先选择在同一个区域内负载较少的 server。</li>
+<li>根据用户指定的策略，在从 server 取到的服务注册列表中选择一个地址。</li>
+</ol>
+<h3 id="3-3-3、实现原理"><a href="#3-3-3、实现原理" class="headerlink" title="3.3.3、实现原理"></a>3.3.3、实现原理</h3><p>TODO</p>
+<h3 id="3-2-4、替换负载均衡策略"><a href="#3-2-4、替换负载均衡策略" class="headerlink" title="3.2.4、替换负载均衡策略"></a>3.2.4、替换负载均衡策略</h3><ol>
+<li>添加配置类，向容器中注入负载均衡策略（不能放在启动类及其子包下，否则会作用所有微服务）。</li>
+</ol>
+<pre><div class="caption"><span>TsStockRuleConfig.java</span></div><code class="highlight java"><span class="meta">@Configuration</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TsStockRuleConfig</span> &#123;
+    <span class="comment">// 策略接口：com.netflix.loadbalancer.IRule</span>
+    <span class="comment">// 策略实现：</span>
+    <span class="comment">// com.netflix.loadbalancer.RandomRule(随机)</span>
+    <span class="comment">// com.netflix.loadbalancer.RoundRobinRule(轮询)</span>
+    <span class="comment">// com.netflix.loadbalancer.WeightedResponseTimeRule(根据响应时间加权)</span>
+    <span class="meta">@Bean</span>
+    <span class="keyword">public</span> IRule <span class="title function_">tsStockRule</span><span class="params">()</span> &#123;
+        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RandomRule</span>();
+    &#125;
+&#125;</code></pre>
+
+<ol start="2">
+<li>启动类添加注解。</li>
+</ol>
+<pre><div class="caption"><span>App.java</span></div><code class="highlight java"><span class="meta">@RibbonClient(name = &quot;ts-stock&quot;, configuration = TsStockRuleConfig.class)</span>
+<span class="meta">@SpringBootApplication</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">App</span> &#123;
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;
+        SpringApplication.run(App.class, args);
+    &#125;
+&#125;</code></pre>
+
+<h3 id="3-2-5、负载均衡源码解析"><a href="#3-2-5、负载均衡源码解析" class="headerlink" title="3.2.5、负载均衡源码解析"></a>3.2.5、负载均衡源码解析</h3><p>算法：rest 请求的次数 &#x2F; 服务器集群个数 &#x3D; 实际调用的服务器下标。每次重启，次数置 0。</p>
+<pre><div class="caption"><span>RoundRobinRule.java</span></div><code class="highlight java"><span class="keyword">public</span> Server <span class="title function_">choose</span><span class="params">(ILoadBalancer lb, Object key)</span> &#123;
+        <span class="type">Server</span> <span class="variable">server</span> <span class="operator">=</span> <span class="literal">null</span>;
+        <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;
+        <span class="keyword">while</span> (server == <span class="literal">null</span> &amp;&amp; count++ &lt; <span class="number">10</span>) &#123;
+            List&lt;Server&gt; reachableServers = lb.getReachableServers();
+            List&lt;Server&gt; allServers = lb.getAllServers();
+            <span class="type">int</span> <span class="variable">upCount</span> <span class="operator">=</span> reachableServers.size();
+            <span class="type">int</span> <span class="variable">serverCount</span> <span class="operator">=</span> allServers.size();
+            <span class="type">int</span> <span class="variable">nextServerIndex</span> <span class="operator">=</span> incrementAndGetModulo(serverCount);
+            server = allServers.get(nextServerIndex);
+            <span class="keyword">if</span> (server == <span class="literal">null</span>) &#123;
+                Thread.<span class="keyword">yield</span>();
+                <span class="keyword">continue</span>;
+            &#125;
+            <span class="keyword">if</span> (server.isAlive() &amp;&amp; (server.isReadyToServe())) &#123;
+                <span class="keyword">return</span> (server);
+            &#125;
+            server = <span class="literal">null</span>;
+        &#125;
+        <span class="keyword">return</span> server;
+    &#125;
+    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">incrementAndGetModulo</span><span class="params">(<span class="type">int</span> modulo)</span> &#123;
+        <span class="keyword">for</span> (;;) &#123; <span class="comment">// 自旋锁</span>
+            <span class="type">int</span> <span class="variable">current</span> <span class="operator">=</span> nextServerCyclicCounter.get();
+            <span class="type">int</span> <span class="variable">next</span> <span class="operator">=</span> (current + <span class="number">1</span>) % modulo;
+            <span class="keyword">if</span> (nextServerCyclicCounter.compareAndSet(current, next))
+                <span class="keyword">return</span> next;
+        &#125;
+    &#125;</code></pre>
+
+<h3 id="3-2-6、手写负载均衡"><a href="#3-2-6、手写负载均衡" class="headerlink" title="3.2.6、手写负载均衡"></a>3.2.6、手写负载均衡</h3><pre><div class="caption"><span>LoadBalance.java</span></div><code class="highlight java"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">LoadBalance</span> &#123;
+    ServiceInstance <span class="title function_">getInstance</span><span class="params">(List&lt;ServiceInstance&gt; instances)</span>;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>MyLB.java</span></div><code class="highlight java"><span class="meta">@Component</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyLB</span> <span class="keyword">implements</span> <span class="title class_">LoadBalance</span> &#123;
+    <span class="keyword">private</span> <span class="type">AtomicInteger</span> <span class="variable">atomicInteger</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AtomicInteger</span>(<span class="number">0</span>);
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> ServiceInstance <span class="title function_">getInstance</span><span class="params">(List&lt;ServiceInstance&gt; instances)</span> &#123;
+        <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> incrementAndGetModulo() % instances.size();
+        <span class="keyword">return</span> instances.get(index);
+    &#125;
+    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">incrementAndGetModulo</span><span class="params">()</span> &#123;
+        <span class="keyword">for</span> (;;) &#123;
+            <span class="type">int</span> <span class="variable">current</span> <span class="operator">=</span> atomicInteger.get();
+            <span class="type">int</span> <span class="variable">next</span> <span class="operator">=</span> current &gt;= Integer.MAX_VALUE ? <span class="number">0</span> : current + <span class="number">1</span>;
+            <span class="keyword">if</span> (atomicInteger.compareAndSet(current, next)) &#123;
+                System.out.println(<span class="string">&quot;+++++++++第&quot;</span> + next + <span class="string">&quot;次访问系统+++++++++&quot;</span>);
+                <span class="keyword">return</span> next;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<pre><code class="highlight java"><span class="meta">@Autowired</span>
+<span class="keyword">private</span> DiscoveryClient discoveryClient;
+<span class="meta">@Autowired</span>
+<span class="keyword">private</span> LoadBalance loadBalance;
+<span class="meta">@GetMapping(&quot;list2&quot;)</span>
+<span class="keyword">public</span> CustomHttpResult <span class="title function_">list2</span><span class="params">()</span> &#123;
+    List&lt;ServiceInstance&gt; instances = discoveryClient.getInstances(<span class="string">&quot;product&quot;</span>);
+    <span class="keyword">if</span> (instances == <span class="literal">null</span> || instances.size() == <span class="number">0</span>) &#123;
+        <span class="keyword">return</span> <span class="literal">null</span>;
+    &#125;
+    <span class="type">ServiceInstance</span> <span class="variable">instance</span> <span class="operator">=</span> loadBalance.getInstance(instances);
+    <span class="type">URI</span> <span class="variable">uri</span> <span class="operator">=</span> instance.getUri();
+    <span class="keyword">return</span> restTemplate.getForObject(uri + <span class="string">&quot;/product/list&quot;</span>, CustomHttpResult.class);
+&#125;</code></pre>
+
+<h2 id="3-3、LoadBalancer"><a href="#3-3、LoadBalancer" class="headerlink" title="3.3、LoadBalancer"></a>3.3、LoadBalancer</h2><p>TODO</p>
+<h2 id="3-4、Nginx"><a href="#3-4、Nginx" class="headerlink" title="3.4、Nginx*"></a>3.4、Nginx*</h2><p>详见<a href="/nginx/" title="Nginx负载均衡器">Nginx负载均衡</a>。</p>
+<h1 id="4、服务调用"><a href="#4、服务调用" class="headerlink" title="4、服务调用"></a>4、服务调用</h1><blockquote>
+<p>SpringCloud VS Dubbo</p>
+<ul>
+<li>SpringCloud 使用 RESTful API 实现服务之间通信。</li>
+<li>Dubbo 使用 RPC（远程过程调用）实现服务之间通信。</li>
+</ul>
+</blockquote>
+<h2 id="4-1、工具类"><a href="#4-1、工具类" class="headerlink" title="4.1、工具类"></a>4.1、工具类</h2><h3 id="4-1-1、RestTemplate"><a href="#4-1-1、RestTemplate" class="headerlink" title="4.1.1、RestTemplate"></a>4.1.1、RestTemplate</h3><ul>
+<li>getForEntity、postForEntity 返回值为 ResponseEntity<T>，可以获取更加详细的响应数据，例如响应头、响应状态码、响应体。常用 api 有 entity.getStatusCode().is2xxSuccessful()，entity.getBody()。</li>
+<li>getForObject、postForObject 返回值为 T。</li>
+</ul>
+<pre><div class="caption"><span>Test.java</span></div><code class="highlight java">restTemplate.getForObject(TsServiceUrlConstants.STOCK_SERVICE + <span class="string">&quot;/skuTakeAddress/getBySkuId/&quot;</span> + id, BaseResponse.class); <span class="comment">// Get请求</span>
+restTemplate.postForObject(TsServiceUrlConstants.STOCK_SERVICE_URL + <span class="string">&quot;/skuTakeAddress/deleteBySkuId/&quot;</span> + id, <span class="literal">null</span>, BaseResponse.class); <span class="comment">// Post请求</span></code></pre>
+
+<h3 id="4-1-2、HttpClient"><a href="#4-1-2、HttpClient" class="headerlink" title="4.1.2、HttpClient"></a>4.1.2、HttpClient</h3><p>TODO</p>
+<h3 id="4-1-3、OkHttpClient"><a href="#4-1-3、OkHttpClient" class="headerlink" title="4.1.3、OkHttpClient"></a>4.1.3、OkHttpClient</h3><p>TODO</p>
+<h2 id="4-2、Feign"><a href="#4-2、Feign" class="headerlink" title="4.2、Feign"></a>4.2、Feign</h2><p>略。</p>
+<h2 id="4-3、OpenFeign"><a href="#4-3、OpenFeign" class="headerlink" title="4.3、OpenFeign*"></a>4.3、OpenFeign*</h2><h3 id="4-3-1、定义"><a href="#4-3-1、定义" class="headerlink" title="4.3.1、定义"></a>4.3.1、定义</h3><p>声明式 WEB 服务客户端接口。OpenFeign 在 Feign 的基础上，可以解析 SpringMVC 的注解下的接口。</p>
+<h3 id="4-3-2、作用"><a href="#4-3-2、作用" class="headerlink" title="4.3.2、作用"></a>4.3.2、作用</h3><ul>
+<li>简化代码。</li>
+<li>Feign 只需要定义服务绑定接口，便可优雅简单的实现服务的调用。</li>
+<li>Feign 集成了 Ribbon。</li>
+</ul>
+<h3 id="4-3-3、微服务整合-OpenFeign"><a href="#4-3-3、微服务整合-OpenFeign" class="headerlink" title="4.3.3、微服务整合 OpenFeign"></a>4.3.3、微服务整合 OpenFeign</h3><ol>
+<li>父工程声明依赖，要求与 SpringBoot 版本匹配。<br>同上。</li>
+<li>添加依赖。</li>
+</ol>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></code></pre>
+
+<ol start="3">
+<li>创建远程接口，添加注解（不需要注入容器）。</li>
+</ol>
+<pre><div class="caption"><span>TsSkuTakeAddressService.java</span></div><code class="highlight java"><span class="meta">@FeignClient(name = &quot;ts-stock&quot;)</span>
+<span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">TsSkuTakeAddressService</span> &#123;
+    <span class="meta">@GetMapping(&quot;skuTakeAddress/getBySkuId/&#123;skuId&#125;&quot;)</span>
+    BaseResponse&lt;List&lt;TsSkuTakeAddressDTO&gt;&gt; <span class="title function_">getBySkuId</span><span class="params">(<span class="meta">@PathVariable(&quot;skuId&quot;)</span> Long skuId)</span>;
+&#125;</code></pre>
+
+<ol start="4">
+<li>启动类添加注解。</li>
+</ol>
+<pre><div class="caption"><span>App.java</span></div><code class="highlight java"><span class="meta">@EnableFeignClients(basePackages = &quot;com.fengbiao1.thunder.snake.goods.service&quot;)</span>
+<span class="meta">@SpringBootApplication</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">App</span> &#123;
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;
+        SpringApplication.run(App.class, args);
+    &#125;
+&#125;</code></pre>
+
+<ol start="5">
+<li>使用。</li>
+</ol>
+<pre><div class="caption"><span>TestController.java</span></div><code class="highlight java"><span class="meta">@Resource</span>
+<span class="keyword">private</span> TsSkuTakeAddressService tsSkuTakeAddressService;</code></pre>
+
+<h3 id="4-3-4、超时配置"><a href="#4-3-4、超时配置" class="headerlink" title="4.3.4、超时配置*"></a>4.3.4、超时配置*</h3><p>OpenFeign 默认情况客户端只等待 1s，超时会报错，如需设置设置时长需要增加配置，详情见 CommonClientConfigKey 类。</p>
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="attr">ribbon:</span>
+  <span class="attr">ReadTimeout:</span> <span class="number">5000</span> <span class="comment"># 建立连接后从服务器读取到可用资源所用时间。</span>
+  <span class="attr">ConnectTimeout:</span> <span class="number">5000</span> <span class="comment"># 建立连接所用时间，适用于网络状况正常的情况下，两端连接所用的时间。</span></code></pre>
+
+<h3 id="4-3-5、日志增强"><a href="#4-3-5、日志增强" class="headerlink" title="4.3.5、日志增强"></a>4.3.5、日志增强</h3><ol>
+<li>创建配置类。</li>
+</ol>
+<pre><code class="highlight java"><span class="meta">@Configuration</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OpenFeignConfig</span> &#123;
+    <span class="meta">@Bean</span>
+    <span class="keyword">public</span> Logger.Level <span class="title function_">loggerLevel</span><span class="params">()</span> &#123;
+        <span class="comment">// 日志级别：NONE,BASIC,HEADERS,FULL</span>
+        <span class="keyword">return</span> Logger.Level.FULL;
+    &#125;
+&#125;</code></pre>
+
+<ol start="2">
+<li>修改配置文件日志级别。</li>
+</ol>
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="comment"># 日志配置</span>
+<span class="attr">logging:</span>
+  <span class="attr">level:</span>
+    <span class="attr">com.fengbiao1.thunder.snake.goods.service:</span> <span class="string">debug</span></code></pre>
+
+<h2 id="4-4、Dubbo"><a href="#4-4、Dubbo" class="headerlink" title="4.4、Dubbo*"></a>4.4、Dubbo*</h2><p>TODO</p>
+<h1 id="5、服务降级"><a href="#5、服务降级" class="headerlink" title="5、服务降级"></a>5、服务降级</h1><h2 id="5-1、分布式系统问题"><a href="#5-1、分布式系统问题" class="headerlink" title="5.1、分布式系统问题*"></a>5.1、分布式系统问题*</h2><h3 id="5-1-1、服务雪崩"><a href="#5-1-1、服务雪崩" class="headerlink" title="5.1.1、服务雪崩"></a>5.1.1、服务雪崩</h3><p>多个微服务之间调用的时候，假设微服务 A 调用微服务 B 和微服务 C，微服务 B 和微服务 C 又调用其它的微服务，这就是所谓的“扇出”。如果扇出的链路上某个微服务的调用响应时间过长或者不可用，对微服务 A 的调用就会占用越来越多的系统资源，进而引起系统崩溃。</p>
+<h3 id="5-1-2、服务降级"><a href="#5-1-2、服务降级" class="headerlink" title="5.1.2、服务降级"></a>5.1.2、服务降级</h3><p>不让服务器等待，并返回一个友好提示，fallback。<br>场景：程序运行异常、超时、服务熔断触发降级、线程池&#x2F;信号量打满导致降级。</p>
+<h3 id="5-1-3、服务熔断"><a href="#5-1-3、服务熔断" class="headerlink" title="5.1.3、服务熔断"></a>5.1.3、服务熔断</h3><p>达到最大访问后（即使正确），直接拒绝访问，调用服务降级的方法并返回友好的提示。<br>场景：服务降级 -&gt; 熔断 -&gt; 恢复调用链路。</p>
+<h3 id="5-1-4、服务限流"><a href="#5-1-4、服务限流" class="headerlink" title="5.1.4、服务限流"></a>5.1.4、服务限流</h3><p>秒杀高并发操作，严禁拥挤，有序的进行。</p>
+<h2 id="5-2、Hystrix"><a href="#5-2、Hystrix" class="headerlink" title="5.2、Hystrix"></a>5.2、Hystrix</h2><h3 id="5-2-1、定义"><a href="#5-2-1、定义" class="headerlink" title="5.2.1、定义"></a>5.2.1、定义</h3><p>处理分布式系统的延迟和容错的开源库。分布式中，许多依赖不可避免的调用失败，如超时、异常，Hystrix 能保证一个依赖出现问题的情况，<strong>不会导致整体的服务失败，避免级联故障</strong>，以提高分布式系统的弹性。当某个服务单元出现故障，通过熔断器，<strong>向调用方返回一个预期的可处理的备选响应，而非长时间的等待或者抛出调用方无法处理的异常</strong>。</p>
+<h3 id="5-2-2、作用"><a href="#5-2-2、作用" class="headerlink" title="5.2.2、作用"></a>5.2.2、作用</h3><ul>
+<li>服务降级</li>
+<li>服务熔断</li>
+<li>实时监控</li>
+</ul>
+<h3 id="5-2-3、搭建-Hystrix-服务端"><a href="#5-2-3、搭建-Hystrix-服务端" class="headerlink" title="5.2.3、搭建 Hystrix 服务端"></a>5.2.3、搭建 Hystrix 服务端</h3><ol>
+<li>父工程声明依赖。<br>同上。</li>
+<li>添加依赖。</li>
+</ol>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-hystrix-dashboard<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.10.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></code></pre>
+
+<ol start="3">
+<li>添加配置信息。</li>
+</ol>
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="attr">server:</span>
+  <span class="attr">port:</span> <span class="number">9001</span>
+<span class="attr">hystrix:</span>
+  <span class="attr">dashboard:</span>
+    <span class="attr">proxy-stream-allow-list:</span> <span class="string">localhost</span> <span class="comment"># 添加白名单</span></code></pre>
+
+<ol start="4">
+<li>创建启动类，添加@EnableHystrixDashboard 注解。</li>
+</ol>
+<pre><div class="caption"><span>App.java</span></div><code class="highlight java"><span class="meta">@SpringBootApplication</span>
+<span class="meta">@EnableHystrixDashboard</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">App</span> &#123;
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;
+        SpringApplication.run(App.class, args);
+    &#125;
+&#125;</code></pre>
+
+<ol start="5">
+<li>请求 Hystrix 监控面板页面测试。<blockquote>
+<p>请求 http://ip:port/hystrix。</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>7 色</li>
+<li>1 圈：颜色表示健康程度，健康度绿色&lt;黄色&lt;橙色&lt;红色递减；大小表示流量，流量越大实心圆越大。</li>
+<li>1 线：2 分钟内流量相对变化。</li>
+</ul>
+<h3 id="5-2-4、微服务整合-Hystrix"><a href="#5-2-4、微服务整合-Hystrix" class="headerlink" title="5.2.4、微服务整合 Hystrix"></a>5.2.4、微服务整合 Hystrix</h3><ul>
+<li><strong>服务降级</strong></li>
+</ul>
+<ol>
+<li>父工程声明依赖。<br>同上。</li>
+<li>添加依赖。</li>
+</ol>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-hystrix<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.10.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></code></pre>
+
+<ol start="3">
+<li>启动类添加@EnableHystrix 注解。</li>
+</ol>
+<pre><div class="caption"><span>App.java</span></div><code class="highlight java"><span class="meta">@SpringBootApplication</span>
+<span class="meta">@EnableHystrix</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">App</span> &#123;
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;
+        SpringApplication.run(App.class, args);
+    &#125;
+&#125;</code></pre>
+
+<ol start="4">
+<li>编写业务代码，添加@HystrixCommand 注解。<ul>
+<li>方式 1</li>
+</ul>
+</li>
+</ol>
+<pre><div class="caption"><span>SkuController.java</span></div><code class="highlight java"><span class="meta">@RestController</span>
+<span class="meta">@RequestMapping(&quot;sku&quot;)</span>
+<span class="meta">@Slf4j</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SkuController</span> &#123;
+    <span class="meta">@GetMapping(&quot;getbyid/&#123;id&#125;&quot;)</span>
+    <span class="meta">@HystrixCommand(fallbackMethod = &quot;getByIdFallback&quot;)</span> <span class="comment">// 指定兜底方法</span>
+    <span class="keyword">public</span> ResultVO <span class="title function_">getById</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Long id)</span> &#123;
+        log.info(<span class="string">&quot;模拟查询sku[&#123;&#125;]...&quot;</span>, id);
+        <span class="type">SkuVO</span> <span class="variable">skuVO</span> <span class="operator">=</span> <span class="literal">null</span>;
+        <span class="keyword">if</span> (id &gt; <span class="number">0</span>) &#123;
+            skuVO = <span class="keyword">new</span> <span class="title class_">SkuVO</span>(id, UUID.randomUUID().toString(), <span class="keyword">new</span> <span class="title class_">Date</span>());
+            <span class="keyword">return</span> ResultVO.ok(skuVO);
+        &#125;
+        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>();
+    &#125;
+    <span class="keyword">public</span> ResultVO <span class="title function_">getByIdFallback</span><span class="params">(Long id)</span> &#123;
+        <span class="keyword">return</span> ResultVO.error(<span class="string">&quot;ID为&quot;</span> + id + <span class="string">&quot;的SKU不存在&quot;</span>);
+    &#125;
+&#125;</code></pre>
+
+<pre><code>+ 方式2
+</code></pre>
+<pre><div class="caption"><span>SkuController.java</span></div><code class="highlight java"><span class="meta">@RestController</span>
+<span class="meta">@RequestMapping(&quot;sku&quot;)</span>
+<span class="meta">@Slf4j</span>
+<span class="meta">@DefaultProperties(defaultFallback = &quot;fallback&quot;)</span> <span class="comment">// 配置全局的兜底方法</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SkuController</span> &#123;
+    <span class="meta">@GetMapping(&quot;getbyid/&#123;id&#125;&quot;)</span>
+    <span class="meta">@HystrixCommand</span>
+    <span class="keyword">public</span> ResultVO <span class="title function_">getById</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Long id)</span> &#123;
+        log.info(<span class="string">&quot;模拟查询sku[&#123;&#125;]...&quot;</span>, id);
+        <span class="type">SkuVO</span> <span class="variable">skuVO</span> <span class="operator">=</span> <span class="literal">null</span>;
+        <span class="keyword">if</span> (id &gt; <span class="number">0</span>) &#123;
+            skuVO = <span class="keyword">new</span> <span class="title class_">SkuVO</span>(id, UUID.randomUUID().toString(), <span class="keyword">new</span> <span class="title class_">Date</span>());
+            <span class="keyword">return</span> ResultVO.ok(skuVO);
+        &#125;
+        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>();
+    &#125;
+    <span class="keyword">public</span> ResultVO <span class="title function_">fallback</span><span class="params">()</span> &#123; <span class="comment">// 要求返回值保持一致i，参数可以不一致。</span>
+        <span class="keyword">return</span> ResultVO.error(<span class="string">&quot;error&quot;</span>);
+    &#125;
+    <span class="meta">@PostMapping(&quot;insert&quot;)</span>
+    <span class="meta">@HystrixCommand</span>
+    <span class="keyword">public</span> ResultVO <span class="title function_">insert</span><span class="params">(<span class="meta">@RequestBody</span> SkuVO skuVO)</span> &#123;
+        <span class="keyword">if</span>(skuVO.getId() != <span class="literal">null</span>) &#123;
+            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>();
+        &#125;
+        log.info(<span class="string">&quot;模拟新增sku[&#123;&#125;]...&quot;</span>, skuVO);
+        <span class="keyword">return</span> ResultVO.ok(<span class="literal">true</span>);
+    &#125;
+&#125;</code></pre>
+
+<ol start="5">
+<li>测试。</li>
+</ol>
+<ul>
+<li><strong>服务熔断</strong></li>
+<li><strong>实时监控</strong></li>
+</ul>
+<ol>
+<li>父工程声明依赖。<br>同上。</li>
+<li>添加依赖。</li>
+</ol>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-hystrix<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.10.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-actuator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></code></pre>
+
+<ol start="3">
+<li>启动类添加@EnableHystrix 注解。<br>同上。</li>
+<li>编写业务代码，添加@HystrixCommand 注解。<br>同上。</li>
+<li>添加配置信息。</li>
+</ol>
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="attr">management:</span>
+  <span class="attr">endpoints:</span>
+    <span class="attr">web:</span>
+      <span class="attr">exposure:</span>
+        <span class="attr">include:</span> <span class="string">hystrix.stream</span> <span class="comment"># 暴露端点</span></code></pre>
+
+<ol start="6">
+<li>测试。<blockquote>
+<p>请求 http://ip:port/actuator/hystrix.stream 或者通过监控面板监控。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="5-2-5、OpenFeign-配置-Hystrix"><a href="#5-2-5、OpenFeign-配置-Hystrix" class="headerlink" title="5.2.5、OpenFeign 配置 Hystrix"></a>5.2.5、OpenFeign 配置 Hystrix</h3><h3 id="5-2-6、工作机制"><a href="#5-2-6、工作机制" class="headerlink" title="5.2.6、工作机制"></a>5.2.6、工作机制</h3><p>TODO</p>
+<h1 id="6、服务网关"><a href="#6、服务网关" class="headerlink" title="6、服务网关"></a>6、服务网关</h1><h2 id="6-1、Zuul"><a href="#6-1、Zuul" class="headerlink" title="6.1、Zuul"></a>6.1、Zuul</h2><p>TODO</p>
+<h2 id="6-2、Gateway"><a href="#6-2、Gateway" class="headerlink" title="6.2、Gateway"></a>6.2、Gateway</h2><p>TODO</p>
+<h1 id="7、服务配置"><a href="#7、服务配置" class="headerlink" title="7、服务配置"></a>7、服务配置</h1><h2 id="7-1、bootstrap-VS-application"><a href="#7-1、bootstrap-VS-application" class="headerlink" title="7.1、bootstrap VS application"></a>7.1、bootstrap VS application</h2><ul>
+<li>application.yml：是用户级别的配置项。</li>
+<li>bootstrap.yml：是系统级别的配置项，优先级更高。<blockquote>
+<p>Spring Cloud 会创建一个 Bootstrap Context，Bootstrap Context 会负责从外部资源加载配置属性并解析配置； Bootstrap 属性有高优先级，默认情况下，它们不会被本地配置覆盖。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="7-2、Config"><a href="#7-2、Config" class="headerlink" title="7.2、Config"></a>7.2、Config</h2><h3 id="7-2-1、定义"><a href="#7-2-1、定义" class="headerlink" title="7.2.1、定义"></a>7.2.1、定义</h3><p>Spring Cloud Config 为微服务架构中的微服务提供<strong>集中式的外部配置支持</strong>，配置服务器为各个不同的微服务应用的所有环境提供一个<strong>中心化的外部配置</strong>。分为服务端与客户端两个部分，服务端即是<strong>分布式配置中心，是一个独立的微服务应用</strong>，用来连接配置服务器并为客户端提供获取配置信息等访问接口，配置服务器官方推荐采用 Git 来存储配置信息，也可使用 SVN 以及本地文件。客户端启动的时候从服务端获取和加载配置信息。</p>
+<h3 id="7-2-2、作用"><a href="#7-2-2、作用" class="headerlink" title="7.2.2、作用"></a>7.2.2、作用</h3><ul>
+<li>集中管理配置文件。</li>
+<li>不同环境不同配置，动态化的配置更新，根据不同环境部署。</li>
+<li>运行期间动态调整配置，不再需要在每个服务部署的机器上编写配置，服务会向配置中心统一拉取自己的配置信息。</li>
+<li>当配置发生变动时，服务不需要重启即可感知到配置的变化并使用修改后的配置信息。</li>
+<li>将配置信息以 Rest 接口的形式暴露。</li>
+</ul>
+<h3 id="7-2-3、搭建-Config-服务端"><a href="#7-2-3、搭建-Config-服务端" class="headerlink" title="7.2.3、搭建 Config 服务端"></a>7.2.3、搭建 Config 服务端</h3><ol>
+<li>父工程声明依赖，要求与 SpringBoot 版本匹配。<br>同上。</li>
+<li>创建微服务，添加依赖。</li>
+</ol>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-config-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+    <span class="comment">&lt;!-- 如果旧版本还需引入spring-boot-starter-web --&gt;</span>
+<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></code></pre>
+
+<ol start="3">
+<li>创建配置文件。</li>
+</ol>
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="attr">server:</span>
+  <span class="attr">port:</span> <span class="number">5001</span>
+<span class="attr">spring:</span>
+  <span class="attr">cloud:</span>
+    <span class="attr">config:</span>
+      <span class="attr">server:</span>
+        <span class="attr">git:</span>
+          <span class="comment"># 用户名密码，如果配置文件仓库开源可省略用户名密码。</span>
+          <span class="attr">uri:</span> <span class="string">https://gitee.com/fengbiao_1_2014695858/spring-cloud-config.git</span>
+          <span class="attr">username:</span> <span class="string">xx</span>
+          <span class="attr">password:</span> <span class="string">xx</span>
+          <span class="comment"># SSH，使用本地私钥。</span>
+          <span class="comment"># uri: git@gitee.com:fengbiao_1_2014695858/spring-cloud-config.git</span>
+          <span class="comment"># search-paths: &#x27;*&#x27;</span>
+          <span class="comment"># strict-host-key-checking: false</span>
+          <span class="comment"># SSH，配置私钥。</span>
+          <span class="comment"># uri: git@gitee.com:fengbiao_1_2014695858/spring-cloud-config.git</span>
+          <span class="comment"># search-paths: &#x27;*&#x27;</span>
+          <span class="comment"># strict-host-key-checking: false</span>
+          <span class="comment"># ignore-local-ssh-settings: true</span>
+          <span class="comment"># private-key: | # |表示换行</span>
+          <span class="comment"># -----BEGIN RSA PRIVATE KEY-----</span>
+          <span class="comment"># xx</span>
+          <span class="comment"># -----END RSA PRIVATE KEY-----</span></code></pre>
+
+<ol start="4">
+<li>创建启动类，添加注解。</li>
+</ol>
+<pre><div class="caption"><span>App.java</span></div><code class="highlight java"><span class="meta">@SpringBootApplication</span>
+<span class="meta">@EnableConfigServer</span> <span class="comment">// 标识配置中心</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">App</span> &#123;
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;
+        SpringApplication.run(App.class, args);
+    &#125;
+&#125;</code></pre>
+
+<ol start="5">
+<li>Git 仓库添加配置文件</li>
+</ol>
+<pre><div class="caption"><span>provider.yml</span></div><code class="highlight yml"><span class="attr">spring:</span>
+  <span class="attr">profiles:</span>
+    <span class="attr">active:</span> <span class="string">dev1</span>
+  <span class="attr">application:</span>
+    <span class="attr">name:</span> <span class="string">provider</span>
+<span class="meta">---</span>
+<span class="attr">spring:</span>
+  <span class="attr">profiles:</span> <span class="string">dev1</span>
+<span class="attr">server:</span>
+  <span class="attr">port:</span> <span class="number">8001</span>
+<span class="attr">eureka:</span>
+  <span class="attr">client:</span>
+    <span class="attr">register-with-eureka:</span> <span class="literal">true</span>
+    <span class="attr">fetch-registry:</span> <span class="literal">false</span>
+    <span class="attr">service-url:</span>
+      <span class="attr">defaultZone:</span> <span class="string">http://localhost:8761/eureka/,</span> <span class="string">http://localhost:8761/eureka/</span>
+  <span class="attr">instance:</span>
+    <span class="attr">instance-id:</span> <span class="string">$&#123;spring.application.name&#125;:$&#123;server.port&#125;</span>
+    <span class="attr">prefer-ip-address:</span> <span class="literal">true</span>
+<span class="meta">---</span>
+<span class="attr">spring:</span>
+  <span class="attr">profiles:</span> <span class="string">dev2</span>
+<span class="attr">server:</span>
+  <span class="attr">port:</span> <span class="number">8002</span>
+<span class="attr">eureka:</span>
+  <span class="attr">client:</span>
+    <span class="attr">register-with-eureka:</span> <span class="literal">true</span>
+    <span class="attr">fetch-registry:</span> <span class="literal">false</span>
+    <span class="attr">service-url:</span>
+      <span class="attr">defaultZone:</span> <span class="string">http://localhost:8761/eureka/</span>
+  <span class="attr">instance:</span>
+    <span class="attr">instance-id:</span> <span class="string">$&#123;spring.application.name&#125;:$&#123;server.port&#125;</span>
+    <span class="attr">prefer-ip-address:</span> <span class="literal">true</span></code></pre>
+
+<ol start="6">
+<li>测试<br>请求 http://localhost:5001/provider-dev2.yml 获取配置信息。<blockquote>
+<p><strong>配置读取规则</strong>：application 配置文件名，profile 环境配置项，label 分支名。<br>&#x2F;{application}&#x2F;{profile}[&#x2F;{label}] # label 默认 master<br>[&#x2F;{label}]&#x2F;{application}-{profile}.yml<br>[&#x2F;{label}]&#x2F;{application}-{profile}.properties</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="7-2-4、微服务整合-Config"><a href="#7-2-4、微服务整合-Config" class="headerlink" title="7.2.4、微服务整合 Config"></a>7.2.4、微服务整合 Config</h3><ol>
+<li>父工程声明依赖，要求与 SpringBoot 版本匹配。<br>同上。</li>
+<li>添加依赖。</li>
+</ol>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+    <span class="comment">&lt;!-- 如果无法加载bootstrap.yml需要添加 --&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-bootstrap<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></code></pre>
+
+<ol start="3">
+<li>添加配置信息。</li>
+</ol>
+<pre><div class="caption"><span>bootstrap.yml</span></div><code class="highlight yml"><span class="attr">spring:</span>
+  <span class="attr">profiles:</span>
+    <span class="attr">active:</span> <span class="string">dev1</span>
+  <span class="attr">application:</span>
+    <span class="attr">name:</span> <span class="string">provider</span>
+  <span class="attr">cloud:</span>
+    <span class="attr">config:</span>
+      <span class="attr">name:</span> <span class="string">provider</span> <span class="comment"># 配置文件名称</span>
+      <span class="attr">profile:</span> <span class="string">$&#123;spring.profiles.active&#125;</span> <span class="comment"># 环境配置项</span>
+      <span class="attr">label:</span> <span class="string">master</span> <span class="comment"># 分支</span>
+      <span class="attr">uri:</span> <span class="string">http://localhost:5001</span> <span class="comment"># config服务端地址</span></code></pre>
+
+<h1 id="8、服务总线"><a href="#8、服务总线" class="headerlink" title="8、服务总线"></a>8、服务总线</h1><h2 id="8-1、Bus"><a href="#8-1、Bus" class="headerlink" title="8.1、Bus"></a>8.1、Bus</h2><p>TODO</p>
+<h1 id="9、消息驱动"><a href="#9、消息驱动" class="headerlink" title="9、消息驱动"></a>9、消息驱动</h1><h2 id="9-1、Stream"><a href="#9-1、Stream" class="headerlink" title="9.1、Stream"></a>9.1、Stream</h2><p>TODO</p>
+<h1 id="10、请求链路追踪"><a href="#10、请求链路追踪" class="headerlink" title="10、请求链路追踪"></a>10、请求链路追踪</h1><h2 id="10-1、Zipkin"><a href="#10-1、Zipkin" class="headerlink" title="10.1、Zipkin"></a>10.1、Zipkin</h2><p>TODO</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 不积跬步无以至千里，不积小流无以成江海！ </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2015-2024 蜡笔没了小新
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.png" class="alipay" title="扫码支持">
+            <img src="/img/wechat.png" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 582px;
+    }
+    .nav.fullscreen {
+        margin-left: -582px;
+    }
+    .nav-left {
+        width: 160px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 532px;
+        }
+        .nav.fullscreen {
+            margin-left: -532px;
+        }
+        .nav-left {
+            width: 140px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 532px;
+            margin-left: -532px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("/images/20230809225525.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>

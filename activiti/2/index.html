@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【Activiti】进阶篇 | 蜡笔没了小新の笔记</title>
+  <meta name="keywords" content=" Activiti ">
+  <meta name="description" content="【Activiti】进阶篇 | 蜡笔没了小新の笔记">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="1. XMLHttpRequest&#x2F;&#x2F; 实例化xhr对象 var xhr &#x3D; new XMLHttpRequest() &#x2F;&#x2F; 建立连接 xhr.open(&#x27;GET&#x27;, &#x27;xxx&#x27;, false) &#x2F;&#x2F; 发送请求 xhr.send()  2. jQueryTODO 待补充 3. vue-resource 安装vue-resource。 npm install">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Vue】HTTP插件">
+<meta property="og:url" content="http://example.com/vue/http/index.html">
+<meta property="og:site_name" content="蜡笔没了小新の笔记">
+<meta property="og:description" content="1. XMLHttpRequest&#x2F;&#x2F; 实例化xhr对象 var xhr &#x3D; new XMLHttpRequest() &#x2F;&#x2F; 建立连接 xhr.open(&#x27;GET&#x27;, &#x27;xxx&#x27;, false) &#x2F;&#x2F; 发送请求 xhr.send()  2. jQueryTODO 待补充 3. vue-resource 安装vue-resource。 npm install">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-15T15:21:00.000Z">
+<meta property="article:modified_time" content="2024-08-16T02:06:56.909Z">
+<meta property="article:author" content="蜡笔没了小新">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>蜡笔没了小新</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/fengbiao-github"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:2014695858@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2014695858&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="理论">
+            <i class="fold iconfont icon-right"></i>
+            理论
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;数据结构与算法">
+            
+            数据结构与算法
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;设计模式">
+            
+            设计模式
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;计算机网络">
+            
+            计算机网络
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Java">
+            <i class="fold iconfont icon-right"></i>
+            Java
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;JVM">
+            
+            JVM
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;JUC">
+            
+            JUC
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;新特性">
+            
+            新特性
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;NIO">
+            
+            NIO
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            <i class="fold iconfont icon-right"></i>
+            数据库
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;关系型数据库">
+            
+            关系型数据库
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;非关系型数据库">
+            
+            非关系型数据库
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;分库分表">
+            
+            分库分表
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="框架">
+            <i class="fold iconfont icon-right"></i>
+            框架
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;Spring">
+            
+            Spring
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;视图层">
+            
+            视图层
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;ORM">
+            
+            ORM
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;认证授权">
+            
+            认证授权
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;任务调度">
+            
+            任务调度
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;工作流引擎">
+            
+            工作流引擎
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;网络编程">
+            
+            网络编程
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;文件处理">
+            
+            文件处理
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="微服务">
+            
+            微服务
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="中间件">
+            <i class="fold iconfont icon-right"></i>
+            中间件
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;WEB">
+            
+            WEB
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;缓存">
+            
+            缓存
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;消息队列">
+            
+            消息队列
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;搜索引擎">
+            
+            搜索引擎
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;日志">
+            
+            日志
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="大数据">
+            
+            大数据
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="工具">
+            <i class="fold iconfont icon-right"></i>
+            工具
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;IDE">
+            
+            IDE
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;版本控制">
+            
+            版本控制
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;项目构建">
+            
+            项目构建
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;持续集成">
+            
+            持续集成
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;测试">
+            
+            测试
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="运维">
+            <i class="fold iconfont icon-right"></i>
+            运维
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;Linux">
+            
+            Linux
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;高可用">
+            
+            高可用
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;云原生">
+            
+            云原生
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;脚本">
+            
+            脚本
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="前端">
+            <i class="fold iconfont icon-right"></i>
+            前端
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="前端&lt;---&gt;框架">
+            
+            框架
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="面试">
+            
+            面试
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  site_url"
+               
+               href="/about">关于</a>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="32">
+<input type="hidden" id="yelog_site_word_count" value="67k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>待完善</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分布式事务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务调度</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>负载均衡</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构与算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Activiti</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IDEA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Maven</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MybatisPlus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Nginx</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NodeJS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RabbitMQ</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringBoot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringCloudAlibaba</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringCloudNetflix</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Vue</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>websocket</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>xxl-job</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/http/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】HTTP插件">【Vue】HTTP插件</span>
+            <span class="post-date" title="2024-08-15 23:21:00">2024/08/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/html/storage/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="【H5】webStorage">【H5】webStorage</span>
+            <span class="post-date" title="2024-08-13 22:55:00">2024/08/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/component/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】组件化编程">【Vue】组件化编程</span>
+            <span class="post-date" title="2024-08-08 23:21:00">2024/08/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 高可用 "
+           href="/nginx/"
+           data-tag="负载均衡,Nginx"
+           data-author="" >
+            <span class="post-title" title="Nginx负载均衡器">Nginx负载均衡器</span>
+            <span class="post-date" title="2024-07-29 23:08:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 大数据 "
+           href="/zookeeper/"
+           data-tag="服务调度"
+           data-author="" >
+            <span class="post-title" title="Zookeeper笔记">Zookeeper笔记</span>
+            <span class="post-date" title="2024-07-29 23:04:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 "
+           href="/springcloud/springcloud-alibaba/"
+           data-tag="SpringCloudAlibaba,分布式事务"
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba框架">SpringCloudAlibaba框架</span>
+            <span class="post-date" title="2024-07-29 23:01:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 "
+           href="/springcloud/springcloud-netflix/"
+           data-tag="SpringCloudNetflix"
+           data-author="" >
+            <span class="post-title" title="SpringCloudNetflix框架">SpringCloudNetflix框架</span>
+            <span class="post-date" title="2024-07-29 22:58:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/nodejs/npm/"
+           data-tag="NodeJS"
+           data-author="" >
+            <span class="post-title" title="【Node.js】NPM设置淘宝镜像">【Node.js】NPM设置淘宝镜像</span>
+            <span class="post-date" title="2024-07-17 00:56:00">2024/07/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/Vuex/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】vuex状态管理插件">【Vue】vuex状态管理插件</span>
+            <span class="post-date" title="2024-07-15 23:40:00">2024/07/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 ORM "
+           href="/mybatis/encry/"
+           data-tag="MybatisPlus"
+           data-author="" >
+            <span class="post-title" title="数据库信息加解密">数据库信息加解密</span>
+            <span class="post-date" title="2024-07-12 10:47:00">2024/07/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue-router/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】vue-router路由插件">【Vue】vue-router路由插件</span>
+            <span class="post-date" title="2024-07-09 22:21:00">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue-ui/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】UI组件库">【Vue】UI组件库</span>
+            <span class="post-date" title="2024-07-09 21:31:00">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 运维 工具 框架 计算机网络 高可用 版本控制 大数据 Java 中间件 ORM 持续集成 数据库 IDE 测试 JUC JVM NIO 关系型数据库 非关系型数据库 分库分表 缓存 搜索引擎 日志 WEB Linux 脚本 Spring 视图层 认证授权 文件处理 网络编程 "
+           href="/demo/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="示例文档">示例文档</span>
+            <span class="post-date" title="2024-06-06 23:51:00">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 任务调度 "
+           href="/xxl-job/"
+           data-tag="xxl-job"
+           data-author="" >
+            <span class="post-title" title="xxl-job分布式任务调度框架">xxl-job分布式任务调度框架</span>
+            <span class="post-date" title="2024-06-06 23:51:00">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 数据结构与算法 "
+           href="/data-structure-and-algorithm/algorithm/"
+           data-tag="数据结构与算法"
+           data-author="" >
+            <span class="post-title" title="【数据结构与算法】算法篇">【数据结构与算法】算法篇</span>
+            <span class="post-date" title="2024-06-05 23:04:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 "
+           href="/mq/mq/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2024-06-05 22:58:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 面试 "
+           href="/interview/rabbitmq/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ面试题">RabbitMQ面试题</span>
+            <span class="post-date" title="2024-06-05 22:27:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 云原生 "
+           href="/docker/2/"
+           data-tag="Docker,待完善"
+           data-author="" >
+            <span class="post-title" title="【Docker】进阶篇">【Docker】进阶篇</span>
+            <span class="post-date" title="2024-06-05 21:20:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 "
+           href="/mq/rabbitmq/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ消息队列">RabbitMQ消息队列</span>
+            <span class="post-date" title="2024-06-05 09:59:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue2/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】Vue2语法">【Vue】Vue2语法</span>
+            <span class="post-date" title="2024-06-04 21:30:00">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 项目构建 "
+           href="/maven/"
+           data-tag="Maven"
+           data-author="" >
+            <span class="post-title" title="Maven构建工具">Maven构建工具</span>
+            <span class="post-date" title="2024-05-29 22:47:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java 新特性 "
+           href="/java/java8/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="【Java】Java8新特性">【Java】Java8新特性</span>
+            <span class="post-date" title="2024-05-29 21:52:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 云原生 "
+           href="/docker/1/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="【Docker】基础篇">【Docker】基础篇</span>
+            <span class="post-date" title="2024-05-29 12:37:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/4/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】行为型设计模式">【设计模式】行为型设计模式</span>
+            <span class="post-date" title="2024-05-28 22:27:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/3/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】结构型设计模式">【设计模式】结构型设计模式</span>
+            <span class="post-date" title="2024-05-28 22:01:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/3/"
+           data-tag="Activiti,SpringBoot,IDEA"
+           data-author="" >
+            <span class="post-title" title="【Activiti】整合篇">【Activiti】整合篇</span>
+            <span class="post-date" title="2024-05-28 21:49:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/2/"
+           data-tag="Activiti"
+           data-author="" >
+            <span class="post-title" title="【Activiti】进阶篇">【Activiti】进阶篇</span>
+            <span class="post-date" title="2024-05-28 21:35:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/1/"
+           data-tag="Activiti"
+           data-author="" >
+            <span class="post-title" title="【Activiti】基础篇">【Activiti】基础篇</span>
+            <span class="post-date" title="2024-05-28 21:23:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/html/websocket/"
+           data-tag="websocket"
+           data-author="" >
+            <span class="post-title" title="【H5】websocket协议">【H5】websocket协议</span>
+            <span class="post-date" title="2024-05-28 16:40:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/2/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】创建型设计模式">【设计模式】创建型设计模式</span>
+            <span class="post-date" title="2024-05-28 15:53:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/1/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】七大设计原则">【设计模式】七大设计原则</span>
+            <span class="post-date" title="2024-05-27 14:51:00">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java 数据库 "
+           href="/java/jdbc/"
+           data-tag="Java,数据库"
+           data-author="" >
+            <span class="post-title" title="【Java】JDBC数据库连接">【Java】JDBC数据库连接</span>
+            <span class="post-date" title="2024-05-25 22:24:00">2024/05/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-activiti/2" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【Activiti】进阶篇</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="框架">框架</a> > 
+            
+            <a  data-rel="框架&lt;---&gt;工作流引擎">工作流引擎</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">Activiti</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-08-16 10:06:56'>2024-05-28 21:35</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:2.5k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89"><span class="toc-text">1. 流程定义</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E9%83%A8%E7%BD%B2%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89"><span class="toc-text">1.1. 部署流程定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%88%A0%E9%99%A4%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89%E9%83%A8%E7%BD%B2"><span class="toc-text">1.2. 删除流程定义部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E6%9F%A5%E8%AF%A2%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89"><span class="toc-text">1.3. 查询流程定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E6%8C%82%E8%B5%B7-%E6%BF%80%E6%B4%BB%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89"><span class="toc-text">1.4. 挂起&#x2F;激活流程定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E4%B8%8B%E8%BD%BD%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89%E8%B5%84%E6%BA%90"><span class="toc-text">1.5. 下载流程定义资源</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%B5%81%E7%A8%8B%E5%AE%9E%E4%BE%8B"><span class="toc-text">2. 流程实例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E5%AE%9E%E4%BE%8B"><span class="toc-text">2.1. 启动流程实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%9F%A5%E8%AF%A2%E6%B5%81%E7%A8%8B%E5%AE%9E%E4%BE%8B"><span class="toc-text">2.2. 查询流程实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E6%8C%82%E8%B5%B7-%E6%BF%80%E6%B4%BB%E6%B5%81%E7%A8%8B%E5%AE%9E%E4%BE%8B"><span class="toc-text">2.3. 挂起&#x2F;激活流程实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E5%88%A0%E9%99%A4%E6%B5%81%E7%A8%8B%E5%AE%9E%E4%BE%8B"><span class="toc-text">2.4. 删除流程实例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E4%B8%AA%E4%BA%BA%E4%BB%BB%E5%8A%A1"><span class="toc-text">3. 个人任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E5%88%86%E9%85%8D%E4%BB%BB%E5%8A%A1%E8%B4%9F%E8%B4%A3%E4%BA%BA"><span class="toc-text">3.1. 分配任务负责人</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-%E5%9B%BA%E5%AE%9A%E5%88%86%E9%85%8D"><span class="toc-text">3.1.1. 固定分配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%88%86%E9%85%8D"><span class="toc-text">3.1.2. 表达式分配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3-%E4%BB%BB%E5%8A%A1%E7%9B%91%E5%90%AC%E5%99%A8%E8%AE%BE%E7%BD%AE"><span class="toc-text">3.1.3. 任务监听器设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E6%9F%A5%E8%AF%A2%E4%BB%A3%E5%8A%9E%E4%BB%BB%E5%8A%A1"><span class="toc-text">3.2. 查询代办任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E5%AE%8C%E6%88%90%E4%BB%A3%E5%8A%9E%E4%BB%BB%E5%8A%A1"><span class="toc-text">3.3. 完成代办任务</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E6%B5%81%E7%A8%8B%E5%8F%98%E9%87%8F"><span class="toc-text">4. 流程变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E7%AE%80%E4%BB%8B"><span class="toc-text">4.1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">4.2. 作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-Global-%E5%8F%98%E9%87%8F"><span class="toc-text">4.2.1. Global 变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-Local-%E5%8F%98%E9%87%8F"><span class="toc-text">4.2.2. Local 变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E8%AE%BE%E7%BD%AE%E6%B5%81%E7%A8%8B%E5%8F%98%E9%87%8F"><span class="toc-text">4.3. 设置流程变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-1-%E8%AE%BE%E7%BD%AE-Global-%E5%8F%98%E9%87%8F"><span class="toc-text">4.3.1. 设置 Global 变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-2-%E8%AE%BE%E7%BD%AE-Local-%E5%8F%98%E9%87%8F"><span class="toc-text">4.3.2. 设置 Local 变量</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E7%BB%84%E4%BB%BB%E5%8A%A1"><span class="toc-text">5. 组任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E6%9F%A5%E8%AF%A2%E7%BB%84%E4%BB%BB%E5%8A%A1"><span class="toc-text">5.1. 查询组任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E6%8B%BE%E5%8F%96%E7%BB%84%E4%BB%BB%E5%8A%A1"><span class="toc-text">5.2. 拾取组任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E5%BD%92%E8%BF%98%E7%BB%84%E4%BB%BB%E5%8A%A1"><span class="toc-text">5.3. 归还组任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E8%BD%AC%E5%8A%9E%E7%BB%84%E4%BB%BB%E5%8A%A1"><span class="toc-text">5.4. 转办组任务</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E7%BD%91%E5%85%B3"><span class="toc-text">6. 网关</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E6%8E%92%E4%BB%96%E7%BD%91%E5%85%B3"><span class="toc-text">6.1. 排他网关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E5%B9%B6%E8%A1%8C%E7%BD%91%E5%85%B3"><span class="toc-text">6.2. 并行网关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-%E5%8C%85%E5%90%AB%E7%BD%91%E5%85%B3"><span class="toc-text">6.3. 包含网关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4-%E4%BA%8B%E4%BB%B6%E7%BD%91%E5%85%B3"><span class="toc-text">6.4. 事件网关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-5-%E6%80%BB%E7%BB%93"><span class="toc-text">6.5. 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E5%8E%86%E5%8F%B2%E4%BB%BB%E5%8A%A1"><span class="toc-text">7. 历史任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-%E6%9F%A5%E8%AF%A2%E5%8E%86%E5%8F%B2%E4%BB%BB%E5%8A%A1"><span class="toc-text">7.1. 查询历史任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-%E6%9F%A5%E8%AF%A2%E5%8E%86%E5%8F%B2%E8%8A%82%E7%82%B9"><span class="toc-text">7.2. 查询历史节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-%E6%9F%A5%E8%AF%A2%E5%8E%86%E5%8F%B2%E6%B5%81%E7%A8%8B%E5%AE%9E%E4%BE%8B"><span class="toc-text">7.3. 查询历史流程实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4-%E5%88%A0%E9%99%A4%E5%8E%86%E5%8F%B2%E6%B5%81%E7%A8%8B%E5%AE%9E%E4%BE%8B"><span class="toc-text">7.4. 删除历史流程实例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-%E5%AE%9A%E6%97%B6%E5%99%A8%E4%BA%8B%E4%BB%B6"><span class="toc-text">8. 定时器事件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-%E5%BC%80%E5%A7%8B%E5%AE%9A%E6%97%B6%E5%99%A8%E4%BA%8B%E4%BB%B6"><span class="toc-text">8.1. 开始定时器事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-%E8%BE%B9%E7%95%8C%E5%AE%9A%E6%97%B6%E5%99%A8%E4%BA%8B%E4%BB%B6"><span class="toc-text">8.2. 边界定时器事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3-%E4%B8%AD%E9%97%B4%E5%AE%9A%E6%97%B6%E5%99%A8%E4%BA%8B%E4%BB%B6"><span class="toc-text">8.3. 中间定时器事件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-%E9%82%AE%E4%BB%B6%E4%BB%BB%E5%8A%A1"><span class="toc-text">9. 邮件任务</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-流程定义"><a href="#1-流程定义" class="headerlink" title="1. 流程定义"></a>1. 流程定义</h1><h2 id="1-1-部署流程定义"><a href="#1-1-部署流程定义" class="headerlink" title="1.1. 部署流程定义"></a>1.1. 部署流程定义</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="comment">// 方式1. BPMN文件部署</span>
+    <span class="type">Deployment</span> <span class="variable">deployment</span> <span class="operator">=</span> repositoryService.createDeployment().name(<span class="string">&quot;请假流程&quot;</span>)
+        .addClasspathResource(<span class="string">&quot;leave.bpmn&quot;</span>).addClasspathResource(<span class="string">&quot;leave.png&quot;</span>).deploy();
+    <span class="comment">// 方式2. ZIP压缩包部署</span>
+    <span class="comment">// ZipInputStream zis = new ZipInputStream(this.getClass().getClassLoader().getResourceAsStream(&quot;leave.zip&quot;));</span>
+    <span class="comment">// Deployment deployment = repositoryService.createDeployment().name(&quot;请假流程ZIP版&quot;).addZipInputStream(zis).deploy();</span>
+    System.out.println(<span class="string">&quot;部署ID: &quot;</span> + deployment.getId());
+&#125;</code></pre>
+
+<h2 id="1-2-删除流程定义部署"><a href="#1-2-删除流程定义部署" class="headerlink" title="1.2. 删除流程定义部署"></a>1.2. 删除流程定义部署</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="type">String</span> <span class="variable">deploymentId</span> <span class="operator">=</span> <span class="string">&quot;b2986c07-b936-11ee-8941-226fd9e449bb&quot;</span>;
+    <span class="comment">// 方式1. 不带级联删除。如果有正在执行的流程会抛出异常，不会删除历史表。</span>
+    repositoryService.deleteDeployment(deploymentId);
+    <span class="comment">// 方式2. 级联删除。即使有正在执行的流程也可以删除，删除历史表。</span>
+    <span class="comment">// repositoryService.deleteDeployment(deploymentId, true);</span>
+&#125;</code></pre>
+
+<h2 id="1-3-查询流程定义"><a href="#1-3-查询流程定义" class="headerlink" title="1.3. 查询流程定义"></a>1.3. 查询流程定义</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    List&lt;ProcessDefinition&gt; page = repositoryService.createProcessDefinitionQuery().listPage(<span class="number">0</span>, <span class="number">5</span>);
+    <span class="keyword">for</span> (ProcessDefinition processDefinition : page) &#123;
+        System.out.println(<span class="string">&quot;流程定义ID: &quot;</span> + processDefinition.getId());
+        System.out.println(<span class="string">&quot;流程定义Key: &quot;</span> + processDefinition.getKey());
+        System.out.println(<span class="string">&quot;流程定义是否挂起: &quot;</span> + processDefinition.isSuspended());
+    &#125;
+&#125;</code></pre>
+
+<h2 id="1-4-挂起-激活流程定义"><a href="#1-4-挂起-激活流程定义" class="headerlink" title="1.4. 挂起&#x2F;激活流程定义"></a>1.4. 挂起&#x2F;激活流程定义</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="type">String</span> <span class="variable">processDefinitionId</span> <span class="operator">=</span> <span class="string">&quot;leaveProcess:2:6276818f-b936-11ee-9957-226fd9e449bb&quot;</span>;
+    <span class="comment">// 挂起流程定义。所有的流程实例将全部挂起执行，流程暂停后将不会继续执行。</span>
+    repositoryService.suspendProcessDefinitionById(processDefinitionId);
+    <span class="comment">// 激活流程定义</span>
+    <span class="comment">// repositoryService.activateProcessDefinitionById(processDefinitionId);</span>
+&#125;</code></pre>
+
+<h2 id="1-5-下载流程定义资源"><a href="#1-5-下载流程定义资源" class="headerlink" title="1.5. 下载流程定义资源"></a>1.5. 下载流程定义资源</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="type">String</span> <span class="variable">processDefinitionId</span> <span class="operator">=</span> <span class="string">&quot;leaveProcess:2:6276818f-b936-11ee-9957-226fd9e449bb&quot;</span>;
+    <span class="type">ProcessDefinition</span> <span class="variable">processDefinition</span> <span class="operator">=</span> repositoryService.getProcessDefinition(processDefinitionId);
+    <span class="type">String</span> <span class="variable">xmlName</span> <span class="operator">=</span> processDefinition.getResourceName();
+    <span class="type">String</span> <span class="variable">pngName</span> <span class="operator">=</span> processDefinition.getDiagramResourceName();
+    <span class="type">InputStream</span> <span class="variable">xmlIs</span> <span class="operator">=</span> repositoryService.getResourceAsStream(processDefinition.getDeploymentId(), xmlName);
+    <span class="type">InputStream</span> <span class="variable">pngIs</span> <span class="operator">=</span> repositoryService.getResourceAsStream(processDefinition.getDeploymentId(), pngName);
+    IOUtils.copy(xmlIs, <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(xmlName));
+    IOUtils.copy(pngIs, <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(pngName));
+&#125;</code></pre>
+
+<h1 id="2-流程实例"><a href="#2-流程实例" class="headerlink" title="2. 流程实例"></a>2. 流程实例</h1><h2 id="2-1-启动流程实例"><a href="#2-1-启动流程实例" class="headerlink" title="2.1. 启动流程实例"></a>2.1. 启动流程实例</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    Authentication.setAuthenticatedUserId(<span class="string">&quot;fengb&quot;</span>); <span class="comment">// act_hi_procinst表中的start_user_id</span>
+    <span class="type">String</span> <span class="variable">processDefinitionId</span> <span class="operator">=</span> <span class="string">&quot;leaveProcess:2:6276818f-b936-11ee-9957-226fd9e449bb&quot;</span>;
+    <span class="comment">/**</span>
+<span class="comment">     * BusinessKey：业务标识，通常为业务表的主键。业务标识来源于业务系统，用于关联业务系统的数据。</span>
+<span class="comment">     */</span>
+    <span class="type">ProcessInstance</span> <span class="variable">processInstance</span> <span class="operator">=</span> runtimeService.startProcessInstanceById(processDefinitionId, <span class="string">&quot;leave:10000&quot;</span>);
+&#125;</code></pre>
+
+<h2 id="2-2-查询流程实例"><a href="#2-2-查询流程实例" class="headerlink" title="2.2. 查询流程实例"></a>2.2. 查询流程实例</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    List&lt;ProcessInstance&gt; list = runtimeService.createProcessInstanceQuery().list();
+    <span class="keyword">for</span> (ProcessInstance processInstance : list) &#123;
+        System.out.println(<span class="string">&quot;流程实例ID: &quot;</span> + processInstance.getId());
+        System.out.println(<span class="string">&quot;流程实例是否挂起: &quot;</span> + processInstance.isSuspended());
+    &#125;
+&#125;</code></pre>
+
+<h2 id="2-3-挂起-激活流程实例"><a href="#2-3-挂起-激活流程实例" class="headerlink" title="2.3. 挂起&#x2F;激活流程实例"></a>2.3. 挂起&#x2F;激活流程实例</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="type">String</span> <span class="variable">processInstanceId</span> <span class="operator">=</span> <span class="string">&quot;d825f4d7-b9b1-11ee-bbc7-226fd9e449bb&quot;</span>;
+    <span class="comment">// 挂起流程实例</span>
+    runtimeService.suspendProcessInstanceById(processInstanceId);
+    <span class="comment">// 激活流程实例</span>
+    <span class="comment">// runtimeService.activateProcessInstanceById(processInstanceId);</span>
+&#125;</code></pre>
+
+<h2 id="2-4-删除流程实例"><a href="#2-4-删除流程实例" class="headerlink" title="2.4. 删除流程实例"></a>2.4. 删除流程实例</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="type">String</span> <span class="variable">processInstanceId</span> <span class="operator">=</span> <span class="string">&quot;d825f4d7-b9b1-11ee-bbc7-226fd9e449bb&quot;</span>;
+    runtimeService.deleteProcessInstance(processInstanceId, <span class="string">&quot;备注信息&quot;</span>);
+&#125;</code></pre>
+
+<h1 id="3-个人任务"><a href="#3-个人任务" class="headerlink" title="3. 个人任务"></a>3. 个人任务</h1><h2 id="3-1-分配任务负责人"><a href="#3-1-分配任务负责人" class="headerlink" title="3.1. 分配任务负责人"></a>3.1. 分配任务负责人</h2><h3 id="3-1-1-固定分配"><a href="#3-1-1-固定分配" class="headerlink" title="3.1.1. 固定分配"></a>3.1.1. 固定分配</h3><p>业务流程建模时指定固定的任务负责人。例如指定代理人或候选人。</p>
+<h3 id="3-1-2-表达式分配"><a href="#3-1-2-表达式分配" class="headerlink" title="3.1.2. 表达式分配"></a>3.1.2. 表达式分配</h3><ul>
+<li>UEL-Value 表达式分配。<br><code>指定属性名。$&#123;属性名&#125;。</code><br><code>指定对象属性名。$&#123;对象名.属性名&#125;。</code></li>
+<li>UEL-Method 方法表达式。<br><code>$&#123;user.getName()&#125;</code></li>
+<li>UEL-Method 和 UEL-Value 组合使用。<br><code>$&#123;userService.getLeaderName(user.name)&#125;</code></li>
+<li>其他。<br><code>$&#123;leave.days &gt; 3 &amp;&amp; leave.days &lt; 7&#125;</code></li>
+</ul>
+<h3 id="3-1-3-任务监听器设置"><a href="#3-1-3-任务监听器设置" class="headerlink" title="3.1.3. 任务监听器设置"></a>3.1.3. 任务监听器设置</h3><pre><div class="caption"><span>CustomTaskListener.java</span></div><code class="highlight java"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CustomTaskListener</span> <span class="keyword">implements</span> <span class="title class_">TaskListener</span> &#123;
+    <span class="comment">/**</span>
+<span class="comment">     * Create：任务创建后触发。</span>
+<span class="comment">     * Assignment: 任务分配后触发。</span>
+<span class="comment">     * Delete: 任务完成后触发。</span>
+<span class="comment">     * All: 所有事件发生都触发。</span>
+<span class="comment">     */</span>
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">notify</span><span class="params">(DelegateTask delegateTask)</span> &#123;
+        System.out.println(<span class="string">&quot;事件名称: &quot;</span> +  delegateTask.getEventName());
+        System.out.println(<span class="string">&quot;节点名称: &quot;</span> +  delegateTask.getName());
+        <span class="comment">// 可以设置任务负责人。</span>
+    &#125;
+&#125;</code></pre>
+
+<h2 id="3-2-查询代办任务"><a href="#3-2-查询代办任务" class="headerlink" title="3.2. 查询代办任务"></a>3.2. 查询代办任务</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="comment">// 查询代办任务</span>
+    List&lt;Task&gt; list = taskService.createTaskQuery().taskAssignee(<span class="string">&quot;fengb&quot;</span>).processDefinitionKey(<span class="string">&quot;zhuanli&quot;</span>).list();
+    <span class="keyword">for</span> (Task task : list) &#123;
+        System.out.println(<span class="string">&quot;任务ID:&quot;</span>+ task.getId());
+        System.out.println(<span class="string">&quot;任务办理人:&quot;</span> + task.getAssignee());
+    &#125;
+&#125;</code></pre>
+
+<h2 id="3-3-完成代办任务"><a href="#3-3-完成代办任务" class="headerlink" title="3.3. 完成代办任务"></a>3.3. 完成代办任务</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="type">String</span> <span class="variable">taskId</span> <span class="operator">=</span> <span class="string">&quot;b041b4d7-b9fb-11ee-8cda-226fd9e449bb&quot;</span>;
+    <span class="comment">// 完成代办任务</span>
+    taskService.complete(taskId);
+&#125;</code></pre>
+
+<h1 id="4-流程变量"><a href="#4-流程变量" class="headerlink" title="4. 流程变量"></a>4. 流程变量</h1><h2 id="4-1-简介"><a href="#4-1-简介" class="headerlink" title="4.1. 简介"></a>4.1. 简介</h2><p>为流程执行需要而创建，<strong>必须实现序列化接口</strong>。</p>
+<h2 id="4-2-作用域"><a href="#4-2-作用域" class="headerlink" title="4.2. 作用域"></a>4.2. 作用域</h2><h3 id="4-2-1-Global-变量"><a href="#4-2-1-Global-变量" class="headerlink" title="4.2.1. Global 变量"></a>4.2.1. Global 变量</h3><p>一个流程变量作用域为流程实例时，称为 Global 变量。流程变量默认作用域是流程实例。变量名不能重复，设置相同名称的变量，后设置的值会覆盖前设置的变量值。</p>
+<h3 id="4-2-2-Local-变量"><a href="#4-2-2-Local-变量" class="headerlink" title="4.2.2. Local 变量"></a>4.2.2. Local 变量</h3><p>任务和执行实例仅仅是针对一个任务和一个执行实例范围，范围没有流程实例大，称为 Local 变量。Local 变量由于在不同的任务或不同的执行实例中，作用域互不影响，变量名可以相同没有影响。Local 变量名也可以和 Global 变量名相同，没有影响。</p>
+<h2 id="4-3-设置流程变量"><a href="#4-3-设置流程变量" class="headerlink" title="4.3. 设置流程变量"></a>4.3. 设置流程变量</h2><h3 id="4-3-1-设置-Global-变量"><a href="#4-3-1-设置-Global-变量" class="headerlink" title="4.3.1. 设置 Global 变量"></a>4.3.1. 设置 Global 变量</h3><ul>
+<li>流程启动时设置变量。</li>
+</ul>
+<pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    Map&lt;String, Object&gt; params = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();
+    <span class="type">UserDO</span> <span class="variable">userDO</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserDO</span>();
+    userDO.setName(<span class="string">&quot;fengb&quot;</span>);
+    params.put(<span class="string">&quot;user&quot;</span>, userDO);
+    <span class="type">ProcessInstance</span> <span class="variable">processInstance</span> <span class="operator">=</span> runtimeService.startProcessInstanceByKey(<span class="string">&quot;myLeave&quot;</span>, params);
+&#125;</code></pre>
+
+<ul>
+<li>任务办理时设置变量。其他节点只有在该任务完成后才可使用。</li>
+</ul>
+<pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    Map&lt;String, Object&gt; params = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();
+    <span class="type">UserDO</span> <span class="variable">userDO</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserDO</span>(); <span class="comment">// 必须实现序列化接口</span>
+    userDO.setName(<span class="string">&quot;fengb&quot;</span>);
+    params.put(<span class="string">&quot;user&quot;</span>, userDO);
+    <span class="type">String</span> <span class="variable">taskId</span> <span class="operator">=</span> <span class="string">&quot;b041b4d7-b9fb-11ee-8cda-226fd9e449bb&quot;</span>;
+    taskService.complete(taskId, params);
+&#125;</code></pre>
+
+<ul>
+<li>通过当前流程实例设置。流程实例必须未执行完成。</li>
+</ul>
+<pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    Map&lt;String, Object&gt; params = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();
+    <span class="type">UserDO</span> <span class="variable">userDO</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserDO</span>(); <span class="comment">// 必须实现序列化接口</span>
+    userDO.setName(<span class="string">&quot;fengb&quot;</span>);
+    params.put(<span class="string">&quot;user&quot;</span>, userDO);
+    <span class="type">String</span> <span class="variable">executionId</span> <span class="operator">=</span> <span class="string">&quot;0ed15113-b9b2-11ee-b732-226fd9e449bb&quot;</span>;
+    <span class="comment">// 设置单个变量</span>
+    <span class="comment">// runtimeService.setVariable(executionId, &quot;user&quot;, userDO);</span>
+    <span class="comment">// 设置多个变量</span>
+    runtimeService.setVariables(executionId, params);
+&#125;</code></pre>
+
+<ul>
+<li>通过当前任务设置。任务必须未结束，否则报错。</li>
+</ul>
+<pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    Map&lt;String, Object&gt; params = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();
+    <span class="type">UserDO</span> <span class="variable">userDO</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserDO</span>(); <span class="comment">// 必须实现序列化接口</span>
+    userDO.setName(<span class="string">&quot;fengb&quot;</span>);
+    params.put(<span class="string">&quot;user&quot;</span>, userDO);
+    <span class="type">String</span> <span class="variable">taskId</span> <span class="operator">=</span> <span class="string">&quot;b041b4d7-b9fb-11ee-8cda-226fd9e449bb&quot;</span>;
+    <span class="comment">// 设置单个变量</span>
+    <span class="comment">// taskService.setVariable(taskId, &quot;user&quot;, userDO);</span>
+    <span class="comment">// 设置多个变量</span>
+    taskService.setVariables(taskId, params);
+&#125;</code></pre>
+
+<h3 id="4-3-2-设置-Local-变量"><a href="#4-3-2-设置-Local-变量" class="headerlink" title="4.3.2. 设置 Local 变量"></a>4.3.2. 设置 Local 变量</h3><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    Map&lt;String, Object&gt; params = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();
+    <span class="type">UserDO</span> <span class="variable">userDO</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserDO</span>(); <span class="comment">// 必须实现序列化接口</span>
+    userDO.setName(<span class="string">&quot;fengb&quot;</span>);
+    params.put(<span class="string">&quot;user&quot;</span>, userDO);
+    <span class="type">String</span> <span class="variable">taskId</span> <span class="operator">=</span> <span class="string">&quot;b041b4d7-b9fb-11ee-8cda-226fd9e449bb&quot;</span>;
+    <span class="comment">// 设置单个变量</span>
+    <span class="comment">// taskService.setVariableLocal(taskId, &quot;user&quot;, userDO);</span>
+    <span class="comment">// 设置多个变量</span>
+    taskService.setVariablesLocal(taskId, params);
+    taskService.complete(taskId, params); <span class="comment">// 任务结束该变量无法在当前流程实例使用，可以通过历史任务查询</span>
+&#125;</code></pre>
+
+<h1 id="5-组任务"><a href="#5-组任务" class="headerlink" title="5. 组任务"></a>5. 组任务</h1><p>给任务设置多个候选人，从候选人中选择参与者来完成任务。办理流程为：查询组任务，拾取任务，查询个人任务，办理个人任务。</p>
+<h2 id="5-1-查询组任务"><a href="#5-1-查询组任务" class="headerlink" title="5.1. 查询组任务"></a>5.1. 查询组任务</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="comment">// 查询候选人代办任务</span>
+    List&lt;Task&gt; list = taskService.createTaskQuery().processDefinitionKey(<span class="string">&quot;zhuanli&quot;</span>).taskCandidateUser(<span class="string">&quot;fengb&quot;</span>).list();
+&#125;</code></pre>
+
+<h2 id="5-2-拾取组任务"><a href="#5-2-拾取组任务" class="headerlink" title="5.2. 拾取组任务"></a>5.2. 拾取组任务</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="type">String</span> <span class="variable">taskId</span> <span class="operator">=</span> <span class="string">&quot;b041b4d7-b9fb-11ee-8cda-226fd9e449bb&quot;</span>;
+    <span class="comment">/**</span>
+<span class="comment">     * 即使不是候选人也可以拾取，建议拾取时增加校验。组任务拾取后，通过候选人将查询不到该任务。</span>
+<span class="comment">     */</span>
+    taskService.claim(taskId, <span class="string">&quot;fengb&quot;</span>);
+&#125;</code></pre>
+
+<h2 id="5-3-归还组任务"><a href="#5-3-归还组任务" class="headerlink" title="5.3. 归还组任务"></a>5.3. 归还组任务</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="type">String</span> <span class="variable">taskId</span> <span class="operator">=</span> <span class="string">&quot;b041b4d7-b9fb-11ee-8cda-226fd9e449bb&quot;</span>;
+    taskService.setAssignee(taskId, <span class="literal">null</span>);
+&#125;</code></pre>
+
+<h2 id="5-4-转办组任务"><a href="#5-4-转办组任务" class="headerlink" title="5.4. 转办组任务"></a>5.4. 转办组任务</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="type">String</span> <span class="variable">taskId</span> <span class="operator">=</span> <span class="string">&quot;b041b4d7-b9fb-11ee-8cda-226fd9e449bb&quot;</span>;
+    taskService.setAssignee(taskId, <span class="string">&quot;fengb&quot;</span>);
+&#125;</code></pre>
+
+<h1 id="6-网关"><a href="#6-网关" class="headerlink" title="6. 网关"></a>6. 网关</h1><h2 id="6-1-排他网关"><a href="#6-1-排他网关" class="headerlink" title="6.1. 排他网关"></a>6.1. 排他网关</h2><p>用来在流程中实现决策。<strong>排他网关只会选择一个为 true 的分支执行，如果两个分支条件都为 true，排他网关会选择 id 值较小的一条分支去执行。</strong>如果从网关出去的线所有条件都不满足则系统抛出异常。<br><code>在连线的condition条件上设置分支条件也可实现分支。缺点：当条件都不满足，流程就结束了（异常结束）。</code></p>
+<h2 id="6-2-并行网关"><a href="#6-2-并行网关" class="headerlink" title="6.2. 并行网关"></a>6.2. 并行网关</h2><p><strong>并行网关在业务应用中常用于会签任务，会签任务即多个参与者共同办理的任务。</strong>与排他网关的主要区别是，并行网关不会解析条件，即使定义了条件也会被忽略。</p>
+<h2 id="6-3-包含网关"><a href="#6-3-包含网关" class="headerlink" title="6.3. 包含网关"></a>6.3. 包含网关</h2><p>排他网关和并行网关的结合体。和排他网关一样，可以在连线上定义条件表达式，定义的表达式会被包含网关解析。但是包含网关主要区别是也可以不指定表达式，同时选择多条分支，这和并行网关是一样的。</p>
+<h2 id="6-4-事件网关"><a href="#6-4-事件网关" class="headerlink" title="6.4. 事件网关"></a>6.4. 事件网关</h2><p>TODO</p>
+<h2 id="6-5-总结"><a href="#6-5-总结" class="headerlink" title="6.5. 总结"></a>6.5. 总结</h2><p><strong>排他网关：</strong>解析条件，流向条件为 true 的节点或者报错（没有满足条件的）。<br><strong>并行网关：</strong>不解析条件，分支节点都执行。<br><strong>包含网关：</strong>有条件就解析条件，条件成立就流向，不成立就不流向，全都不成立报错；没有条件直接流向。</p>
+<h1 id="7-历史任务"><a href="#7-历史任务" class="headerlink" title="7. 历史任务"></a>7. 历史任务</h1><h2 id="7-1-查询历史任务"><a href="#7-1-查询历史任务" class="headerlink" title="7.1. 查询历史任务"></a>7.1. 查询历史任务</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    List&lt;HistoricTaskInstance&gt; list = historyService.createHistoricTaskInstanceQuery().taskAssignee(<span class="string">&quot;fengb&quot;</span>).finished().list();
+    <span class="keyword">for</span> (HistoricTaskInstance historicTaskInstance : list) &#123;
+        System.out.println(<span class="string">&quot;任务ID: &quot;</span> + historicTaskInstance.getId());
+        System.out.println(<span class="string">&quot;任务名称: &quot;</span> + historicTaskInstance.getName());
+    &#125;
+&#125;</code></pre>
+
+<h2 id="7-2-查询历史节点"><a href="#7-2-查询历史节点" class="headerlink" title="7.2. 查询历史节点"></a>7.2. 查询历史节点</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    List&lt;HistoricActivityInstance&gt; list = historyService.createHistoricActivityInstanceQuery().list();
+        <span class="keyword">for</span> (HistoricActivityInstance historicActivityInstance : list) &#123;
+            System.out.println(<span class="string">&quot;节点ID: &quot;</span> + historicActivityInstance.getId());
+            System.out.println(<span class="string">&quot;节点名称: &quot;</span> + historicActivityInstance.getActivityName());
+        &#125;
+&#125;</code></pre>
+
+<h2 id="7-3-查询历史流程实例"><a href="#7-3-查询历史流程实例" class="headerlink" title="7.3. 查询历史流程实例"></a>7.3. 查询历史流程实例</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="comment">// 查询已结束的流程实例</span>
+    List&lt;HistoricProcessInstance&gt; list = historyService.createHistoricProcessInstanceQuery().finished().list();
+    <span class="keyword">for</span> (HistoricProcessInstance historicProcessInstance : list) &#123;
+        System.out.println(<span class="string">&quot;流程实例ID: &quot;</span> + historicProcessInstance.getId());
+        System.out.println(<span class="string">&quot;流程实例名称: &quot;</span> + historicProcessInstance.getName());
+        System.out.println(<span class="string">&quot;-------------&quot;</span>);
+    &#125;
+&#125;</code></pre>
+
+<h2 id="7-4-删除历史流程实例"><a href="#7-4-删除历史流程实例" class="headerlink" title="7.4. 删除历史流程实例"></a>7.4. 删除历史流程实例</h2><pre><code class="highlight java"><span class="meta">@Test</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;
+    <span class="type">String</span> <span class="variable">processInstanceId</span> <span class="operator">=</span> <span class="string">&quot;d825f4d7-b9b1-11ee-bbc7-226fd9e449bb&quot;</span>;
+    historyService.deleteHistoricProcessInstance(processInstanceId);
+&#125;</code></pre>
+
+<h1 id="8-定时器事件"><a href="#8-定时器事件" class="headerlink" title="8. 定时器事件"></a>8. 定时器事件</h1><h2 id="8-1-开始定时器事件"><a href="#8-1-开始定时器事件" class="headerlink" title="8.1. 开始定时器事件"></a>8.1. 开始定时器事件</h2><p>TODO</p>
+<h2 id="8-2-边界定时器事件"><a href="#8-2-边界定时器事件" class="headerlink" title="8.2. 边界定时器事件"></a>8.2. 边界定时器事件</h2><p>TODO</p>
+<h2 id="8-3-中间定时器事件"><a href="#8-3-中间定时器事件" class="headerlink" title="8.3. 中间定时器事件"></a>8.3. 中间定时器事件</h2><p>TODO</p>
+<h1 id="9-邮件任务"><a href="#9-邮件任务" class="headerlink" title="9. 邮件任务"></a>9. 邮件任务</h1><p>TODO</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 不积跬步无以至千里，不积小流无以成江海！ </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2015-2024 蜡笔没了小新
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.png" class="alipay" title="扫码支持">
+            <img src="/img/wechat.png" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 582px;
+    }
+    .nav.fullscreen {
+        margin-left: -582px;
+    }
+    .nav-left {
+        width: 160px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 532px;
+        }
+        .nav.fullscreen {
+            margin-left: -532px;
+        }
+        .nav-left {
+            width: 140px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 532px;
+            margin-left: -532px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("/images/20230809225525.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>

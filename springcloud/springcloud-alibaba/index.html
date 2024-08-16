@@ -1,0 +1,2331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SpringCloudAlibaba框架 | 蜡笔没了小新の笔记</title>
+  <meta name="keywords" content=" SpringCloudAlibaba , 分布式事务 ">
+  <meta name="description" content="SpringCloudAlibaba框架 | 蜡笔没了小新の笔记">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="1. XMLHttpRequest&#x2F;&#x2F; 实例化xhr对象 var xhr &#x3D; new XMLHttpRequest() &#x2F;&#x2F; 建立连接 xhr.open(&#x27;GET&#x27;, &#x27;xxx&#x27;, false) &#x2F;&#x2F; 发送请求 xhr.send()  2. jQueryTODO 待补充 3. vue-resource 安装vue-resource。 npm install">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Vue】HTTP插件">
+<meta property="og:url" content="http://example.com/vue/http/index.html">
+<meta property="og:site_name" content="蜡笔没了小新の笔记">
+<meta property="og:description" content="1. XMLHttpRequest&#x2F;&#x2F; 实例化xhr对象 var xhr &#x3D; new XMLHttpRequest() &#x2F;&#x2F; 建立连接 xhr.open(&#x27;GET&#x27;, &#x27;xxx&#x27;, false) &#x2F;&#x2F; 发送请求 xhr.send()  2. jQueryTODO 待补充 3. vue-resource 安装vue-resource。 npm install">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-15T15:21:00.000Z">
+<meta property="article:modified_time" content="2024-08-16T02:06:56.909Z">
+<meta property="article:author" content="蜡笔没了小新">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>蜡笔没了小新</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/fengbiao-github"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:2014695858@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2014695858&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="理论">
+            <i class="fold iconfont icon-right"></i>
+            理论
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;数据结构与算法">
+            
+            数据结构与算法
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;设计模式">
+            
+            设计模式
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;计算机网络">
+            
+            计算机网络
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Java">
+            <i class="fold iconfont icon-right"></i>
+            Java
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;JVM">
+            
+            JVM
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;JUC">
+            
+            JUC
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;新特性">
+            
+            新特性
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;NIO">
+            
+            NIO
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            <i class="fold iconfont icon-right"></i>
+            数据库
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;关系型数据库">
+            
+            关系型数据库
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;非关系型数据库">
+            
+            非关系型数据库
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;分库分表">
+            
+            分库分表
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="框架">
+            <i class="fold iconfont icon-right"></i>
+            框架
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;Spring">
+            
+            Spring
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;视图层">
+            
+            视图层
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;ORM">
+            
+            ORM
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;认证授权">
+            
+            认证授权
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;任务调度">
+            
+            任务调度
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;工作流引擎">
+            
+            工作流引擎
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;网络编程">
+            
+            网络编程
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;文件处理">
+            
+            文件处理
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="微服务">
+            
+            微服务
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="中间件">
+            <i class="fold iconfont icon-right"></i>
+            中间件
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;WEB">
+            
+            WEB
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;缓存">
+            
+            缓存
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;消息队列">
+            
+            消息队列
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;搜索引擎">
+            
+            搜索引擎
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;日志">
+            
+            日志
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="大数据">
+            
+            大数据
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="工具">
+            <i class="fold iconfont icon-right"></i>
+            工具
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;IDE">
+            
+            IDE
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;版本控制">
+            
+            版本控制
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;项目构建">
+            
+            项目构建
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;持续集成">
+            
+            持续集成
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;测试">
+            
+            测试
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="运维">
+            <i class="fold iconfont icon-right"></i>
+            运维
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;Linux">
+            
+            Linux
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;高可用">
+            
+            高可用
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;云原生">
+            
+            云原生
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;脚本">
+            
+            脚本
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="前端">
+            <i class="fold iconfont icon-right"></i>
+            前端
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="前端&lt;---&gt;框架">
+            
+            框架
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="面试">
+            
+            面试
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  site_url"
+               
+               href="/about">关于</a>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="32">
+<input type="hidden" id="yelog_site_word_count" value="67k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>待完善</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分布式事务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务调度</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>负载均衡</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构与算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Activiti</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IDEA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Maven</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MybatisPlus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Nginx</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NodeJS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RabbitMQ</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringBoot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringCloudAlibaba</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringCloudNetflix</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Vue</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>websocket</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>xxl-job</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/http/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】HTTP插件">【Vue】HTTP插件</span>
+            <span class="post-date" title="2024-08-15 23:21:00">2024/08/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/html/storage/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="【H5】webStorage">【H5】webStorage</span>
+            <span class="post-date" title="2024-08-13 22:55:00">2024/08/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/component/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】组件化编程">【Vue】组件化编程</span>
+            <span class="post-date" title="2024-08-08 23:21:00">2024/08/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 高可用 "
+           href="/nginx/"
+           data-tag="负载均衡,Nginx"
+           data-author="" >
+            <span class="post-title" title="Nginx负载均衡器">Nginx负载均衡器</span>
+            <span class="post-date" title="2024-07-29 23:08:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 大数据 "
+           href="/zookeeper/"
+           data-tag="服务调度"
+           data-author="" >
+            <span class="post-title" title="Zookeeper笔记">Zookeeper笔记</span>
+            <span class="post-date" title="2024-07-29 23:04:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 "
+           href="/springcloud/springcloud-alibaba/"
+           data-tag="SpringCloudAlibaba,分布式事务"
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba框架">SpringCloudAlibaba框架</span>
+            <span class="post-date" title="2024-07-29 23:01:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 "
+           href="/springcloud/springcloud-netflix/"
+           data-tag="SpringCloudNetflix"
+           data-author="" >
+            <span class="post-title" title="SpringCloudNetflix框架">SpringCloudNetflix框架</span>
+            <span class="post-date" title="2024-07-29 22:58:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/nodejs/npm/"
+           data-tag="NodeJS"
+           data-author="" >
+            <span class="post-title" title="【Node.js】NPM设置淘宝镜像">【Node.js】NPM设置淘宝镜像</span>
+            <span class="post-date" title="2024-07-17 00:56:00">2024/07/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/Vuex/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】vuex状态管理插件">【Vue】vuex状态管理插件</span>
+            <span class="post-date" title="2024-07-15 23:40:00">2024/07/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 ORM "
+           href="/mybatis/encry/"
+           data-tag="MybatisPlus"
+           data-author="" >
+            <span class="post-title" title="数据库信息加解密">数据库信息加解密</span>
+            <span class="post-date" title="2024-07-12 10:47:00">2024/07/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue-router/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】vue-router路由插件">【Vue】vue-router路由插件</span>
+            <span class="post-date" title="2024-07-09 22:21:00">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue-ui/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】UI组件库">【Vue】UI组件库</span>
+            <span class="post-date" title="2024-07-09 21:31:00">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 运维 工具 框架 计算机网络 高可用 版本控制 大数据 Java 中间件 ORM 持续集成 数据库 IDE 测试 JUC JVM NIO 关系型数据库 非关系型数据库 分库分表 缓存 搜索引擎 日志 WEB Linux 脚本 Spring 视图层 认证授权 文件处理 网络编程 "
+           href="/demo/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="示例文档">示例文档</span>
+            <span class="post-date" title="2024-06-06 23:51:00">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 任务调度 "
+           href="/xxl-job/"
+           data-tag="xxl-job"
+           data-author="" >
+            <span class="post-title" title="xxl-job分布式任务调度框架">xxl-job分布式任务调度框架</span>
+            <span class="post-date" title="2024-06-06 23:51:00">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 数据结构与算法 "
+           href="/data-structure-and-algorithm/algorithm/"
+           data-tag="数据结构与算法"
+           data-author="" >
+            <span class="post-title" title="【数据结构与算法】算法篇">【数据结构与算法】算法篇</span>
+            <span class="post-date" title="2024-06-05 23:04:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 "
+           href="/mq/mq/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2024-06-05 22:58:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 面试 "
+           href="/interview/rabbitmq/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ面试题">RabbitMQ面试题</span>
+            <span class="post-date" title="2024-06-05 22:27:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 云原生 "
+           href="/docker/2/"
+           data-tag="Docker,待完善"
+           data-author="" >
+            <span class="post-title" title="【Docker】进阶篇">【Docker】进阶篇</span>
+            <span class="post-date" title="2024-06-05 21:20:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 "
+           href="/mq/rabbitmq/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ消息队列">RabbitMQ消息队列</span>
+            <span class="post-date" title="2024-06-05 09:59:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue2/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】Vue2语法">【Vue】Vue2语法</span>
+            <span class="post-date" title="2024-06-04 21:30:00">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 项目构建 "
+           href="/maven/"
+           data-tag="Maven"
+           data-author="" >
+            <span class="post-title" title="Maven构建工具">Maven构建工具</span>
+            <span class="post-date" title="2024-05-29 22:47:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java 新特性 "
+           href="/java/java8/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="【Java】Java8新特性">【Java】Java8新特性</span>
+            <span class="post-date" title="2024-05-29 21:52:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 云原生 "
+           href="/docker/1/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="【Docker】基础篇">【Docker】基础篇</span>
+            <span class="post-date" title="2024-05-29 12:37:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/4/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】行为型设计模式">【设计模式】行为型设计模式</span>
+            <span class="post-date" title="2024-05-28 22:27:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/3/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】结构型设计模式">【设计模式】结构型设计模式</span>
+            <span class="post-date" title="2024-05-28 22:01:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/3/"
+           data-tag="Activiti,SpringBoot,IDEA"
+           data-author="" >
+            <span class="post-title" title="【Activiti】整合篇">【Activiti】整合篇</span>
+            <span class="post-date" title="2024-05-28 21:49:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/2/"
+           data-tag="Activiti"
+           data-author="" >
+            <span class="post-title" title="【Activiti】进阶篇">【Activiti】进阶篇</span>
+            <span class="post-date" title="2024-05-28 21:35:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/1/"
+           data-tag="Activiti"
+           data-author="" >
+            <span class="post-title" title="【Activiti】基础篇">【Activiti】基础篇</span>
+            <span class="post-date" title="2024-05-28 21:23:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/html/websocket/"
+           data-tag="websocket"
+           data-author="" >
+            <span class="post-title" title="【H5】websocket协议">【H5】websocket协议</span>
+            <span class="post-date" title="2024-05-28 16:40:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/2/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】创建型设计模式">【设计模式】创建型设计模式</span>
+            <span class="post-date" title="2024-05-28 15:53:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/1/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】七大设计原则">【设计模式】七大设计原则</span>
+            <span class="post-date" title="2024-05-27 14:51:00">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java 数据库 "
+           href="/java/jdbc/"
+           data-tag="Java,数据库"
+           data-author="" >
+            <span class="post-title" title="【Java】JDBC数据库连接">【Java】JDBC数据库连接</span>
+            <span class="post-date" title="2024-05-25 22:24:00">2024/05/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-springcloud/springcloud-alibaba" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">SpringCloudAlibaba框架</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="微服务">微服务</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">SpringCloudAlibaba</a>
+            
+            <a class="color1">分布式事务</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-08-08 18:02:14'>2024-07-29 23:01</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:5.7k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">1. 基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E8%83%8C%E6%99%AF"><span class="toc-text">1.1. 背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E7%AE%80%E4%BB%8B"><span class="toc-text">1.2. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E4%BD%9C%E7%94%A8"><span class="toc-text">1.3. 作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E7%BB%84%E4%BB%B6"><span class="toc-text">1.4. 组件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Nacos"><span class="toc-text">2. Nacos</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E7%AE%80%E4%BB%8B"><span class="toc-text">2.1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%90%AD%E5%BB%BA-Nacos-%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-text">2.2. 搭建 Nacos 服务端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-text">2.3. 服务注册中心</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%95%B4%E5%90%88-Nacos"><span class="toc-text">2.3.1. 微服务整合 Nacos</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%AF%B9%E6%AF%94"><span class="toc-text">2.3.2. 服务注册中心对比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-text">2.4. 服务配置中心</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-1-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%95%B4%E5%90%88-Nacos"><span class="toc-text">2.4.1. 微服务整合 Nacos</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-2-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-text">2.4.2. 配置文件优先级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-%E6%8C%81%E4%B9%85%E5%8C%96%E9%85%8D%E7%BD%AE"><span class="toc-text">2.5. 持久化配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2"><span class="toc-text">2.6. 集群部署</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Sentinel"><span class="toc-text">3. Sentinel</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E7%AE%80%E4%BB%8B"><span class="toc-text">3.1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E6%90%AD%E5%BB%BA-Sentinel-%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-text">3.2. 搭建 Sentinel 服务端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%95%B4%E5%90%88-Sentinel"><span class="toc-text">3.3. 微服务整合 Sentinel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E6%B5%81%E6%8E%A7%E8%A7%84%E5%88%99"><span class="toc-text">3.4. 流控规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-%E7%86%94%E6%96%AD%E8%A7%84%E5%88%99"><span class="toc-text">3.5. 熔断规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-%E7%83%AD%E7%82%B9%E8%A7%84%E5%88%99"><span class="toc-text">3.6. 热点规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7-%E7%B3%BB%E7%BB%9F%E8%A7%84%E5%88%99"><span class="toc-text">3.7. 系统规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-8-SentinelResource"><span class="toc-text">3.8. @SentinelResource</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-9-%E8%A7%84%E5%88%99%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-text">3.9. 规则持久化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-10-%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD"><span class="toc-text">3.10. 服务熔断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-10-1-Ribbon-%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD"><span class="toc-text">3.10.1. Ribbon 配置服务熔断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-10-2-OpenFeign-%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD"><span class="toc-text">3.10.2. OpenFeign 配置服务熔断</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Seata"><span class="toc-text">4. Seata</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E7%AE%80%E4%BB%8B"><span class="toc-text">4.1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E6%9C%AF%E8%AF%AD"><span class="toc-text">4.2. 术语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B"><span class="toc-text">4.3. 处理过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-%E6%90%AD%E5%BB%BA-Seata-%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-text">4.4. 搭建 Seata 服务端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%95%B4%E5%90%88-Seata"><span class="toc-text">4.5. 微服务整合 Seata</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6-%E4%BA%8B%E5%8A%A1%E6%A8%A1%E5%BC%8F"><span class="toc-text">4.6. 事务模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-1-AT-%E6%A8%A1%E5%BC%8F"><span class="toc-text">4.6.1. AT 模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-2-TCC-%E6%A8%A1%E5%BC%8F"><span class="toc-text">4.6.2. TCC 模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-3-SAGA-%E6%A8%A1%E5%BC%8F"><span class="toc-text">4.6.3. SAGA 模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-4-XA-%E6%A8%A1%E5%BC%8F"><span class="toc-text">4.6.4. XA 模式</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h1><h2 id="1-1-背景"><a href="#1-1-背景" class="headerlink" title="1.1. 背景"></a>1.1. 背景</h2><p>SpringCloudNetflix 项目进入维护模式。</p>
+<p><code>将模块置于维护模式，意味着 SpringCloud 团队将不会再向模块添加新功能。将修复 Block 级别的 BUG 以及安全问题，也会考虑并审查社区的小型 Pull、Request。</code></p>
+<h2 id="1-2-简介"><a href="#1-2-简介" class="headerlink" title="1.2. 简介"></a>1.2. 简介</h2><p>2018 年 10 月 31 日，SpringCloudAlibaba 正式入驻了 SpringCloud 官方孵化器，并在 Maven 中央仓库发布了第一个版本。</p>
+<h2 id="1-3-作用"><a href="#1-3-作用" class="headerlink" title="1.3. 作用"></a>1.3. 作用</h2><ul>
+<li><font>服务限流降级</font>：默认支持 WebServlet、WebFlux、OpenFeign、RestTemplate、SpringCloudGateway、Dubbo 和 RocketMQ 限流降级功能的接入，可以在运行时通过控制台实时修改限流降级规则，还支持查看限流降级 Metrics 监控。</li>
+<li><font>服务注册与发现</font>：适配 SpringCloud 服务注册与发现标准，默认集成对应 SpringCloud 版本所支持的负载均衡组件的适配。</li>
+<li><font>分布式配置管理</font>：支持分布式系统中的外部化配置，配置更改时自动刷新。</li>
+<li><strong>消息驱动能力</strong>：基于 SpringCloudStream 为微服务应用构建消息驱动能力。</li>
+<li><font>分布式事务</font>：使用@GlobalTransactional 注解，高效并且对业务零侵入地解决分布式事务问题。</li>
+<li><strong>阿里云对象存储</strong>：阿里云提供的海量、安全、低成本、高可靠的云存储服务。支持在任何应用、任何时间、任何地点存储和访问任意类型的数据。</li>
+<li><strong>分布式任务调度</strong>：提供秒级、精准、高可靠、高可用的定时（基于 Cron 表达式）任务调度服务。同时提供分布式的任务执行模型，如网格任务。网格任务支持海量子任务均匀分配到所有 Worker（schedulerx-client）上执行。</li>
+<li><strong>阿里云短信服务</strong>：覆盖全球的短信服务，友好、高效、智能的互联化通讯能力，帮助企业迅速搭建客户触达通道。</li>
+</ul>
+<h2 id="1-4-组件"><a href="#1-4-组件" class="headerlink" title="1.4. 组件"></a>1.4. 组件</h2><ul>
+<li><font>Sentinel</font>：把流量作为切入点，从流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性。</li>
+<li><font>Nacos</font>：一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。</li>
+<li><font>RocketMQ</font>：一款开源的分布式消息系统，基于高可用分布式集群技术，提供低延时的、高可靠的消息发布与订阅服务。</li>
+<li><font>Seata</font>：阿里巴巴开源产品，一个易于使用的高性能微服务分布式事务解决方案。</li>
+<li><strong>Alibaba Cloud OSS</strong>: 阿里云对象存储服务（Object Storage Service，简称 OSS），是阿里云提供的海量、安全、低成本、高可靠的云存储服务。您可以在任何应用、任何时间、任何地点存储和访问任意类型的数据。</li>
+<li><strong>Alibaba Cloud SchedulerX</strong>: 阿里中间件团队开发的一款分布式任务调度产品，提供秒级、精准、高可靠、高可用的定时（基于 Cron 表达式）任务调度服务。</li>
+<li><strong>Alibaba Cloud SMS</strong>: 覆盖全球的短信服务，友好、高效、智能的互联化通讯能力，帮助企业迅速搭建客户触达通道。</li>
+</ul>
+<h1 id="2-Nacos"><a href="#2-Nacos" class="headerlink" title="2. Nacos"></a>2. Nacos</h1><h2 id="2-1-简介"><a href="#2-1-简介" class="headerlink" title="2.1. 简介"></a>2.1. 简介</h2><p><strong>动态服务发现、配置管理和服务管理平台</strong>，等于注册中心 + 配置中心。</p>
+<h2 id="2-2-搭建-Nacos-服务端"><a href="#2-2-搭建-Nacos-服务端" class="headerlink" title="2.2. 搭建 Nacos 服务端"></a>2.2. 搭建 Nacos 服务端</h2><ol>
+<li><p>下载<a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos/releases">Nacos 压缩包</a>，并解压。</p>
+</li>
+<li><p>运行单机版 Nacos。</p>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">windows 环境</span>
+startup.cmd -m standalone
+<span class="meta prompt_"># </span><span class="language-bash">linux 环境</span>
+startup.sh -m standalone</code></pre>
+</li>
+<li><p>请求 Nacos 管理页面测试。</p>
+<p><code>请求 http://ip:8848/nacos。旧版本需要登录，用户名密码都是 nacos。如果无法访问，需要关闭防火墙。</code></p>
+</li>
+<li><p>停止。</p>
+<pre><code class="highlight shell">shutdown.sh</code></pre></li>
+</ol>
+<h2 id="2-3-服务注册中心"><a href="#2-3-服务注册中心" class="headerlink" title="2.3. 服务注册中心"></a>2.3. 服务注册中心</h2><h3 id="2-3-1-微服务整合-Nacos"><a href="#2-3-1-微服务整合-Nacos" class="headerlink" title="2.3.1. 微服务整合 Nacos"></a>2.3.1. 微服务整合 Nacos</h3><ol>
+<li><p>父工程声明依赖。</p>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.9.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></code></pre>
+</li>
+<li><p>添加依赖。</p>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></code></pre>
+</li>
+<li><p>添加配置信息。</p>
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="attr">spring:</span>
+  <span class="attr">application:</span>
+    <span class="attr">name:</span> <span class="string">provider</span> <span class="comment"># 服务名</span>
+  <span class="attr">cloud:</span>
+    <span class="attr">nacos:</span>
+      <span class="attr">discovery:</span>
+        <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># Nacos地址</span></code></pre>
+</li>
+<li><p>测试。<br><code>请求 Nacos 管理页面，查看服务注册情况。</code></p>
+</li>
+<li><p>使用，以 ribbon 为例。<br><code>由于 nacos-discovery 整合了 ribbon，因此可以实现负载均衡。</code></p>
+<pre><div class="caption"><span>RestConfig.java</span></div><code class="highlight java"><span class="meta">@Configuration</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RestConfig</span> &#123;
+    <span class="meta">@Bean</span>
+    <span class="meta">@LoadBalanced</span> <span class="comment">// 负载均衡。否则使用服务名代替IP会异常。</span>
+    <span class="keyword">public</span> RestTemplate <span class="title function_">restTemplate</span><span class="params">()</span> &#123;
+        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();
+    &#125;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>SkuController.java</span></div><code class="highlight java"><span class="meta">@RestController</span>
+<span class="meta">@RequestMapping(&quot;sku&quot;)</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SkuController</span> &#123;
+    <span class="comment">// 注意，如果RestTemplate在此类注入容器，@LoadBalanced失效！</span>
+    <span class="meta">@Autowired</span>
+    <span class="keyword">private</span> RestTemplate restTemplate;
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">URL</span> <span class="operator">=</span> <span class="string">&quot;http://provider/sku&quot;</span>; <span class="comment">// 可以使用服务名代替ip+端口。</span>
+    <span class="meta">@GetMapping(&quot;getbyid/&#123;id&#125;&quot;)</span>
+    <span class="keyword">public</span> ResultVO <span class="title function_">getById</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Long id)</span> &#123;
+        <span class="keyword">return</span> restTemplate.getForObject(URL + <span class="string">&quot;/getbyid/&quot;</span> + id, ResultVO.class);
+    &#125;
+    <span class="meta">@GetMapping(&quot;insert&quot;)</span>
+    <span class="keyword">public</span> ResultVO <span class="title function_">insert</span><span class="params">(SkuVO skuVO)</span> &#123;
+        <span class="keyword">return</span> restTemplate.postForObject(URL + <span class="string">&quot;/insert&quot;</span>, skuVO, ResultVO.class);
+    &#125;
+&#125;</code></pre></li>
+</ol>
+<h3 id="2-3-2-服务注册中心对比"><a href="#2-3-2-服务注册中心对比" class="headerlink" title="2.3.2. 服务注册中心对比"></a>2.3.2. 服务注册中心对比</h3><table>
+<thead>
+<tr>
+<th align="center">组件</th>
+<th align="center">CAP 模型</th>
+<th align="center">控制台管理</th>
+<th align="center">社区活跃度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Eureak</td>
+<td align="center">AP</td>
+<td align="center">支持</td>
+<td align="center">2.x 版本闭源</td>
+</tr>
+<tr>
+<td align="center">Zookeeper</td>
+<td align="center">CP</td>
+<td align="center">不支持</td>
+<td align="center">中</td>
+</tr>
+<tr>
+<td align="center">Consul</td>
+<td align="center">CP</td>
+<td align="center">支持</td>
+<td align="center">高</td>
+</tr>
+<tr>
+<td align="center">Nacos</td>
+<td align="center">AP+CP</td>
+<td align="center">支持</td>
+<td align="center">高</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>CP 强一致性，AP 高可用。</strong></li>
+<li><strong>Eureka 为 AP，只要有节点可用，便会提供服务，最终一致性。</strong></li>
+<li><strong>Zookeeper 为 CP，如果有节点不可用，会停止服务进行选举，选举期间不可用。</strong></li>
+<li><strong>Nacos 支持 AP 和 CP 切换，通过发送 POST 请求，切换模型。</strong><pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">Nacos 切换为 CP</span>
+curl -X PUT &quot;http://localhost:8848/nacos/v1/ns/operator/switches?entry=serverMode&amp;value=CP&quot;
+<span class="meta prompt_"># </span><span class="language-bash">Nacos 切换为 AP</span>
+curl -X PUT &quot;http://localhost:8848/nacos/v1/ns/operator/switches?entry=serverMode&amp;value=AP&quot;</code></pre></li>
+</ul>
+<h2 id="2-4-服务配置中心"><a href="#2-4-服务配置中心" class="headerlink" title="2.4. 服务配置中心"></a>2.4. 服务配置中心</h2><h3 id="2-4-1-微服务整合-Nacos"><a href="#2-4-1-微服务整合-Nacos" class="headerlink" title="2.4.1. 微服务整合 Nacos"></a>2.4.1. 微服务整合 Nacos</h3><ol>
+<li><p>父工程声明依赖。<br><code>同上</code>。</p>
+</li>
+<li><p>添加依赖。</p>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+    <span class="comment">&lt;!-- SpringBoot2.4以后默认无法加载bootstrap.yml，需要添加此依赖 --&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-bootstrap<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></code></pre>
+</li>
+<li><p>添加配置信息。</p>
+<pre><div class="caption"><span>bootstrap.yml</span></div><code class="highlight yml"><span class="attr">spring:</span>
+  <span class="attr">application:</span>
+    <span class="attr">name:</span> <span class="string">provider</span> <span class="comment"># 应用名</span>
+  <span class="attr">cloud:</span>
+    <span class="attr">nacos:</span>
+      <span class="attr">config:</span>
+        <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># Nacos配置中心地址。</span>
+        <span class="attr">namespace:</span> <span class="string">dev</span> <span class="comment"># 命名空间，默认为public。</span>
+        <span class="attr">group:</span> <span class="string">CLOUD_GROUP</span> <span class="comment"># 分组，默认为DEFAULT_GROUP。</span>
+        <span class="attr">file-extension:</span> <span class="string">yaml</span> <span class="comment"># 后缀</span>
+        <span class="attr">prefix:</span> <span class="string">provider</span> <span class="comment"># 前缀，默认为项目名spring.application.name。</span></code></pre>
+
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="attr">spring:</span>
+  <span class="attr">profiles:</span>
+    <span class="attr">active:</span> <span class="string">dev1</span></code></pre>
+</li>
+<li><p>Nacos 管理页面上创建配置文件。</p>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">namespace 为配置文件中<span class="variable">$&#123;spring.cloud.nacos.config.namespace&#125;</span>。</span>
+<span class="meta prompt_"># </span><span class="language-bash">group 为配置文件中<span class="variable">$&#123;spring.cloud.nacos.config.group&#125;</span>。</span>
+<span class="meta prompt_"># </span><span class="language-bash">dataId 为配置文件中<span class="variable">$&#123;spring.cloud.nacos.config.prefix&#125;</span>-<span class="variable">$&#123;spring.profiles.active&#125;</span>.<span class="variable">$&#123;spring.cloud.nacos.config.file-extension&#125;</span>。</span></code></pre>
+</li>
+<li><p>添加动态刷新注解。</p>
+<pre><div class="caption"><span>SkuController.java</span></div><code class="highlight java"><span class="meta">@RestController</span>
+<span class="meta">@RequestMapping(&quot;sku&quot;)</span>
+<span class="meta">@Slf4j</span>
+<span class="meta">@RefreshScope</span> <span class="comment">// 动态刷新</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SkuController</span> &#123;
+    <span class="meta">@Value(&quot;$&#123;config.version&#125;&quot;)</span>
+    <span class="keyword">private</span> String version;
+    <span class="meta">@GetMapping(&quot;v&quot;)</span>
+    <span class="keyword">public</span> String <span class="title function_">version</span><span class="params">()</span> &#123;
+        <span class="keyword">return</span> version;
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p>启动测试。</p>
+</li>
+</ol>
+<h3 id="2-4-2-配置文件优先级"><a href="#2-4-2-配置文件优先级" class="headerlink" title="2.4.2. 配置文件优先级"></a>2.4.2. 配置文件优先级</h3><p><code>TODO</code></p>
+<h2 id="2-5-持久化配置"><a href="#2-5-持久化配置" class="headerlink" title="2.5. 持久化配置"></a>2.5. 持久化配置</h2><ol>
+<li><p>创建数据库，执行 sql 脚本。<br><code>Nacos 默认自带嵌入式数据库 derby。</code></p>
+</li>
+<li><p>修改配置文件。</p>
+<pre><div class="caption"><span>conf/application.properties</span></div><code class="highlight shell">spring.datasource.platform=mysql
+db.num=1
+db.url.0=jdbc:mysql://127.0.0.1:3306/nacos?characterEncoding=utf8&amp;connectTimeout=1000&amp;socketTimeout=3000&amp;autoReconnect=true&amp;useUnicode=true&amp;useSSL=false&amp;serverTimezone=UTC
+db.user.0=root
+db.password.0=123456</code></pre>
+</li>
+<li><p>启动。</p>
+</li>
+</ol>
+<h2 id="2-6-集群部署"><a href="#2-6-集群部署" class="headerlink" title="2.6. 集群部署"></a>2.6. 集群部署</h2><ol>
+<li><p>搭建 3 个单机版 Nacos，并完成持久化配置。</p>
+</li>
+<li><p>修改配置文件，如果同一个服务器需要修改端口，不可连续。</p>
+<pre><div class="caption"><span>conf/cluster.conf</span></div><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">添加集群节点信息。</span>
+192.168.48.135.8818
+192.168.48.135.8828
+192.168.48.135.8838</code></pre>
+</li>
+<li><p>启动。</p>
+<pre><code class="highlight shell">startup.sh</code></pre>
+</li>
+<li><p>配置 nginx 实现负载均衡。</p>
+<pre><div class="caption"><span>/usr/local/nginx/conf/nginx.conf</span></div><code class="highlight shell">http &#123;
+    upstream nacos&#123;
+        server 192.168.48.135.8818;
+        server 192.168.48.135.8828;
+        server 192.168.48.135.8838;
+    &#125;
+    server &#123;
+        listen 8848;
+        server_name localhost;
+        location / &#123;
+            proxy_pass http://nacos;
+        &#125;
+    &#125;
+&#125;
+<span class="meta prompt_"># </span><span class="language-bash">2.x版本需要对grpc端口进行代理。</span>
+stream&#123;
+    upstream nacos-grpc&#123;
+        server 192.168.48.135:9818 weight=1;
+        server 192.168.48.135:9828 weight=1;
+        server 192.168.48.135:9838 weight=1;
+    &#125;
+    server&#123;
+        listen 9848; # 8848+1000
+        proxy_pass nacos-grpc;
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p>请求 Nacos 管理页面测试。</p>
+</li>
+</ol>
+<h1 id="3-Sentinel"><a href="#3-Sentinel" class="headerlink" title="3. Sentinel"></a>3. Sentinel</h1><h2 id="3-1-简介"><a href="#3-1-简介" class="headerlink" title="3.1. 简介"></a>3.1. 简介</h2><p>面向云原生微服务的流量控制、熔断降级组件。</p>
+<h2 id="3-2-搭建-Sentinel-服务端"><a href="#3-2-搭建-Sentinel-服务端" class="headerlink" title="3.2. 搭建 Sentinel 服务端"></a>3.2. 搭建 Sentinel 服务端</h2><ol>
+<li><p>下载<a target="_blank" rel="noopener" href="https://github.com/alibaba/Sentinel/releases/">sentinel</a>。</p>
+</li>
+<li><p>运行 jar 包。</p>
+<pre><code class="highlight shell">java -jar sentinel-dashboard-1.8.6.jar</code></pre>
+</li>
+<li><p>请求 Sentinel 管理页面测试。<br><code>请求 http://ip:8080。用户名密码都是 sentinel。</code></p>
+</li>
+</ol>
+<h2 id="3-3-微服务整合-Sentinel"><a href="#3-3-微服务整合-Sentinel" class="headerlink" title="3.3. 微服务整合 Sentinel"></a>3.3. 微服务整合 Sentinel</h2><ol>
+<li><p>父工程声明依赖。<br><code>同上</code>。</p>
+</li>
+<li><p>添加依赖。</p>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-sentinel<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></code></pre>
+</li>
+<li><p>添加配置信息。</p>
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="attr">spring:</span>
+  <span class="attr">application:</span>
+    <span class="attr">name:</span> <span class="string">provider</span> <span class="comment"># 应用名</span>
+  <span class="attr">cloud:</span>
+    <span class="attr">sentinel:</span>
+      <span class="attr">transport:</span>
+        <span class="attr">dashboard:</span> <span class="string">localhost:8080</span> <span class="comment"># Sentinel监控地址</span>
+        <span class="attr">port:</span> <span class="number">8719</span> <span class="comment"># 默认8719端口，假如被占用会自动从8719开始依次+1扫描，直至找到未被占用的端口</span></code></pre>
+</li>
+<li><p>测试。<br><code>Sentinel 监控面板懒加载，需要先请求接口。</code></p>
+</li>
+</ol>
+<h2 id="3-4-流控规则"><a href="#3-4-流控规则" class="headerlink" title="3.4. 流控规则"></a>3.4. 流控规则</h2><ul>
+<li><strong>资源名</strong>：唯一名称，默认请求路径。</li>
+<li><strong>针对来源</strong>：Sentinel 可以针对调用者进行限流，填写微服务名，默认 default 不区分来源。</li>
+<li><strong>阈值类型</strong><ul>
+<li><strong>QPS</strong>：每秒请求数。当调用该 api 的 QPS 达到阈值时，进行限流。</li>
+<li><strong>线程数</strong>：当调用该 api 的线程数达到阈值时，进行限流。</li>
+</ul>
+</li>
+<li><strong>是否集群</strong></li>
+<li><strong>流控模式</strong><ul>
+<li><strong>直接</strong>：api 达到限流条件直接限流。</li>
+<li><strong>关联</strong>：当关联的资源达到阈值时就限流自己。</li>
+<li><strong>链路</strong>：只记录指定链路上的流量（指定资源从入口资源进来的流量，如果达到阈值，就进行限流）。</li>
+</ul>
+</li>
+<li><strong>流控效果</strong><ul>
+<li><strong>快速失败</strong>：直接失败抛出异常<code>Blocked by Sentinel (flow limiting)</code>。</li>
+<li><strong>Warm Up</strong>：预热&#x2F;冷启动方式。请求 QPS 从阈值除以 coldFactor(冷加载因子，默认为 3)开始，经过预热时长后才会达到阈值。</li>
+<li><strong>排队等待</strong>：阈值类型必须是 QPS。匀速排队方式会严格控制请求通过的间隔时间，让请求以均匀的速度通过，对应漏桶算法。主要用于处理间隔性突发的流量，例如消息队列。</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-5-熔断规则"><a href="#3-5-熔断规则" class="headerlink" title="3.5. 熔断规则"></a>3.5. 熔断规则</h2><p><code>1.8.0 前，Sentinel 的断路器没有半开状态；1.8.0 版本后支持半开状态。半开的状态系统自动检测是否请求有异常，没有异常就关闭断路器恢复使用，有异常则继续打开断路器不可用。</code></p>
+<p><code>熔断降级作为保护自身的手段，通常在客户端（调用端）进行配置。</code></p>
+<ul>
+<li><strong>RT 慢调用比例</strong><br>选择以慢调用比例作为阈值，需要设置允许的慢调用 RT（即最大的响应时间），请求的响应时间大于该值则统计为慢调用。当单位统计时长（statIntervalMs）内请求数目大于设置的最小请求数目，并且慢调用的比例大于阈值，则接下来的熔断时长内请求会自动被熔断。经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求响应时间小于设置的慢调用 RT 则结束熔断，若大于设置的慢调用 RT 则会再次被熔断。</li>
+<li><strong>异常比例</strong><br>当单位统计时长（statIntervalMs）内请求数目大于设置的最小请求数目，并且异常的比例大于阈值，则接下来的熔断时长内请求会自动被熔断。经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求成功完成（没有错误）则结束熔断，否则会再次被熔断。异常比率的阈值范围是  [0.0, 1.0]，代表 0% - 100%。</li>
+<li><strong>异常数</strong><br>当单位统计时长内的异常数目超过阈值之后会自动进行熔断。经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求成功完成（没有错误）则结束熔断，否则会再次被熔断。</li>
+</ul>
+<h2 id="3-6-热点规则"><a href="#3-6-热点规则" class="headerlink" title="3.6. 热点规则"></a>3.6. 热点规则</h2><ol>
+<li><p>父工程声明依赖。<br><code>同上</code>。</p>
+</li>
+<li><p>添加依赖。<br><code>同上</code>。</p>
+</li>
+<li><p>添加配置信息。<br><code>同上</code>。</p>
+</li>
+<li><p>编写业务代码，添加@SentinelResource 注解。</p>
+<pre><div class="caption"><span>TestController.java</span></div><code class="highlight java"><span class="meta">@GetMapping(&quot;testB&quot;)</span>
+<span class="meta">@SentinelResource(value = &quot;/test/testB&quot;)</span> <span class="comment">// 必须采用@SentinelResource注解，否则热点规则不生效。</span>
+<span class="keyword">public</span> String <span class="title function_">testB</span><span class="params">()</span> &#123;
+    <span class="keyword">return</span> <span class="string">&quot;testB&quot;</span>;
+&#125;</code></pre>
+</li>
+<li><p>Sentinel 管理页面添加热点规则（参数例外项）。</p>
+</li>
+<li><p>测试。</p>
+</li>
+</ol>
+<h2 id="3-7-系统规则"><a href="#3-7-系统规则" class="headerlink" title="3.7. 系统规则"></a>3.7. 系统规则</h2><p><code>从整体维度对应用入口流量进行控制。</code></p>
+<ul>
+<li><strong>Load 自适应</strong><br>当系统 load1 超过阈值，且系统当前的并发线程数超过系统容量时才会触发系统保护。系统容量由系统的 maxQps _ minRt 计算得出。设定参考值一般是 CPU cores * 2.5。</li>
+<li><strong>CPU 使用率</strong><br>当系统 CPU 使用率超过阈值即触发系统保护（取值范围 0.0-1.0）。</li>
+<li><strong>RT 平均响应时间</strong><br>当单台机器上所有入口流量的平均 RT 达到阈值即触发系统保护，单位是毫秒。</li>
+<li><strong>线程数</strong><br>当单台机器上所有入口流量的并发线程数达到阈值即触发系统保护。</li>
+<li><strong>入口 QPS</strong><br>当单台机器上所有入口流量的 QPS 达到阈值即触发系统保护。</li>
+</ul>
+<h2 id="3-8-SentinelResource"><a href="#3-8-SentinelResource" class="headerlink" title="3.8. @SentinelResource"></a>3.8. @SentinelResource</h2><ol>
+<li><p>父工程声明依赖。<br><code>同上</code>。</p>
+</li>
+<li><p>微服务添加依赖。<br><code>同上</code>。</p>
+</li>
+<li><p>添加配置信息。<br><code>同上</code>。</p>
+</li>
+<li><p>编写业务代码，添加@SentinelResource 注解。</p>
+<pre><div class="caption"><span>CustomerBlockHandler.java</span></div><code class="highlight java"><span class="comment">// 自定义限流处理器</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CustomerBlockHandler</span> &#123;
+    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">handle1</span><span class="params">(String str1, String str2, BlockException blockException)</span> &#123;
+        <span class="keyword">return</span> <span class="string">&quot;自定义Handler:&quot;</span> + str1 + str2;
+    &#125;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>TestController.java</span></div><code class="highlight java"><span class="meta">@GetMapping(&quot;d&quot;)</span>
+<span class="meta">@SentinelResource(value = &quot;testD&quot;, blockHandler = &quot;handle1&quot;, blockHandlerClass = CustomerBlockHandler.class)</span> <span class="comment">// 配置限流方法。</span>
+<span class="keyword">public</span> String <span class="title function_">testD</span><span class="params">(String str1, String str2)</span> &#123;
+    <span class="keyword">return</span> str1 + str2;
+&#125;</code></pre>
+</li>
+<li><p>Sentinel 管理页面添加规则。</p>
+</li>
+<li><p>测试。</p>
+</li>
+</ol>
+<h2 id="3-9-规则持久化"><a href="#3-9-规则持久化" class="headerlink" title="3.9. 规则持久化"></a>3.9. 规则持久化</h2><ol>
+<li><p>父工程声明依赖。<br><code>同上</code>。</p>
+</li>
+<li><p>添加依赖。</p>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-sentinel<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.csp<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>sentinel-datasource-nacos<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></code></pre>
+</li>
+<li><p>Nacos 管理页面创建配置文件。</p>
+<pre><div class="caption"><span>provider</span></div><code class="highlight json"><span class="punctuation">[</span>
+  <span class="punctuation">&#123;</span>
+    <span class="attr">&quot;resource&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/test/testA&quot;</span><span class="punctuation">,</span> <span class="comment">// 资源名</span>
+    <span class="attr">&quot;limitApp&quot;</span><span class="punctuation">:</span> <span class="string">&quot;default&quot;</span><span class="punctuation">,</span> <span class="comment">// 来源</span>
+    <span class="attr">&quot;grade&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1&quot;</span><span class="punctuation">,</span>
+    <span class="attr">&quot;count&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1&quot;</span><span class="punctuation">,</span>
+    <span class="attr">&quot;strategy&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0&quot;</span><span class="punctuation">,</span>
+    <span class="attr">&quot;controlBehavior&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0&quot;</span><span class="punctuation">,</span>
+    <span class="attr">&quot;clusterMode&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span> <span class="comment">// 是否集群</span>
+  <span class="punctuation">&#125;</span>
+<span class="punctuation">]</span></code></pre>
+</li>
+<li><p>添加配置信息。</p>
+<pre><div class="caption"><span>bootstrap.yml</span></div><code class="highlight yml"><span class="attr">spring:</span>
+  <span class="attr">application:</span>
+    <span class="attr">name:</span> <span class="string">provider</span> <span class="comment"># 应用名</span>
+  <span class="attr">cloud:</span>
+    <span class="attr">sentinel:</span>
+      <span class="attr">transport:</span>
+        <span class="attr">dashboard:</span> <span class="string">localhost:8080</span>
+        <span class="attr">port:</span> <span class="number">8719</span> <span class="comment"># 默认8719端口，假如被占用会自动从8719开始依次+1扫描，直至找到未被占用的端口</span>
+      <span class="attr">datasource:</span>
+        <span class="attr">ds1:</span>
+          <span class="attr">nacos:</span>
+            <span class="attr">server-addr:</span> <span class="number">192.168</span><span class="number">.229</span><span class="number">.131</span><span class="string">:8848</span>
+            <span class="attr">namespace:</span> <span class="string">dev</span>
+            <span class="attr">group-id:</span> <span class="string">CLOUD_GROUP</span>
+            <span class="attr">data-id:</span> <span class="string">provider</span>
+            <span class="attr">data-type:</span> <span class="string">json</span>
+            <span class="attr">rule-type:</span> <span class="string">flow</span></code></pre>
+</li>
+<li><p>测试限流规则。</p>
+</li>
+</ol>
+<h2 id="3-10-服务熔断"><a href="#3-10-服务熔断" class="headerlink" title="3.10. 服务熔断"></a>3.10. 服务熔断</h2><h3 id="3-10-1-Ribbon-配置服务熔断"><a href="#3-10-1-Ribbon-配置服务熔断" class="headerlink" title="3.10.1. Ribbon 配置服务熔断"></a>3.10.1. Ribbon 配置服务熔断</h3><ol>
+<li><p>父工程声明依赖。<br><code>同上</code>。</p>
+</li>
+<li><p>添加依赖。<br><code>同上</code>。</p>
+</li>
+<li><p>添加配置信息。<br><code>同上</code>。</p>
+</li>
+<li><p>编写业务代码，配置兜底方法。</p>
+<pre><div class="caption"><span>SkuController.java</span></div><code class="highlight java"><span class="meta">@RestController</span>
+<span class="meta">@RequestMapping(&quot;sku&quot;)</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SkuController</span> &#123;
+    <span class="meta">@Autowired</span>
+    <span class="keyword">private</span> RestTemplate restTemplate;
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">URL</span> <span class="operator">=</span> <span class="string">&quot;http://provider/sku&quot;</span>;
+    <span class="meta">@GetMapping(&quot;getbyid/&#123;id&#125;&quot;)</span>
+    <span class="comment">// 当fallback和blockhandler同时存在时，如果触发限流，会显示限流而非异常处理方法</span>
+    <span class="comment">// 可以采用exceptionsToIgnore忽略异常，使其不进入fallback处理方法中</span>
+    <span class="meta">@SentinelResource(value = &quot;sku/getbyid&quot;, fallback = &quot;getByIdFallback&quot;, exceptionsToIgnore = RuntimeException.class, blockhandler = &quot;getByIdBlockhandler&quot;)</span>
+    <span class="keyword">public</span> ResultVO <span class="title function_">getById</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Long id)</span> &#123;
+        <span class="keyword">return</span> restTemplate.getForObject(URL + <span class="string">&quot;/getbyid/&quot;</span> + id, ResultVO.class);
+    &#125;
+    <span class="keyword">public</span> ResultVO <span class="title function_">getByIdFallback</span><span class="params">(Long id)</span> &#123;
+        <span class="keyword">return</span> ResultVO.error(<span class="string">&quot;ribbon兜底&quot;</span>);
+    &#125;
+    <span class="keyword">public</span> ResultVO <span class="title function_">getByIdBlockhandler</span><span class="params">(Long id)</span> &#123;
+        <span class="keyword">return</span> ResultVO.error(<span class="string">&quot;ribbon限流&quot;</span>);
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p>测试。</p>
+</li>
+</ol>
+<h3 id="3-10-2-OpenFeign-配置服务熔断"><a href="#3-10-2-OpenFeign-配置服务熔断" class="headerlink" title="3.10.2. OpenFeign 配置服务熔断"></a>3.10.2. OpenFeign 配置服务熔断</h3><ol>
+<li><p>父工程声明依赖。<br><code>同上</code>。</p>
+</li>
+<li><p>添加依赖。</p>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-sentinel<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="comment">&lt;!-- 如果SpringCloud版本为2020.0.0以上需要排除 --&gt;</span>
+        <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span>
+                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-ribbon<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+            <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+    <span class="comment">&lt;!-- 如果SpringCloud版本为2020.0.0以上需要添加 --&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-loadbalancer<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.github.openfeign<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>feign-hystrix<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">version</span>&gt;</span>12.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></code></pre>
+</li>
+<li><p>启动类添加注解。</p>
+<pre><div class="caption"><span>App.java</span></div><code class="highlight java"><span class="meta">@SpringBootApplication</span>
+<span class="meta">@EnableFeignClients(basePackages = &quot;com.fengbiao.springcloud.service&quot;)</span> <span class="comment">// 扫描Feign接口所在包</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">App</span> &#123;
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;
+        SpringApplication.run(App.class, args);
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p>添加配置信息。</p>
+<pre><div class="caption"><span>bootstrap.yml</span></div><code class="highlight yml"><span class="attr">spring:</span>
+  <span class="attr">application:</span>
+    <span class="attr">name:</span> <span class="string">consumer</span>
+  <span class="attr">cloud:</span>
+    <span class="attr">nacos:</span>
+      <span class="attr">discovery:</span>
+        <span class="attr">server-addr:</span> <span class="number">192.168</span><span class="number">.48</span><span class="number">.135</span><span class="string">:8848</span>
+<span class="attr">feign:</span>
+  <span class="attr">sentinel:</span>
+    <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment"># 需要开启</span></code></pre>
+</li>
+<li><p>创建 Feign 接口，并配置 Fallback 类。</p>
+<pre><div class="caption"><span>SkuService.java</span></div><code class="highlight java"><span class="meta">@FeignClient(name = &quot;provider&quot;, fallback = SkuServiceImpl.class)</span>
+<span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">SkuService</span> &#123;
+    <span class="meta">@GetMapping(&quot;sku/getbyid/&#123;id&#125;&quot;)</span>
+    ResultVO <span class="title function_">getById</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Long id)</span>;
+    <span class="meta">@PostMapping(&quot;sku/insert&quot;)</span>
+    ResultVO <span class="title function_">insert</span><span class="params">(<span class="meta">@RequestBody</span> SkuVO skuVO)</span>;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>SkuFeignController.java</span></div><code class="highlight java"><span class="meta">@RestController</span>
+<span class="meta">@RequestMapping(&quot;sku/feign&quot;)</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SkuFeignController</span> &#123;
+    <span class="meta">@Autowired</span>
+    <span class="keyword">private</span> SkuService skuService;
+    <span class="meta">@GetMapping(&quot;getbyid/&#123;id&#125;&quot;)</span>
+    <span class="keyword">public</span> ResultVO <span class="title function_">getById</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Long id)</span> &#123;
+        <span class="keyword">return</span> skuService.getById(id);
+    &#125;
+    <span class="meta">@GetMapping(&quot;insert&quot;)</span>
+    <span class="keyword">public</span> ResultVO <span class="title function_">insert</span><span class="params">(SkuVO skuVO)</span> &#123;
+        <span class="keyword">return</span> skuService.insert(skuVO);
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p>创建 Fallback 类，需要注入容器。</p>
+<pre><code class="highlight java"><span class="meta">@Service</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SkuServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">SkuService</span> &#123;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> ResultVO <span class="title function_">getById</span><span class="params">(Long id)</span> &#123;
+        <span class="keyword">return</span> ResultVO.error(<span class="string">&quot;openfeign 兜底&quot;</span>);
+    &#125;
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> ResultVO <span class="title function_">insert</span><span class="params">(SkuVO skuVO)</span> &#123;
+        <span class="keyword">return</span> ResultVO.error(<span class="string">&quot;openfeign 兜底&quot;</span>);
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p>测试。</p>
+</li>
+</ol>
+<h1 id="4-Seata"><a href="#4-Seata" class="headerlink" title="4. Seata"></a>4. Seata</h1><h2 id="4-1-简介"><a href="#4-1-简介" class="headerlink" title="4.1. 简介"></a>4.1. 简介</h2><p>一款开源的<strong>分布式事务</strong>解决方案，致力于提供高性能和简单易用的分布式事务服务。</p>
+<h2 id="4-2-术语"><a href="#4-2-术语" class="headerlink" title="4.2. 术语"></a>4.2. 术语</h2><p><code>1+3：1 全局唯一事务 ID，3 组件。</code></p>
+<ul>
+<li><strong>XID</strong>：全局唯一的事务 ID。</li>
+<li><strong>TC</strong>：事务协调者。维护全局和分支事务的状态，驱动全局事务提交或回滚。<br><code>TC 可以理解为 Seata 服务端。</code></li>
+<li><strong>TM</strong>：事务管理器。定义全局事务的范围，开始全局事务、提交或回滚全局事务。<br><code>TM 事务的发起方，可以理解为@GrobalTransactional。</code></li>
+<li><strong>RM</strong>：资源管理器。管理分支事务处理的资源，与 TC 交谈以注册分支事务和报告分支事务的状态，并驱动分支事务提交或回滚。<br><code>RM 事务的参与方。</code></li>
+</ul>
+<h2 id="4-3-处理过程"><a href="#4-3-处理过程" class="headerlink" title="4.3. 处理过程"></a>4.3. 处理过程</h2><ol>
+<li>TM 向 TC 申请开启一个全局事务，全局事务创建成功并生成一个全局唯一的 ID。</li>
+<li>XID 在微服务调用链路的上下文中传播。</li>
+<li>RM 向 TC 注册分支事务，将其纳入 XID 全局事务的管辖。</li>
+<li>TM 向 TC 发起针对 XID 的全局提交或者回滚决议。</li>
+<li>TC 调度 XID 下管辖的全部分支事务完成提交或回滚请求。</li>
+</ol>
+<h2 id="4-4-搭建-Seata-服务端"><a href="#4-4-搭建-Seata-服务端" class="headerlink" title="4.4. 搭建 Seata 服务端"></a>4.4. 搭建 Seata 服务端</h2><p>以 Nacos 注册中心和 Mysql 存储为例。</p>
+<ol>
+<li><p>搭建 Nacos 服务端。</p>
+</li>
+<li><p>搭建 Mysql 数据库，创建 seata 数据库。</p>
+</li>
+<li><p>下载<a target="_blank" rel="noopener" href="https://seata.io/zh-cn/docs/download">Seata 压缩包</a>，并解压。</p>
+</li>
+<li><p>运行 sql 脚本，创建 seata 表。</p>
+</li>
+<li><p>修改配置文件。</p>
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="attr">server:</span>
+  <span class="attr">port:</span> <span class="number">7091</span>
+<span class="attr">spring:</span>
+  <span class="attr">application:</span>
+    <span class="attr">name:</span> <span class="string">seata-server</span>
+<span class="attr">logging:</span>
+  <span class="attr">config:</span> <span class="string">classpath:logback-spring.xml</span>
+  <span class="attr">file:</span>
+    <span class="attr">path:</span> <span class="string">$&#123;log.home:$&#123;user.home&#125;/logs/seata&#125;</span>
+  <span class="attr">extend:</span>
+    <span class="attr">logstash-appender:</span>
+      <span class="attr">destination:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:4560</span>
+    <span class="attr">kafka-appender:</span>
+      <span class="attr">bootstrap-servers:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:9092</span>
+      <span class="attr">topic:</span> <span class="string">logback_to_logstash</span>
+<span class="attr">console:</span>
+  <span class="attr">user:</span>
+    <span class="attr">username:</span> <span class="string">seata</span>
+    <span class="attr">password:</span> <span class="string">seata</span>
+<span class="attr">seata:</span>
+  <span class="attr">config:</span>
+    <span class="comment"># support: nacos, consul, apollo, zk, etcd3</span>
+    <span class="attr">type:</span> <span class="string">file</span>
+  <span class="comment"># 注册配置</span>
+  <span class="attr">registry:</span>
+    <span class="comment"># support: nacos, eureka, redis, zk, consul, etcd3, sofa</span>
+    <span class="attr">type:</span> <span class="string">nacos</span>
+    <span class="attr">nacos:</span>
+      <span class="attr">application:</span> <span class="string">seata-server</span>
+      <span class="attr">server-addr:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8848</span>
+  <span class="comment"># 存储配置</span>
+  <span class="attr">store:</span>
+    <span class="comment"># support: file 、 db 、 redis</span>
+    <span class="attr">mode:</span> <span class="string">db</span>
+    <span class="attr">db:</span>
+      <span class="attr">datasource:</span> <span class="string">druid</span>
+      <span class="attr">db-type:</span> <span class="string">mysql</span>
+      <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span>
+      <span class="attr">url:</span> <span class="string">jdbc:mysql://127.0.0.1:3306/seata?rewriteBatchedStatements=true</span>
+      <span class="attr">user:</span> <span class="string">root</span>
+      <span class="attr">password:</span> <span class="number">123456</span>
+      <span class="attr">min-conn:</span> <span class="number">10</span>
+      <span class="attr">max-conn:</span> <span class="number">100</span>
+      <span class="attr">global-table:</span> <span class="string">global_table</span>
+      <span class="attr">branch-table:</span> <span class="string">branch_table</span>
+      <span class="attr">lock-table:</span> <span class="string">lock_table</span>
+      <span class="attr">distributed-lock-table:</span> <span class="string">distributed_lock</span>
+      <span class="attr">query-limit:</span> <span class="number">1000</span>
+      <span class="attr">max-wait:</span> <span class="number">5000</span>
+  <span class="comment">#  server:</span>
+  <span class="comment">#    service-port: 8091 #If not configured, the default is &#x27;$&#123;server.port&#125; + 1000&#x27;</span>
+  <span class="attr">security:</span>
+    <span class="attr">secretKey:</span> <span class="string">SeataSecretKey0c382ef121d778043159209298fd40bf3850a017</span>
+    <span class="attr">tokenValidityInMilliseconds:</span> <span class="number">1800000</span>
+    <span class="attr">ignore:</span>
+      <span class="attr">urls:</span> <span class="string">/,/**/*.css,/**/*.js,/**/*.html,/**/*.map,/**/*.svg,/**/*.png,/**/*.jpeg,/**/*.ico,/api/v1/auth/login</span></code></pre>
+</li>
+<li><p>运行。</p>
+</li>
+<li><p>请求 Seata 管理页面测试。</p>
+</li>
+</ol>
+<h2 id="4-5-微服务整合-Seata"><a href="#4-5-微服务整合-Seata" class="headerlink" title="4.5. 微服务整合 Seata"></a>4.5. 微服务整合 Seata</h2><ol>
+<li><p>父工程声明依赖。<br><code>同上</code>。</p>
+</li>
+<li><p>创建订单微服务，添加依赖。</p>
+<pre><div class="caption"><span>pom.xml</span></div><code class="highlight xml"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-seata<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></code></pre>
+</li>
+<li><p>修改配置文件。</p>
+<pre><div class="caption"><span>application.yml</span></div><code class="highlight yml"><span class="attr">spring:</span>
+  <span class="attr">application:</span>
+    <span class="attr">name:</span> <span class="string">order</span>
+  <span class="attr">cloud:</span>
+    <span class="attr">nacos:</span>
+      <span class="attr">discovery:</span>
+        <span class="attr">server-addr:</span> <span class="string">localhost:8848</span>
+  <span class="attr">datasource:</span>
+    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/order?serverTimezone=GMT%2B8</span>
+    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span>
+    <span class="attr">username:</span> <span class="string">root</span>
+    <span class="attr">password:</span> <span class="number">123456</span>
+<span class="attr">seata:</span>
+  <span class="attr">service:</span>
+    <span class="attr">grouplist:</span>
+      <span class="attr">seata-server:</span> <span class="string">localhost:8091</span> <span class="comment"># Seata服务端配置</span>
+    <span class="attr">vgroup-mapping:</span>
+      <span class="attr">default_tx_group:</span> <span class="string">seata-server</span> <span class="comment"># Seata服务端配置</span>
+<span class="attr">server:</span>
+  <span class="attr">port:</span> <span class="number">80</span></code></pre>
+</li>
+<li><p>编写业务代码，添加全局事务注解。</p>
+<pre><code class="highlight java"><span class="meta">@RestController</span>
+<span class="meta">@RequestMapping(&quot;order&quot;)</span>
+<span class="meta">@Slf4j</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderController</span> &#123;
+    <span class="meta">@Autowired</span>
+    <span class="keyword">private</span> OrderService orderService;
+    <span class="meta">@Autowired</span>
+    <span class="keyword">private</span> ProductService productService;
+    <span class="meta">@Autowired</span>
+    <span class="keyword">private</span> UserService userService;
+    <span class="meta">@GetMapping(&quot;add&quot;)</span>
+    <span class="meta">@GlobalTransactional</span>
+    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">add</span><span class="params">(Long id, Integer count)</span> &#123;
+        <span class="type">OrderDO</span> <span class="variable">orderDO</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OrderDO</span>();
+        orderDO.setName(<span class="string">&quot;id:&quot;</span> + id + <span class="string">&quot;,count:&quot;</span> + count);
+        orderDO.setCreateTime(LocalDateTime.now());
+        orderService.save(orderDO);
+        productService.dec(id, count);
+        userService.dec();
+        <span class="keyword">return</span> <span class="literal">true</span>;
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p>同理，创建用户和库存微服务。</p>
+</li>
+<li><p>测试。</p>
+</li>
+</ol>
+<h2 id="4-6-事务模式"><a href="#4-6-事务模式" class="headerlink" title="4.6. 事务模式"></a>4.6. 事务模式</h2><h3 id="4-6-1-AT-模式"><a href="#4-6-1-AT-模式" class="headerlink" title="4.6.1. AT 模式"></a>4.6.1. AT 模式</h3><p><code>AT 模式对业务无侵入。</code></p>
+<ul>
+<li><strong>一阶段</strong><ol>
+<li>解析 SQL：得到 SQL 的类型（UPDATE），表（product），条件（where name &#x3D; ‘TXC’）等相关的信息。</li>
+<li>查询 beforeImage：根据解析得到的条件信息，生成查询语句，定位数据。</li>
+<li>执行业务 SQL：更新这条记录的 name 为 ‘GTS’。</li>
+<li>查询 afterImage：根据前镜像的结果，通过主键定位数据。</li>
+<li>插入回滚日志：把前后镜像数据以及业务 SQL 相关的信息组成一条回滚日志记录，插入到 UNDO_LOG 表中。</li>
+<li>提交前，向 TC 注册分支：申请 product 表中，主键值等于 1 的记录的全局锁。</li>
+<li>本地事务提交：业务数据的更新和前面步骤中生成的 UNDO LOG 一并提交。</li>
+<li>将本地事务提交的结果上报给 TC。</li>
+</ol>
+</li>
+<li><strong>二阶段-回滚</strong><ol>
+<li>收到 TC 的分支回滚请求，开启一个本地事务，执行如下操作。</li>
+<li>通过 XID 和 Branch ID 查找到相应的 UNDO LOG 记录。</li>
+<li>数据校验：拿 UNDO LOG 中的 afterImage 与当前数据进行比较，如果有不同，说明数据被当前全局事务之外的动作做了修改。这种情况，需要根据配置策略来做处理。</li>
+<li>根据 UNDO LOG 中的 beforeImage 和业务 SQL 的相关信息生成并执行回滚的语句。</li>
+<li>提交本地事务。并把本地事务的执行结果（即分支事务回滚的结果）上报给 TC。</li>
+</ol>
+</li>
+<li><strong>二阶段-提交</strong><ol>
+<li>收到 TC 的分支提交请求，把请求放入一个异步任务的队列中，马上返回提交成功的结果给 TC。</li>
+<li>异步任务阶段的分支提交请求将异步和批量地删除相应 UNDO LOG 记录。</li>
+</ol>
+</li>
+</ul>
+<h3 id="4-6-2-TCC-模式"><a href="#4-6-2-TCC-模式" class="headerlink" title="4.6.2. TCC 模式"></a>4.6.2. TCC 模式</h3><p><code>TODO</code></p>
+<h3 id="4-6-3-SAGA-模式"><a href="#4-6-3-SAGA-模式" class="headerlink" title="4.6.3. SAGA 模式"></a>4.6.3. SAGA 模式</h3><p><code>TODO</code></p>
+<h3 id="4-6-4-XA-模式"><a href="#4-6-4-XA-模式" class="headerlink" title="4.6.4. XA 模式"></a>4.6.4. XA 模式</h3><p><code>TODO</code></p>
+<style>
+table, tr, th {
+    text-align: center !important;
+    background-color: #a9b7c4 !important;
+    color: black !important;
+    border: 1px solid black !important;
+}
+table {
+  width: 100%;
+}
+table, tr, td {
+    text-align: center !important;
+    background-color: white !important;
+}
+</style>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 不积跬步无以至千里，不积小流无以成江海！ </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2015-2024 蜡笔没了小新
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.png" class="alipay" title="扫码支持">
+            <img src="/img/wechat.png" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 582px;
+    }
+    .nav.fullscreen {
+        margin-left: -582px;
+    }
+    .nav-left {
+        width: 160px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 532px;
+        }
+        .nav.fullscreen {
+            margin-left: -532px;
+        }
+        .nav-left {
+            width: 140px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 532px;
+            margin-left: -532px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("/images/20230809225525.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>

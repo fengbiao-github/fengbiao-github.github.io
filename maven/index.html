@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Maven构建工具 | 蜡笔没了小新の笔记</title>
+  <meta name="keywords" content=" Maven ">
+  <meta name="description" content="Maven构建工具 | 蜡笔没了小新の笔记">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="1. XMLHttpRequest&#x2F;&#x2F; 实例化xhr对象 var xhr &#x3D; new XMLHttpRequest() &#x2F;&#x2F; 建立连接 xhr.open(&#x27;GET&#x27;, &#x27;xxx&#x27;, false) &#x2F;&#x2F; 发送请求 xhr.send()  2. jQueryTODO 待补充 3. vue-resource 安装vue-resource。 npm install">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Vue】HTTP插件">
+<meta property="og:url" content="http://example.com/vue/http/index.html">
+<meta property="og:site_name" content="蜡笔没了小新の笔记">
+<meta property="og:description" content="1. XMLHttpRequest&#x2F;&#x2F; 实例化xhr对象 var xhr &#x3D; new XMLHttpRequest() &#x2F;&#x2F; 建立连接 xhr.open(&#x27;GET&#x27;, &#x27;xxx&#x27;, false) &#x2F;&#x2F; 发送请求 xhr.send()  2. jQueryTODO 待补充 3. vue-resource 安装vue-resource。 npm install">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-15T15:21:00.000Z">
+<meta property="article:modified_time" content="2024-08-16T02:06:56.909Z">
+<meta property="article:author" content="蜡笔没了小新">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/darcula.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>蜡笔没了小新</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/fengbiao-github"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:2014695858@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2014695858&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="理论">
+            <i class="fold iconfont icon-right"></i>
+            理论
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;数据结构与算法">
+            
+            数据结构与算法
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;设计模式">
+            
+            设计模式
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="理论&lt;---&gt;计算机网络">
+            
+            计算机网络
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Java">
+            <i class="fold iconfont icon-right"></i>
+            Java
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;JVM">
+            
+            JVM
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;JUC">
+            
+            JUC
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;新特性">
+            
+            新特性
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="Java&lt;---&gt;NIO">
+            
+            NIO
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            <i class="fold iconfont icon-right"></i>
+            数据库
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;关系型数据库">
+            
+            关系型数据库
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;非关系型数据库">
+            
+            非关系型数据库
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="数据库&lt;---&gt;分库分表">
+            
+            分库分表
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="框架">
+            <i class="fold iconfont icon-right"></i>
+            框架
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;Spring">
+            
+            Spring
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;视图层">
+            
+            视图层
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;ORM">
+            
+            ORM
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;认证授权">
+            
+            认证授权
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;任务调度">
+            
+            任务调度
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;工作流引擎">
+            
+            工作流引擎
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;网络编程">
+            
+            网络编程
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;文件处理">
+            
+            文件处理
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="微服务">
+            
+            微服务
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="中间件">
+            <i class="fold iconfont icon-right"></i>
+            中间件
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;WEB">
+            
+            WEB
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;缓存">
+            
+            缓存
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;消息队列">
+            
+            消息队列
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;搜索引擎">
+            
+            搜索引擎
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="中间件&lt;---&gt;日志">
+            
+            日志
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="大数据">
+            
+            大数据
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="工具">
+            <i class="fold iconfont icon-right"></i>
+            工具
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;IDE">
+            
+            IDE
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;版本控制">
+            
+            版本控制
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;项目构建">
+            
+            项目构建
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;持续集成">
+            
+            持续集成
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="工具&lt;---&gt;测试">
+            
+            测试
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="运维">
+            <i class="fold iconfont icon-right"></i>
+            运维
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;Linux">
+            
+            Linux
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;高可用">
+            
+            高可用
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;云原生">
+            
+            云原生
+            
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="运维&lt;---&gt;脚本">
+            
+            脚本
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="前端">
+            <i class="fold iconfont icon-right"></i>
+            前端
+            
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="前端&lt;---&gt;框架">
+            
+            框架
+            
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="面试">
+            
+            面试
+            
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  site_url"
+               
+               href="/about">关于</a>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="32">
+<input type="hidden" id="yelog_site_word_count" value="67k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>待完善</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分布式事务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务调度</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>负载均衡</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构与算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Activiti</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>IDEA</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Maven</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MybatisPlus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Nginx</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>NodeJS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RabbitMQ</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringBoot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringCloudAlibaba</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SpringCloudNetflix</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Vue</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>websocket</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>xxl-job</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/http/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】HTTP插件">【Vue】HTTP插件</span>
+            <span class="post-date" title="2024-08-15 23:21:00">2024/08/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/html/storage/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="【H5】webStorage">【H5】webStorage</span>
+            <span class="post-date" title="2024-08-13 22:55:00">2024/08/13</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/component/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】组件化编程">【Vue】组件化编程</span>
+            <span class="post-date" title="2024-08-08 23:21:00">2024/08/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 高可用 "
+           href="/nginx/"
+           data-tag="负载均衡,Nginx"
+           data-author="" >
+            <span class="post-title" title="Nginx负载均衡器">Nginx负载均衡器</span>
+            <span class="post-date" title="2024-07-29 23:08:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 大数据 "
+           href="/zookeeper/"
+           data-tag="服务调度"
+           data-author="" >
+            <span class="post-title" title="Zookeeper笔记">Zookeeper笔记</span>
+            <span class="post-date" title="2024-07-29 23:04:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 "
+           href="/springcloud/springcloud-alibaba/"
+           data-tag="SpringCloudAlibaba,分布式事务"
+           data-author="" >
+            <span class="post-title" title="SpringCloudAlibaba框架">SpringCloudAlibaba框架</span>
+            <span class="post-date" title="2024-07-29 23:01:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 微服务 "
+           href="/springcloud/springcloud-netflix/"
+           data-tag="SpringCloudNetflix"
+           data-author="" >
+            <span class="post-title" title="SpringCloudNetflix框架">SpringCloudNetflix框架</span>
+            <span class="post-date" title="2024-07-29 22:58:00">2024/07/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/nodejs/npm/"
+           data-tag="NodeJS"
+           data-author="" >
+            <span class="post-title" title="【Node.js】NPM设置淘宝镜像">【Node.js】NPM设置淘宝镜像</span>
+            <span class="post-date" title="2024-07-17 00:56:00">2024/07/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/Vuex/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】vuex状态管理插件">【Vue】vuex状态管理插件</span>
+            <span class="post-date" title="2024-07-15 23:40:00">2024/07/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 ORM "
+           href="/mybatis/encry/"
+           data-tag="MybatisPlus"
+           data-author="" >
+            <span class="post-title" title="数据库信息加解密">数据库信息加解密</span>
+            <span class="post-date" title="2024-07-12 10:47:00">2024/07/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue-router/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】vue-router路由插件">【Vue】vue-router路由插件</span>
+            <span class="post-date" title="2024-07-09 22:21:00">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue-ui/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】UI组件库">【Vue】UI组件库</span>
+            <span class="post-date" title="2024-07-09 21:31:00">2024/07/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 运维 工具 框架 计算机网络 高可用 版本控制 大数据 Java 中间件 ORM 持续集成 数据库 IDE 测试 JUC JVM NIO 关系型数据库 非关系型数据库 分库分表 缓存 搜索引擎 日志 WEB Linux 脚本 Spring 视图层 认证授权 文件处理 网络编程 "
+           href="/demo/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="示例文档">示例文档</span>
+            <span class="post-date" title="2024-06-06 23:51:00">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 任务调度 "
+           href="/xxl-job/"
+           data-tag="xxl-job"
+           data-author="" >
+            <span class="post-title" title="xxl-job分布式任务调度框架">xxl-job分布式任务调度框架</span>
+            <span class="post-date" title="2024-06-06 23:51:00">2024/06/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 数据结构与算法 "
+           href="/data-structure-and-algorithm/algorithm/"
+           data-tag="数据结构与算法"
+           data-author="" >
+            <span class="post-title" title="【数据结构与算法】算法篇">【数据结构与算法】算法篇</span>
+            <span class="post-date" title="2024-06-05 23:04:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 "
+           href="/mq/mq/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="消息队列">消息队列</span>
+            <span class="post-date" title="2024-06-05 22:58:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 面试 "
+           href="/interview/rabbitmq/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ面试题">RabbitMQ面试题</span>
+            <span class="post-date" title="2024-06-05 22:27:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 云原生 "
+           href="/docker/2/"
+           data-tag="Docker,待完善"
+           data-author="" >
+            <span class="post-title" title="【Docker】进阶篇">【Docker】进阶篇</span>
+            <span class="post-date" title="2024-06-05 21:20:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 消息队列 "
+           href="/mq/rabbitmq/"
+           data-tag="RabbitMQ"
+           data-author="" >
+            <span class="post-title" title="RabbitMQ消息队列">RabbitMQ消息队列</span>
+            <span class="post-date" title="2024-06-05 09:59:00">2024/06/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 框架 "
+           href="/vue/vue2/"
+           data-tag="Vue"
+           data-author="" >
+            <span class="post-title" title="【Vue】Vue2语法">【Vue】Vue2语法</span>
+            <span class="post-date" title="2024-06-04 21:30:00">2024/06/04</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 项目构建 "
+           href="/maven/"
+           data-tag="Maven"
+           data-author="" >
+            <span class="post-title" title="Maven构建工具">Maven构建工具</span>
+            <span class="post-date" title="2024-05-29 22:47:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java 新特性 "
+           href="/java/java8/"
+           data-tag="Java"
+           data-author="" >
+            <span class="post-title" title="【Java】Java8新特性">【Java】Java8新特性</span>
+            <span class="post-date" title="2024-05-29 21:52:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 运维 云原生 "
+           href="/docker/1/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="【Docker】基础篇">【Docker】基础篇</span>
+            <span class="post-date" title="2024-05-29 12:37:00">2024/05/29</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/4/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】行为型设计模式">【设计模式】行为型设计模式</span>
+            <span class="post-date" title="2024-05-28 22:27:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/3/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】结构型设计模式">【设计模式】结构型设计模式</span>
+            <span class="post-date" title="2024-05-28 22:01:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/3/"
+           data-tag="Activiti,SpringBoot,IDEA"
+           data-author="" >
+            <span class="post-title" title="【Activiti】整合篇">【Activiti】整合篇</span>
+            <span class="post-date" title="2024-05-28 21:49:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/2/"
+           data-tag="Activiti"
+           data-author="" >
+            <span class="post-title" title="【Activiti】进阶篇">【Activiti】进阶篇</span>
+            <span class="post-date" title="2024-05-28 21:35:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 框架 工作流引擎 "
+           href="/activiti/1/"
+           data-tag="Activiti"
+           data-author="" >
+            <span class="post-title" title="【Activiti】基础篇">【Activiti】基础篇</span>
+            <span class="post-date" title="2024-05-28 21:23:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 前端 "
+           href="/html/websocket/"
+           data-tag="websocket"
+           data-author="" >
+            <span class="post-title" title="【H5】websocket协议">【H5】websocket协议</span>
+            <span class="post-date" title="2024-05-28 16:40:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/2/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】创建型设计模式">【设计模式】创建型设计模式</span>
+            <span class="post-date" title="2024-05-28 15:53:00">2024/05/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 理论 设计模式 "
+           href="/design-pattern/1/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="【设计模式】七大设计原则">【设计模式】七大设计原则</span>
+            <span class="post-date" title="2024-05-27 14:51:00">2024/05/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 Java 数据库 "
+           href="/java/jdbc/"
+           data-tag="Java,数据库"
+           data-author="" >
+            <span class="post-title" title="【Java】JDBC数据库连接">【Java】JDBC数据库连接</span>
+            <span class="post-date" title="2024-05-25 22:24:00">2024/05/25</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-maven" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Maven构建工具</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="工具">工具</a> > 
+            
+            <a  data-rel="工具&lt;---&gt;项目构建">项目构建</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">Maven</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2024-08-09 10:29:39'>2024-05-29 22:47</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:2k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">1. 基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E7%AE%80%E4%BB%8B"><span class="toc-text">1.1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E4%BD%9C%E7%94%A8"><span class="toc-text">1.2. 作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E9%87%8D%E8%A6%81%E7%8E%AF%E8%8A%82"><span class="toc-text">1.3. 项目构建重要环节</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="toc-text">2. 安装配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-windows-%E7%8E%AF%E5%A2%83"><span class="toc-text">2.1. windows 环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-linux-%E7%8E%AF%E5%A2%83"><span class="toc-text">2.2. linux 环境</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-text">3. 核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-text">3.1. 目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">3.2. 常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-GAV-%E5%9D%90%E6%A0%87"><span class="toc-text">3.3. GAV 坐标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E4%BB%93%E5%BA%93"><span class="toc-text">3.4. 仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">3.5. 生命周期</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E4%BE%9D%E8%B5%96"><span class="toc-text">4. 依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E4%BD%9C%E7%94%A8"><span class="toc-text">4.1. 作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E4%BE%9D%E8%B5%96%E8%8C%83%E5%9B%B4%E4%B8%8E%E6%9C%89%E6%95%88%E6%80%A7"><span class="toc-text">4.2. 依赖范围与有效性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E4%BE%9D%E8%B5%96%E6%8E%92%E9%99%A4"><span class="toc-text">4.3. 依赖排除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-%E4%BE%9D%E8%B5%96%E4%BC%A0%E9%80%92%E6%80%A7"><span class="toc-text">4.4. 依赖传递性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-%E4%BE%9D%E8%B5%96%E5%8E%9F%E5%88%99"><span class="toc-text">4.5. 依赖原则</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E7%BB%A7%E6%89%BF"><span class="toc-text">5. 继承</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E4%BD%9C%E7%94%A8"><span class="toc-text">5.1. 作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E7%BB%A7%E6%89%BF-VS-%E4%BE%9D%E8%B5%96%E4%BC%A0%E9%80%92"><span class="toc-text">5.2. 继承 VS 依赖传递</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E7%A4%BA%E4%BE%8B"><span class="toc-text">5.3. 示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E8%81%9A%E5%90%88"><span class="toc-text">6. 聚合</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E4%BD%9C%E7%94%A8"><span class="toc-text">6.1. 作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E8%81%9A%E5%90%88-VS-%E7%BB%A7%E6%89%BF"><span class="toc-text">6.2. 聚合 VS 继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-%E7%A4%BA%E4%BE%8B"><span class="toc-text">6.3. 示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">6.4. 注意事项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E6%8F%92%E4%BB%B6"><span class="toc-text">7. 插件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-springboot-%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE%E6%89%93%E5%8C%85%E6%8F%92%E4%BB%B6"><span class="toc-text">7.1. springboot 项目配置打包插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6"><span class="toc-text">7.2. 常用插件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-%E5%85%B6%E4%BB%96"><span class="toc-text">8. 其他</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-%E7%BB%9F%E4%B8%80%E7%BC%96%E7%A0%81"><span class="toc-text">8.1. 统一编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-%E7%BB%9F%E4%B8%80%E9%A1%B9%E7%9B%AE-jdk-%E7%89%88%E6%9C%AC"><span class="toc-text">8.2. 统一项目 jdk 版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3-%E9%85%8D%E7%BD%AE%E5%A4%9A%E7%8E%AF%E5%A2%83-profiles"><span class="toc-text">8.3. 配置多环境 profiles</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-%E7%A7%81%E6%9C%8D%E6%90%AD%E5%BB%BA"><span class="toc-text">9. 私服搭建</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h1><h2 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1. 简介"></a>1.1. 简介</h2><p>基于 Java 平台的<strong>自动化构建工具</strong>。<br><code>构建：以java代码、html+css+js页面、图片等静态资源变成可发布项目的过程。</code><br><code>构建工具发展历史：make -&gt; ant -&gt; maven -&gt; gradle</code></p>
+<h2 id="1-2-作用"><a href="#1-2-作用" class="headerlink" title="1.2. 作用"></a>1.2. 作用</h2><ul>
+<li><strong>将项目拆分成若干个模块。</strong></li>
+<li><strong>管理 jar 包(增加第三方 jar 包；管理 jar 包之间的依赖关系，自动关联下载所有依赖的 jar 包且不会冲突)。</strong><br><code>例如，引入commons-fileupload依赖会自动引入commons-io依赖。</code></li>
+</ul>
+<h2 id="1-3-项目构建重要环节"><a href="#1-3-项目构建重要环节" class="headerlink" title="1.3. 项目构建重要环节"></a>1.3. 项目构建重要环节</h2><ul>
+<li><strong>清理：</strong>删除之前的编译结果，为重新编译做准备。</li>
+<li><strong>编译：</strong>将 java 源文件编译成字节码文件。</li>
+<li><strong>测试：</strong>针对项目中关键点进行测试。</li>
+<li><strong>报告：</strong>记录展示测试结果。</li>
+<li><strong>打包：</strong>将项目中包含的多个文件压缩成一个文件用于安装，将 java 项目打成 jar 包，将 web 项目打成 war 包。</li>
+<li><strong>安装：</strong>将包放到本地仓库，供其他项目使用。</li>
+<li><strong>部署：</strong>部署服务器准备运行，将 java、js、jsp 等文件进行筛选组装，变成一个可以直接运行的项目。</li>
+</ul>
+<h1 id="2-安装配置"><a href="#2-安装配置" class="headerlink" title="2. 安装配置"></a>2. 安装配置</h1><h2 id="2-1-windows-环境"><a href="#2-1-windows-环境" class="headerlink" title="2.1. windows 环境"></a>2.1. windows 环境</h2><ol>
+<li><p>下载解压安装包。<br><code>gz是mac版，zip是windows版本。</code></p>
+</li>
+<li><p>配置环境变量。</p>
+<pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">配置JAVA_HOME（基于Java平台）。</span>
+<span class="meta prompt_"># </span><span class="language-bash">配置MAVEN_HOME或者M2_HOME（解压后maven路径）。</span>
+<span class="meta prompt_"># </span><span class="language-bash">配置PATH（解压后maven中bin的路径，%MAVEN_HOME%\bin）。</span></code></pre>
+</li>
+<li><p>测试。</p>
+<pre><code class="highlight shell">mvn -v # 查看maven版本号</code></pre>
+</li>
+<li><p>配置本地仓库。</p>
+<pre><div class="caption"><span>conf/settings.xml</span></div><code class="highlight xml"><span class="comment">&lt;!-- 默认本地仓库在.m2\repository --&gt;</span>
+<span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>D:/mvnrep<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></code></pre></li>
+</ol>
+<h2 id="2-2-linux-环境"><a href="#2-2-linux-环境" class="headerlink" title="2.2. linux 环境"></a>2.2. linux 环境</h2><p><code>TODO</code></p>
+<h1 id="3-核心概念"><a href="#3-核心概念" class="headerlink" title="3. 核心概念"></a>3. 核心概念</h1><h2 id="3-1-目录结构"><a href="#3-1-目录结构" class="headerlink" title="3.1. 目录结构"></a>3.1. 目录结构</h2><pre><code class="highlight shell">- 项目
+    - src
+        - main
+            - java：程序代码
+            - resources：资源代码，配置代码
+        - test
+            - java：测试代码
+            - resources
+    - pom.xml：项目对象模型，maven工程核心配置
+    - target：编译后结果</code></pre>
+
+<h2 id="3-2-常用命令"><a href="#3-2-常用命令" class="headerlink" title="3.2. 常用命令"></a>3.2. 常用命令</h2><pre><code class="highlight shell"><span class="meta prompt_"># </span><span class="language-bash">执行命令必须在pom.xml所在目录执行</span>
+mvn clean # 清理，删除编译文件的目录target
+mvn compile # 编译，第一次编译会比较慢，因为需要从中央仓库下载依赖
+mvn test # 测试
+mvn test-compile # 编译测试
+mvn package # 打包，测试不通过无法打包
+mvn install # 安装，将开发的模块安装到本地仓库中，供其他模块使用，位置由gav决定
+mvn site # 生成站点
+<span class="meta prompt_"></span>
+<span class="meta prompt_"># </span><span class="language-bash">将指定jar包安装到本地仓库！！！</span>
+mvn install:install-file -Dfile=H:mybatis-ehcache-1.0.3.jar -DgroupId=org.mybatis.caches -DartifactId=mybatis-ehcache -Dversion=1.0.3 -Dpackaging=jar</code></pre>
+
+<p><code>注意：maven的核心程序仅仅定义抽象的生命周期，具体的工作必须由特定的插件来完成，插件本身并不包含在maven的核心程序中。执行命令时，用到某个插件，会从本地仓库中查找...</code></p>
+<h2 id="3-3-GAV-坐标"><a href="#3-3-GAV-坐标" class="headerlink" title="3.3. GAV 坐标"></a>3.3. GAV 坐标</h2><p><strong>GAV 坐标在本地仓库中唯一标识一个模块。</strong></p>
+<ul>
+<li><strong>groupId：</strong>域名反转+项目名称。</li>
+<li><strong>artifactId：</strong>当前项目模块名称。</li>
+<li><strong>version：</strong>版本号。<br><code>SNAPSHOT 快照，开发使用；RELEASE 发行版。</code></li>
+</ul>
+<h2 id="3-4-仓库"><a href="#3-4-仓库" class="headerlink" title="3.4. 仓库"></a>3.4. 仓库</h2><ul>
+<li>本地仓库：</li>
+<li>远程仓库：<br><code>私服，搭建在局域网环境，通过 nexus 搭建。</code><br><code>中央仓库。</code><br><code>中央仓库镜像，分担中央仓库的流量，提升用户访问速度。</code></li>
+</ul>
+<h2 id="3-5-生命周期"><a href="#3-5-生命周期" class="headerlink" title="3.5. 生命周期"></a>3.5. 生命周期</h2><p>Maven 生命周期定义各个构建环节的执行顺序。<font>运行任何一个阶段的时候，它前面的所有阶段都会被运行</font>。</p>
+<ul>
+<li><strong>clean 阶段：</strong>pre-clean，<strong>clean</strong>，post-clean。</li>
+<li><strong>default 阶段：compile</strong>（编译源代码），test-compile（编译测试源代码），<strong>test</strong>，<strong>package</strong>，<strong>install</strong>。</li>
+<li><strong>site 阶段：</strong>pre-site，<strong>site</strong>，post-site，site-deploy 部署。</li>
+</ul>
+<h1 id="4-依赖"><a href="#4-依赖" class="headerlink" title="4. 依赖"></a>4. 依赖</h1><h2 id="4-1-作用"><a href="#4-1-作用" class="headerlink" title="4.1. 作用"></a>4.1. 作用</h2><p>使用某个存在的 jar 包或模块，可以采用依赖实现（去本地仓库、中央仓库中寻找）。</p>
+<h2 id="4-2-依赖范围与有效性"><a href="#4-2-依赖范围与有效性" class="headerlink" title="4.2. 依赖范围与有效性"></a>4.2. 依赖范围与有效性</h2><ul>
+<li><strong>compile：</strong>编译有效，测试有效，部署有效。默认依赖范围。</li>
+<li><strong>test：</strong>编译无效，测试有效，部署无效。常见 junit.jar。</li>
+<li><strong>provided：</strong>编译有效，测试有效，部署无效。常见 servlet-api.jar，由于 tomcat 自带，如果设置 compile，可能版本冲突报错。</li>
+</ul>
+<h2 id="4-3-依赖排除"><a href="#4-3-依赖排除" class="headerlink" title="4.3. 依赖排除"></a>4.3. 依赖排除</h2><pre><code class="highlight xml"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fengbiao1<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mango-schedule<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span>
+    <span class="comment">&lt;!-- 要排除的依赖 --&gt;</span>
+    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span><span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span><span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></code></pre>
+
+<h2 id="4-4-依赖传递性"><a href="#4-4-依赖传递性" class="headerlink" title="4.4. 依赖传递性"></a>4.4. 依赖传递性</h2><p><font>A 依赖 B，B 依赖 C，当且仅当 B 依赖于 C 的范围是 compile 时，A 依赖于 C。</font></p>
+<h2 id="4-5-依赖原则"><a href="#4-5-依赖原则" class="headerlink" title="4.5. 依赖原则"></a>4.5. 依赖原则</h2><ul>
+<li><strong>路径最短优先原则。</strong></li>
+<li>路径长度相同：<ul>
+<li>如果同一个 pom 文件中有两个相同的依赖（禁止），后面声明的依赖覆盖前面声明的依赖。</li>
+<li>如果在不同的 pom 文件中有两个相同的依赖，则先声明的依赖会覆盖后声明的依赖。</li>
+</ul>
+</li>
+</ul>
+<h1 id="5-继承"><a href="#5-继承" class="headerlink" title="5. 继承"></a>5. 继承</h1><h2 id="5-1-作用"><a href="#5-1-作用" class="headerlink" title="5.1. 作用"></a>5.1. 作用</h2><p>在父工程中统一管理依赖信息。</p>
+<h2 id="5-2-继承-VS-依赖传递"><a href="#5-2-继承-VS-依赖传递" class="headerlink" title="5.2. 继承 VS 依赖传递"></a>5.2. 继承 VS 依赖传递</h2><ul>
+<li><strong>依赖传递：</strong>A 依赖于 B，B 依赖于 C，当且仅当 B 依赖于 C 在 compile 范围，则 A 依赖于 C。</li>
+<li><strong>继承：</strong>A 继承于 B，则 A 可以使用 B 所有依赖。</li>
+</ul>
+<h2 id="5-3-示例"><a href="#5-3-示例" class="headerlink" title="5.3. 示例"></a>5.3. 示例</h2><ol>
+<li>建立父工程，打包方式为 pom。<br><code>java工程打包方式为jar，web项目打包方式为war，父工程、聚合打包方式为pom。</code></li>
+<li>在标签 dependencyManagement 中管理依赖信息。</li>
+<li>子工程继承父工程（如果子工程和父工程的 gv 一致，可以省略）。</li>
+<li>在子工程声明需要使用的父工程依赖（如果版本号和依赖有效性与父工程一致，可以省略）。</li>
+</ol>
+<h1 id="6-聚合"><a href="#6-聚合" class="headerlink" title="6. 聚合"></a>6. 聚合</h1><h2 id="6-1-作用"><a href="#6-1-作用" class="headerlink" title="6.1. 作用"></a>6.1. 作用</h2><p>将多个工程拆分为模块以后，需要手动逐个安装到仓库中，依赖才会生效，且如果修改源码后，也需要逐个手动进行 clean 安装。采用聚合批量进行 Maven 前置工程的安装。</p>
+<h2 id="6-2-聚合-VS-继承"><a href="#6-2-聚合-VS-继承" class="headerlink" title="6.2. 聚合 VS 继承"></a>6.2. 聚合 VS 继承</h2><ul>
+<li><strong>聚合：</strong>将大工程拆分成若干个子工程（子模块），聚合可以将拆分的多个子工程合起来。</li>
+<li><strong>继承：</strong>通过父工程统一管理依赖版本。</li>
+</ul>
+<h2 id="6-3-示例"><a href="#6-3-示例" class="headerlink" title="6.3. 示例"></a>6.3. 示例</h2><p>在聚合工程中通过标签 modules 和 module 指定模块工程的相对路径。</p>
+<h2 id="6-4-注意事项"><a href="#6-4-注意事项" class="headerlink" title="6.4. 注意事项"></a>6.4. 注意事项</h2><ol>
+<li>module 顺序无所谓，maven 会自动识别。</li>
+<li>聚合工程打包方式为 pom。</li>
+<li>聚合子工程并不需要继承同一个父工程。</li>
+</ol>
+<h1 id="7-插件"><a href="#7-插件" class="headerlink" title="7. 插件"></a>7. 插件</h1><h2 id="7-1-springboot-项目配置打包插件"><a href="#7-1-springboot-项目配置打包插件" class="headerlink" title="7.1. springboot 项目配置打包插件"></a>7.1. springboot 项目配置打包插件</h2><ol>
+<li><p>如果以继承的方式引入 spring-boot-starter-parent。</p>
+<pre><code class="highlight xml"><span class="tag">&lt;<span class="name">build</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">build</span>&gt;</span></code></pre>
+</li>
+<li><p>如果以依赖的方式引入 spring-boot-starter-parent，详见 spring-boot-starter-parent 对应 pom 文件。</p>
+<pre><code class="highlight xml"><span class="tag">&lt;<span class="name">build</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">executions</span>&gt;</span>
+                <span class="tag">&lt;<span class="name">execution</span>&gt;</span>
+                    <span class="tag">&lt;<span class="name">id</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">id</span>&gt;</span>
+                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span>
+                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">goal</span>&gt;</span>
+                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span>
+                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span>
+            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span>
+                <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>com.fengbiao1.mango.admin.MangoAdminApplication<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span>
+            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">build</span>&gt;</span></code></pre></li>
+</ol>
+<h2 id="7-2-常用插件"><a href="#7-2-常用插件" class="headerlink" title="7.2. 常用插件"></a>7.2. 常用插件</h2><ul>
+<li><strong>spring-boot-maven-plugin：</strong>springboot 项目所必须，否则 jar 包无法运行，但是引入这个插件必须要有主启动类。</li>
+<li><strong>maven-compiler-plugin：</strong>可以定制化 jar 包。</li>
+</ul>
+<h1 id="8-其他"><a href="#8-其他" class="headerlink" title="8. 其他"></a>8. 其他</h1><h2 id="8-1-统一编码"><a href="#8-1-统一编码" class="headerlink" title="8.1. 统一编码"></a>8.1. 统一编码</h2><pre><code class="highlight xml"><span class="tag">&lt;<span class="name">properties</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">properties</span>&gt;</span></code></pre>
+
+<h2 id="8-2-统一项目-jdk-版本"><a href="#8-2-统一项目-jdk-版本" class="headerlink" title="8.2. 统一项目 jdk 版本"></a>8.2. 统一项目 jdk 版本</h2><ul>
+<li>右键项目 Build Path，选择 config，选择 library，删除旧的版本，新增新的版本 Add library（JRE System Liberary）。</li>
+<li>右键项目 properties，选择 Project Facets，选择 java 版本号。</li>
+<li>通过 maven 配置 jdk 版本。</li>
+</ul>
+<h2 id="8-3-配置多环境-profiles"><a href="#8-3-配置多环境-profiles" class="headerlink" title="8.3. 配置多环境 profiles"></a>8.3. 配置多环境 profiles</h2><ol>
+<li><p>配置 pom 文件。</p>
+<pre><code class="highlight xml"><span class="tag">&lt;<span class="name">profiles</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">profile</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">id</span>&gt;</span>test<span class="tag">&lt;/<span class="name">id</span>&gt;</span> <span class="comment">&lt;!-- 唯一ID --&gt;</span>
+        <span class="tag">&lt;<span class="name">properties</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">profiles.active</span>&gt;</span>test<span class="tag">&lt;/<span class="name">profiles.active</span>&gt;</span> <span class="comment">&lt;!-- 标签为key，将来使用；值为对应的profile值 --&gt;</span>
+        <span class="tag">&lt;/<span class="name">properties</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">profile</span>&gt;</span>
+    <span class="tag">&lt;<span class="name">profile</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">id</span>&gt;</span>uat<span class="tag">&lt;/<span class="name">id</span>&gt;</span>
+        <span class="tag">&lt;<span class="name">properties</span>&gt;</span>
+            <span class="tag">&lt;<span class="name">profiles.active</span>&gt;</span>uat<span class="tag">&lt;/<span class="name">profiles.active</span>&gt;</span>
+        <span class="tag">&lt;/<span class="name">properties</span>&gt;</span>
+    <span class="tag">&lt;/<span class="name">profile</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></code></pre>
+</li>
+<li><p>application.yml 使用<code>@profiles.active@</code>。</p>
+</li>
+</ol>
+<h1 id="9-私服搭建"><a href="#9-私服搭建" class="headerlink" title="9. 私服搭建"></a>9. 私服搭建</h1><p><code>TODO</code></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 不积跬步无以至千里，不积小流无以成江海！ </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2015-2024 蜡笔没了小新
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.png" class="alipay" title="扫码支持">
+            <img src="/img/wechat.png" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 582px;
+    }
+    .nav.fullscreen {
+        margin-left: -582px;
+    }
+    .nav-left {
+        width: 160px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 532px;
+        }
+        .nav.fullscreen {
+            margin-left: -532px;
+        }
+        .nav-left {
+            width: 140px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 532px;
+            margin-left: -532px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("/images/20230809225525.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>
